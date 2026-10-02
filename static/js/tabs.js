@@ -122,10 +122,12 @@ const DeathApp = new LeadTab({
         { id: "sole", label: "Sole or all owners died", test: (r) => r.death_class !== "D4" },
         { id: "stale", label: "Died 2+ years ago, title unchanged", test: (r) => r.years_since_death >= 2 },
         { id: "recent", label: "Last 12 months", test: (r) => r.years_since_death != null && r.years_since_death <= 1 },
+        { id: "old", label: "Died before 2008 (federal record)", test: (r) => r.death_date && r.death_date < "2008" },
     ],
     stats: (s) => [["Owners Matched to a Death", s.matches, "pink"], ["High Identity Confidence", s.high, "yellow"],
-        ["Sole / All Owners Died", (s.classes.D1 || 0) + (s.classes.D5 || 0), "purple"], ["Obituaries on File", Number(s.obituaries).toLocaleString(), "cyan"]],
-    info: (s) => `Obituaries: ${s.source}, ${s.coverage_from.slice(0, 7)} to ${s.coverage_to.slice(0, 7)}${s.other_sources ? ` + ${s.other_sources} from other files` : ""}. Each person on a title is matched separately. Name-only matches (${s.low_hidden}) are not shown.`,
+        ["Sole / All Owners Died", (s.classes.D1 || 0) + (s.classes.D5 || 0), "purple"], ["Death Records on File", Number(s.obituaries).toLocaleString(), "cyan"]],
+    info: (s) => "Death records: " + Object.entries(s.sources || {}).map(([k, v]) => `${k} (${Number(v.count).toLocaleString()}, ${v.from.slice(0, 4)}–${v.to.slice(0, 4)})`).join("; ") +
+        `. Each person on a title is matched separately. Name-only matches (${s.low_hidden}) are not shown.`,
     searchText: (r) => `${r.decedent} ${r.owner} ${r.place} ${r.mail.city} ${r.class_label} ${r.parcels.map((p) => p.address + " " + p.pin).join(" ")}`,
     title: (r) => r.decedent,
     row: (r) => [
@@ -147,7 +149,7 @@ const DeathApp = new LeadTab({
             <h3>Death record</h3>
             <div class="detail-row"><span class="label">Decedent</span><span class="value" style="font-weight:600">${esc(r.decedent)}${r.age ? `, ${r.age}` : ""}${r.place ? ` · of ${esc(r.place)}` : ""}</span></div>
             <div class="detail-row"><span class="label">Died</span><span class="value mono">${esc(r.death_date || "—")}${r.birth_date ? ` · born ${esc(r.birth_date)}` : ""}</span></div>
-            <div class="detail-row"><span class="label">Source</span><span class="value">${esc(r.source)}${r.obituary_url ? ` · <a style="color:var(--cyan-dim)" href="${esc(r.obituary_url)}" target="_blank" rel="noopener">read the obituary (survivors are listed there)</a>` : ""}</span></div>
+            <div class="detail-row"><span class="label">Source</span><span class="value">${esc(r.source)}${r.obituary_url ? ` · <a style="color:var(--cyan-dim)" href="${esc(r.obituary_url)}" target="_blank" rel="noopener">${/NUMIDENT/.test(r.source) ? "about this federal record (no survivors listed; look for the heirs in the Clerk's will books)" : "read the obituary (survivors are listed there)"}</a>` : ""}</span></div>
             ${(r.heirs || []).length ? `<div class="detail-row"><span class="label">Heirs on file</span><span class="value">${r.heirs.map(esc).join("<br>")}</span></div>` : ""}
             <div class="detail-row"><span class="label">Why it matches</span><span class="value"><ul class="reasons">${r.identity_reasons.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></span></div>
         </div>

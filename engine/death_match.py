@@ -152,7 +152,8 @@ def run(fetch=True, today=None):
     recs.update(extra)
     for o in recs.values():                              # a typo'd year on the source page is not a death date
         d = o.get("death_date") or ""
-        if d and not ("1990-01-01" <= d <= today.isoformat()):
+        floor = "1936-01-01" if "NUMIDENT" in o.get("source", "") else "2000-01-01"
+        if d and not (floor <= d <= today.isoformat()):
             o["death_date"] = ""
     log.info("%s obituaries on file (%s from other files in data/obits/)", len(recs), len(extra))
 
@@ -186,6 +187,10 @@ def run(fetch=True, today=None):
             if not res:
                 continue
             pts, why = res
+            if bool(o.get("suffix")) != bool(person.get("suffix")):
+                pts = min(pts, HIGH - 5)             # Jr / III on one side only: never better than Medium
+            if dy and today.year - dy >= 15:
+                why.append(f"the death was {today.year - dy} years ago: confirm no later deed, and that this is not a parent of the same name")
             if o["last"] != person["last"]:
                 pts -= 15
                 why.append("matched on the maiden name in the obituary")
@@ -247,8 +252,15 @@ def run(fetch=True, today=None):
 
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     dates = sorted(o["death_date"] for o in recs.values() if o.get("death_date"))
+    by_source = {}
+    for o in recs.values():
+        d = o.get("death_date") or ""
+        b = by_source.setdefault(o["source"], {"count": 0, "from": "", "to": ""})
+        b["count"] += 1
+        if d:
+            b["from"], b["to"] = min(b["from"] or d, d), max(b["to"], d)
     summary = {
-        "generated_at": now, "obituaries": len(recs), "source": obits.SOURCE, "other_sources": len(extra),
+        "generated_at": now, "obituaries": len(recs), "source": obits.SOURCE, "other_sources": len(extra), "sources": by_source,
         "coverage_from": dates[0] if dates else "", "coverage_to": dates[-1] if dates else "",
         "matches": len(out), "high": sum(1 for x in out if x["identity_confidence"] == "HIGH"),
         "medium": sum(1 for x in out if x["identity_confidence"] == "MEDIUM"), "low_hidden": len(low),

@@ -148,3 +148,13 @@ def test_suffix_after_semicolon_and_namesakes():
     assert dm.score({"middle": "F", "suffix": "SR", "place": "King George", "age": 80}, {"middle": "F", "suffix": "JR"}, r, 1, 2025) is None
     heirs = dict(r, sale_year=1969, owner_type="ESTATE", owner_subtype="HEIRS")
     assert dm.score({"middle": "V", "suffix": "", "place": "King George", "age": 70}, {"middle": "", "suffix": ""}, heirs, 1, 2024) is None
+
+
+def test_numident_rows_drop_ssn():
+    from engine import numident
+    text = ('"SOCIAL SECURITY NUMBER","FIRST NAME","MIDDLE NAME","LAST NAME","SUFFIX NAME","DATE OF BIRTH (MONTH)","DATE OF BIRTH (DAY)",'
+            '"DATE OF BIRTH (YEAR)","OTHER NUMBER","RESIDENCE ZIP CODE","DATE OF DEATH (MONTH)","DATE OF DEATH (DAY)","DATE OF DEATH (YEAR)"\n'
+            '"123456789","CAROLYN","S","BRYANT","","02","10","1928","987654321","224851234","07","14","1999"\n')
+    rows = numident.to_records(text, numident.KG_ZIPS)
+    assert len(rows) == 1 and rows[0]["death_date"] == "1999-07-14" and rows[0]["age"] == 71 and rows[0]["place"] == "King George"
+    assert "123456789" not in str(rows) and "987654321" not in str(rows)

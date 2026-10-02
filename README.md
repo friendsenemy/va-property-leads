@@ -86,7 +86,13 @@ before the person was 16, rules it out. **High** is 75+, **Medium** 55–74, and
 lower is not shown. Classes: **D1** sole owner died, **D5** every owner died, **D4** one
 co-owner died.
 
-Obituaries come from Storke Funeral Home (King George's own; archive from November 2018).
+Death records come from two places. **2018 to today:** obituaries from Storke Funeral
+Home (King George's own). **1988 to 2007:** the Social Security NUMIDENT death file at
+the National Archives, a public-domain federal record searched by residence ZIP code
+(`engine/numident.py`, a one-time pull; Social Security numbers are never stored). It
+misses deaths reported only by a state (10-30%, by NARA's estimate), so absence proves
+nothing. **2008 to 2017 has no automated source:** the newspapers and indexes that
+cover it forbid automated access; deaths you find there go in `data/obits/manual.csv`.
 Legacy.com and the Free Lance-Star refuse automated clients and forbid them in their
 terms, so they are not fetched; see `docs/sources-and-terms.md`.
 
