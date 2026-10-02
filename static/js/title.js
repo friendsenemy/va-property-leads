@@ -206,9 +206,7 @@ const TitleApp = {
             ${r.obituary ? `<div class="detail-section"><h3>Obituary match</h3>
                 <div class="detail-row"><span class="label">Decedent</span><span class="value">${this.esc(r.obituary.decedent)}${r.obituary.age ? ", " + r.obituary.age : ""}${r.obituary.place ? " · of " + this.esc(r.obituary.place) : ""} · died ${this.esc(r.obituary.death_date || "date not parsed")}</span></div>
                 <div class="detail-row"><span class="label">Matches</span><span class="value">${this.esc(r.obituary.matched_owner)} · identity confidence ${this.esc(r.obituary.identity_confidence)}${r.obituary.obituary_url ? ` · <a style="color:var(--cyan-dim)" href="${this.esc(r.obituary.obituary_url)}" target="_blank" rel="noopener">obituary</a>` : ""}</span></div></div>` : ""}
-            ${r.delinquency ? `<div class="detail-section"><h3>Taxes</h3>
-                <div class="detail-row"><span class="label">Past due</span><span class="value mono" style="color:var(--red)">$${Number(r.delinquency.past_due).toLocaleString()} · tax years ${r.delinquency.years.join(", ")}${r.delinquency.sale_eligible ? " · old enough for the county to sue" : ""}</span></div>
-                <div class="detail-row"><span class="label">Checked</span><span class="value">${this.esc(r.delinquency.checked)} (Treasurer's inquiry; confirm before calling)</span></div></div>` : ""}
+            ${taxBlock(r)}
             <div class="detail-section">
                 <h3>${r.parcel_count} parcel${r.parcel_count > 1 ? "s" : ""} · ${money(r.total_value)} assessed · ${Number(r.acres).toLocaleString()} acres</h3>
                 <div class="ptable-wrap"><table class="ptable">

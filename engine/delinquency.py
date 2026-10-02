@@ -278,6 +278,7 @@ def join(today=None):
             cls, flags, detail = title_scan.scan_parcel(r, this_year)
             parcels.append(dict(title_scan.parcel_view(r, flags, detail, this_year), title_class=cls,
                                 past_due=b["past_due"], years=b["years"], oldest_due=b["oldest_due"],
+                                payments_behind=b.get("installments", len(b["years"])), not_yet_due=b.get("not_yet_due", 0),
                                 sale_eligible=b["sale_eligible"], sale_eligible_on=b["sale_eligible_on"],
                                 treasurer_name=b.get("name", ""), checked=b["checked"]))
         eligible = any(p["sale_eligible"] for p in parcels)
@@ -293,6 +294,8 @@ def join(today=None):
             "owner": owner, "owner_type": r0["owner_type"], "care_of": r0["care_of"],
             "mail": {"addr": r0["mail_addr"], "city": r0["mail_city"], "state": r0["mail_state"], "zip": r0["mail_zip"] or None},
             "past_due": past, "years": years, "oldest_due": min(p["oldest_due"] for p in parcels),
+            "payments_behind": sum(p["payments_behind"] for p in parcels),
+            "not_yet_due": round(sum(p["not_yet_due"] for p in parcels), 2),
             "sale_eligible": eligible, "treasurer_name": tname,
             "name_differs": bool(tname) and re.sub(r"\W", "", tname.upper()) not in re.sub(r"\W", "", (r0["lnam"] + r0["fnam"]).upper()),
             "title_class": next((p["title_class"] for p in parcels if p["title_class"]), ""),
@@ -329,11 +332,33 @@ def join(today=None):
                 yrs = sorted({y for b in hit for y in b["years"]})
                 amt = round(sum(b["past_due"] for b in hit), 2)
                 lead["reasons"].append(f"+{add} taxes unpaid for {yrs[0]}" + (f"–{yrs[-1]}" if len(yrs) > 1 else "") + f" (${amt:,.2f}, Treasurer's record)")
-                lead["delinquency"] = {"past_due": amt, "years": yrs, "sale_eligible": elig, "checked": max(b["checked"] for b in hit)}
+                lead["delinquency"] = {"past_due": amt, "years": yrs, "sale_eligible": elig, "checked": max(b["checked"] for b in hit),
+                                       "payments_behind": sum(b.get("installments", len(b["years"])) for b in hit),
+                                       "oldest_due": min(b["oldest_due"] for b in hit)}
                 n += 1
         tl["rows"].sort(key=lambda l: (-l["priority"], -l["total_value"], l["owner"]))
         json.dump(tl, open(tpath, "w"), separators=(",", ":"))
         log.info("%s Title Leads carry a delinquency", n)
+    # the same facts on Death Leads rows
+    mpath = os.path.join(ROOT, "data", "obits", "matches.json")
+    if os.path.exists(mpath):
+        mj = json.load(open(mpath))
+        for row in mj["rows"]:
+            hit = [position(balances[str(p["pid"])]) for p in row["parcels"] if str(p["pid"]) in balances]
+            hit = [b for b in hit if b["prior_year"]]
+            row.pop("delinquency", None)
+            if hit:
+                row["delinquency"] = {"past_due": round(sum(b["past_due"] for b in hit), 2), "years": sorted({y for b in hit for y in b["years"]}),
+                                      "sale_eligible": any(b["sale_eligible"] for b in hit), "checked": max(b["checked"] for b in hit),
+                                      "payments_behind": sum(b.get("installments", len(b["years"])) for b in hit),
+                                      "oldest_due": min(b["oldest_due"] for b in hit)}
+            row["tax_checked"] = max((state.get(str(p["pid"]), "") for p in row["parcels"]), default="")
+        json.dump(mj, open(mpath, "w"), separators=(",", ":"))
+    if os.path.exists(tpath):
+        tl = json.load(open(tpath))
+        for lead in tl["rows"]:
+            lead["tax_checked"] = max((state.get(str(p["pid"]), "") for p in lead["parcels"]), default="")
+        json.dump(tl, open(tpath, "w"), separators=(",", ":"))
     log.info("delinquent tab: %s", {k: summary[k] for k in ("leads", "classes", "parcels_checked", "past_due_total")})
     return summary
 

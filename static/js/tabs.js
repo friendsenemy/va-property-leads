@@ -98,6 +98,17 @@ class LeadTab {
     }
 }
 
+function taxBlock(r) {
+    const d = r.delinquency;
+    if (d) return `<div class="detail-section"><h3>Taxes — delinquent</h3>
+        <div class="detail-row"><span class="label">Past due</span><span class="value mono" style="color:var(--red)">${money(d.past_due)}</span></div>
+        <div class="detail-row"><span class="label">Payments behind</span><span class="value">${d.payments_behind} half-year installment${d.payments_behind === 1 ? "" : "s"} · tax years ${d.years.join(", ")} · unpaid since ${esc(d.oldest_due)}</span></div>
+        <div class="detail-row"><span class="label">Sale status</span><span class="value">${d.sale_eligible ? "Old enough for the county to sue to sell (Va. Code § 58.1-3965)" : "Not yet old enough for the county to sue"}</span></div>
+        <div class="detail-row"><span class="label">Checked</span><span class="value">${esc(d.checked)} · Treasurer's inquiry; confirm before calling</span></div></div>`;
+    return `<div class="detail-section"><h3>Taxes</h3><div class="detail-row"><span class="label">Status</span><span class="value">${r.tax_checked
+        ? `No prior-year balance as of ${esc(r.tax_checked)} (Treasurer's inquiry)` : "Not checked yet. The Treasurer walk reaches every parcel once a month."}</span></div></div>`;
+}
+
 const mailLine = (r) => [r.mail.addr, `${r.mail.city || ""}${r.mail.state ? ", " + r.mail.state : ""} ${r.mail.zip || ""}`].filter((x) => x && x.trim()).join(", ");
 const conf = (c) => `<span class="prio prio-${c === "HIGH" ? "high" : "mid"}">${c}</span>`;
 
@@ -123,7 +134,7 @@ const DeathApp = new LeadTab({
         `<span class="mono" style="font-size:0.8rem">${esc(r.owner)}</span>${r.other_owners.length ? `<div class="sub">also on title: ${esc(r.other_owners.join("; "))}</div>` : ""}`,
         `<div class="address">${esc((r.parcels.find((p) => p.address) || {}).address || "No street address (land)")}</div><div class="meta">${r.parcel_count > 1 ? r.parcel_count + " parcels" : esc(r.parcels[0].legal || "")}</div>`,
         `<span class="cls cls-E">${r.death_class}</span> <span class="sub">${esc(r.class_label)}</span>${r.title_class ? ` <span class="chip chip-strong">also ${r.title_class}</span>` : ""}`,
-        conf(r.identity_confidence),
+        conf(r.identity_confidence) + (r.delinquency ? `<div><span class="chip chip-strong">${money(r.delinquency.past_due)} past due</span></div>` : ""),
         `<span class="value-cell">${money(r.total_value)}</span>`,
     ],
     detail: (r, s) => `
@@ -146,6 +157,7 @@ const DeathApp = new LeadTab({
             <div class="detail-row"><span class="label">Matched person</span><span class="value">${esc(r.matched_owner)}${r.other_owners.length ? ` · others on title: ${esc(r.other_owners.join("; "))}` : ""}</span></div>
             <div class="detail-row"><span class="label">Bill mailed to</span><span class="value">${esc(mailLine(r))}</span></div>
         </div>
+        ${taxBlock(r)}
         <div class="detail-section"><h3>${r.parcel_count} parcel${r.parcel_count > 1 ? "s" : ""} · ${money(r.total_value)} assessed</h3>${parcelTable(r.parcels)}</div>`,
     csvHead: ["Death Date", "Decedent", "Age", "Of", "Class", "Identity", "Owner On Record", "Other Owners", "Mail Address", "Mail City", "Mail State", "Mail Zip", "PIN", "Property", "Assessed", "Last Transfer", "Deed Ref", "Obituary", "Status", "Notes"],
     csvRow: (r, p) => [r.death_date, r.decedent, r.age, r.place, r.death_class, r.identity_confidence, r.owner, r.other_owners.join("; "), r.mail.addr, r.mail.city, r.mail.state, r.mail.zip, `="${p.pin}"`, p.address, p.total_value, p.sale_year_estimated ? "" : p.sale_year, p.deed_ref, r.obituary_url],
@@ -154,7 +166,7 @@ const DeathApp = new LeadTab({
 const DelinqApp = new LeadTab({
     prefix: "delinq", url: "data/delinquency/leads.json", lsKey: "va_delinq_leads_local_v1",
     emptyTitle: "No delinquency data yet", emptyText: "The Treasurer walk runs over four nights at the start of each month.",
-    columns: ["Priority", "Owner on Record", "Property", "Class", "Unpaid Years", "Past Due", "Assessed", "Bill Mailed To"],
+    columns: ["Priority", "Owner on Record", "Property", "Class", "Behind", "Past Due", "Assessed", "Bill Mailed To"],
     filters: [
         { id: "all", label: "All" },
         { id: "elig", label: "Sale-eligible", test: (r) => r.sale_eligible },
@@ -172,7 +184,7 @@ const DelinqApp = new LeadTab({
         `<span class="mono" style="font-size:0.8rem">${esc(r.owner)}</span>${r.name_differs ? `<div class="sub">Treasurer bills: ${esc(r.treasurer_name)}</div>` : ""}`,
         `<div class="address">${esc((r.parcels.find((p) => p.address) || {}).address || "No street address (land)")}</div><div class="meta">${r.parcel_count > 1 ? r.parcel_count + " parcels" : esc(r.parcels[0].legal || "")}</div>`,
         `<span class="cls cls-${r.delinquency_class === "P1" ? "W" : r.sale_eligible ? "E" : "C"}">${r.delinquency_class}</span> <span class="sub">${esc(r.class_label)}</span>${r.title_class ? ` <span class="chip chip-strong">also ${r.title_class}</span>` : ""}`,
-        `<span class="mono">${r.years[0]}${r.years.length > 1 ? "–" + r.years[r.years.length - 1] : ""}</span><div class="sub">oldest due ${esc(r.oldest_due)}</div>`,
+        `<span class="mono">${r.payments_behind} payment${r.payments_behind === 1 ? "" : "s"}</span><div class="sub">tax years ${r.years[0]}${r.years.length > 1 ? "–" + r.years[r.years.length - 1] : ""} · unpaid since ${esc(r.oldest_due)}</div>`,
         `<span class="mono" style="color:var(--red)">${money(r.past_due)}</span>`,
         `<span class="value-cell">${money(r.total_value)}</span>`,
         `${esc(r.mail.city || "—")}${r.mail.state ? ", " + esc(r.mail.state) : ""}`,
@@ -188,11 +200,15 @@ const DelinqApp = new LeadTab({
             <div class="detail-row"><span class="label">GIS owner</span><span class="value mono">${esc(r.owner)}</span></div>
             <div class="detail-row"><span class="label">Treasurer bills</span><span class="value mono">${esc(r.treasurer_name || "—")}${r.name_differs ? ' <span class="chip chip-strong">differs from GIS</span>' : ""}</span></div>
             <div class="detail-row"><span class="label">Bill mailed to</span><span class="value">${esc(mailLine(r))}${r.care_of ? ` · c/o ${esc(r.care_of)}` : ""}</span></div>
-            <div class="detail-row"><span class="label">Past due</span><span class="value mono" style="color:var(--red)">${money(r.past_due)} · tax years ${r.years.join(", ")}</span></div>
+            <div class="detail-row"><span class="label">Past due</span><span class="value mono" style="color:var(--red)">${money(r.past_due)}</span></div>
+            <div class="detail-row"><span class="label">Payments behind</span><span class="value">${r.payments_behind} half-year installment${r.payments_behind === 1 ? "" : "s"} unpaid (bills are due each June and December) · tax years ${r.years.join(", ")}</span></div>
+            <div class="detail-row"><span class="label">Unpaid since</span><span class="value mono">${esc(r.oldest_due)}</span></div>
+            <div class="detail-row"><span class="label">Sale status</span><span class="value">${r.sale_eligible ? "Old enough for the county to sue to sell (Va. Code § 58.1-3965). No King George sale is listed by counsel today unless the banner at the top says so." : "Not yet old enough for the county to sue."}</span></div>
+            ${r.not_yet_due ? `<div class="detail-row"><span class="label">Billed, not yet due</span><span class="value mono">${money(r.not_yet_due)}</span></div>` : ""}
         </div>
         <div class="detail-section"><h3>${r.parcel_count} parcel${r.parcel_count > 1 ? "s" : ""} · ${money(r.total_value)} assessed</h3>
-            ${parcelTable(r.parcels, "<th>Past due</th>", (p) => `<td class="mono" style="color:var(--red)">${money(p.past_due)}<div class="sub">${p.years.join(", ")}${p.sale_eligible ? " · sale-eligible" : ` · eligible after ${esc(p.sale_eligible_on)}`}</div></td>`)}
+            ${parcelTable(r.parcels, "<th>Past due</th>", (p) => `<td class="mono" style="color:var(--red)">${money(p.past_due)}<div class="sub">${p.payments_behind} payments · ${p.years[0]}${p.years.length > 1 ? "–" + p.years[p.years.length - 1] : ""}${p.sale_eligible ? " · sale-eligible" : ` · eligible after ${esc(p.sale_eligible_on)}`}</div></td>`)}
         </div>`,
-    csvHead: ["Priority", "Class", "Owner", "Treasurer Name", "Past Due", "Unpaid Years", "Oldest Due", "Sale Eligible", "Mail Address", "Mail City", "Mail State", "Mail Zip", "PIN", "Property", "Assessed", "Parcel Past Due", "Checked", "Status", "Notes"],
-    csvRow: (r, p) => [r.priority, r.delinquency_class, r.owner, r.treasurer_name, r.past_due, r.years.join(" "), r.oldest_due, r.sale_eligible ? "yes" : "no", r.mail.addr, r.mail.city, r.mail.state, r.mail.zip, `="${p.pin}"`, p.address, p.total_value, p.past_due, p.checked],
+    csvHead: ["Priority", "Class", "Owner", "Treasurer Name", "Past Due", "Payments Behind", "Unpaid Years", "Oldest Due", "Sale Eligible", "Mail Address", "Mail City", "Mail State", "Mail Zip", "PIN", "Property", "Assessed", "Parcel Past Due", "Checked", "Status", "Notes"],
+    csvRow: (r, p) => [r.priority, r.delinquency_class, r.owner, r.treasurer_name, r.past_due, r.payments_behind, r.years.join(" "), r.oldest_due, r.sale_eligible ? "yes" : "no", r.mail.addr, r.mail.city, r.mail.state, r.mail.zip, `="${p.pin}"`, p.address, p.total_value, p.past_due, p.checked],
 });
