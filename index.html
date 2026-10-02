@@ -77,6 +77,9 @@
             <a class="btn btn-primary" href="https://github.com/friendsenemy/va-property-leads/actions" target="_blank" rel="noopener">
                 <span class="icon">⚡</span> Runs
             </a>
+            <a class="btn" href="guide.html" target="_blank" rel="noopener" title="What each tab means, how to work a lead, and what to say" style="margin-left:6px">
+                <span class="icon">📖</span> How to Use
+            </a>
         </div>
     </header>
 
@@ -88,6 +91,7 @@
         <button class="view-tab" data-view="death">Death Leads <span class="view-tab-sub">obituary ↔ owner on title</span></button>
         <button class="view-tab" data-view="delinq">Delinquent <span class="view-tab-sub">Treasurer balances</span></button>
         <button class="view-tab" data-view="lookup">Parcel Lookup <span class="view-tab-sub">all 14k parcels</span></button>
+        <a class="view-tab" id="tabGuideLink" href="guide.html#title" target="_blank" rel="noopener" style="margin-left:auto; text-decoration:none; color:var(--text-dim)" title="Open the field guide for this tab">? what does this tab mean</a>
     </div>
 
 <div id="view-title">
@@ -301,8 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `<div class="sub">Owners can redeem only before the sale date. ${(j.listed_parcels || []).length} listed parcels joined to the board.</div>`;
         b.style.display = "block";
     }).catch(() => {});
-    document.querySelectorAll(".view-tab").forEach((tab) => tab.addEventListener("click", () => {
-        document.querySelectorAll(".view-tab").forEach((t) => t.classList.remove("active"));
+    document.querySelectorAll("button.view-tab").forEach((tab) => tab.addEventListener("click", () => {
+        document.querySelectorAll("button.view-tab").forEach((t) => t.classList.remove("active"));
         tab.classList.add("active");
         const v = tab.dataset.view;
         VIEWS.forEach((name) => {
@@ -310,6 +314,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (el) el.style.display = name === v ? "" : "none";
         });
         if (LAZY[v] && !started[v]) { started[v] = true; LAZY[v](); }
+        const g = document.getElementById("tabGuideLink");
+        if (g) g.href = "guide.html#" + v;
     }));
 });
 </script>

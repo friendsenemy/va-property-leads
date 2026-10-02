@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VA Property Leads Field Guide</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a field manual — one column of reading width, color-coded chapters that match the dashboard's tabs, examples set in "case file" boxes. */
+:root {
+  --paper: #f7f5ef;
+  --ink: #17202b;
+  --ink-2: #4b5563;
+  --rule: #d9d4c7;
+  --card: #ffffff;
+  --accent: #1f4e79;          /* ink navy: links, section markers */
+  --death: #b23a48;           /* Recent Death Leads */
+  --title: #2a6f97;           /* Title Leads */
+  --surplus: #b7791f;         /* Surplus (amber, same family as the dashboard) */
+  --buy: #2f855a;             /* Buy window / still owned */
+  --stranded: #6b46c1;        /* Lien stranded */
+  --county: #c05621;          /* Failed foreclosures */
+  --tint: rgba(23,32,43,0.04);
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --body: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #14181e; --ink: #ecebe4; --ink-2: #aab2bd; --rule: #2c333c; --card: #1b2129;
+  --accent: #8ab4dc; --death: #e07a86; --title: #6fb0d6; --surplus: #e2b04a; --buy: #6cc08b; --stranded: #b39ddb; --county: #f0925c;
+  --tint: rgba(255,255,255,0.05); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #14181e; --ink: #ecebe4; --ink-2: #aab2bd; --rule: #2c333c; --card: #1b2129;
+  --accent: #8ab4dc; --death: #e07a86; --title: #6fb0d6; --surplus: #e2b04a; --buy: #6cc08b; --stranded: #b39ddb; --county: #f0925c;
+  --tint: rgba(255,255,255,0.05); color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; margin: 0; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 80px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.1; margin: 0; }
+h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; margin-top: 8px; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.lede { font-size: 1.25rem; color: var(--ink-2); margin-top: 14px; max-width: 60ch; }
+.eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
+.stack { display: grid; gap: 14px; }
+.section { margin-top: 56px; padding-top: 28px; border-top: 2px solid var(--rule); }
+.chapter { --c: var(--accent); }
+.chapter .eyebrow { color: var(--c); }
+.chapter h2 { color: var(--c); }
+.tab-pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.78rem; padding: 4px 10px; border-radius: 999px; border: 1.5px solid var(--c); color: var(--c); margin-top: 10px; }
+.tab-pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 18px; }
+.box { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; min-width: 0; }
+.box h3 { margin-bottom: 8px; }
+.box.case { border-left: 5px solid var(--c); }
+.case .who { font-family: var(--mono); font-size: 0.82rem; color: var(--ink-2); }
+.num { font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.say { background: var(--tint); border-radius: 8px; padding: 14px 16px; font-style: italic; margin-top: 14px; }
+.say b { font-style: normal; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 6px; color: var(--c); }
+ol, ul { margin: 10px 0 0; padding-left: 22px; }
+li { margin: 6px 0; }
+li::marker { color: var(--c, var(--accent)); font-weight: 700; }
+.steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: 10px; margin-top: 14px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: start; }
+.steps li::before { content: counter(s); font-family: var(--display); font-weight: 800; font-size: 1.3rem; color: var(--accent); background: var(--tint); border-radius: 8px; width: 38px; height: 38px; display: grid; place-items: center; }
+.stage { display: inline-block; font-family: var(--mono); font-size: 0.74rem; padding: 2px 9px; border-radius: 999px; border: 1.5px solid currentColor; }
+.warn { border: 1.5px solid var(--death); border-radius: 10px; padding: 16px 20px; background: var(--card); }
+.warn h3 { color: var(--death); }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+.scroll { overflow-x: auto; }
+.mermaid { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 14px; margin-top: 18px; overflow-x: auto; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; margin: 14px 0 0; }
+dt { font-family: var(--mono); font-size: 0.85rem; font-weight: 500; }
+dd { margin: 0; color: var(--ink-2); }
+@media (max-width: 520px) { dl { grid-template-columns: 1fr; gap: 2px 0; } dd { margin-bottom: 8px; } body { font-size: 16px; } }
+a { color: var(--accent); }
+.money { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.foot { margin-top: 60px; color: var(--ink-2); font-size: 0.9rem; border-top: 1px solid var(--rule); padding-top: 16px; }
+
+/* standalone page: give the guide its own ground and a way back */
+html, body { margin: 0; }
+.topbar { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule); }
+.topbar .in { max-width: 860px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 0.78rem; }
+.topbar a { color: var(--accent); text-decoration: none; }
+.topbar a:hover { text-decoration: underline; }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 16px; font-family: var(--mono); font-size: 0.78rem; }
+.toc a { color: var(--accent); text-decoration: none; padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="in"><a href="index.html">← Back to the dashboard</a><span>Pages of Purpose LLC · internal</span></div></div>
+
+<div class="wrap">
+
+<div class="eyebrow">Pages of Purpose LLC · how the lead tool works</div>
+<h1>VA Property Leads Field Guide</h1>
+<p class="lede">The tool finds King George County property owners who have a problem they can't easily fix on their own. This guide explains each tab in plain English, with a real case for each, what to check before you call, and what to say.</p>
+<nav class="toc">
+  <a href="#start">Start here</a><a href="#stack">Stacked Distress</a><a href="#title">Title Leads</a><a href="#death">Death Leads</a><a href="#delinq">Delinquent</a><a href="#lookup">Parcel Lookup</a><a href="#routine">Daily routine</a><a href="#files">Files you fill in</a><a href="#rules">The Virginia rules</a><a href="#glossary">Glossary</a>
+</nav>
+
+<div class="section" id="start">
+  <div class="eyebrow">Start here</div>
+  <h2>The one idea behind everything</h2>
+  <p style="margin-top:12px">People sell a house for cash because something happened. Someone died and the house is still in their name. The taxes stopped being paid. Four cousins inherited a lot none of them wants. The house has sat empty for years. Each tab finds one of those situations in <b>public records</b>, so you can reach the owner or the heirs with a real answer. The tool is built property-first: it reads every parcel in the county every night and asks what is wrong with it.</p>
+
+  <div class="grid2">
+    <div class="box"><h3>Where the data comes from</h3>
+      <ul>
+        <li><b>The county's parcel record</b>: all 14,435 assessed parcels, with owner, mailing address, value, deed and will references, and the assessor's notes. Pulled every night.</li>
+        <li><b>Obituaries</b> from Storke Funeral Home (King George's own), back to November 2018, checked every night.</li>
+        <li><b>The Treasurer's tax inquiry</b>: what each parcel owes and since when. Every parcel is rechecked once a month, over the first few nights.</li>
+        <li><b>The county's tax-sale attorneys</b> (Sands Anderson): checked every Monday for a King George auction.</li>
+      </ul>
+    </div>
+    <div class="box"><h3>What the tool does not know</h3>
+      <ul>
+        <li>Who is alive. It knows who has a published obituary at one funeral home.</li>
+        <li>Who the heirs are. That is in the obituary and the Clerk's will books.</li>
+        <li>Whether a balance was paid yesterday. Balances are as of the date shown.</li>
+        <li>Mortgages and liens. Those are in the land records.</li>
+      </ul>
+      <p style="margin-top:10px">Every lead says <b>verify before contact</b> for that reason.</p>
+    </div>
+  </div>
+
+  <div class="box" style="margin-top:16px"><h3>How to read any row</h3>
+    <dl>
+      <dt>Priority</dt><dd>0 to 100. Red is 70 and up, yellow 50 to 69. Open the row to see exactly which facts added which points.</dd>
+      <dt>Owner on Record</dt><dd>The name exactly as the county has it. "A OR B" is Virginia shorthand for two owners, usually with survivorship.</dd>
+      <dt>Bill Mailed To</dt><dd>Where the tax bill goes. A different town or state from the property means nobody who owns it lives there.</dd>
+      <dt>Status</dt><dd>New, Contacted or Closed, plus your notes. These are saved in your browser only, on the device you used.</dd>
+      <dt>Export CSV</dt><dd>Downloads whatever the current filter shows, one line per parcel, ready for skip tracing or mail.</dd>
+    </dl>
+  </div>
+</div>
+
+<div class="section chapter" id="stack" style="--c: var(--stranded)">
+  <div class="eyebrow">Tab 1</div>
+  <h2>Stacked Distress</h2>
+  <span class="tab-pill">death + taxes + title + condition</span>
+  <div class="grid2">
+    <div class="box">
+      <h3>What it finds</h3>
+      <p>Owners with more than one thing wrong at once. One row per owner, with every signal side by side: a death, unpaid taxes, how the title reads, and what the assessor wrote about the house. An owner also shows here alone when the assessor notes a house as unsafe, abandoned, burned, unlivable or vacant.</p>
+      <h3 style="margin-top:16px">Why start here</h3>
+      <p>One signal can be a mistake or already handled. Two that agree rarely are. A death plus unpaid taxes means nobody has taken charge of the property.</p>
+      <h3 style="margin-top:16px">The filters</h3>
+      <dl>
+        <dt>Death + unpaid taxes</dt><dd>The strongest combination on the board.</dd>
+        <dt>3+ signals</dt><dd>Work these first.</dd>
+        <dt>House in bad shape</dt><dd>The assessor's own notes. They can be years old, so look at the property before you rely on one.</dd>
+      </dl>
+    </div>
+    <div class="box case">
+      <div class="who">case · Presidential Lakes, lot 94</div>
+      <h3>An estate in Minnesota, 49 tax payments behind</h3>
+      <p>Title reads "Swenson Helen L Estate". The bill goes to Minneapolis. The Treasurer shows <span class="money">$8,516</span> unpaid going back to June 2002, on a half-acre lot assessed at <span class="money">$80,000</span>. Two signals: an estate nobody closed, and taxes nobody pays.</p>
+      <div class="say"><b>What to say</b>"I'm calling about the lot in King George County that's still in Helen Swenson's name. There are back taxes on it going back a long way. I buy property like that and I can take care of the taxes and the paperwork. Are you the right person in the family to talk to?"</div>
+    </div>
+  </div>
+  <div class="warn" style="margin-top:16px"><h3>There is no violations or fines list</h3><p>King George County does not publish code violations, unsafe-structure orders or liens. The Condition signal comes from the assessor's field notes, which is the nearest free record. A request you can send the county for the real list is in the repo at <span class="money">docs/code-enforcement-request.md</span>.</p></div>
+</div>
+
+<div class="section chapter" id="title" style="--c: var(--title)">
+  <div class="eyebrow">Tab 2</div>
+  <h2>Title Leads</h2>
+  <span class="tab-pill">how the county's title reads</span>
+  <div class="grid2">
+    <div class="box">
+      <h3>What it finds</h3>
+      <p>Parcels where the name on title tells you ownership is unresolved: an estate, "heirs of", a life estate, "et al", or a will reference. No death record is needed. The county is telling you directly.</p>
+      <h3 style="margin-top:16px">Reading the class</h3>
+      <dl>
+        <dt>E1 Estate</dt><dd>Title is in a dead person's estate. The best class on this tab.</dd>
+        <dt>E2 Heirs</dt><dd>"Heirs of" someone. Nobody put the heirs' own names on record. All of them must sign.</dd>
+        <dt>E3 Life estate</dt><dd>One person has it for life, others get it after. The life tenant may be alive.</dd>
+        <dt>C1 Et al</dt><dd>Several co-owners, usually family who inherited. Any one can be the way in; none can sell alone.</dd>
+        <dt>W1 / W2</dt><dd>The parcel points at a List of Heirs or a will book and page.</dd>
+        <dt>N1 / N2</dt><dd>The assessor wrote a date of death or a will transfer on the parcel in the last three years. Title has usually already moved to the survivor.</dd>
+        <dt>X1</dt><dd>A company the State Corporation Commission shows as no longer active. Appears only after you look one up (see Files you fill in).</dd>
+      </dl>
+    </div>
+    <div class="box case">
+      <div class="who">case · 12036 Jersey Rd</div>
+      <h3>57 acres titled to an estate since 1935</h3>
+      <p>"Harvey Willie Estate", deed book 46 page 34, last transfer 1935, assessed at <span class="money">$577,150</span>. The bill goes care of a relative at a different King George address. Ninety-one years of heirs, none on record.</p>
+      <ol>
+        <li>Open the row and note the deed reference.</li>
+        <li>In the Clerk's records, look in the will book index under the name for a will, a qualification or a List of Heirs.</li>
+        <li>The care-of name is your first call.</li>
+      </ol>
+      <div class="say"><b>What to say</b>"I'm trying to reach whoever handles the Harvey family land on Jersey Road. It's still in Willie Harvey's estate at the county. I help families sort out title like that and I buy when they'd rather sell. Who in the family makes decisions about it?"</div>
+    </div>
+  </div>
+  <div class="box" style="margin-top:16px"><h3>Deed references: DB / PG and Instr.</h3><p>"DB 46 PG 34" is a deed book and page. "Instr. 216 of 2023" is an instrument number; the Clerk stopped using books about 2006. Type either into the Clerk's land-records search by hand. "Undated (old deed book)" means the county has no sale date and the deed is in one of its oldest books.</p></div>
+</div>
+
+<div class="section chapter" id="death" style="--c: var(--death)">
+  <div class="eyebrow">Tab 3</div>
+  <h2>Death Leads</h2>
+  <span class="tab-pill">obituary ↔ owner on title</span>
+  <div class="grid2">
+    <div class="box">
+      <h3>What it finds</h3>
+      <p>People with a published obituary who are still the owner of record today. Every name on a title is checked separately, so "A OR B" finds a death of either one.</p>
+      <h3 style="margin-top:16px">Reading the class</h3>
+      <dl>
+        <dt>D1</dt><dd>The only owner on title has died.</dd>
+        <dt>D5</dt><dd>Every owner on title has died.</dd>
+        <dt>D4</dt><dd>One co-owner died. The survivor usually owns it outright and is the person to talk to.</dd>
+      </dl>
+      <h3 style="margin-top:16px">Identity: High or Medium</h3>
+      <p>The death is a fact. Whether the person who died is the person on title is a judgment from name, middle initial, town and dates. <b>High</b> means several of those agree. <b>Medium</b> means check before you do anything. Open the row to see why it matched. Matches on name alone are never shown.</p>
+      <h3 style="margin-top:16px">The filter that matters</h3>
+      <p>"Died 2+ years ago, title unchanged" is the one. Nobody filed anything, and nobody else is looking.</p>
+    </div>
+    <div class="box case">
+      <div class="who">case · 12084 Dahlgren Rd</div>
+      <h3>Died in 2019 at 95, still the only owner</h3>
+      <p>Dorothy E. Stevens of King George died August 12, 2019. The house has been in her name alone since 1980 and still is, seven years later. Assessed at <span class="money">$272,200</span>. Taxes were current when checked.</p>
+      <ol>
+        <li>Open the row and read the obituary; the survivors are listed there.</li>
+        <li>Check the Clerk's will book index for a will or a List of Heirs.</li>
+        <li>Somebody is paying the taxes. That person is the decision maker.</li>
+      </ol>
+      <div class="say"><b>What to say</b>"I'm sorry to bother you. I understand Mrs. Stevens passed some years ago and the house on Dahlgren Road is still in her name. If the family ever wants to sell, I can buy it as it is and handle getting the title straightened out. Is that something you'd want to talk about?"</div>
+    </div>
+  </div>
+  <div class="warn" style="margin-top:16px"><h3>These are someone's family</h3><p>Recent deaths (the last few months) are on this tab too. Wait, write before you call, and never open with what you know about the death. If a Medium match turns out to be a different person, you have just told a stranger their relative died.</p></div>
+</div>
+
+<div class="section chapter" id="delinq" style="--c: var(--surplus)">
+  <div class="eyebrow">Tab 4</div>
+  <h2>Delinquent</h2>
+  <span class="tab-pill">Treasurer balances</span>
+  <div class="grid2">
+    <div class="box">
+      <h3>What it finds</h3>
+      <p>Owners with a prior year's taxes unpaid. Each row shows the amount past due, how many half-year payments are behind (bills are due each June and December), and the date it has been unpaid since. Owners who are only late on the current bill are not shown.</p>
+      <h3 style="margin-top:16px">Reading the class</h3>
+      <dl>
+        <dt>T1 Sale-eligible</dt><dd>The oldest unpaid bill is over two years old. The county is allowed to sue to sell the property.</dd>
+        <dt>T2 Delinquent</dt><dd>A prior year is unpaid but not yet old enough to sue. Early, and sometimes an oversight.</dd>
+        <dt>P1 Profile</dt><dd>Title is 40+ years old, the bill goes somewhere else, and the taxes stopped. Nothing says the owner died. The pattern does.</dd>
+      </dl>
+      <h3 style="margin-top:16px">"Treasurer bills" differs from GIS</h3>
+      <p>When the Treasurer's name on the bill is not the owner the county map shows, one office knows something the other doesn't. Look at both.</p>
+    </div>
+    <div class="box case">
+      <div class="who">case · Presidential Lakes, lot 23</div>
+      <h3>Bought in 1972, bill goes to Texas, nothing paid since 2002</h3>
+      <p>A husband and wife took title in 1972. The bill is mailed to a rural route in Boerne, Texas. <span class="money">$17,855</span> is past due across 49 payments on a lot assessed at <span class="money">$80,000</span>. No obituary, no estate on title. This is what an unreported death looks like in county data.</p>
+      <ol>
+        <li>Search the owners' names for obituaries in Texas.</li>
+        <li>Use the Find a Grave links on the Title Leads panel when the owner is also there.</li>
+        <li>Mail the address on file; then skip trace the heirs.</li>
+      </ol>
+      <div class="say"><b>What to say</b>"I'm writing about a lot in Presidential Lakes, King George County, Virginia, in the Throckmorton name. The county shows taxes owing on it for many years. I buy lots like this and pay the back taxes at closing. If it belongs to your family, I'd like to make you an offer."</div>
+    </div>
+  </div>
+  <div class="warn" style="margin-top:16px"><h3>Confirm the balance yourself, same day</h3><p>Balances can be paid any day. Before you call, look the parcel up on the Treasurer's Real Estate Public Inquiry. Do not tell an owner a sale is scheduled unless a banner at the top of the dashboard shows a King George auction.</p></div>
+</div>
+
+<div class="section chapter" id="lookup" style="--c: var(--buy)">
+  <div class="eyebrow">Tab 5</div>
+  <h2>Parcel Lookup</h2>
+  <span class="tab-pill">all 14,435 parcels</span>
+  <p style="margin-top:12px">Not a lead list. Type a name, a street or a PIN and see every parcel that matches. Use it when you hear a name somewhere else (an obituary in another paper, a court notice, a neighbor) and want to know what that person owns in the county. The PIN links to the county's property card.</p>
+</div>
+
+<div class="section" id="routine">
+  <div class="eyebrow">Using it</div>
+  <h2>How to actually work the dashboard</h2>
+  <ol class="steps">
+    <li><div><b>Open Stacked Distress.</b> Filter to "Death + unpaid taxes", then "3+ signals". These are few. Work every one.</div></li>
+    <li><div><b>Open Death Leads</b> and filter to "Died 2+ years ago, title unchanged". Read the obituary for survivors.</div></li>
+    <li><div><b>Open Delinquent</b> and filter to "Unreported-death profile" and "Sale-eligible".</div></li>
+    <li><div><b>Open Title Leads</b>, click "Estate / heirs on title", sort by priority.</div></li>
+    <li><div><b>Before any contact</b>: confirm the balance on the Treasurer's site, and pull the deed in the Clerk's records using the reference on the row.</div></li>
+    <li><div><b>Mark the row</b> Contacted and write a note. Export CSV when you want a mailing list.</div></li>
+  </ol>
+  <div class="box" style="margin-top:16px"><h3>What updates when</h3>
+    <dl>
+      <dt>Every night, about 3 AM</dt><dd>Parcels, new obituaries, and every tab rebuilt.</dd>
+      <dt>Mondays</dt><dd>Check for a King George tax sale.</dd>
+      <dt>First few nights of each month</dt><dd>Every parcel's tax balance. The Delinquent tab grows each morning until the county is done.</dd>
+    </dl>
+    <p style="margin-top:10px">Nothing needs starting by hand. The "Runs" button at the top right shows each run on GitHub.</p>
+  </div>
+</div>
+
+<div class="section" id="files">
+  <div class="eyebrow">Optional</div>
+  <h2>Files you fill in</h2>
+  <p style="margin-top:12px">Four sources forbid automated access, so the tool takes what you look up by hand. Each is a small file in the repo on GitHub: open it, click the pencil, add a line, commit. The board rebuilds within minutes.</p>
+  <div class="scroll" style="margin-top:14px"><table>
+    <tr><th>File</th><th>What goes in it</th><th>What you get</th></tr>
+    <tr><td class="money">data/obits/manual.csv</td><td>A death you found anywhere: last, first, middle, date, age, town.</td><td>Matched against every owner like any obituary.</td></tr>
+    <tr><td class="money">data/obits/legacy.json</td><td>Obituaries from another source, in the format shown in the README.</td><td>Same.</td></tr>
+    <tr><td class="money">data/heirs/import.csv</td><td>A List of Heirs or heirship affidavit from the Clerk's index: decedent, date, book, page, heirs.</td><td>The heirs appear on the matched lead.</td></tr>
+    <tr><td class="money">data/scc/status.csv</td><td>A company's status from the State Corporation Commission. <span class="money">data/scc/worklist.csv</span> lists which to look up first.</td><td>Inactive companies still on title become X1 leads.</td></tr>
+    <tr><td class="money">data/sales/parcels.csv</td><td>Tax map numbers from a King George tax-sale list.</td><td>Those parcels are flagged with the sale date.</td></tr>
+  </table></div>
+</div>
+
+<div class="section" id="rules">
+  <div class="eyebrow">Know these cold</div>
+  <h2>Six Virginia rules that decide the deal</h2>
+  <div class="grid2">
+    <div class="box"><h3>1. A tax sale sells the <em>house</em>, not the debt.</h3><p>The county sues in circuit court, a special commissioner auctions the property, and the buyer gets a deed. This is not Maryland: there is no lien certificate and no investor to buy out.</p></div>
+    <div class="box"><h3>2. Two years, then the county can sue.</h3><p>Taxes must be unpaid on December 31 after the second anniversary of the due date. One year for condemned or blighted property. The county must mail a 30-day notice and publish first.</p></div>
+    <div class="box"><h3>3. No redemption after the sale.</h3><p>The owner or heirs can pay everything off only <em>before</em> the sale date. Your window is from the first notice to the day before the auction.</p></div>
+    <div class="box"><h3>4. A payment plan can stop it.</h3><p>The Treasurer may suspend a sale on a plan of up to 72 months. An owner who says "I'm on a plan" may be right.</p></div>
+    <div class="box"><h3>5. Surplus belongs to the former owner, for two years.</h3><p>Sale money above taxes, costs and liens goes to the former owner or heirs. Unclaimed after two years from confirmation, it goes to the county. Talk to a Virginia lawyer before offering to recover surplus for a fee.</p></div>
+    <div class="box"><h3>6. A List of Heirs only exists if someone filed.</h3><p>It is recorded in the will book when someone qualifies as executor or administrator, or probates a will. No filing, no list, and the heirs take by law. Those are the deals nobody else finds.</p></div>
+  </div>
+  <p style="margin-top:14px">The Code sections behind each rule are in <span class="money">docs/virginia-law.md</span> in the repo. None of this is legal advice.</p>
+</div>
+
+<div class="section" id="glossary">
+  <div class="eyebrow">Reference</div>
+  <h2>Glossary</h2>
+  <dl>
+    <dt>PIN / tax map number</dt><dd>The county's ID for a parcel, like 33-105.</dd>
+    <dt>A OR B</dt><dd>Two owners, usually with survivorship: when one dies the other owns it all.</dd>
+    <dt>Et al / etals</dt><dd>"And others". More owners than fit on the line.</dd>
+    <dt>Life estate</dt><dd>Someone may use the property for life; named others own it afterward.</dd>
+    <dt>C/O, %</dt><dd>"Care of". The bill goes to someone handling it for the owner.</dd>
+    <dt>DB / PG, WB / PG</dt><dd>Deed book and page; will book and page.</dd>
+    <dt>Instr.</dt><dd>Instrument number: how deeds have been indexed since about 2006.</dd>
+    <dt>List of Heirs</dt><dd>A sworn list of a decedent's heirs, recorded in the will book.</dd>
+    <dt>Qualification</dt><dd>The Clerk appointing an executor or administrator. That person can sign for the estate.</dd>
+    <dt>Special commissioner</dt><dd>The lawyer the court appoints to sell a tax-delinquent property.</dd>
+    <dt>Assessed</dt><dd>The county's value for tax purposes, not a market price.</dd>
+    <dt>Identity confidence</dt><dd>How sure the tool is that a person who died is the person on title.</dd>
+  </dl>
+  <div class="foot">Built from public records of King George County, Virginia. Verify every lead in the Clerk's and Treasurer's records before you contact anyone.</div>
+</div>
+
+</div>
+</body>
+</html>

@@ -139,6 +139,7 @@ is kept separately for the death match.
 | `engine/scc_import.py`, `engine/heirs_import.py` | join what you looked up by hand |
 | `engine/build_board.py` | runs all of the above in order from what is on disk |
 | `engine/config.py` | endpoint, field map, every weight and threshold |
+| `guide.html` | the field guide: what each tab means, a real case for each, what to check and what to say |
 | `index.html`, `static/` | the dashboard; status and notes are stored in your browser |
 | `engine/combined.py` | joins every signal by owner → `data/combined/leads.json` |
 | `docs/code-enforcement-request.md` | why there is no violations feed, what stands in for it, and the request to send the county |
