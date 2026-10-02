@@ -1,29 +1,23 @@
 name: Monthly delinquency walk
 
-# Treasurer's Real Estate Public Inquiry: one request per parcel, a 1.5 s pause
-# between requests. The server takes ~3 s per answer, so the county (14,435
-# parcels) is about 11 hours. It runs as four shards on the 1st-4th of each month,
-# overnight, each about 3 hours. An interrupted shard resumes from the parcels
-# checked longest ago.
+# Treasurer's Real Estate Public Inquiry: one request per parcel, then a 1.5 s
+# pause. The county (14,435 parcels) takes 11 to 18 hours, so it runs over the
+# first six nights of each month. Every night takes the parcels not checked in the
+# last 20 days, oldest first, for up to 5 h 20 min. Nothing depends on a given
+# night: a missed or short night is made up by the next one, and once every parcel
+# is fresh the remaining nights finish in a minute.
 #
-# "priority" checks only parcels already on a board or the hidden watch list
-# (~1,100, about an hour). Use it from the Actions tab when you want fresh balances
-# on your leads without waiting for the 1st.
+# No manual step is needed. The "Run workflow" button is only there if you want
+# fresh balances on your current leads mid-month (mode: priority, about an hour).
 
 on:
   schedule:
-    - cron: '30 4 1-4 * *'    # 04:30 UTC = 12:30 AM EDT, days 1-4
+    - cron: '30 4 1-6 * *'    # 04:30 UTC = 12:30 AM EDT, nights 1-6
   workflow_dispatch:
     inputs:
       mode:
-        description: 'priority (leads only) or shard'
+        description: 'priority (parcels on a board, ~1 hour) or all (whole county, resumes)'
         default: 'priority'
-      shard:
-        description: 'shard 0-3 (only for mode=shard)'
-        default: '0'
-  push:
-    branches: [main]
-    paths: ['.github/workflows/monthly-delinquency.yml']
 
 permissions:
   contents: write
@@ -48,11 +42,8 @@ jobs:
         run: python -m engine.build_board --no-fetch
       - name: Walk
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            SHARD=$(( $(date -u +%-d) - 1 ))
-            python -m engine.delinquency --mode shard --shard "$SHARD" --budget-minutes 320
-          elif [ "${{ github.event.inputs.mode }}" = "shard" ]; then
-            python -m engine.delinquency --mode shard --shard "${{ github.event.inputs.shard }}" --budget-minutes 320
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.mode }}" = "all" ]; then
+            python -m engine.delinquency --mode all --budget-minutes 320
           else
             python -m engine.delinquency --mode priority --budget-minutes 320
           fi

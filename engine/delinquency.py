@@ -2,6 +2,7 @@
 Delinquency walk through the King George Treasurer's Real Estate Public Inquiry.
 
   python -m engine.delinquency --mode priority          # board + watch + obituary parcels (~1,100)
+  python -m engine.delinquency --mode all               # every parcel not checked in 20 days, oldest first
   python -m engine.delinquency --mode shard --shard 0   # one quarter of the county
   python -m engine.delinquency --join                   # no network: apply what is on file to the board
 
@@ -16,8 +17,10 @@ How the site works (verified 2026-10-01):
   parcel's PIN are kept.
 
 Pace: one request, then a 1.5 s pause. The server takes about 3 s per answer, so
-the whole county (14,435 parcels) is about 18 hours. It is split into four
-shards run on four consecutive nights once a month; each fits a 6-hour job.
+the whole county (14,435 parcels) is 11 to 18 hours. The monthly job runs on the
+first six nights of the month in "all" mode: each night it takes the parcels not
+checked in the last 20 days, oldest first, for up to 5 hours 20 minutes. Nothing
+depends on a particular night running; a missed night is made up by the next.
 
 Outputs
   data/delinquency/balances.json   every parcel with a past-due balance
@@ -47,6 +50,7 @@ BAL, STATE, LEADS = (os.path.join(OUT, n) for n in ("balances.json", "state.json
 URL = "https://eservices.kinggeorgecountyva.gov/applications/REPublicInquiry/webform1.aspx"
 PAUSE_S = 1.5
 SHARDS = 4
+RECHECK_DAYS = 20
 
 CLASS_LABEL = {
     "T1": "Sale-eligible: 2+ years unpaid",
@@ -163,6 +167,8 @@ def load(path, default):
 
 
 def targets(mode, shard, rows):
+    if mode == "all":
+        return rows
     if mode == "shard":
         return [r for r in rows if r["pid"] % SHARDS == shard]
     want = set()
@@ -188,6 +194,12 @@ def walk(mode, shard, limit=None, budget_minutes=320):
     today = dt.date.today()
     # oldest-checked first, so an interrupted run resumes where it stopped
     todo.sort(key=lambda r: (state.get(str(r["pid"]), ""), r["pid"]))
+    if mode == "all":
+        # Self-healing monthly pass: take whatever has not been checked in the last
+        # RECHECK_DAYS, oldest first. A missed or short night is made up the next
+        # night; once everything is fresh the remaining nights do nothing.
+        cutoff = (today - dt.timedelta(days=RECHECK_DAYS)).isoformat()
+        todo = [r for r in todo if state.get(str(r["pid"]), "") < cutoff]
     if limit:
         todo = todo[:limit]
     log.info("%s parcels to check (%s)", len(todo), mode if mode != "shard" else f"shard {shard} of {SHARDS}")
@@ -365,7 +377,7 @@ def join(today=None):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["priority", "shard"])
+    ap.add_argument("--mode", choices=["all", "priority", "shard"])
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--limit", type=int)
     ap.add_argument("--budget-minutes", type=int, default=320)
