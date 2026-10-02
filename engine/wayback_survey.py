@@ -52,8 +52,8 @@ def text_of(page):
 def main():
     out = {}
     for d in DOMAINS:
-        r = get(CDX, params={"url": d, "matchType": "domain", "fl": "timestamp,original",
-                             "filter": "statuscode:200", "collapse": "urlkey", "limit": "20000"})
+        # literal query string: the index does not accept percent-encoded ":" and "," here
+        r = get(f"{CDX}?url={d}&matchType=domain&fl=timestamp,original&filter=statuscode:200&collapse=urlkey&limit=20000")
         time.sleep(3)
         if r is None:
             out[d] = {"error": "CDX not reachable"}
