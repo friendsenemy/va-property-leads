@@ -50,6 +50,7 @@ jobs:
       - name: Build the boards (so the priority list is current)
         run: python -m engine.build_board --no-fetch
       - name: Walk
+        id: walk
         run: |
           if [ "${{ github.event_name }}" != "workflow_dispatch" ] || [ "${{ github.event.inputs.mode }}" = "all" ]; then
             python -m engine.delinquency --mode all --budget-minutes 320
@@ -65,7 +66,8 @@ jobs:
           .github/commit-data.sh "Delinquency walk: ${N} delinquent owners" \
             data/delinquency/balances.json data/delinquency/state.json
       - name: Keep going until the county is done
-        if: always()
+        # Only after a walk that finished cleanly. A failed walk never starts another one.
+        if: success() && steps.walk.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -76,11 +78,10 @@ jobs:
           today = dt.date.today()
           cutoff = (today - dt.timedelta(days=20)).isoformat()
           fresh = sum(1 for v in state.values() if v >= cutoff)
-          recent = sum(1 for v in state.values() if v >= (today - dt.timedelta(days=1)).isoformat())
-          print(n - fresh, recent)
+          print(n - fresh, open(".cache/walk-done.txt").read().strip() or 0)
           PY
           )"
-          echo "parcels still to check: $REMAINING; checked in the last day: $TODAY"
+          echo "parcels still to check: $REMAINING; checked in this run: $TODAY"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.mode }}" != "all" ]; then exit 0; fi
           if [ "$REMAINING" -gt 0 ] && [ "$TODAY" -ge 50 ]; then
             gh workflow run monthly-delinquency.yml --repo "${{ github.repository }}" --ref main -f mode=all

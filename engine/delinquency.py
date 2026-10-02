@@ -83,6 +83,10 @@ def fields(page):
     return out
 
 
+class SiteDown(Exception):
+    """The county has its e-services switched off. Stop; do not retry."""
+
+
 class Inquiry:
     """One browser-like session held for the whole walk."""
 
@@ -105,6 +109,9 @@ class Inquiry:
     def open(self):
         r = self.s.get(URL, timeout=90)
         r.raise_for_status()
+        if "NotAvailable" in r.url or "currently unavailable" in r.text:
+            raise SiteDown("the Treasurer's online services are switched off right now "
+                           "(the county's own 'currently unavailable' page)")
         if "ctl00$MainContent$btnAccept" in fields(r.text):
             r = self._post(r, {}, "ctl00$MainContent$btnAccept")
         self.form = self._post(r, {}, "ctl00$MainContent$btnAccount")
@@ -203,7 +210,12 @@ def walk(mode, shard, limit=None, budget_minutes=320):
     if limit:
         todo = todo[:limit]
     log.info("%s parcels to check (%s)", len(todo), mode if mode != "shard" else f"shard {shard} of {SHARDS}")
-    inq, started, done, errors = Inquiry(), time.time(), 0, 0
+    started, done, errors = time.time(), 0, 0
+    try:
+        inq = Inquiry()
+    except SiteDown as e:
+        log.warning("%s. Nothing checked; the next scheduled run resumes.", e)
+        todo = []
     for r in todo:
         if (time.time() - started) / 60 > budget_minutes:
             log.info("time budget reached after %s parcels; the rest resume next run", done)
@@ -212,7 +224,12 @@ def walk(mode, shard, limit=None, budget_minutes=320):
             t = inq.tickets(r["pid"])
             if t is None:                       # session expired or an odd page: reopen once
                 inq.open()
-                t = inq.tickets(r["pid"]) or []
+                t = inq.tickets(r["pid"])
+            if t is None:                       # still not a ticket list: not checked, never "no balance"
+                raise RuntimeError("no ticket list returned")
+        except SiteDown as e:
+            log.warning("%s. Stopping after %s parcels; the next run resumes.", e, done)
+            break
         except Exception as e:  # noqa: BLE001
             errors += 1
             log.warning("pid %s failed: %s", r["pid"], e)
@@ -222,6 +239,9 @@ def walk(mode, shard, limit=None, budget_minutes=320):
             time.sleep(30)
             try:
                 inq.open()
+            except SiteDown as e2:
+                log.warning("%s. Stopping after %s parcels; the next run resumes.", e2, done)
+                break
             except Exception:  # noqa: BLE001
                 pass
             continue
@@ -237,6 +257,8 @@ def walk(mode, shard, limit=None, budget_minutes=320):
             log.info("%s checked, %s with a past-due balance on file", done, len(balances))
             save(balances, state)
     save(balances, state)
+    os.makedirs(os.path.join(ROOT, ".cache"), exist_ok=True)
+    open(os.path.join(ROOT, ".cache", "walk-done.txt"), "w").write(str(done))
     log.info("walk done: %s checked, %s errors, %s parcels past due on file", done, errors, len(balances))
 
 
