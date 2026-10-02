@@ -122,6 +122,34 @@ def deed_ref(deed_book, deed_page, sale_year):
     return f"Instr. {deed_book}"
 
 
+# The assessor's own field notes (REM1/REM2). King George publishes no code-violation
+# list; these notes are where an unsafe-structure finding or an abandoned house shows
+# up in free public data. "REDTAG" is NOT a violation here: it is the assessor's own
+# reminder to revisit unfinished construction, so it is deliberately not a signal. (label, strong) per pattern; phrases are chosen
+# so "FIREPLACE", "FIRE DEPT", "POOR TERRAIN", "VACANT LOT" and "UNFINISHED ATTIC" miss.
+_CONDITION = [
+    (re.compile(r"\bUNSAFE\s+STRUCT|\bCONDEMNED?\b(?<!FP'S CONDEMNED)"), "Unsafe / condemned", True),
+    (re.compile(r"\bABANDON"), "Abandoned", True),
+    (re.compile(r"\bBOARDED"), "Boarded up", True),
+    (re.compile(r"\bUNLIV|\bNOT\s+LIVABLE|\bUNINHAB|\bIN\s+RUIN"), "Unlivable", True),
+    (re.compile(r"(?:DWL|DWELLING|HOUSE|ROOF|MH|HOME)[^|]{0,25}\b(?:COLLA[PS]+ED|FALLING\s+DOWN)|\bFALLING\s+DOWN"), "Collapsed / falling down", True),
+    (re.compile(r"\bGUTTED|(?:DWL|DWELLING|HOUSE|HOME|MH)\s+BURN(?:ED|DED)(?!.*REPLACED)|\bBURNED\s+DOWN|\bFIRE\s+DAMAGE"), "Burned / gutted", True),
+    (re.compile(r"\bVACANT\s+(?:SINCE|\d+\s+YEARS?|MANY|UNLIV)|\bAPPEARS\s+VACANT|\bDWL\s+VAC\b|\bNOT\s+LIVED\s+IN|\bUNOCCUPIED"), "Vacant house", True),
+    (re.compile(r"\bDISREPAIR|\bDETERIORAT|\bVERY\s+POOR|\bPOOR\s+COND|\bROUGH\s+SHAPE|\bNEEDS\s+(?:REPAIRS?|WORK|MAINT|NEW\s+ROOF|ROOF)|\bROOF\s+LEAK|\bWATER\s+DAMAGE|\bSTRUCTURAL\s+DAMAGE|\bMOLD\b"), "Poor condition", False),
+    (re.compile(r"\bOVER\s?GROW"), "Overgrown", False),
+    (re.compile(r"\bJUNK\b"), "Junk on site", False),
+]
+
+
+def condition_notes(r):
+    """[(label, strong)] from the assessor's remarks and condition code."""
+    text = f'{r.get("remark1") or ""} | {r.get("remark2") or ""}'.upper()
+    out = [(label, strong) for rx, label, strong in _CONDITION if rx.search(text) and not (label.startswith("Unsafe") and "FP'S CONDEMNED" in text)]
+    if r.get("cond") in ("P", "D") and not any(l == "Poor condition" for l, _ in out):
+        out.append(("Assessor rates the building poor", False))
+    return out
+
+
 def absentee(r):
     """'OUT_OF_STATE' | 'OUT_OF_COUNTY' | 'MAIL_DIFFERS' | ''."""
     st = r["mail_state"].upper()
@@ -249,6 +277,10 @@ def scan_parcel(r, this_year):
         flags.append("VACANT_LAND")
     if r["cond"] in ("P", "F", "D"):
         flags.append("POOR_CONDITION")
+    notes = condition_notes(r)
+    if notes:
+        flags.append("CONDITION_STRONG" if any(st for _l, st in notes) else "CONDITION_NOTE")
+        detail["condition"] = [l for l, _st in notes]
     if typ == "INDIVIDUAL" and re.search(r"\sOR\s", r["owner"]):
         flags.append("SURVIVORSHIP_OR")
 
@@ -295,9 +327,12 @@ def score(cls, flags, n_parcels):
     if "CARE_OF" in f:
         pts += config.CARE_OF_POINTS
         reasons.append(f"+{config.CARE_OF_POINTS} bill goes care of someone else")
-    if "POOR_CONDITION" in f:
+    if "CONDITION_STRONG" in f:
+        pts += 12
+        reasons.append("+12 assessor's notes: unsafe, abandoned, burned, unlivable or vacant house")
+    elif "POOR_CONDITION" in f or "CONDITION_NOTE" in f:
         pts += config.POOR_COND_POINTS
-        reasons.append(f"+{config.POOR_COND_POINTS} assessor rates the building fair or poor")
+        reasons.append(f"+{config.POOR_COND_POINTS} assessor rates or notes the building in poor shape")
     if n_parcels > 1:
         pts += config.MULTI_PARCEL_POINTS
         reasons.append(f"+{config.MULTI_PARCEL_POINTS} same owner holds {n_parcels} parcels")
@@ -316,6 +351,8 @@ def parcel_view(r, flags, detail, this_year):
         "deed_ref": deed_ref(r["deed_book"], r["deed_page"], r["sale_year"] if sale_year_known(r) else 0),
         "will_ref": detail.get("will_ref", ""), "will_ref_raw": detail.get("will_ref_raw", ""),
         "note": r["grantor_note"], "note_dod": detail.get("note_dod", ""),
+        "condition": detail.get("condition", []),
+        "remarks": " | ".join(x for x in (r.get("remark1"), r.get("remark2")) if x),
         "flags": flags, "card_url": r["card_url"],
     }
 

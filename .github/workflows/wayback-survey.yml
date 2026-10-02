@@ -1,0 +1,41 @@
+name: Wayback survey (one-off)
+
+# Looks up what the Internet Archive holds for the area's funeral-home obituary
+# pages and saves a summary plus a few sample pages. Run once, by hand or when this
+# file changes. About 40 requests.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/wayback-survey.yml', 'engine/wayback_survey.py']
+
+permissions:
+  contents: write
+
+jobs:
+  survey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: python -m engine.wayback_survey
+      - name: Commit the survey
+        run: |
+          git config user.name "va-property-leads bot"
+          git config user.email "actions@users.noreply.github.com"
+          cp data/obits/wayback-survey.json /tmp/s.json
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git checkout -f -B main origin/main
+            cp /tmp/s.json data/obits/wayback-survey.json
+            git add data/obits/wayback-survey.json
+            git diff --cached --quiet && exit 0
+            git commit -m "Wayback survey of funeral-home obituary archives"
+            git push origin main && exit 0
+            sleep 20
+          done
+          exit 1

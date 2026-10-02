@@ -20,10 +20,11 @@ parcels already on a board (about an hour).
 
 The nightly build also runs when you push one of the hand-edited files below.
 
-## The four tabs
+## The five tabs
 
 | Tab | Source | A row is |
 |---|---|---|
+| **Stacked Distress** | all of the below, joined by owner | an owner with two or more signals (death, unpaid taxes, title, the assessor's condition notes), or a house the assessor notes as unsafe, abandoned, burned, unlivable or vacant |
 | **Title Leads** | the county parcel record | an owner whose title reads as an estate, heirs, life estate, et al, or carries a will / death note |
 | **Death Leads** | obituaries matched to every owner name | a person who has died and is still the owner of record |
 | **Delinquent** | Treasurer's inquiry | an owner with a prior year's taxes unpaid |
@@ -139,6 +140,8 @@ is kept separately for the death match.
 | `engine/build_board.py` | runs all of the above in order from what is on disk |
 | `engine/config.py` | endpoint, field map, every weight and threshold |
 | `index.html`, `static/` | the dashboard; status and notes are stored in your browser |
+| `engine/combined.py` | joins every signal by owner → `data/combined/leads.json` |
+| `docs/code-enforcement-request.md` | why there is no violations feed, what stands in for it, and the request to send the county |
 | `docs/virginia-law.md` | the Code of Virginia sections this is built on, with what was verified |
 | `docs/sources-and-terms.md` | every source, what its terms allow, and what is deliberately not automated |
 

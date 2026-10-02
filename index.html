@@ -83,6 +83,7 @@
     <div id="saleBanner" class="next-step" style="display:none; margin-bottom:14px"></div>
 
     <div class="view-tabs">
+        <button class="view-tab" data-view="stack">Stacked Distress <span class="view-tab-sub">death + taxes + title + condition</span></button>
         <button class="view-tab active" data-view="title">Title Leads <span class="view-tab-sub">county parcel record</span></button>
         <button class="view-tab" data-view="death">Death Leads <span class="view-tab-sub">obituary ↔ owner on title</span></button>
         <button class="view-tab" data-view="delinq">Delinquent <span class="view-tab-sub">Treasurer balances</span></button>
@@ -159,6 +160,30 @@
         </div>
     </div>
 </div><!-- /view-title -->
+
+<div id="view-stack" style="display:none">
+    <div class="stats-grid" id="stackStats"></div>
+    <div class="controls">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="stackSearch" placeholder="Search owner, address, PIN, condition note…">
+        </div>
+        <button class="btn btn-export" id="stackExport"><span class="icon">⬇</span> Export CSV</button>
+    </div>
+    <div class="presets" id="stackFilters"></div>
+    <div class="run-info" id="stackInfo" style="text-align:left; margin:6px 0 10px;"></div>
+    <div class="leads-container">
+        <table class="leads-table"><thead id="stackHead"></thead><tbody id="stackBody"></tbody></table>
+        <div class="empty-state" id="stackEmpty" style="display:none;"></div>
+        <div class="pagination">
+            <span id="stackPageInfo"></span>
+            <div class="pagination-buttons">
+                <button class="page-btn" id="stackPrev">← Prev</button>
+                <button class="page-btn" id="stackNext">Next →</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /view-stack -->
 
 <div id="view-death" style="display:none">
     <div class="stats-grid" id="deathStats"></div>
@@ -258,12 +283,13 @@
 
 <script src="static/js/title.js"></script>
 <script src="static/js/tabs.js"></script>
+<script src="static/js/stack.js"></script>
 <script src="static/js/lookup.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const VIEWS = ["title", "death", "delinq", "lookup"];
+    const VIEWS = ["stack", "title", "death", "delinq", "lookup"];
     const started = { title: true };
-    const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), delinq: () => DelinqApp.init() };
+    const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), stack: () => StackApp.init(), delinq: () => DelinqApp.init() };
     TitleApp.init();
     // A King George tax sale on counsel's page is the whole buy window: say so on every tab.
     fetch(`data/sales/notices.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => {

@@ -9,6 +9,7 @@ Build everything the dashboard reads, in order, from what is on disk.
   3. SCC entity status     data/scc/status.csv -> X1 leads on the title board
   4. death match           obituaries + clerk filings vs every owner name
   5. delinquency join      Treasurer balances on file -> flags, P1 profile, Delinquent tab
+  6. stacked signals       every owner with two or more of title / death / tax / condition
 
 Needs .cache/kg.sqlite, so run engine.parcels first.
 """
@@ -17,7 +18,7 @@ import hashlib
 import json
 import os
 
-from engine import death_match, delinquency, heirs_import, scc_import, title_scan
+from engine import combined, death_match, delinquency, heirs_import, scc_import, title_scan
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 X1_LABEL = "Entity no longer active (SCC)"
@@ -66,6 +67,7 @@ def run(fetch=True):
     add_entity_leads(scc_import.run())
     death_match.run(fetch=fetch)
     delinquency.join()
+    combined.run()
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@ const TitleApp = {
         OLD_TITLE_40: "40+ yrs", OLD_TITLE_25: "25+ yrs", OLD_TITLE_12: "12+ yrs",
         OUT_OF_STATE: "Out of state", OUT_OF_COUNTY: "Out of county", MAIL_DIFFERS: "Mail ≠ site", CARE_OF: "C/O",
         OBITUARY_MATCH: "Obituary match", TAX_SALE_ELIGIBLE: "Taxes 2+ yrs unpaid", TAX_DELINQUENT: "Taxes unpaid", ENTITY_INACTIVE: "SCC: not active",
+        CONDITION_STRONG: "House unsafe / abandoned / vacant", CONDITION_NOTE: "Condition note",
         VACANT_LAND: "No building", POOR_CONDITION: "Fair/poor cond.", SURVIVORSHIP_OR: "A or B",
     },
     STRONG: new Set(["ESTATE_IN_NAME", "HEIRS_IN_NAME", "LIFE_ESTATE", "EXECUTOR_IN_NAME", "LIST_OF_HEIRS_REF", "ASSESSOR_DOD_NOTE", "OBITUARY_MATCH", "TAX_SALE_ELIGIBLE", "TAX_DELINQUENT", "ENTITY_INACTIVE"]),
