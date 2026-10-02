@@ -18,12 +18,21 @@ on:
       mode:
         description: 'priority (parcels on a board, ~1 hour) or all (whole county, resumes)'
         default: 'priority'
+  push:
+    branches: [main]
+    paths: ['.github/workflows/monthly-delinquency.yml']
+
+# The walk keeps going until the county is done: when a run ends with parcels still
+# unchecked it starts the next run itself. It stops chaining once every parcel has
+# been checked in the last 20 days, or if a run made no progress (site down); the
+# monthly schedule then picks it up again.
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
-  group: data-writers
+  group: delinquency-walk
   cancel-in-progress: false
 
 jobs:
@@ -42,7 +51,7 @@ jobs:
         run: python -m engine.build_board --no-fetch
       - name: Walk
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event.inputs.mode }}" = "all" ]; then
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] || [ "${{ github.event.inputs.mode }}" = "all" ]; then
             python -m engine.delinquency --mode all --budget-minutes 320
           else
             python -m engine.delinquency --mode priority --budget-minutes 320
@@ -55,3 +64,25 @@ jobs:
           N=$(python -c "import json;print(json.load(open('data/delinquency/leads.json'))['summary']['leads'])")
           .github/commit-data.sh "Delinquency walk: ${N} delinquent owners" \
             data/delinquency/balances.json data/delinquency/state.json
+      - name: Keep going until the county is done
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          read REMAINING TODAY <<< "$(python - <<'PY'
+          import datetime as dt, json, sqlite3
+          state = json.load(open("data/delinquency/state.json"))["checked"]
+          n = sqlite3.connect(".cache/kg.sqlite").execute("select count(*) from parcels").fetchone()[0]
+          today = dt.date.today()
+          cutoff = (today - dt.timedelta(days=20)).isoformat()
+          fresh = sum(1 for v in state.values() if v >= cutoff)
+          recent = sum(1 for v in state.values() if v >= (today - dt.timedelta(days=1)).isoformat())
+          print(n - fresh, recent)
+          PY
+          )"
+          echo "parcels still to check: $REMAINING; checked in the last day: $TODAY"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.mode }}" != "all" ]; then exit 0; fi
+          if [ "$REMAINING" -gt 0 ] && [ "$TODAY" -ge 50 ]; then
+            gh workflow run monthly-delinquency.yml --repo "${{ github.repository }}" --ref main -f mode=all
+            echo "started the next run"
+          fi

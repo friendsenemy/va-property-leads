@@ -14,7 +14,7 @@ reads it. No server, no paid data, no credentials in the repo.
 | `nightly-parcels.yml` | every night, 3:17 AM ET | Parcels layer (8 requests) → SQLite; new obituaries from the Storke RSS feed (1 request); tax-sale notices (1 request, Mondays); then every board is rebuilt and committed |
 | `monthly-delinquency.yml` | first six nights of the month, 12:30 AM ET | Treasurer balance for every parcel. Each night takes the parcels not checked in the last 20 days, oldest first (one request, then a 1.5 s pause), so a missed night is made up by the next |
 
-Nothing needs starting by hand. Both workflows have a Run button on the Actions tab if
+Nothing needs starting by hand. When a run ends with parcels still unchecked it starts the next run itself, so the first full pass runs back to back until the county is done. Both workflows have a Run button on the Actions tab if
 you want them sooner; the delinquency one has a **priority** mode that rechecks only
 parcels already on a board (about an hour).
 
