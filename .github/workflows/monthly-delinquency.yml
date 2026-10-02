@@ -53,4 +53,5 @@ jobs:
         if: always()
         run: |
           N=$(python -c "import json;print(json.load(open('data/delinquency/leads.json'))['summary']['leads'])")
-          .github/commit-data.sh "Delinquency walk: ${N} delinquent owners"
+          .github/commit-data.sh "Delinquency walk: ${N} delinquent owners" \
+            data/delinquency/balances.json data/delinquency/state.json

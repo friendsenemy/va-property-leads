@@ -1,19 +1,31 @@
 #!/usr/bin/env bash
-# Lay the regenerated data files on top of the latest main and push.
-# Files a person edits by hand are never overwritten by a job.
+# Commit this job's results on top of the latest main.
+#
+#   commit-data.sh "<message>" <file> [<file> ...]
+#
+# The files named are the ones this job is the source of truth for (what it fetched).
+# Everything else under data/ is taken from the latest main, so a job never overwrites
+# what another job fetched while it was running or anything a person edited by hand.
+# The boards are then rebuilt from the merged inputs and committed.
 set -euo pipefail
-MSG="$1"
+MSG="$1"; shift
 git config user.name "va-property-leads bot"
 git config user.email "actions@users.noreply.github.com"
-rm -rf /tmp/out && mkdir -p /tmp/out && cp -r data /tmp/out/
-git fetch origin main
-git checkout -f -B main origin/main
-rsync -a \
-  --exclude 'obits/manual.csv' --exclude 'heirs/import.csv' --exclude 'scc/status.csv' --exclude 'sales/parcels.csv' \
-  --include 'obits/storke.json' --include 'obits/matches.json' --include 'obits/low.json' --include 'obits/clerk-filings.json' \
-  --exclude 'obits/*.json' \
-  /tmp/out/data/ data/
-git add data
-if git diff --cached --quiet; then echo "No changes."; exit 0; fi
-git commit -m "$MSG"
-git push origin main
+rm -rf /tmp/own && mkdir -p /tmp/own
+for f in "$@"; do
+  if [ -f "$f" ]; then mkdir -p "/tmp/own/$(dirname "$f")"; cp "$f" "/tmp/own/$f"; fi
+done
+for attempt in 1 2 3 4; do
+  git fetch origin main
+  git checkout -f -B main origin/main
+  git clean -fdq data
+  cp -r /tmp/own/. .
+  python -m engine.build_board --no-fetch
+  git add data
+  if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+  git commit -q -m "$MSG"
+  if git push origin main; then exit 0; fi
+  echo "push raced with another commit; retrying"
+  sleep $((attempt * 15))
+done
+exit 1

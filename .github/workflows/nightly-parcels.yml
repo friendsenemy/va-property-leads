@@ -57,4 +57,6 @@ jobs:
       - name: Commit results
         run: |
           N=$(python -c "import json;print(json.load(open('data/title/summary.json'))['leads'])")
-          .github/commit-data.sh "Nightly: ${N} title leads"
+          .github/commit-data.sh "Nightly: ${N} title leads" \
+            data/parcels.json data/parcels-meta.json data/owner-changes.json \
+            data/obits/storke.json data/sales/notices.json
