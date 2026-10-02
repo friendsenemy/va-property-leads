@@ -80,6 +80,8 @@
             <a class="btn" href="guide.html" target="_blank" rel="noopener" title="What each tab means, how to work a lead, and what to say" style="margin-left:6px">
                 <span class="icon">📖</span> How to Use
             </a>
+            <button class="btn" id="importNotesBtn" type="button" title="Load a private notes file. It stays in this browser and is never uploaded." style="margin-left:6px">Import notes</button>
+            <input type="file" id="importNotesFile" accept=".json,application/json" style="display:none">
         </div>
     </header>
 
@@ -319,5 +321,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
 });
 </script>
+    <script src="static/js/notes-import.js"></script>
 </body>
 </html>
