@@ -1,12 +1,12 @@
 name: Nightly build
 
 # One run a night does all the cheap work:
-#   parcels   King George Parcels open-data layer, 8 requests -> SQLite + data/parcels.json
-#   obituaries  Storke Funeral Home RSS feed, 1 request (+ a page per newly matched obituary)
-#   sale notices  county tax-sale counsel's page, 1 request, Mondays only
-#   board     title scan, clerk filings, SCC status, death match, delinquency join
-# It also runs when you push a hand-edited file (manual obituaries, List of Heirs
-# import, SCC status, tax-sale parcels) so the board picks it up right away.
+#   parcels       King George Parcels open-data layer -> SQLite + data/parcels.json
+#   obituaries    Storke Funeral Home RSS feed
+#   legacy obits  Legacy.com King George / Fredericksburg obituary scrape
+#   sale notices  county tax-sale counsel's page, Mondays only
+#   board         title scan, clerk filings, SCC status, death match, delinquency join
+# It also runs when you push a hand-edited file so the board picks it up right away.
 
 on:
   schedule:
@@ -16,6 +16,8 @@ on:
     branches: [main]
     paths:
       - 'engine/**'
+      - 'scraper.py'
+      - 'requirements.txt'
       - '.github/workflows/nightly-parcels.yml'
       - 'data/obits/manual.csv'
       - 'data/obits/legacy.json'
@@ -34,29 +36,41 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       - name: Install dependencies
         run: pip install -r requirements.txt pytest
+
       - name: Tests
         run: python -m pytest tests -q
+
       - name: Pull parcels into SQLite
         run: python -m engine.parcels
+
       - name: New obituaries (RSS)
         run: python -m engine.obits --daily || echo "::warning::obituary feed not reachable tonight"
+
       - name: Tax-sale notices (Mondays)
         run: |
           if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             python -m engine.sale_notices || echo "::warning::sale notice page not reachable"
           fi
+
+      - name: Legacy obituaries
+        run: python scraper.py
+
       - name: Build the boards
         run: python -m engine.build_board
+
       - name: Commit results
         run: |
           N=$(python -c "import json;print(json.load(open('data/title/summary.json'))['leads'])")
           .github/commit-data.sh "Nightly: ${N} title leads" \
             data/parcels.json data/parcels-meta.json data/owner-changes.json \
-            data/obits/storke.json data/sales/notices.json
+            data/obits/storke.json data/obits/legacy.json data/sales/notices.json
