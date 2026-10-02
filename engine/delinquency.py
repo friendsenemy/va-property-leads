@@ -200,7 +200,11 @@ def walk(mode, shard, limit=None, budget_minutes=320):
     state = load(STATE, {"checked": {}})["checked"]
     today = dt.date.today()
     # oldest-checked first, so an interrupted run resumes where it stopped
-    todo.sort(key=lambda r: (state.get(str(r["pid"]), ""), r["pid"]))
+    # Parcels on a delinquent list the county gave out go first (data/delinquency/priority.csv,
+    # parcel IDs only). The list is old, so it only sets the order; the balance shown is
+    # always the Treasurer's current one.
+    first = priority_pids()
+    todo.sort(key=lambda r: (state.get(str(r["pid"]), ""), first.get(r["pid"], 10**6), r["pid"]))
     if mode == "all":
         # Self-healing monthly pass: take whatever has not been checked in the last
         # RECHECK_DAYS, oldest first. A missed or short night is made up the next
@@ -260,6 +264,19 @@ def walk(mode, shard, limit=None, budget_minutes=320):
     os.makedirs(os.path.join(ROOT, ".cache"), exist_ok=True)
     open(os.path.join(ROOT, ".cache", "walk-done.txt"), "w").write(str(done))
     log.info("walk done: %s checked, %s errors, %s parcels past due on file", done, errors, len(balances))
+
+
+def priority_pids():
+    """pid -> rank, from data/delinquency/priority.csv (first column), in file order."""
+    path = os.path.join(OUT, "priority.csv")
+    if not os.path.exists(path):
+        return {}
+    out = {}
+    for line in open(path).read().splitlines()[1:]:
+        cell = line.split(",")[0].strip()
+        if cell.isdigit():
+            out.setdefault(int(cell), len(out))
+    return out
 
 
 def save(balances, state):
