@@ -1,184 +1,245 @@
 """
-Obituary Scraper for Virginia - King George / Fredericksburg
-Scrapes Legacy.com using TWO approaches:
-  1. Fredericksburg newspaper browse pages
-  2. King George County and Fredericksburg local pages
-Outputs records in the same field format used by the Maryland scraper so
-the Virginia matcher can ingest them directly.
+Legacy.com obituary scraper for King George County, Virginia.
+
+Purpose:
+- Pull King George County obituary listings from Legacy.com.
+- Continue through the historical result pages until Legacy stops returning
+  new records (with a safety cap).
+- Write the records to data/obits/legacy.json for the VA property matcher.
+
+This intentionally does NOT scrape Fredericksburg generally. The target is
+King George County.
 """
 
-import re
 import json
-import time
-import random
 import logging
+import os
+import random
+import re
+import time
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
 
-# Legacy.com fingerprints the TLS handshake and returns 403 to plain
-# python-requests (even with browser headers). curl_cffi impersonates a
-# real Chrome TLS stack and gets through. Fall back to requests if missing.
 try:
     from curl_cffi import requests as _cffi_requests
     _HAS_CFFI = True
-except ImportError:  # pragma: no cover
+except ImportError:
     _cffi_requests = None
     _HAS_CFFI = False
-
-
-def make_session():
-    """Return an HTTP session that Legacy.com will actually serve."""
-    if _HAS_CFFI:
-        sess = _cffi_requests.Session(impersonate="chrome")
-        sess.headers.update({"Accept-Language": HEADERS["Accept-Language"]})
-        return sess
-    sess = requests.Session()
-    sess.headers.update(HEADERS)
-    return sess
 
 
 logger = logging.getLogger(__name__)
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    ),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.5",
 }
 
-# ============================================================
-# SOURCE 1: Virginia newspaper slugs on Legacy.com
-# ============================================================
-VA_NEWSPAPERS = [
-    "fredericksburg",          # The Free Lance-Star / Fredericksburg area
-]
+KING_GEORGE_URL = (
+    "https://www.legacy.com/us/obituaries/local/virginia/king-george-county"
+)
 
-# ============================================================
-# SOURCE 2: Virginia local pages on Legacy.com
-# These catch funeral-home-direct posts not in the newspaper feed
-# ============================================================
-VA_COUNTIES = [
-    "king-george-county",
-    "fredericksburg",
-]
+_STATE_NAMES = {
+    "maryland": "MD",
+    "md": "MD",
+    "virginia": "VA",
+    "va": "VA",
+    "pennsylvania": "PA",
+    "pa": "PA",
+    "delaware": "DE",
+    "de": "DE",
+    "west virginia": "WV",
+    "wv": "WV",
+    "district of columbia": "DC",
+    "washington, d.c.": "DC",
+    "washington d.c.": "DC",
+    "dc": "DC",
+    "north carolina": "NC",
+    "nc": "NC",
+    "florida": "FL",
+    "new jersey": "NJ",
+    "new york": "NY",
+}
 
 
-def scrape_legacy_obituaries(max_pages=2):
+def make_session():
+    """Create a session that Legacy.com is likely to serve."""
+    if _HAS_CFFI:
+        session = _cffi_requests.Session(impersonate="chrome")
+        session.headers.update({"Accept-Language": HEADERS["Accept-Language"]})
+        return session
+
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    return session
+
+
+def _record_key(obit):
+    """Stable key used to remove duplicate obituary listings."""
+    person_id = str(obit.get("person_id") or "").strip()
+    if person_id:
+        return f"id:{person_id}"
+
+    name = re.sub(
+        r"\s+",
+        " ",
+        str(obit.get("full_name") or "").strip().lower()
+    )
+    dod = str(obit.get("date_of_death") or "").strip().lower()
+    return f"name:{name}|dod:{dod}"
+
+
+def _richness_score(obit):
+    return sum(
+        1
+        for field in (
+            "person_id",
+            "date_of_death",
+            "date_of_birth",
+            "age",
+            "city",
+            "obituary_text",
+            "obituary_url",
+        )
+        if obit.get(field)
+    )
+
+
+def scrape_legacy_obituaries(max_pages=100):
     """
-    Scrape Legacy.com for recent Virginia obituaries using both
-    newspaper browse pages and county-level local pages.
-    Returns a list of dicts with obituary data.
+    Scrape the King George County Legacy.com local archive.
+
+    The scraper stops when:
+    - a page returns no obituary records, OR
+    - Legacy starts repeating a page we already saw, OR
+    - max_pages is reached as a safety limit.
     """
-    obituaries = []
     session = make_session()
+    by_key = {}
+    seen_page_fingerprints = set()
 
-    # --- Pass 1: Scrape newspaper browse pages ---
-    for paper in VA_NEWSPAPERS:
-        for page in range(1, max_pages + 1):
-            try:
-                url = f"https://www.legacy.com/us/obituaries/{paper}/browse"
-                params = {"page": page}
+    for page in range(1, max_pages + 1):
+        try:
+            logger.info("Scraping King George County page %s", page)
 
-                logger.info(f"Scraping newspaper: {paper} page {page}")
-                resp = session.get(url, params=params, timeout=20)
+            response = session.get(
+                KING_GEORGE_URL,
+                params={"page": page},
+                timeout=25,
+            )
 
-                if resp.status_code != 200:
-                    logger.warning(f"Got status {resp.status_code} for {paper} page"
-                    f" {page}")
-                    break
+            if response.status_code != 200:
+                logger.warning(
+                    "Legacy returned HTTP %s on page %s; stopping.",
+                    response.status_code,
+                    page,
+                )
+                break
 
-                page_obits = _extract_obituaries_json(resp.text, f"newspaper/{paper}")
-                if not page_obits:
-                    page_obits = _extract_obituaries_html(resp.text, f"newspaper/{paper}")
+            page_obits = _extract_obituaries_json(
+                response.text,
+                "county/king-george-county",
+            )
 
-                if not page_obits:
-                    logger.info(f"No obituaries found for {paper} at page {page}")
-                    break
+            if not page_obits:
+                page_obits = _extract_obituaries_html(
+                    response.text,
+                    "county/king-george-county",
+                )
 
-                # Filter to Virginia only
-                for obit in page_obits:
-                    state = obit.get("state", "")
-                    if state in ("VA", "Virginia", ""):
-                        obituaries.append(obit)
+            # Keep Virginia records and records where Legacy did not provide
+            # an explicit state. The source page itself is King George County.
+            page_obits = [
+                obit
+                for obit in page_obits
+                if str(obit.get("state") or "").strip()
+                in ("", "VA", "Virginia")
+            ]
 
-                logger.info(f"Found {len(page_obits)} obituaries for {paper} page {page}")
-                time.sleep(random.uniform(1.5, 3.0))
+            if not page_obits:
+                logger.info(
+                    "No obituary records found on page %s; archive complete.",
+                    page,
+                )
+                break
 
-            except Exception as e:
-                logger.error(f"Error for {paper} page {page}: {e}")
-                continue
+            page_keys = tuple(sorted(_record_key(obit) for obit in page_obits))
+            if page_keys in seen_page_fingerprints:
+                logger.info(
+                    "Legacy repeated a previously seen result page at page %s; "
+                    "stopping to avoid a loop.",
+                    page,
+                )
+                break
 
-    # --- Pass 2: Scrape county-level local pages ---
-    # These catch funeral-home-direct posts not in any newspaper
-    for county in VA_COUNTIES:
-        for page in range(1, max_pages + 1):
-            try:
-                url = f"https://www.legacy.com/us/obituaries/local/virginia/{county}"
-                params = {"page": page}
+            seen_page_fingerprints.add(page_keys)
 
-                logger.info(f"Scraping county: {county} page {page}")
-                resp = session.get(url, params=params, timeout=20)
+            new_count = 0
 
-                if resp.status_code != 200:
-                    logger.warning(f"Got status {resp.status_code} for county {county} page {page}")
-                    break
+            for obit in page_obits:
+                key = _record_key(obit)
+                existing = by_key.get(key)
 
-                page_obits = _extract_obituaries_json(resp.text, f"county/{county}")
-                if not page_obits:
-                    page_obits = _extract_obituaries_html(resp.text, f"county/{county}")
+                if existing is None:
+                    by_key[key] = obit
+                    new_count += 1
+                elif _richness_score(obit) > _richness_score(existing):
+                    by_key[key] = obit
 
-                if not page_obits:
-                    logger.info(f"No obituaries found for county {county} at page {page}")
-                    break
+            logger.info(
+                "Page %s: %s records, %s new; total unique now %s",
+                page,
+                len(page_obits),
+                new_count,
+                len(by_key),
+            )
 
-                # Filter to Virginia only (local pages can include out-of-area records)
-                for obit in page_obits:
-                    state = obit.get("state", "")
-                    if state in ("VA", "Virginia", ""):
-                        obituaries.append(obit)
+            # If a page contained records but none were new, Legacy is most
+            # likely repeating its last available page.
+            if new_count == 0:
+                logger.info(
+                    "Page %s contained no new records; archive traversal complete.",
+                    page,
+                )
+                break
 
-                logger.info(f"Found {len(page_obits)} county obituaries for {county} page {page}")
-                time.sleep(random.uniform(1.5, 3.0))
+            time.sleep(random.uniform(1.2, 2.2))
 
-            except Exception as e:
-                logger.error(f"Error for county {county} page {page}: {e}")
-                continue
+        except Exception as exc:
+            logger.error("Error scraping King George page %s: %s", page, exc)
+            break
 
-    # Deduplicate by name, preferring richer records (old-schema with age/personId)
-    by_name = {}
-    for obit in obituaries:
-        key = obit["full_name"].strip().lower()
-        existing = by_name.get(key)
-        if existing is None:
-            by_name[key] = obit
-        else:
-            new_score = (1 if obit.get("age") else 0) + \
-                        (1 if obit.get("person_id") else 0) + \
-                        (1 if obit.get("obituary_text") else 0)
-            old_score = (1 if existing.get("age") else 0) + \
-                        (1 if existing.get("person_id") else 0) + \
-                        (1 if existing.get("obituary_text") else 0)
-            if new_score > old_score:
-                by_name[key] = obit
-    unique = list(by_name.values())
-    logger.info(f"Total unique obituaries after dedup: {len(unique)} (from {len(obituaries)} raw)")
-    return unique
+    records = list(by_key.values())
+
+    records.sort(
+        key=lambda row: (
+            str(row.get("date_of_death") or ""),
+            str(row.get("last_name") or ""),
+            str(row.get("first_name") or ""),
+        ),
+        reverse=True,
+    )
+
+    logger.info("Total unique King George Legacy obituaries: %s", len(records))
+    return records
 
 
 def _extract_obituaries_json(html, source_label):
     """
-    Extract obituary data from embedded JSON in Legacy.com HTML.
-    Updated 2026-04: Legacy.com pages now contain TWO "obituaries" arrays:
-      1. A small array (~10 items) with new schema: {title, link, imgLink, ...}
-      2. A large array (~50 items) with old schema: {personId, name, location, ...}
-    We extract from ALL matching arrays to get maximum coverage.
+    Extract Legacy's richer embedded obituary JSON arrays.
     """
     obituaries = []
-    try:
-        search_start = 0
-        all_raw_obits = []
+    search_start = 0
+    all_raw_obits = []
 
+    try:
         while True:
             idx = html.find('"obituaries":[', search_start)
             if idx == -1:
@@ -186,176 +247,249 @@ def _extract_obituaries_json(html, source_label):
 
             nearby = html[idx:idx + 500]
             before = html[max(0, idx - 400):idx]
-            # Skip the "Notable Obituaries" celebrity widget that sits on
-            # every listing page (title/link schema, ~10 national names).
+
+            # Ignore Legacy's nationwide "Notable Obituaries" widget.
             if "celebrity-deaths" in before or "Notable Obituaries" in before:
                 search_start = idx + 1
                 continue
+
             if '"personId"' in nearby:
                 arr_start = idx + len('"obituaries":')
                 depth = 0
-                end_idx = arr_start
-                for i in range(arr_start, min(len(html), arr_start + 500000)):
-                    if html[i] == '[':
+                end_idx = None
+
+                for i in range(
+                    arr_start,
+                    min(len(html), arr_start + 500000),
+                ):
+                    if html[i] == "[":
                         depth += 1
-                    elif html[i] == ']':
+                    elif html[i] == "]":
                         depth -= 1
                         if depth == 0:
                             end_idx = i + 1
                             break
 
-                json_str = html[arr_start:end_idx]
-                try:
-                    raw_obits = json.loads(json_str)
-                    all_raw_obits.extend(raw_obits)
-                    logger.debug(f"Found array with {len(raw_obits)} items for {source_label}")
-                except json.JSONDecodeError as e:
-                    logger.error(f"JSON parse error in array for {source_label}: {e}")
+                if end_idx:
+                    json_string = html[arr_start:end_idx]
+                    try:
+                        raw_obits = json.loads(json_string)
+                        all_raw_obits.extend(raw_obits)
+                    except json.JSONDecodeError as exc:
+                        logger.debug(
+                            "Embedded JSON parse error for %s: %s",
+                            source_label,
+                            exc,
+                        )
 
             search_start = idx + 1
 
-        if not all_raw_obits:
-            logger.debug(f"No obituaries JSON found for {source_label}")
-            return []
-
         for raw in all_raw_obits:
-            obit = _parse_json_obituary(raw, source_label)
-            if obit and obit["full_name"]:
-                obituaries.append(obit)
+            parsed = _parse_json_obituary(raw, source_label)
+            if parsed and parsed.get("full_name"):
+                obituaries.append(parsed)
 
-    except Exception as e:
-        logger.error(f"Error extracting obituaries for {source_label}: {e}")
+    except Exception as exc:
+        logger.error(
+            "Error extracting embedded obituary data for %s: %s",
+            source_label,
+            exc,
+        )
 
     return obituaries
 
 
-
-_STATE_NAMES = {
-    "maryland": "MD", "md": "MD", "virginia": "VA", "va": "VA",
-    "pennsylvania": "PA", "pa": "PA", "delaware": "DE", "de": "DE",
-    "west virginia": "WV", "wv": "WV", "district of columbia": "DC",
-    "washington, d.c.": "DC", "washington d.c.": "DC", "dc": "DC",
-    "north carolina": "NC", "florida": "FL", "new jersey": "NJ", "new york": "NY",
-}
-
-
 def _extract_obituaries_html(html, source_label):
     """
-    Parse Legacy.com's server-rendered listing cards (2026 layout).
-    Each card has: <a href=".../person/slug-ID"> name, "YYYY - YYYY",
-    a snippet <p title="..."> and a link to the funeral-home obituary page.
+    Fallback parser for Legacy's server-rendered obituary cards.
     """
     obituaries = []
+
     try:
         soup = BeautifulSoup(html, "html.parser")
-        seen = set()
-        for a in soup.select('a[href*="legacy.com/person/"]'):
-            href = a.get("href", "")
-            m = re.search(r"/person/[^/?#]*?-(\d+)$", href)
-            if not m:
-                continue
-            person_id = m.group(1)
-            if person_id in seen:
-                continue
-            name_el = a.select_one(".font-serif")
-            if not name_el:
-                continue  # the image-only link duplicate
-            seen.add(person_id)
+        seen_person_ids = set()
 
-            full_name = name_el.get_text(" ", strip=True)
-            years_el = a.select_one("span.font-semibold")
-            years = years_el.get_text(strip=True) if years_el else ""
-            dob = dod = ""
-            ym = re.match(r"(\d{4})\s*-\s*(\d{4})", years)
-            if ym:
-                dob, dod = ym.group(1), ym.group(2)
+        for anchor in soup.select('a[href*="legacy.com/person/"]'):
+            href = anchor.get("href", "")
+
+            person_match = re.search(r"/person/[^/?#]*?-(\d+)$", href)
+            if not person_match:
+                continue
+
+            person_id = person_match.group(1)
+            if person_id in seen_person_ids:
+                continue
+
+            name_element = anchor.select_one(".font-serif")
+            if not name_element:
+                continue
+
+            seen_person_ids.add(person_id)
+
+            full_name = name_element.get_text(" ", strip=True)
+
+            years_element = anchor.select_one("span.font-semibold")
+            years = years_element.get_text(strip=True) if years_element else ""
+
+            date_of_birth = ""
+            date_of_death = ""
+
+            year_match = re.match(r"(\d{4})\s*-\s*(\d{4})", years)
+            if year_match:
+                date_of_birth = year_match.group(1)
+                date_of_death = year_match.group(2)
             elif re.fullmatch(r"\d{4}", years):
-                dod = years
+                date_of_death = years
 
-            snippet_el = a.select_one("p[title]")
-            snippet = (snippet_el.get("title") or snippet_el.get_text(" ", strip=True)) if snippet_el else ""
+            snippet_element = anchor.select_one("p[title]")
+            snippet = ""
+            if snippet_element:
+                snippet = (
+                    snippet_element.get("title")
+                    or snippet_element.get_text(" ", strip=True)
+                )
 
-            # "Jane Doe, 84, of Fredericksburg, Virginia, passed away ..."
             age = None
             city = ""
             state = ""
-            sm = re.search(r",?\s*(?:age\s+)?(\d{1,3}),?\s+of\s+([A-Z][A-Za-z .'\-]+?),\s*([A-Z][A-Za-z .]+?)[,.]", snippet)
-            if sm:
-                age = int(sm.group(1))
-                city = sm.group(2).strip()
-                state = _STATE_NAMES.get(sm.group(3).strip().lower(), sm.group(3).strip()[:2].upper())
-            else:
-                sm2 = re.search(r"\bof\s+([A-Z][A-Za-z .'\-]+?),\s*(Virginia|VA)\b", snippet)
-                if sm2:
-                    city, state = sm2.group(1).strip(), "VA"
 
-            # Outbound obituary link sits in the sibling "Obituary links" region
-            obit_url = ""
-            card = a.find_parent("div")
+            location_match = re.search(
+                r",?\s*(?:age\s+)?(\d{1,3}),?\s+of\s+"
+                r"([A-Z][A-Za-z .'\-]+?),\s*"
+                r"([A-Z][A-Za-z .]+?)[,.]",
+                snippet,
+            )
+
+            if location_match:
+                age = int(location_match.group(1))
+                city = location_match.group(2).strip()
+                raw_state = location_match.group(3).strip()
+                state = _STATE_NAMES.get(
+                    raw_state.lower(),
+                    raw_state[:2].upper(),
+                )
+            else:
+                va_match = re.search(
+                    r"\bof\s+([A-Z][A-Za-z .'\-]+?),\s*(Virginia|VA)\b",
+                    snippet,
+                )
+                if va_match:
+                    city = va_match.group(1).strip()
+                    state = "VA"
+
+            obituary_url = ""
+
+            card = anchor.find_parent("div")
             for _ in range(5):
                 if card is None:
                     break
-                ids = {re.search(r"-(\d+)$", x.get("href", "")).group(1)
-                       for x in card.select('a[href*="legacy.com/person/"]')
-                       if re.search(r"-(\d+)$", x.get("href", ""))}
+
+                ids = {
+                    match.group(1)
+                    for item in card.select('a[href*="legacy.com/person/"]')
+                    if (
+                        match := re.search(
+                            r"-(\d+)$",
+                            item.get("href", ""),
+                        )
+                    )
+                }
+
                 if len(ids) > 1:
-                    break  # walked past this person's card
-                link = card.select_one('a[href*="/us/obituaries/name/"]')
-                if link:
-                    obit_url = link.get("href", "")
                     break
+
+                outbound = card.select_one(
+                    'a[href*="/us/obituaries/name/"]'
+                )
+                if outbound:
+                    obituary_url = outbound.get("href", "")
+                    break
+
                 card = card.find_parent("div")
 
-            # Clean name: drop trailing nicknames in parens for matching
-            clean = re.sub(r"\s*\([^)]*\)", "", full_name).strip()
-            parts = [p for p in clean.replace(",", " ").split() if p]
-            suffixes = {"jr", "jr.", "sr", "sr.", "ii", "iii", "iv"}
-            while parts and parts[-1].lower() in suffixes:
-                parts.pop()
-            first_name = parts[0] if parts else ""
-            last_name = parts[-1] if len(parts) > 1 else ""
-            middle_name = " ".join(parts[1:-1]) if len(parts) > 2 else ""
+            clean_name = re.sub(
+                r"\s*\([^)]*\)",
+                "",
+                full_name,
+            ).strip()
 
-            obituaries.append({
-                "full_name": full_name,
-                "first_name": first_name,
-                "last_name": last_name,
-                "middle_name": middle_name,
-                "date_of_death": dod,
-                "date_of_birth": dob,
-                "age": age,
-                "city": city,
-                "state": state or "",
-                "obituary_url": obit_url or href,
-                "obituary_text": snippet,
-                "survived_by": "",
-                "source": f"Legacy.com/{source_label}",
-                "scraped_at": datetime.now().isoformat(),
-                "person_id": person_id,
-            })
-    except Exception as e:
-        logger.error(f"HTML parse error for {source_label}: {e}")
+            name_parts = [
+                part
+                for part in clean_name.replace(",", " ").split()
+                if part
+            ]
+
+            suffixes = {
+                "jr",
+                "jr.",
+                "sr",
+                "sr.",
+                "ii",
+                "iii",
+                "iv",
+            }
+
+            while name_parts and name_parts[-1].lower() in suffixes:
+                name_parts.pop()
+
+            first_name = name_parts[0] if name_parts else ""
+            last_name = name_parts[-1] if len(name_parts) > 1 else ""
+            middle_name = (
+                " ".join(name_parts[1:-1])
+                if len(name_parts) > 2
+                else ""
+            )
+
+            obituaries.append(
+                {
+                    "full_name": full_name,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "middle_name": middle_name,
+                    "date_of_death": date_of_death,
+                    "date_of_birth": date_of_birth,
+                    "age": age,
+                    "city": city,
+                    "state": state,
+                    "obituary_url": obituary_url or href,
+                    "obituary_text": snippet,
+                    "survived_by": "",
+                    "source": f"Legacy.com/{source_label}",
+                    "person_id": person_id,
+                }
+            )
+
+    except Exception as exc:
+        logger.error(
+            "HTML parsing error for %s: %s",
+            source_label,
+            exc,
+        )
+
     return obituaries
 
 
 def _parse_json_obituary(raw, source_label):
     """
-    Parse a single obituary JSON object from Legacy.com.
-    Legacy.com pages serve TWO schemas:
-      1. Old/rich schema (preferred): personId, name{}, location{}, age,
-         fromToYears, obitSnippet, links{} - ~50 items per page
-      2. New/minimal schema (fallback): title, link, imgLink - ~10 items
-    We try old schema FIRST because it has much richer data.
+    Parse a Legacy embedded obituary record into the fields expected by
+    the Virginia matcher.
     """
     try:
-        # --- Try old schema first (personId/name/location) - RICHER DATA ---
         name_data = raw.get("name", {})
+
         if isinstance(name_data, dict) and name_data.get("fullName"):
             location_data = raw.get("location", {})
+            if not isinstance(location_data, dict):
+                location_data = {}
+
             city_data = location_data.get("city", {})
             state_data = location_data.get("state", {})
+
             links_data = raw.get("links", {})
-            obit_url_data = links_data.get("obituaryUrl", {})
+            if not isinstance(links_data, dict):
+                links_data = {}
+
+            obituary_url_data = links_data.get("obituaryUrl", {})
 
             full_name = name_data.get("fullName", "")
             first_name = name_data.get("firstName", "")
@@ -364,6 +498,7 @@ def _parse_json_obituary(raw, source_label):
 
             date_of_birth = ""
             date_of_death = ""
+
             from_to = raw.get("fromToYears", "")
             if from_to and " - " in str(from_to):
                 parts = str(from_to).split(" - ")
@@ -371,11 +506,22 @@ def _parse_json_obituary(raw, source_label):
                     date_of_birth = parts[0].strip()
                     date_of_death = parts[1].strip()
 
-            obituary_url = ""
-            if isinstance(obit_url_data, dict):
-                obituary_url = obit_url_data.get("href", "")
-            elif isinstance(obit_url_data, str):
-                obituary_url = obit_url_data
+            if isinstance(obituary_url_data, dict):
+                obituary_url = obituary_url_data.get("href", "")
+            elif isinstance(obituary_url_data, str):
+                obituary_url = obituary_url_data
+            else:
+                obituary_url = ""
+
+            if isinstance(city_data, dict):
+                city = city_data.get("fullName") or ""
+            else:
+                city = str(city_data) if city_data else ""
+
+            if isinstance(state_data, dict):
+                state = state_data.get("code") or "VA"
+            else:
+                state = str(state_data) if state_data else "VA"
 
             return {
                 "full_name": full_name,
@@ -385,39 +531,50 @@ def _parse_json_obituary(raw, source_label):
                 "date_of_death": date_of_death,
                 "date_of_birth": date_of_birth,
                 "age": raw.get("age"),
-                "city": (city_data.get("fullName") or "") if isinstance(city_data, dict) else (str(city_data) if city_data else ""),
-                "state": (state_data.get("code") or "VA") if isinstance(state_data, dict) else (str(state_data) if state_data else "VA"),
+                "city": city,
+                "state": state,
                 "obituary_url": obituary_url,
                 "obituary_text": raw.get("obitSnippet", "") or "",
                 "survived_by": "",
                 "source": f"Legacy.com/{source_label}",
-                "scraped_at": datetime.now().isoformat(),
                 "person_id": str(raw.get("personId", "")),
             }
 
-        # --- Fallback: new schema (title + link) ---
+        # Fallback Legacy schema.
         title = raw.get("title", "")
         link = raw.get("link", "")
+
         if title and link:
             full_name = title
             date_of_birth = ""
             date_of_death = ""
 
-            year_match = re.match(r"^(.*?)\s*\((\d{4})\s*-\s*(\d{4})\)\s*$", title)
-            if year_match:
-                full_name = year_match.group(1).strip()
-                date_of_birth = year_match.group(2)
-                date_of_death = year_match.group(3)
+            years_match = re.match(
+                r"^(.*?)\s*\((\d{4})\s*-\s*(\d{4})\)\s*$",
+                title,
+            )
+
+            if years_match:
+                full_name = years_match.group(1).strip()
+                date_of_birth = years_match.group(2)
+                date_of_death = years_match.group(3)
             else:
-                year_match2 = re.match(r"^(.*?)\s*\((\d{4})\)\s*$", title)
-                if year_match2:
-                    full_name = year_match2.group(1).strip()
-                    date_of_death = year_match2.group(2)
+                death_year_match = re.match(
+                    r"^(.*?)\s*\((\d{4})\)\s*$",
+                    title,
+                )
+                if death_year_match:
+                    full_name = death_year_match.group(1).strip()
+                    date_of_death = death_year_match.group(2)
 
             name_parts = full_name.split()
             first_name = name_parts[0] if name_parts else ""
             last_name = name_parts[-1] if len(name_parts) > 1 else ""
-            middle_name = " ".join(name_parts[1:-1]) if len(name_parts) > 2 else ""
+            middle_name = (
+                " ".join(name_parts[1:-1])
+                if len(name_parts) > 2
+                else ""
+            )
 
             return {
                 "full_name": full_name,
@@ -433,131 +590,56 @@ def _parse_json_obituary(raw, source_label):
                 "obituary_text": "",
                 "survived_by": "",
                 "source": f"Legacy.com/{source_label}",
-                "scraped_at": datetime.now().isoformat(),
                 "person_id": "",
             }
 
+    except Exception as exc:
+        logger.debug("Error parsing Legacy obituary JSON: %s", exc)
+
+    return None
+
+
+def _extract_year(value):
+    """Return a plausible four-digit year from a date/year string."""
+    if not value:
         return None
 
-    except Exception as e:
-        logger.debug(f"Error parsing obituary JSON: {e}")
+    match = re.search(r"\b(19\d{2}|20\d{2})\b", str(value))
+    if not match:
         return None
 
+    return int(match.group(1))
 
-def _fetch_obituary_details(url, session):
-    """
-    Fetch the full obituary page to extract additional details
-    like survived_by, full obituary text, date of birth, etc.
-    """
-    try:
-        resp = session.get(url, timeout=15)
-        if resp.status_code != 200:
-            return {}
 
-        soup = BeautifulSoup(resp.text, "html.parser")
-        details = {}
+def save_records(records):
+    os.makedirs("data/obits", exist_ok=True)
+    output_path = "data/obits/legacy.json"
 
-        # Get full obituary text
-        obit_div = soup.select_one(
-            "[class*='ObituaryText'], [class*='obit-text'], "
-            "[class*='obituary-text'], [data-component='ObituaryText']"
+    with open(output_path, "w", encoding="utf-8") as handle:
+        json.dump(records, handle, indent=2, ensure_ascii=False)
+
+    years = [
+        year
+        for year in (_extract_year(r.get("date_of_death")) for r in records)
+        if year is not None
+    ]
+
+    print(f"Saved {len(records)} King George Legacy obituaries to {output_path}")
+
+    if years:
+        print(
+            f"Death-year range found in records: "
+            f"{min(years)} through {max(years)}"
         )
-        if obit_div:
-            details["obituary_text"] = obit_div.get_text(separator=" ", strip=True)
-        else:
-            # legacy.com/person/ memorial pages (2026) embed the obituary
-            # inside an escaped Next.js payload: \"obituaryText\":\"...\"
-            m = re.search(r'\\"obituaryText\\":\\"((?:[^"\\]|\\.)*?)\\"', resp.text)
-            if not m:
-                m = re.search(r'"obituaryText":"((?:[^"\\]|\\.)*?)"', resp.text)
-            if m:
-                try:
-                    txt = json.loads('"' + m.group(1).replace('\\"', '"').replace('\\\\', '\\') + '"')
-                except Exception:
-                    txt = m.group(1)
-                txt = BeautifulSoup(txt, "html.parser").get_text(" ", strip=True)
-                if len(txt) > 40:
-                    details["obituary_text"] = txt
-            for key in ("dateOfDeath", "deathDate"):
-                dm = re.search(r'\\?"%s\\?":\\?"(\d{4}-\d{2}-\d{2})' % key, resp.text)
-                if dm:
-                    details["date_of_death"] = dm.group(1)
-                    break
+    else:
+        print("No usable death years were found in the listing data.")
 
-        # Extract survived by
-        text = details.get("obituary_text", "")
-        if text:
-            survived_match = re.search(
-                r"(?:survived by|is survived by|leaves behind|"
-                r"left to cherish)(.*?)(?:\.|;|$)",
-                text, re.IGNORECASE
-            )
-            if survived_match:
-                details["survived_by"] = survived_match.group(1).strip()[:500]
-
-            # Extract date of birth if not already known
-            dob_match = re.search(
-                r"(?:born on|born|date of birth)[:\s]*?"
-                r"[^,.\d]{0,40}?"
-                r"(\w+ \d{1,2},?\s*\d{4}|\d{1,2}/\d{1,2}/\d{2,4})",
-                text, re.IGNORECASE
-            )
-            if dob_match:
-                details["date_of_birth"] = dob_match.group(1).strip()
-
-            # Extract date of death from obituary text
-            dod_match = re.search(
-                r"(?:passed away|died|passed on|departed this life|entered into eternal rest|went home to be with the lord|passed peacefully|departed|passed)"
-                r"[^,.\d]{0,80}?"
-                r"(?:on\s+)?(\w+ \d{1,2},?\s*\d{4}|\d{1,2}/\d{1,2}/\d{2,4})",
-                text, re.IGNORECASE
-            )
-            if dod_match:
-                details["date_of_death"] = dod_match.group(1).strip()
-
-        # Also check for structured date elements in the page (Legacy uses these)
-        date_els = soup.select("[class*='date'], [class*='Date'], time")
-        for el in date_els:
-            date_text = el.get_text(strip=True)
-            if not date_text:
-                continue
-            # Check datetime attribute (more reliable)
-            dt_attr = el.get("datetime", "")
-            if dt_attr and not details.get("date_of_death"):
-                details.setdefault("date_of_death", dt_attr)
-
-        time.sleep(random.uniform(1.0, 2.0))
-        return details
-
-    except Exception as e:
-        logger.error(f"Error fetching obituary details from {url}: {e}")
-        return {}
-
-
-def fetch_obituary_details(url):
-    """
-    Public wrapper for _fetch_obituary_details.
-    Creates its own session so callers don't need to manage one.
-    """
-    session = make_session()
-    return _fetch_obituary_details(url, session)
 
 if __name__ == "__main__":
-    import os
-
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s %(levelname)s %(message)s"
+        format="%(asctime)s %(levelname)s %(message)s",
     )
 
-    records = scrape_legacy_obituaries(max_pages=2)
-
-    os.makedirs("data/obits", exist_ok=True)
-    output_file = "data/obits/legacy.json"
-
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(records, f, indent=2, ensure_ascii=False)
-
-    print(f"Saved {len(records)} Legacy.com obituaries to {output_file}")
-
-
+    records = scrape_legacy_obituaries(max_pages=100)
+    save_records(records)
