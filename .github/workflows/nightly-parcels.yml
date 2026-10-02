@@ -3,10 +3,11 @@ name: Nightly build
 # One run a night does all the cheap work:
 #   parcels       King George Parcels open-data layer -> SQLite + data/parcels.json
 #   obituaries    Storke Funeral Home RSS feed
-#   legacy obits  Legacy.com King George / Fredericksburg obituary scrape
+#   legacy obits  King George County Legacy.com obituary archive
 #   sale notices  county tax-sale counsel's page, Mondays only
 #   board         title scan, clerk filings, SCC status, death match, delinquency join
-# It also runs when you push a hand-edited file so the board picks it up right away.
+# It also runs when you push a relevant hand-edited file so the board
+# picks the change up right away.
 
 on:
   schedule:
@@ -62,7 +63,7 @@ jobs:
             python -m engine.sale_notices || echo "::warning::sale notice page not reachable"
           fi
 
-      - name: Legacy obituaries
+      - name: King George Legacy obituary archive
         run: python scraper.py
 
       - name: Build the boards
