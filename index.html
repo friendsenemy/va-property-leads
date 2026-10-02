@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA Property Leads — King George County</title>
+    <meta name="robots" content="noindex">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
+    <style>
+        .county-filter { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+        .county-filter select {
+            background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 8px 10px; font-family: var(--font-mono); font-size: 0.8rem;
+        }
+        .run-info { font-size:0.78rem; color:var(--text-dim); font-family:var(--font-mono); text-align:right; line-height:1.4; }
+        .run-info a { color: var(--cyan-dim); }
+        .note-badge { font-size:0.7rem; color: var(--purple); margin-left:6px; }
+        .view-tabs { display:flex; gap:6px; margin: 0 0 18px; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+        .view-tab { background:none; border:none; color:var(--text-secondary); padding:10px 16px; font-family:var(--font-mono); font-size:0.85rem; cursor:pointer; border-bottom:2px solid transparent; }
+        .view-tab.active { color:var(--cyan); border-bottom-color:var(--cyan); }
+        .view-tab-sub { font-size:0.7rem; color:var(--text-dim); margin-left:6px; }
+        .presets { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 4px; }
+        .prio-filter { display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:0.78rem; color:var(--text-secondary); }
+        .prio-filter input { accent-color: var(--cyan); }
+        .prio { display:inline-block; min-width:38px; text-align:center; font-family:var(--font-mono); font-weight:700; padding:4px 8px; border-radius:var(--radius); border:1px solid var(--border); }
+        .prio-high { color:var(--red); border-color:rgba(255,69,58,0.4); background:rgba(255,69,58,0.08); }
+        .prio-mid { color:var(--yellow); border-color:rgba(255,214,10,0.4); background:rgba(255,214,10,0.08); }
+        .prio-low { color:var(--text-secondary); }
+        .cls { font-family:var(--font-mono); font-size:0.75rem; font-weight:700; padding:2px 6px; border-radius:4px; background:var(--bg-card); border:1px solid var(--border); white-space:nowrap; }
+        .cls-E { color:var(--pink); border-color:rgba(255,55,95,0.4); }
+        .cls-C { color:var(--yellow); border-color:rgba(255,214,10,0.4); }
+        .cls-W { color:var(--purple); border-color:rgba(191,90,242,0.4); }
+        .cls-N { color:var(--cyan-dim); }
+        .chip { display:inline-block; font-size:0.68rem; padding:2px 6px; border-radius:10px; background:var(--bg-card); border:1px solid var(--border); color:var(--text-secondary); margin:1px 0; }
+        .chip-strong { color:var(--pink); border-color:rgba(255,55,95,0.4); }
+        .yrs { color:var(--text-dim); font-size:0.75rem; }
+        .sub { color:var(--text-dim); font-size:0.75rem; }
+        .mono { font-family:var(--font-mono); }
+        .reasons { margin:0; padding-left:16px; font-size:0.8rem; color:var(--text-secondary); line-height:1.5; }
+        .next-step { border-left:3px solid var(--cyan-dim); padding:8px 12px; background:var(--cyan-subtle); border-radius:0 var(--radius) var(--radius) 0; font-size:0.85rem; line-height:1.55; color:var(--text-primary); }
+        .verify { border-left:3px solid var(--yellow); padding:8px 12px; background:rgba(255,214,10,0.06); border-radius:0 var(--radius) var(--radius) 0; font-size:0.8rem; line-height:1.5; color:var(--text-secondary); margin-top:8px; }
+        .ptable { width:100%; border-collapse:collapse; font-size:0.8rem; }
+        .ptable th { text-align:left; color:var(--text-dim); font-weight:500; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.8px; padding:4px 8px 4px 0; }
+        .ptable td { padding:6px 8px 6px 0; border-top:1px solid var(--border); vertical-align:top; }
+        .ptable-wrap { max-height:340px; overflow:auto; }
+        .m-h { font-size:0.68rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin:16px 0 6px; }
+        .m-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); gap:10px 18px; }
+        .m-k { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-dim); }
+        .m-v { font-size:0.9rem; overflow-wrap:anywhere; }
+        .m-links { display:flex; gap:14px; flex-wrap:wrap; font-size:0.82rem; }
+        .m-links a, .ptable a { color:var(--cyan-dim); }
+        .lookup-results { margin-top:10px; }
+        .foot { margin:26px 0 10px; font-size:0.72rem; color:var(--text-dim); line-height:1.6; }
+        .foot a { color:var(--cyan-dim); }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <header class="header">
+        <div class="header-title">
+            <div>
+                <div class="logo">VA PROPERTY LEADS</div>
+                <div class="subtitle">King George County, Virginia — public-record title leads</div>
+            </div>
+        </div>
+        <div class="header-actions">
+            <span id="runInfo" class="run-info">Loading…</span>
+            <a class="btn btn-primary" href="https://github.com/friendsenemy/va-property-leads/actions" target="_blank" rel="noopener">
+                <span class="icon">⚡</span> Runs
+            </a>
+        </div>
+    </header>
+
+    <div class="view-tabs">
+        <button class="view-tab active" data-view="title">Title Leads <span class="view-tab-sub">county parcel record</span></button>
+        <button class="view-tab" data-view="lookup">Parcel Lookup <span class="view-tab-sub">all 14k parcels</span></button>
+    </div>
+
+<div id="view-title">
+    <div class="stats-grid">
+        <div class="stat-card yellow">
+            <div class="stat-label">Leads on the Board</div>
+            <div class="stat-value" id="tstatLeads">0</div>
+        </div>
+        <div class="stat-card pink">
+            <div class="stat-label">Estate / Heirs on Title</div>
+            <div class="stat-value" id="tstatEstate">0</div>
+        </div>
+        <div class="stat-card purple">
+            <div class="stat-label">Parcels Behind Those Leads</div>
+            <div class="stat-value" id="tstatParcels">0</div>
+        </div>
+        <div class="stat-card cyan">
+            <div class="stat-label">Parcels Scanned</div>
+            <div class="stat-value" id="tstatIndexed">0</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="titleSearch" placeholder="Search owner, address, PIN, mailing city, signal…">
+        </div>
+        <div class="prio-filter">
+            <label for="titleMinPriority">Min priority <b id="titleMinPriorityVal">0</b></label>
+            <input type="range" id="titleMinPriority" min="0" max="90" step="5" value="0">
+        </div>
+        <div class="filter-group" id="titleStatusFilters">
+            <button class="filter-btn active" data-status="all">All</button>
+            <button class="filter-btn" data-status="new">New</button>
+            <button class="filter-btn" data-status="contacted">Contacted</button>
+            <button class="filter-btn" data-status="closed">Closed</button>
+        </div>
+        <button class="btn btn-export" id="titleExport"><span class="icon">⬇</span> Export CSV</button>
+    </div>
+    <div class="presets" id="titlePresets"></div>
+    <div class="run-info" id="titleRunInfo" style="text-align:left; margin:6px 0 10px;"></div>
+
+    <div class="leads-container">
+        <table class="leads-table" id="titleTable">
+            <thead>
+                <tr>
+                    <th data-sort="priority">Priority <span class="sort-arrow">↕</span></th>
+                    <th data-sort="owner">Owner on Record <span class="sort-arrow">↕</span></th>
+                    <th>Property</th>
+                    <th data-sort="cls">Class / Signals <span class="sort-arrow">↕</span></th>
+                    <th data-sort="years">Last Transfer <span class="sort-arrow">↕</span></th>
+                    <th data-sort="value">Assessed <span class="sort-arrow">↕</span></th>
+                    <th data-sort="mail">Bill Mailed To <span class="sort-arrow">↕</span></th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="titleBody"></tbody>
+        </table>
+        <div class="empty-state" id="titleEmpty" style="display:none;">
+            <div class="icon">🏚️</div>
+            <h3 id="titleEmptyTitle">No title scan yet</h3>
+            <p id="titleEmptyText">Run the “Nightly parcels + title scan” workflow on GitHub once.</p>
+        </div>
+        <div class="pagination">
+            <span id="titlePageInfo">No leads</span>
+            <div class="pagination-buttons">
+                <button class="page-btn" id="titlePrev">← Prev</button>
+                <button class="page-btn" id="titleNext">Next →</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /view-title -->
+
+<div id="view-lookup" style="display:none">
+    <div class="controls">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="lookupSearch" placeholder="Type an owner name, street, or PIN (at least 3 characters)…">
+        </div>
+    </div>
+    <div class="run-info" id="lookupInfo" style="text-align:left; margin:6px 0 10px;">Every assessed parcel in the county, as of the last nightly pull. This is a lookup, not a lead list.</div>
+    <div class="leads-container">
+        <table class="leads-table">
+            <thead><tr><th>Owner on Record</th><th>Property</th><th>PIN</th><th>Type</th><th>Last Transfer</th><th>Assessed</th><th>Bill Mailed To</th></tr></thead>
+            <tbody id="lookupBody"></tbody>
+        </table>
+        <div class="empty-state" id="lookupEmpty">
+            <div class="icon">🗺️</div>
+            <h3>Search the parcel index</h3>
+            <p>Useful when you have a name from an obituary or a court notice and want to know what that person holds in King George County.</p>
+        </div>
+    </div>
+</div><!-- /view-lookup -->
+
+    <div class="foot">
+        Source: King George County open data, “Parcels” layer (the county’s assessment table), pulled nightly. Tax, deed and will references are the
+        county’s; verify against the Circuit Court Clerk’s records before acting. Virginia sells the property itself at a judicial tax sale and there is no
+        redemption after the sale date (Va. Code §§ 58.1-3965, 58.1-3974). Nothing here is legal advice.
+        <a href="https://github.com/friendsenemy/va-property-leads#readme" target="_blank" rel="noopener">How this board is built</a>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="modalTitle">Lead Details</h2>
+            <button class="modal-close" id="modalClose">✕</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-footer">
+            <select id="leadStatusSelect">
+                <option value="new">New</option>
+                <option value="contacted">Contacted</option>
+                <option value="closed">Closed</option>
+            </select>
+            <textarea id="leadNotes" placeholder="Add notes… (saved in this browser)"></textarea>
+            <button class="btn btn-primary" id="saveLeadBtn">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/title.js"></script>
+<script src="static/js/lookup.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const VIEWS = ["title", "lookup"];
+    const started = { title: true };
+    const LAZY = { lookup: () => LookupApp.init() };
+    TitleApp.init();
+    document.querySelectorAll(".view-tab").forEach((tab) => tab.addEventListener("click", () => {
+        document.querySelectorAll(".view-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        const v = tab.dataset.view;
+        VIEWS.forEach((name) => {
+            const el = document.getElementById("view-" + name);
+            if (el) el.style.display = name === v ? "" : "none";
+        });
+        if (LAZY[v] && !started[v]) { started[v] = true; LAZY[v](); }
+    }));
+});
+</script>
+</body>
+</html>

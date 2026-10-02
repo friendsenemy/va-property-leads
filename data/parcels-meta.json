@@ -1,0 +1,22 @@
+{
+ "service_rows": 15056,
+ "non_parcel_rows": 291,
+ "duplicate_polygons": 330,
+ "parcels": 14435,
+ "generated_at": "2026-10-02T00:06:33+00:00",
+ "source": "https://services2.arcgis.com/S8zMJrpz61FbvL5t/arcgis/rest/services/Parcels/FeatureServer/0",
+ "county": "King George",
+ "state": "VA",
+ "owner_types": {
+  "GOVERNMENT": 158,
+  "INDIVIDUAL": 11415,
+  "ESTATE": 103,
+  "TRUST": 777,
+  "ET_AL": 226,
+  "BUSINESS": 1551,
+  "CHURCH": 79,
+  "ASSOCIATION": 113,
+  "CEMETERY": 13
+ },
+ "changes_this_run": 0
+}

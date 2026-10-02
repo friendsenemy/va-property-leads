@@ -1,0 +1,56 @@
+name: Nightly parcels + title scan
+
+# Pulls the King George County Parcels open-data layer (8 requests), rebuilds the
+# SQLite index, runs the title scan and commits the compact JSON the dashboard reads.
+# Once a night is enough: the county updates the layer daily.
+
+on:
+  schedule:
+    - cron: '17 7 * * *'      # 07:17 UTC = 3:17 AM EDT / 2:17 AM EST
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['engine/**', '.github/workflows/nightly-parcels.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writers
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt pytest
+      - name: Tests
+        run: python -m pytest tests -q
+      - name: Pull parcels into SQLite
+        run: python -m engine.parcels
+      - name: Title scan
+        run: python -m engine.title_scan
+      - name: Later layers (obituary match, delinquency join) if present
+        run: |
+          if [ -f engine/build_board.py ]; then python -m engine.build_board; fi
+      - name: Commit results
+        run: |
+          git config user.name "va-property-leads bot"
+          git config user.email "actions@users.noreply.github.com"
+          mkdir -p /tmp/out && cp -r data /tmp/out/
+          git fetch origin main
+          git checkout -f -B main origin/main
+          cp -r /tmp/out/data/parcels.json /tmp/out/data/parcels-meta.json data/
+          [ -f /tmp/out/data/owner-changes.json ] && cp /tmp/out/data/owner-changes.json data/
+          rm -rf data/title && cp -r /tmp/out/data/title data/title
+          git add data
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          N=$(python -c "import json;print(json.load(open('data/title/summary.json'))['leads'])")
+          git commit -m "Nightly: ${N} title leads"
+          git push origin main
