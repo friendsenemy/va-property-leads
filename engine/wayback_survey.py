@@ -52,18 +52,19 @@ def text_of(page):
 def main():
     out = {}
     for d in DOMAINS:
-        r = get(CDX, params={"url": d, "matchType": "domain", "output": "json", "fl": "timestamp,original",
-                             "filter": "statuscode:200", "collapse": "urlkey", "limit": "150000"})
+        r = get(CDX, params={"url": d, "matchType": "domain", "fl": "timestamp,original",
+                             "filter": "statuscode:200", "collapse": "urlkey", "limit": "20000"})
         time.sleep(3)
         if r is None:
             out[d] = {"error": "CDX not reachable"}
             continue
-        rows = r.json()[1:] if r.text.strip() else []
+        rows = [l.split(" ", 1) for l in r.text.splitlines() if " " in l]
+        diag = {"status": r.status_code, "bytes": len(r.text), "head": r.text[:200]}
         ob = [x for x in rows if OBIT.search(x[1]) and not re.search(r"\.(jpg|jpeg|png|gif|css|js|ico|svg|woff2?)(\?|$)", x[1], re.I)]
         pat = collections.Counter(re.sub(r"\d+", "N", re.sub(r"^https?://[^/]+", "", u).split("?")[0])[:60] +
                                   ("?" + "&".join(sorted(k.split("=")[0] for k in u.split("?", 1)[1].split("&"))) if "?" in u else "")
                                   for _t, u in ob)
-        info = {"urls": len(rows), "obituary_like": len(ob),
+        info = {"urls": len(rows), "obituary_like": len(ob), "cdx": diag,
                 "by_capture_year": dict(sorted(collections.Counter(t[:4] for t, _u in ob).items())),
                 "top_patterns": pat.most_common(15), "samples": []}
         # one sample page per top pattern (max 3), earliest and a middle capture
