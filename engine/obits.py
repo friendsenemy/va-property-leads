@@ -253,7 +253,10 @@ def load_extra():
         if name in ("storke", "matches", "low"):
             continue
         try:
-            for r in json.load(open(path)).get("rows", []):
+            doc = json.load(open(path))
+            items = doc if isinstance(doc, list) else (doc.get("rows") or doc.get("obituaries") or doc.get("leads") or [])
+            for r in items:
+                r = normalise_foreign(r)
                 if not r.get("last") or not r.get("first"):
                     continue
                 key = f"{name}:{r.get('id')}"
@@ -267,6 +270,42 @@ def load_extra():
         except Exception as e:  # noqa: BLE001
             log.warning("could not read %s: %s", path, e)
     return out
+
+
+_ALIASES = {"first": ("first_name", "firstName"), "last": ("last_name", "lastName"), "middle": ("middle_name", "middleName"),
+            "death_date": ("date_of_death", "deathDate", "dod"), "birth_date": ("date_of_birth", "birthDate", "dob"),
+            "place": ("city", "primaryLocation", "location", "residence"), "url": ("obituary_url", "obituaryUrl", "link"),
+            "id": ("obituaryId", "obituary_id", "key")}
+
+
+def normalise_foreign(r):
+    """Accept the field names other tools use (the Maryland scraper's, common export shapes)."""
+    r = dict(r)
+    for want, others in _ALIASES.items():
+        if not r.get(want):
+            r[want] = next((r[o] for o in others if r.get(o)), r.get(want) or "")
+    if not r.get("first") and r.get("full_name" if "full_name" in r else "fullName"):
+        n = parse_name(str(r.get("full_name") or r.get("fullName")))
+        if n:
+            r.update({k: v for k, v in n.items() if v})
+    for k in ("death_date", "birth_date"):                 # any common date shape -> YYYY-MM-DD
+        v = str(r.get(k) or "").strip()
+        if v and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", v):
+            m = _DATE.search(v)
+            m2 = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", v)
+            m3 = re.match(r"(\d{4})-(\d{2})-(\d{2})", v)
+            r[k] = iso(m.group(1), m.group(2), m.group(3)) if m else \
+                (f"{m2.group(3)}-{int(m2.group(1)):02d}-{int(m2.group(2)):02d}" if m2 else (m3.group(0) if m3 else ""))
+    if isinstance(r.get("place"), (list, dict)):
+        r["place"] = ""
+    r["place"] = re.sub(r",\s*(VA|Virginia|MD|Maryland)\.?$", "", str(r.get("place") or "")).strip()
+    try:
+        r["age"] = int(r["age"]) if str(r.get("age") or "").strip().isdigit() else None
+    except (TypeError, ValueError):
+        r["age"] = None
+    if not r.get("id"):
+        r["id"] = re.sub(r"\W+", "", f"{r.get('last')}{r.get('first')}{r.get('death_date')}")
+    return r
 
 
 def save(recs):

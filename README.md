@@ -42,7 +42,7 @@ rebuilds.
 | File | What goes in it |
 |---|---|
 | `data/obits/manual.csv` | A death you found anywhere: `last,first,middle,suffix,death_date,age,place,url` |
-| `data/obits/<name>.json` | Any other obituary source, shaped `{"rows":[{"id","first","middle","last","suffix","death_date","age","place","url"}]}`. Dates are `YYYY-MM-DD`. Every file in the folder is matched. |
+| `data/obits/<name>.json` | Any other obituary source. A list of records, or `{"rows": [...]}`. Each needs a first and last name (`first`/`last`, `first_name`/`last_name`, or a `full_name`); `death_date` or `date_of_death` in any common date format; optionally `middle`, `age`, `place` or `city`, `url`. Every file in the folder is matched. |
 | `data/heirs/import.csv` | A List of Heirs or heirship affidavit from the Clerk's index (searched by hand; the Clerk's agreement bars automated access). The heirs you type in show on the matched lead. |
 | `data/scc/status.csv` | SCC status of a company you looked up. `data/scc/worklist.csv` lists which ones are worth looking up first. Inactive + still on title becomes an **X1** lead. |
 | `data/sales/parcels.csv` | Tax map numbers from a King George tax-sale PDF (the PDF itself is not fetched) |
