@@ -1,0 +1,3 @@
+# Tax map numbers from the sale PDF, typed in by hand. One parcel per line.
+# sale_date is YYYY-MM-DD.
+pin,sale_date,note

@@ -1,0 +1,65 @@
+name: Monthly delinquency walk
+
+# Treasurer's Real Estate Public Inquiry: one request per parcel, a 1.5 s pause
+# between requests. The server takes ~3 s per answer, so the county (14,435
+# parcels) is about 11 hours. It runs as four shards on the 1st-4th of each month,
+# overnight, each about 3 hours. An interrupted shard resumes from the parcels
+# checked longest ago.
+#
+# "priority" checks only parcels already on a board or the hidden watch list
+# (~1,100, about an hour). Use it from the Actions tab when you want fresh balances
+# on your leads without waiting for the 1st.
+
+on:
+  schedule:
+    - cron: '30 4 1-4 * *'    # 04:30 UTC = 12:30 AM EDT, days 1-4
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'priority (leads only) or shard'
+        default: 'priority'
+      shard:
+        description: 'shard 0-3 (only for mode=shard)'
+        default: '0'
+  push:
+    branches: [main]
+    paths: ['.github/workflows/monthly-delinquency.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writers
+  cancel-in-progress: false
+
+jobs:
+  walk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Pull parcels into SQLite
+        run: python -m engine.parcels
+      - name: Build the boards (so the priority list is current)
+        run: python -m engine.build_board --no-fetch
+      - name: Walk
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            SHARD=$(( $(date -u +%-d) - 1 ))
+            python -m engine.delinquency --mode shard --shard "$SHARD" --budget-minutes 320
+          elif [ "${{ github.event.inputs.mode }}" = "shard" ]; then
+            python -m engine.delinquency --mode shard --shard "${{ github.event.inputs.shard }}" --budget-minutes 320
+          else
+            python -m engine.delinquency --mode priority --budget-minutes 320
+          fi
+      - name: Rebuild the boards with the new balances
+        run: python -m engine.build_board --no-fetch
+      - name: Commit results
+        if: always()
+        run: |
+          N=$(python -c "import json;print(json.load(open('data/delinquency/leads.json'))['summary']['leads'])")
+          .github/commit-data.sh "Delinquency walk: ${N} delinquent owners"

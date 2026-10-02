@@ -6,7 +6,6 @@ const TitleApp = {
     summary: null,
     rows: [],
     local: {},
-    extra: [],   // modal sections contributed by later layers (obituaries, delinquency, ...)
     state: { preset: "", search: "", minPriority: 0, status: "all", sort: "priority", dir: -1, page: 1, perPage: 25 },
 
     FLAGS: {
@@ -15,9 +14,10 @@ const TitleApp = {
         ASSESSOR_DOD_NOTE: "Death noted", ASSESSOR_WILL_NOTE: "Will noted",
         OLD_TITLE_40: "40+ yrs", OLD_TITLE_25: "25+ yrs", OLD_TITLE_12: "12+ yrs",
         OUT_OF_STATE: "Out of state", OUT_OF_COUNTY: "Out of county", MAIL_DIFFERS: "Mail ≠ site", CARE_OF: "C/O",
+        OBITUARY_MATCH: "Obituary match", TAX_SALE_ELIGIBLE: "Taxes 2+ yrs unpaid", TAX_DELINQUENT: "Taxes unpaid", ENTITY_INACTIVE: "SCC: not active",
         VACANT_LAND: "No building", POOR_CONDITION: "Fair/poor cond.", SURVIVORSHIP_OR: "A or B",
     },
-    STRONG: new Set(["ESTATE_IN_NAME", "HEIRS_IN_NAME", "LIFE_ESTATE", "EXECUTOR_IN_NAME", "LIST_OF_HEIRS_REF", "ASSESSOR_DOD_NOTE"]),
+    STRONG: new Set(["ESTATE_IN_NAME", "HEIRS_IN_NAME", "LIFE_ESTATE", "EXECUTOR_IN_NAME", "LIST_OF_HEIRS_REF", "ASSESSOR_DOD_NOTE", "OBITUARY_MATCH", "TAX_SALE_ELIGIBLE", "TAX_DELINQUENT", "ENTITY_INACTIVE"]),
 
     async init() {
         this.loadLocal();
@@ -198,11 +198,17 @@ const TitleApp = {
                 <h3>Owner</h3>
                 <div class="detail-row"><span class="label">On record</span><span class="value" style="font-family:var(--font-mono)">${this.esc(r.owner_raw[0])}${r.owner_raw[1] ? `<br>${this.esc(r.owner_raw[1])}` : ""}</span></div>
                 <div class="detail-row"><span class="label">Read as</span><span class="value">${this.esc(r.owner_type.replace("_", " "))}${r.owner_subtype ? " · " + this.esc(r.owner_subtype.replace("_", " ").toLowerCase()) : ""}${(r.people || []).length ? ` — ${r.people.map((x) => this.esc(x)).join("; ")}` : ""}</span></div>
+                ${(r.people || []).length && r.title_class !== "X1" ? `<div class="detail-row"><span class="label">Check by hand</span><span class="value m-links">${r.people.slice(0, 4).map((n) => { const t = n.split(" ").filter((x) => !["JR", "SR", "II", "III", "IV"].includes(x)); return `<a href="https://www.findagrave.com/memorial/search?firstname=${encodeURIComponent(t[0])}&lastname=${encodeURIComponent(t[t.length - 1])}&location=Virginia" target="_blank" rel="noopener">Find a Grave: ${this.esc(n)}</a>`; }).join("")}</span></div>` : ""}
                 ${r.care_of ? `<div class="detail-row"><span class="label">Care of</span><span class="value">${this.esc(r.care_of)}</span></div>` : ""}
                 <div class="detail-row"><span class="label">Bill mailed to</span><span class="value">${this.esc(mail || "—")}</span></div>
                 ${r.note_dod ? `<div class="detail-row"><span class="label">Death noted</span><span class="value" style="font-family:var(--font-mono)">${this.esc(r.note_dod)} <span class="sub">(assessor's note)</span></span></div>` : ""}
             </div>
-            ${this.extra.map((fn) => fn(r) || "").join("")}
+            ${r.obituary ? `<div class="detail-section"><h3>Obituary match</h3>
+                <div class="detail-row"><span class="label">Decedent</span><span class="value">${this.esc(r.obituary.decedent)}${r.obituary.age ? ", " + r.obituary.age : ""}${r.obituary.place ? " · of " + this.esc(r.obituary.place) : ""} · died ${this.esc(r.obituary.death_date || "date not parsed")}</span></div>
+                <div class="detail-row"><span class="label">Matches</span><span class="value">${this.esc(r.obituary.matched_owner)} · identity confidence ${this.esc(r.obituary.identity_confidence)}${r.obituary.obituary_url ? ` · <a style="color:var(--cyan-dim)" href="${this.esc(r.obituary.obituary_url)}" target="_blank" rel="noopener">obituary</a>` : ""}</span></div></div>` : ""}
+            ${r.delinquency ? `<div class="detail-section"><h3>Taxes</h3>
+                <div class="detail-row"><span class="label">Past due</span><span class="value mono" style="color:var(--red)">$${Number(r.delinquency.past_due).toLocaleString()} · tax years ${r.delinquency.years.join(", ")}${r.delinquency.sale_eligible ? " · old enough for the county to sue" : ""}</span></div>
+                <div class="detail-row"><span class="label">Checked</span><span class="value">${this.esc(r.delinquency.checked)} (Treasurer's inquiry; confirm before calling)</span></div></div>` : ""}
             <div class="detail-section">
                 <h3>${r.parcel_count} parcel${r.parcel_count > 1 ? "s" : ""} · ${money(r.total_value)} assessed · ${Number(r.acres).toLocaleString()} acres</h3>
                 <div class="ptable-wrap"><table class="ptable">

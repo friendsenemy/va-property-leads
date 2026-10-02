@@ -92,3 +92,59 @@ def test_note_death():
     assert ts.note_death("JOYCE R DEBERNARD DOD 02/20/2024", 2026) == ("2024-02-20", 2)
     assert ts.note_death("STEVIE R GRAY SR DOD 06-18-2026", 2026) == ("2026-06-18", 0)
     assert ts.note_death("GRANTOR: SMITH JOHN", 2026) is None
+
+
+def test_obituary_name_and_lede():
+    from engine import obits
+    n = obits.parse_name("Ann  Ellen  Lewis")
+    assert (n["first"], n["middle"], n["last"]) == ("ANN", "ELLEN", "LEWIS")
+    n = obits.parse_name("Col  Florentino  Carter")
+    assert (n["first"], n["last"]) == ("FLORENTINO", "CARTER")
+    n = obits.split_last({"first": "FRANCES", "middle": "", "last": "LOUISE OLIVER ENSMINGER"})
+    assert (n["middle"], n["maiden"], n["last"]) == ("LOUISE", "OLIVER", "ENSMINGER")
+    l = obits.parse_lede("Donna Marie Derry, 75, of Colonial Beach, Virginia, passed away on July 23, 2026.")
+    assert (l["age"], l["place"], l["death_date"]) == (75, "Colonial Beach", "2026-07-23")
+    l = obits.parse_lede("June Jahn, 78, of King George died Friday, June 26, 2026 at home.")
+    assert (l["place"], l["death_date"]) == ("King George", "2026-06-26")
+
+
+def test_identity_score():
+    from engine import death_match as dm
+    r = {"mail_city": "KING GEORGE", "mail_zip": 22485, "sale_year": 1990, "sale_month": 5, "sale_day": 1}
+    o = {"middle": "LEE", "suffix": "", "place": "King George", "age": 78}
+    assert dm.score(o, {"middle": "L", "suffix": ""}, r, 1, 2026)[0] >= dm.HIGH
+    assert dm.score(o, {"middle": "MATTHEW", "suffix": ""}, r, 1, 2026) is None        # different middle name
+    assert dm.score(o, {"middle": "", "suffix": "JR"}, r, 1, 2026)[0] < dm.score(o, {"middle": "", "suffix": ""}, r, 1, 2026)[0]
+    assert dm.score(o, {"middle": "L", "suffix": ""}, dict(r, sale_year=2027), 1, 2026) is None   # titled after the death
+    assert dm.score(dict(o, age=40), {"middle": "L", "suffix": ""}, dict(r, sale_year=1995), 1, 2026) is None  # age 9 at title
+
+
+def test_delinquency_rules():
+    import datetime as dt
+    from engine import delinquency as d
+    assert d.sale_eligible_on("2023-12-05") == dt.date(2025, 12, 31)
+    assert d.sale_eligible_on("2024-06-05") == dt.date(2026, 12, 31)
+    rows = [{"year": 2001, "ticket": "1", "seq": "1", "due": "2001-06-05", "name": "OLD OWNER", "map": "23A577", "balance": 50.0},
+            {"year": 2023, "ticket": "2", "seq": "2", "due": "2023-12-05", "name": "DOE JOHN", "map": "33105", "balance": 300.0},
+            {"year": 2026, "ticket": "3", "seq": "2", "due": "2026-12-07", "name": "DOE JOHN", "map": "33105", "balance": 400.0}]
+    s = d.summarise(rows, "33105", dt.date(2026, 10, 1))
+    assert s["past_due"] == 300.0 and s["years"] == [2023] and s["sale_eligible"] and s["not_yet_due"] == 400.0
+    assert s["tickets"] == 2                                       # the re-used account's old rows are dropped
+
+
+def test_sale_notice_parser():
+    from engine import sale_notices as sn
+    page = ('<h2>Public Auctions for Tax Delinquent Real Estate</h2><p><a href="/assets/x/KG.pdf">NOTICE OF JUDICIAL SALE OF REAL ESTATE IN '
+            'KING GEORGE COUNTY</a></p><p>Friday, November 6, 2026 at 11:00 A.M.</p><p><a href="https://bid.forsaleatauction.biz/bid/1">bid</a></p>'
+            '<h2>News &amp; Insights</h2>')
+    n = sn.parse_notices(page)
+    assert len(n) == 1 and n[0]["locality"] == "King George" and n[0]["sale_date"] == "2026-11-06" and n[0]["list_pdf"].endswith("KG.pdf")
+
+
+def test_suffix_after_semicolon_and_namesakes():
+    from engine import death_match as dm
+    assert names("WEBER ROBERT F;JR") == ["ROBERT F WEBER JR"]
+    r = {"mail_city": "KING GEORGE", "mail_zip": 22485, "sale_year": 2013, "sale_month": 5, "sale_day": 1}
+    assert dm.score({"middle": "F", "suffix": "SR", "place": "King George", "age": 80}, {"middle": "F", "suffix": "JR"}, r, 1, 2025) is None
+    heirs = dict(r, sale_year=1969, owner_type="ESTATE", owner_subtype="HEIRS")
+    assert dm.score({"middle": "V", "suffix": "", "place": "King George", "age": 70}, {"middle": "", "suffix": ""}, heirs, 1, 2024) is None

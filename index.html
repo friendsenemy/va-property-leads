@@ -37,6 +37,7 @@
         .cls-C { color:var(--yellow); border-color:rgba(255,214,10,0.4); }
         .cls-W { color:var(--purple); border-color:rgba(191,90,242,0.4); }
         .cls-N { color:var(--cyan-dim); }
+        .cls-X { color:var(--orange); border-color:rgba(255,159,10,0.4); }
         .chip { display:inline-block; font-size:0.68rem; padding:2px 6px; border-radius:10px; background:var(--bg-card); border:1px solid var(--border); color:var(--text-secondary); margin:1px 0; }
         .chip-strong { color:var(--pink); border-color:rgba(255,55,95,0.4); }
         .yrs { color:var(--text-dim); font-size:0.75rem; }
@@ -79,8 +80,12 @@
         </div>
     </header>
 
+    <div id="saleBanner" class="next-step" style="display:none; margin-bottom:14px"></div>
+
     <div class="view-tabs">
         <button class="view-tab active" data-view="title">Title Leads <span class="view-tab-sub">county parcel record</span></button>
+        <button class="view-tab" data-view="death">Death Leads <span class="view-tab-sub">obituary ↔ owner on title</span></button>
+        <button class="view-tab" data-view="delinq">Delinquent <span class="view-tab-sub">Treasurer balances</span></button>
         <button class="view-tab" data-view="lookup">Parcel Lookup <span class="view-tab-sub">all 14k parcels</span></button>
     </div>
 
@@ -155,6 +160,54 @@
     </div>
 </div><!-- /view-title -->
 
+<div id="view-death" style="display:none">
+    <div class="stats-grid" id="deathStats"></div>
+    <div class="controls">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="deathSearch" placeholder="Search decedent, owner, address, PIN…">
+        </div>
+        <button class="btn btn-export" id="deathExport"><span class="icon">⬇</span> Export CSV</button>
+    </div>
+    <div class="presets" id="deathFilters"></div>
+    <div class="run-info" id="deathInfo" style="text-align:left; margin:6px 0 10px;"></div>
+    <div class="leads-container">
+        <table class="leads-table"><thead id="deathHead"></thead><tbody id="deathBody"></tbody></table>
+        <div class="empty-state" id="deathEmpty" style="display:none;"></div>
+        <div class="pagination">
+            <span id="deathPageInfo"></span>
+            <div class="pagination-buttons">
+                <button class="page-btn" id="deathPrev">← Prev</button>
+                <button class="page-btn" id="deathNext">Next →</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /view-death -->
+
+<div id="view-delinq" style="display:none">
+    <div class="stats-grid" id="delinqStats"></div>
+    <div class="controls">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="delinqSearch" placeholder="Search owner, address, PIN, mailing city…">
+        </div>
+        <button class="btn btn-export" id="delinqExport"><span class="icon">⬇</span> Export CSV</button>
+    </div>
+    <div class="presets" id="delinqFilters"></div>
+    <div class="run-info" id="delinqInfo" style="text-align:left; margin:6px 0 10px;"></div>
+    <div class="leads-container">
+        <table class="leads-table"><thead id="delinqHead"></thead><tbody id="delinqBody"></tbody></table>
+        <div class="empty-state" id="delinqEmpty" style="display:none;"></div>
+        <div class="pagination">
+            <span id="delinqPageInfo"></span>
+            <div class="pagination-buttons">
+                <button class="page-btn" id="delinqPrev">← Prev</button>
+                <button class="page-btn" id="delinqNext">Next →</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /view-delinq -->
+
 <div id="view-lookup" style="display:none">
     <div class="controls">
         <div class="search-box">
@@ -204,13 +257,24 @@
 </div>
 
 <script src="static/js/title.js"></script>
+<script src="static/js/tabs.js"></script>
 <script src="static/js/lookup.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const VIEWS = ["title", "lookup"];
+    const VIEWS = ["title", "death", "delinq", "lookup"];
     const started = { title: true };
-    const LAZY = { lookup: () => LookupApp.init() };
+    const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), delinq: () => DelinqApp.init() };
     TitleApp.init();
+    // A King George tax sale on counsel's page is the whole buy window: say so on every tab.
+    fetch(`data/sales/notices.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => {
+        const up = j && (j.king_george_upcoming || []);
+        if (!up || !up.length) return;
+        const b = document.getElementById("saleBanner");
+        b.innerHTML = up.map((n) => `<b>King George tax sale ${TitleApp.esc(n.sale_date)}.</b> ${TitleApp.esc(n.heading)} ` +
+            (n.list_pdf ? `<a style="color:var(--cyan-dim)" href="${TitleApp.esc(n.list_pdf)}" target="_blank" rel="noopener">parcel list (PDF)</a>` : "")).join("<br>") +
+            `<div class="sub">Owners can redeem only before the sale date. ${(j.listed_parcels || []).length} listed parcels joined to the board.</div>`;
+        b.style.display = "block";
+    }).catch(() => {});
     document.querySelectorAll(".view-tab").forEach((tab) => tab.addEventListener("click", () => {
         document.querySelectorAll(".view-tab").forEach((t) => t.classList.remove("active"));
         tab.classList.add("active");

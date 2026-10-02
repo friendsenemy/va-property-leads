@@ -1,8 +1,12 @@
-name: Nightly parcels + title scan
+name: Nightly build
 
-# Pulls the King George County Parcels open-data layer (8 requests), rebuilds the
-# SQLite index, runs the title scan and commits the compact JSON the dashboard reads.
-# Once a night is enough: the county updates the layer daily.
+# One run a night does all the cheap work:
+#   parcels   King George Parcels open-data layer, 8 requests -> SQLite + data/parcels.json
+#   obituaries  Storke Funeral Home RSS feed, 1 request (+ a page per newly matched obituary)
+#   sale notices  county tax-sale counsel's page, 1 request, Mondays only
+#   board     title scan, clerk filings, SCC status, death match, delinquency join
+# It also runs when you push a hand-edited file (manual obituaries, List of Heirs
+# import, SCC status, tax-sale parcels) so the board picks it up right away.
 
 on:
   schedule:
@@ -10,7 +14,14 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['engine/**', '.github/workflows/nightly-parcels.yml']
+    paths:
+      - 'engine/**'
+      - '.github/workflows/nightly-parcels.yml'
+      - 'data/obits/manual.csv'
+      - 'data/obits/legacy.json'
+      - 'data/heirs/import.csv'
+      - 'data/scc/status.csv'
+      - 'data/sales/parcels.csv'
 
 permissions:
   contents: write
@@ -20,9 +31,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  scan:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,23 +45,16 @@ jobs:
         run: python -m pytest tests -q
       - name: Pull parcels into SQLite
         run: python -m engine.parcels
-      - name: Title scan
-        run: python -m engine.title_scan
-      - name: Later layers (obituary match, delinquency join) if present
+      - name: New obituaries (RSS)
+        run: python -m engine.obits --daily || echo "::warning::obituary feed not reachable tonight"
+      - name: Tax-sale notices (Mondays)
         run: |
-          if [ -f engine/build_board.py ]; then python -m engine.build_board; fi
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python -m engine.sale_notices || echo "::warning::sale notice page not reachable"
+          fi
+      - name: Build the boards
+        run: python -m engine.build_board
       - name: Commit results
         run: |
-          git config user.name "va-property-leads bot"
-          git config user.email "actions@users.noreply.github.com"
-          mkdir -p /tmp/out && cp -r data /tmp/out/
-          git fetch origin main
-          git checkout -f -B main origin/main
-          cp -r /tmp/out/data/parcels.json /tmp/out/data/parcels-meta.json data/
-          [ -f /tmp/out/data/owner-changes.json ] && cp /tmp/out/data/owner-changes.json data/
-          rm -rf data/title && cp -r /tmp/out/data/title data/title
-          git add data
-          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
           N=$(python -c "import json;print(json.load(open('data/title/summary.json'))['leads'])")
-          git commit -m "Nightly: ${N} title leads"
-          git push origin main
+          .github/commit-data.sh "Nightly: ${N} title leads"

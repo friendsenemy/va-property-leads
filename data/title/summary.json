@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-02T00:13:40+00:00",
- "index_built_at": "2026-10-02T00:13:39+00:00",
+ "generated_at": "2026-10-02T00:53:08+00:00",
+ "index_built_at": "2026-10-02T00:06:33+00:00",
  "county": "King George",
  "state": "VA",
  "parcels_indexed": 14435,
@@ -34,7 +34,8 @@
   "W1": "List of Heirs on file",
   "W2": "Title passed by will",
   "N1": "Death noted by assessor",
-  "N2": "Will noted by assessor"
+  "N2": "Will noted by assessor",
+  "X1": "Entity no longer active (SCC)"
  },
  "class_order": [
   "E1",
@@ -44,7 +45,8 @@
   "W1",
   "W2",
   "N1",
-  "N2"
+  "N2",
+  "X1"
  ],
  "next_step": {
   "E1": "The county still shows a decedent's estate as owner. Look for a qualified executor or administrator in the King George Circuit Court Clerk's will books (probate can also be in the county where the person lived). A List of Heirs (Va. Code 64.2-509) is recorded in the will book only if someone qualified or probated a will; if nobody did, there is none and the heirs take by law. Confirm who can sign before you call anyone.",
@@ -54,7 +56,8 @@
   "W1": "The parcel carries a List of Heirs reference. That document names the heirs and their addresses as of the date of death. Pull it from the will book and page shown.",
   "W2": "Title came by will (will book and page shown). Read the will for who took the property; the name on the tax record may be a devisee who has since died or moved.",
   "N1": "The assessor recorded a date of death on this parcel and moved title to the survivor or devisee. Title is likely clean. This is a recent-loss lead: be respectful, and verify the note against the deed or will first.",
-  "N2": "The assessor notes this parcel passed by will recently. The devisee may not want the property. Verify the will reference before contacting."
+  "N2": "The assessor notes this parcel passed by will recently. The devisee may not want the property. Verify the will reference before contacting.",
+  "X1": "The State Corporation Commission shows this company or association as no longer active, and it still holds title. Nobody can sign for a dead entity without reinstating it or winding it up. The registered agent and officers you recorded are the people to find; they, or their heirs, are who you deal with."
  },
  "watch_hidden": 158,
  "presets": [

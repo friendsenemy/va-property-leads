@@ -250,6 +250,7 @@ def split_people(lnam, fnam=""):
     if care_of(f):
         f = ""
     l = re.split(r"\s(?:C/O|%)\s?", l)[0]
+    l = re.sub(r"\s*;\s*(JR|SR|II|III|IV)\b", r" \1", l)      # "WEBER ROBERT F;JR" keeps its suffix
     # LNAM is 35 characters; a one-word FNAM is the overflow of the last name in it.
     if f and len(f.split()) == 1 and not re.search(r"(?:\bOR|\b0R|\bAND|&)\s*$", l):
         l, f = l + " " + f, ""

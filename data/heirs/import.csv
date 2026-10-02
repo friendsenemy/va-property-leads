@@ -1,0 +1,3 @@
+# One line per List of Heirs or heirship affidavit found in the Clerk's index.
+# date_of_death and recorded are YYYY-MM-DD. heirs: Name (relationship) address; Name ...
+decedent_last,decedent_first,decedent_middle,suffix,date_of_death,type,recorded,book,page,heirs
