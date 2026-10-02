@@ -1,10 +1,10 @@
 """
-Obituary Scraper for Maryland - COMPLETE COVERAGE
-Scrapes Legacy.com using TWO approaches for maximum coverage:
-  1. Newspaper browse pages (20 verified MD newspaper partners)
-  2. County-level local pages (all 23 counties + Baltimore City)
-This dual approach ensures we catch EVERY Maryland obituary on Legacy.com,
-including funeral-home-direct posts that never appear in any newspaper.
+Obituary Scraper for Virginia - King George / Fredericksburg
+Scrapes Legacy.com using TWO approaches:
+  1. Fredericksburg newspaper browse pages
+  2. King George County and Fredericksburg local pages
+Outputs records in the same field format used by the Maryland scraper so
+the Virginia matcher can ingest them directly.
 """
 
 import re
@@ -48,76 +48,25 @@ HEADERS = {
 }
 
 # ============================================================
-# SOURCE 1: Maryland newspaper slugs on Legacy.com
-# Official list from Legacy.com newspaper directory + validated
+# SOURCE 1: Virginia newspaper slugs on Legacy.com
 # ============================================================
-MD_NEWSPAPERS = [
-    # --- Baltimore Metro ---
-    "baltimoresun",           # Baltimore City, Baltimore County, Harford, Howard
-    "avenuenews",             # Baltimore area community paper
-    "baltimoretimes",         # Baltimore City community paper
-    "dundalkeagle",           # Baltimore County (Dundalk/Essex area)
-    # --- Central Maryland ---
-    "capitalgazette",         # Anne Arundel County (Annapolis/Severna Park)
-    "carrollcountytimes",     # Carroll County (Westminster)
-    "fredericknewspost",      # Frederick County
-    "thedamascuslocal",       # Montgomery County (Damascus area)
-    # --- DC Metro / Western Suburbs ---
-    "washingtonpost",         # Montgomery, Prince George's, broader MD/DC/VA
-    # --- Southern Maryland ---
-    "somdnews-independent",   # Charles County (Maryland Independent)
-    "somdnews-recorder",      # Calvert County (The Calvert Recorder)
-    "somdnews-enterprise",    # St. Mary's County (The Enterprise)
-    # --- Eastern Shore ---
-    "stardem",                # Talbot & Caroline Counties (Star Democrat)
-    "myeasternshoremd-kent",  # Kent County (Kent County News)
-    "myeasternshoremd-qa",    # Queen Anne's County (Bay Times & Record Observer)
-    "myeasternshoremd-dorchester",  # Dorchester County (Dorchester Star)
-    "myeasternshoremd-timesrecord", # Eastern Shore (Times-Record)
-    # --- Cecil County ---
-    "cecildaily",             # Cecil County (Cecil Whig)
-    # --- Border (picks up MD obits near state line) ---
-    "newarkpostonline",       # Newark Post (DE) - Cecil County border
-    # --- Statewide ---
-    "newszapmd",              # Various MD areas
+VA_NEWSPAPERS = [
+    "fredericksburg",          # The Free Lance-Star / Fredericksburg area
 ]
 
 # ============================================================
-# SOURCE 2: County-level local pages on Legacy.com
-# These catch funeral-home-direct posts NOT in any newspaper
-# All 23 Maryland counties + Baltimore City
+# SOURCE 2: Virginia local pages on Legacy.com
+# These catch funeral-home-direct posts not in the newspaper feed
 # ============================================================
-MD_COUNTIES = [
-    "allegany-county",
-    "anne-arundel-county",
-    "baltimore",              # Baltimore City
-    "baltimore-county",
-    "calvert-county",
-    "caroline-county",
-    "carroll-county",
-    "cecil-county",
-    "charles-county",
-    "dorchester-county",
-    "frederick-county",
-    "garrett-county",
-    "harford-county",
-    "howard-county",
-    "kent-county",
-    "montgomery-county",
-    "prince-georges-county",
-    "queen-annes-county",
-    "saint-marys-county",
-    "somerset-county",
-    "talbot-county",
-    "washington-county",
-    "wicomico-county",
-    "worcester-county",
+VA_COUNTIES = [
+    "king-george-county",
+    "fredericksburg",
 ]
 
 
 def scrape_legacy_obituaries(max_pages=2):
     """
-    Scrape Legacy.com for recent Maryland obituaries using both
+    Scrape Legacy.com for recent Virginia obituaries using both
     newspaper browse pages and county-level local pages.
     Returns a list of dicts with obituary data.
     """
@@ -125,7 +74,7 @@ def scrape_legacy_obituaries(max_pages=2):
     session = make_session()
 
     # --- Pass 1: Scrape newspaper browse pages ---
-    for paper in MD_NEWSPAPERS:
+    for paper in VA_NEWSPAPERS:
         for page in range(1, max_pages + 1):
             try:
                 url = f"https://www.legacy.com/us/obituaries/{paper}/browse"
@@ -147,10 +96,10 @@ def scrape_legacy_obituaries(max_pages=2):
                     logger.info(f"No obituaries found for {paper} at page {page}")
                     break
 
-                # Filter to Maryland only (washingtonpost covers DC/VA too)
+                # Filter to Virginia only
                 for obit in page_obits:
                     state = obit.get("state", "")
-                    if state in ("MD", "Maryland", ""):
+                    if state in ("VA", "Virginia", ""):
                         obituaries.append(obit)
 
                 logger.info(f"Found {len(page_obits)} obituaries for {paper} page {page}")
@@ -162,10 +111,10 @@ def scrape_legacy_obituaries(max_pages=2):
 
     # --- Pass 2: Scrape county-level local pages ---
     # These catch funeral-home-direct posts not in any newspaper
-    for county in MD_COUNTIES:
+    for county in VA_COUNTIES:
         for page in range(1, max_pages + 1):
             try:
-                url = f"https://www.legacy.com/us/obituaries/local/maryland/{county}"
+                url = f"https://www.legacy.com/us/obituaries/local/virginia/{county}"
                 params = {"page": page}
 
                 logger.info(f"Scraping county: {county} page {page}")
@@ -183,10 +132,10 @@ def scrape_legacy_obituaries(max_pages=2):
                     logger.info(f"No obituaries found for county {county} at page {page}")
                     break
 
-                # Filter to Maryland only (county pages can show people born-in-MD but died elsewhere)
+                # Filter to Virginia only (local pages can include out-of-area records)
                 for obit in page_obits:
                     state = obit.get("state", "")
-                    if state in ("MD", "Maryland", ""):
+                    if state in ("VA", "Virginia", ""):
                         obituaries.append(obit)
 
                 logger.info(f"Found {len(page_obits)} county obituaries for {county} page {page}")
@@ -326,7 +275,7 @@ def _extract_obituaries_html(html, source_label):
             snippet_el = a.select_one("p[title]")
             snippet = (snippet_el.get("title") or snippet_el.get_text(" ", strip=True)) if snippet_el else ""
 
-            # "Jane Doe, 84, of Waldorf, Maryland, passed away ..."
+            # "Jane Doe, 84, of Fredericksburg, Virginia, passed away ..."
             age = None
             city = ""
             state = ""
@@ -336,9 +285,9 @@ def _extract_obituaries_html(html, source_label):
                 city = sm.group(2).strip()
                 state = _STATE_NAMES.get(sm.group(3).strip().lower(), sm.group(3).strip()[:2].upper())
             else:
-                sm2 = re.search(r"\bof\s+([A-Z][A-Za-z .'\-]+?),\s*(Maryland|MD)\b", snippet)
+                sm2 = re.search(r"\bof\s+([A-Z][A-Za-z .'\-]+?),\s*(Virginia|VA)\b", snippet)
                 if sm2:
-                    city, state = sm2.group(1).strip(), "MD"
+                    city, state = sm2.group(1).strip(), "VA"
 
             # Outbound obituary link sits in the sibling "Obituary links" region
             obit_url = ""
@@ -437,7 +386,7 @@ def _parse_json_obituary(raw, source_label):
                 "date_of_birth": date_of_birth,
                 "age": raw.get("age"),
                 "city": (city_data.get("fullName") or "") if isinstance(city_data, dict) else (str(city_data) if city_data else ""),
-                "state": (state_data.get("code") or "MD") if isinstance(state_data, dict) else (str(state_data) if state_data else "MD"),
+                "state": (state_data.get("code") or "VA") if isinstance(state_data, dict) else (str(state_data) if state_data else "VA"),
                 "obituary_url": obituary_url,
                 "obituary_text": raw.get("obitSnippet", "") or "",
                 "survived_by": "",
@@ -479,7 +428,7 @@ def _parse_json_obituary(raw, source_label):
                 "date_of_birth": date_of_birth,
                 "age": None,
                 "city": "",
-                "state": "MD",
+                "state": "VA",
                 "obituary_url": link,
                 "obituary_text": "",
                 "survived_by": "",
@@ -592,3 +541,23 @@ def fetch_obituary_details(url):
     """
     session = make_session()
     return _fetch_obituary_details(url, session)
+
+if __name__ == "__main__":
+    import os
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(message)s"
+    )
+
+    records = scrape_legacy_obituaries(max_pages=2)
+
+    os.makedirs("data/obits", exist_ok=True)
+    output_file = "data/obits/legacy.json"
+
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(records, f, indent=2, ensure_ascii=False)
+
+    print(f"Saved {len(records)} Legacy.com obituaries to {output_file}")
+
+
