@@ -216,7 +216,7 @@ def add_years(d, n):
         return d.replace(year=d.year + n, day=28)
 
 
-def collection_window(kind, sale_date, today):
+def collection_window(kind, sale_date, today, order_date=None):
     """(code, note, deadline). A verdict by age, not a fact: the dashboard says so and
     asks for a two-minute human check."""
     if not sale_date:
@@ -224,12 +224,15 @@ def collection_window(kind, sale_date, today):
     d = dt.date.fromisoformat(sale_date)
     days = (today - d).days
     if kind == "TAX":
-        deadline = add_years(d, 2)
+        deadline = add_years(dt.date.fromisoformat(order_date) if order_date else d, 2)
         if today <= deadline:
+            when = (f"The Clerk's report dates this case {order_date}; if that is the confirmation order, the deadline is {deadline.isoformat()}. "
+                    "Confirm the date in the case file." if order_date else
+                    "The confirmation is earlier than the deed date shown here, so the real deadline "
+                    f"is earlier than {deadline.isoformat()}. Get the confirmation date from the case file.")
             return ("COURT_2YR", "A tax sale is a court case. The surplus is held by the Clerk of the King George Circuit Court, and the "
                     "former owner, heirs or assigns must petition for it within two years of the order confirming the sale "
-                    "(Va. Code § 58.1-3967). The confirmation is earlier than the deed date shown here, so the real deadline "
-                    f"is earlier than {deadline.isoformat()}. Get the confirmation date from the case file.", deadline.isoformat())
+                    "(Va. Code § 58.1-3967). After that it is paid to the county. " + when, deadline.isoformat())
         return ("PAID_TO_COUNTY", "More than two years since the deed. Unclaimed tax-sale surplus is paid to the county after two years "
                 "from confirmation (§ 58.1-3967). After that the only route is a request to the Board of Supervisors, "
                 "which may grant relief by ordinance but does not have to.", deadline.isoformat())
@@ -622,12 +625,28 @@ def deed_rows(parcels, today, former, changes):
             if not price:
                 continue
             est = tax_sale_costs(price, taxes)
-            row["payoff_est"], row["payoff_basis"] = [round(x) for x in est[:3]], est[3]
-            tier, surplus = tier_for(price, est[:3])
-            if not tier:
-                continue
-            reasons.append(f"sold for {price:,.0f}; about {est[1]:,.0f} comes off first ({est[3]})")
-            if av and price > 3 * av:
+            bal, as_of = _f(ov.get("court_balance")), ov.get("court_as_of", "")
+            row.update({"case_number": ov.get("case_number", ""), "court_balance": bal or None, "court_as_of": as_of,
+                        "court_disbursed": ov.get("court_disbursed", ""), "court_order_date": ov.get("court_order_date", "")})
+            if bal and ov.get("court_disbursed"):
+                # The Clerk's own ledger, after the taxes and costs were paid out: this IS the surplus on that date.
+                row["payoff_est"], row["payoff_basis"] = [round(price - bal)] * 3, f"paid out of the sale by the Clerk on {ov['court_disbursed']}"
+                surplus = (bal, bal, bal)
+                tier = "STRONG" if bal >= STRONG_MIN_SURPLUS else "POSSIBLE" if bal >= POSSIBLE_MIN_SURPLUS else None
+                if not tier:
+                    continue
+                reasons.append(f"the Clerk's liabilities index of {as_of} shows {bal:,.2f} held in case {ov.get('case_number')}, after "
+                               f"{price - bal:,.0f} was paid out. That is the surplus on that date, not an estimate")
+            else:
+                row["payoff_est"], row["payoff_basis"] = [round(x) for x in est[:3]], est[3]
+                tier, surplus = tier_for(price, est[:3])
+                if not tier:
+                    continue
+                reasons.append(f"sold for {price:,.0f}; about {est[1]:,.0f} comes off first ({est[3]})")
+                if bal:
+                    reasons.append(f"the Clerk's liabilities index of {as_of} shows the full {bal:,.2f} still held in case {ov.get('case_number')}: "
+                                   "taxes and costs had not been paid out yet, so the surplus is less than that")
+            if av and price > 3 * av and not (bal and ov.get("court_disbursed")):
                 # a tax sale rarely brings several times the assessment: could be a typo, or one price for more land
                 tier = "POSSIBLE"
                 reasons.append(f"the recorded price is {price / av:.1f}x the assessed value: read the deed to confirm the price before relying on it")
@@ -732,7 +751,7 @@ def build(do_fetch=True, today=None):
         r["id"] = "surplus:" + r["lot_id"]
         r["is_new"] = r["first_seen"][:10] == today.isoformat()
         sold = r["stage"] != "AUCTION_SCHEDULED"
-        win, note, deadline = collection_window(r["kind"], r["sale_date"], today) if sold else (None, None, None)
+        win, note, deadline = collection_window(r["kind"], r["sale_date"], today, r.get("court_order_date") or None) if sold else (None, None, None)
         r.update({"collection_window": win, "collection_note": note, "claim_deadline": deadline})
         r["archive"] = bool(sold and (today - dt.date.fromisoformat(r["sale_date"])).days > KEEP_SOLD_DAYS)
         if r["archive"]:

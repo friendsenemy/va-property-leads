@@ -134,6 +134,7 @@ const SurplusApp = new LeadTab({
             r.tier === "POSSIBLE" ? '<span class="chip" title="Estimated $10,000 or more over the middle of the payoff range, or the evidence is thin">possible</span>' : "",
             r.tier === "UNCONFIRMED" ? '<span class="chip" style="opacity:.75" title="Known only from the county\'s deed note. Could be the lender reselling. The Clerk\'s index settles it">unconfirmed</span>' : "",
             r.tier === "UNRATED" ? '<span class="chip" style="opacity:.75" title="No parcel data for this county, so equity cannot be measured">not rated</span>' : "",
+            r.court_balance && r.court_disbursed ? `<span class="chip chip-strong" title="The Clerk's own ledger shows this balance held for the former owner as of ${esc(r.court_as_of)}">clerk's balance</span>` : "",
             r.is_new && !r.archive ? '<span class="chip chip-strong" title="First seen today">new</span>' : "",
             r.archive ? `<span class="chip" title="Sold more than 180 days ago">archive · ${esc(r.archive_bucket || "")}</span>` : "",
             r.sale_date_passed ? '<span class="chip" title="The sale date has passed; the county does not show a new owner yet">awaiting deed</span>' : "",
@@ -173,6 +174,8 @@ const SurplusApp = new LeadTab({
             ${row(sold ? "Price paid" : "Assessed value", `<span class="mono">${money(sold ? r.hammer : r.assessed_value)}</span>${sold && r.assessed_value ? ` <span class="sub">assessed ${money(r.assessed_value)}</span>` : ""}`)}
             ${row(r.kind === "TAX" ? "Taxes, fees and costs" : "Estimated payoff", r.payoff_est ? `<span class="mono">${sRange(r.payoff_est)}</span> <span class="sub">${esc(r.payoff_basis || "")}</span>` : '<span class="sub">nothing on file to estimate from</span>')}
             ${row(sold ? "Estimated surplus" : "Estimated equity", r.surplus_est ? `<span class="mono" style="color:var(--green); font-weight:600">${sRange(r.surplus_est)}</span> <span class="sub">middle ${money(r.surplus_est[1])}</span>` : "")}
+            ${row("Held by the Clerk", r.court_balance ? `<span class="mono" style="font-weight:600">${money(r.court_balance)}</span> <span class="sub">Circuit Court liabilities index, as of ${esc(r.court_as_of)}${r.court_disbursed ? "; taxes and costs paid out " + esc(r.court_disbursed) : "; taxes and costs not paid out yet"}</span>` : "")}
+            ${row("Court case", r.case_number ? `<span class="mono">${esc(r.case_number)}</span> <span class="sub">King George Circuit Court, chancery</span>` : "")}
             ${row("Taxes on the county's list", r.taxes_owed ? `<span class="mono">${money(r.taxes_owed)}</span>` : "")}
             ${row("Bidder's deposit", r.deposit ? `<span class="mono">${money(r.deposit)}</span> <span class="sub">up to 10% of the price (§ 55.1-324)</span>` : "")}
             ${row("Deed of trust", [r.dot_date, r.dot_ref, r.original_amount ? "original amount " + money(r.original_amount) : ""].filter(Boolean).map(esc).join(" · "))}
