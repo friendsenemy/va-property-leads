@@ -88,6 +88,7 @@
     <div id="saleBanner" class="next-step" style="display:none; margin-bottom:14px"></div>
 
     <div class="view-tabs">
+        <button class="view-tab" data-view="surplus">Surplus Funds <span class="view-tab-sub">tax sales + foreclosure sales</span></button>
         <button class="view-tab" data-view="stack">Stacked Distress <span class="view-tab-sub">death + taxes + title + condition</span></button>
         <button class="view-tab active" data-view="title">Title Leads <span class="view-tab-sub">county parcel record</span></button>
         <button class="view-tab" data-view="death">Death Leads <span class="view-tab-sub">obituary ↔ owner on title</span></button>
@@ -166,6 +167,32 @@
         </div>
     </div>
 </div><!-- /view-title -->
+
+<div id="view-surplus" style="display:none">
+    <div class="stats-grid" id="surplusStats"></div>
+    <div class="controls">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="surplusSearch" placeholder="Search former owner, address, county, buyer…">
+        </div>
+        <label class="sub" style="display:flex; align-items:center; gap:6px; cursor:pointer" title="Sold more than 180 days ago, grouped by where the money is likely to be now"><input type="checkbox" id="surplusArchive"> Archive</label>
+        <label class="sub" style="display:flex; align-items:center; gap:6px; cursor:pointer" title="Foreclosure candidates known only from the county's deed note. Unverified; never rated strong."><input type="checkbox" id="surplusDeedScan"> Deed-scan candidates</label>
+        <button class="btn btn-export" id="surplusExport"><span class="icon">⬇</span> Export CSV</button>
+    </div>
+    <div class="presets" id="surplusFilters"></div>
+    <div class="run-info" id="surplusInfo" style="text-align:left; margin:6px 0 10px;"></div>
+    <div class="leads-container">
+        <table class="leads-table"><thead id="surplusHead"></thead><tbody id="surplusBody"></tbody></table>
+        <div class="empty-state" id="surplusEmpty" style="display:none;"></div>
+        <div class="pagination">
+            <span id="surplusPageInfo"></span>
+            <div class="pagination-buttons">
+                <button class="page-btn" id="surplusPrev">← Prev</button>
+                <button class="page-btn" id="surplusNext">Next →</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /view-surplus -->
 
 <div id="view-stack" style="display:none">
     <div class="stats-grid" id="stackStats"></div>
@@ -276,26 +303,40 @@
         </div>
         <div class="modal-body" id="modalBody"></div>
         <div class="modal-footer">
-            <select id="leadStatusSelect">
-                <option value="new">New</option>
-                <option value="contacted">Contacted</option>
-                <option value="closed">Closed</option>
-            </select>
-            <textarea id="leadNotes" placeholder="Add notes… (saved in this browser)"></textarea>
-            <button class="btn btn-primary" id="saveLeadBtn">Save</button>
+            <div class="note-history" id="noteHistory"></div>
+            <div class="note-row">
+                <label for="leadStatusSelect">Status</label>
+                <select id="leadStatusSelect">
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="verified">Verified – money still unclaimed</option>
+                    <option value="paid">Already paid out – dead</option>
+                    <option value="closed">Closed</option>
+                </select>
+                <label for="noteAuthor">Your name</label>
+                <input type="text" id="noteAuthor" placeholder="Ray / Todd" size="10" autocomplete="off">
+                <span class="note-sync" id="noteSync"></span>
+            </div>
+            <textarea id="leadNotes" placeholder="Add a note. Everyone using the dashboard sees it."></textarea>
+            <div class="note-row" style="justify-content:flex-end">
+                <button class="btn btn-primary" id="saveLeadBtn">Save</button>
+            </div>
         </div>
     </div>
 </div>
 
+<script src="static/js/config.js"></script>
+<script src="static/js/shared.js"></script>
 <script src="static/js/title.js"></script>
 <script src="static/js/tabs.js"></script>
 <script src="static/js/stack.js"></script>
+<script src="static/js/surplus.js"></script>
 <script src="static/js/lookup.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const VIEWS = ["stack", "title", "death", "delinq", "lookup"];
+    const VIEWS = ["surplus", "stack", "title", "death", "delinq", "lookup"];
     const started = { title: true };
-    const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), stack: () => StackApp.init(), delinq: () => DelinqApp.init() };
+    const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), stack: () => StackApp.init(), delinq: () => DelinqApp.init(), surplus: () => SurplusApp.init() };
     TitleApp.init();
     // A King George tax sale on counsel's page is the whole buy window: say so on every tab.
     fetch(`data/sales/notices.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => {
@@ -319,6 +360,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const g = document.getElementById("tabGuideLink");
         if (g) g.href = "guide.html#" + v;
     }));
+    // a link such as …/va-property-leads/#surplus (the alert email uses it) opens that tab
+    const want = document.querySelector(`button.view-tab[data-view="${(location.hash || "").slice(1)}"]`);
+    if (want) want.click();
 });
 </script>
     <script src="static/js/notes-import.js"></script>

@@ -192,6 +192,8 @@ def diff_owners(prev_path, parcels, today):
             out.append({"date": today, "pid": r["pid"], "pin": r["pin"], "site_addr": r["site_addr"],
                         "change": "OWNER" if o[idx["owner"]] != r["owner"] else "DEED_REF",
                         "old_owner": o[idx["owner"]], "new_owner": r["owner"],
+                        # where the previous owner's tax bill went: the only place this survives a sale
+                        "old_mail": ", ".join(str(o[idx[c]]) for c in ("mail_addr", "mail_city", "mail_state", "mail_zip") if o[idx[c]]),
                         "old_deed": [o[idx["deed_book"]], o[idx["deed_page"]]], "new_deed": [r["deed_book"], r["deed_page"]],
                         "sale_year": r["sale_year"], "sale_price": r["sale_price"], "note": r["grantor_note"]})
     return out

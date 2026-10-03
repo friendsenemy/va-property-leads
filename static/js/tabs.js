@@ -41,11 +41,15 @@ class LeadTab {
         this.el("Prev").addEventListener("click", () => { if (this.state.page > 1) { this.state.page--; this.render(); } });
         this.el("Next").addEventListener("click", () => { this.state.page++; this.render(); });
         this.el("Export").addEventListener("click", () => this.exportCsv());
+        document.addEventListener("vapl:notes-loaded", () => this.render());
+        if (this.afterInit) this.afterInit();
         this.render();
     }
 
-    statusOf(r) { return (this.local[r.id] && this.local[r.id].status) || "new"; }
-    notesOf(r) { return (this.local[r.id] && this.local[r.id].notes) || ""; }
+    // Shared sheet first (what everyone sees), this browser's own copy as the fallback.
+    sid(r) { return `va:${this.prefix}:${r.id}`; }
+    statusOf(r) { const s = SharedNotes.get(this.sid(r)); return (s && s.status) || (this.local[r.id] && this.local[r.id].status) || "new"; }
+    notesOf(r) { const s = SharedNotes.get(this.sid(r)); return s ? (s.notes || "") : ((this.local[r.id] && this.local[r.id].notes) || ""); }
 
     filtered() {
         const f = this.filters.find((x) => x.id === this.state.filter);
@@ -79,11 +83,14 @@ class LeadTab {
         document.getElementById("modalBody").innerHTML = this.detail(r, this.summary);
         const sel = document.getElementById("leadStatusSelect"), notes = document.getElementById("leadNotes");
         sel.value = this.statusOf(r); notes.value = this.notesOf(r);
+        SharedNotes.footer(this.sid(r));
         document.getElementById("saveLeadBtn").onclick = () => {
             this.local[r.id] = { status: sel.value, notes: notes.value, updated: new Date().toISOString() };
             try { localStorage.setItem(this.lsKey, JSON.stringify(this.local)); } catch {}
+            SharedNotes.save("va-" + this.prefix, this.sid(r), sel.value, notes.value, this.title(r));
             document.getElementById("modalOverlay").classList.remove("active"); this.render();
         };
+        if (this.afterOpen) this.afterOpen(r);
         document.getElementById("modalOverlay").classList.add("active");
     }
 

@@ -12,6 +12,7 @@ reads it. No server, no paid data, no credentials in the repo.
 | Workflow | Schedule | What it does |
 |---|---|---|
 | `nightly-parcels.yml` | every night, 3:17 AM ET | Parcels layer (8 requests) → SQLite; new obituaries from the Storke RSS feed (1 request); tax-sale notices (1 request, Mondays); then every board is rebuilt and committed |
+| `auction-watch.yml` | weekday mornings, 6:43 AM ET | Two trustee sale lists (one request each), the tax-sale and trustee deeds in the parcel record, the surplus estimates, and an email of new strong leads |
 | `monthly-delinquency.yml` | first six nights of the month, 12:30 AM ET | Treasurer balance for every parcel. Each night takes the parcels not checked in the last 20 days, oldest first (one request, then a 1.5 s pause), so a missed night is made up by the next |
 
 Nothing needs starting by hand. When a run ends with parcels still unchecked it starts the next run itself, so the first full pass runs back to back until the county is done. Both workflows have a Run button on the Actions tab if
@@ -20,10 +21,11 @@ parcels already on a board (about an hour).
 
 The nightly build also runs when you push one of the hand-edited files below.
 
-## The five tabs
+## The six tabs
 
 | Tab | Source | A row is |
 |---|---|---|
+| **Surplus Funds** | trustees' foreclosure sale lists, and tax-sale and trustee deeds in the parcel record | a sale that left (or will leave) money owed to the former owner: Tax Sale Sold, Auction Sold, Auction Scheduled |
 | **Stacked Distress** | all of the below, joined by owner | an owner with two or more signals (death, unpaid taxes, title, the assessor's condition notes), or a house the assessor notes as unsafe, abandoned, burned, unlivable or vacant |
 | **Title Leads** | the county parcel record | an owner whose title reads as an estate, heirs, life estate, et al, or carries a will / death note |
 | **Death Leads** | obituaries matched to every owner name | a person who has died and is still the owner of record |
@@ -45,8 +47,37 @@ rebuilds.
 | `data/obits/<name>.json` | Any other obituary source. A list of records, or `{"rows": [...]}`. Each needs a first and last name (`first`/`last`, `first_name`/`last_name`, or a `full_name`); `death_date` or `date_of_death` in any common date format; optionally `middle`, `age`, `place` or `city`, `url`. Every file in the folder is matched. |
 | `data/heirs/import.csv` | A List of Heirs or heirship affidavit from the Clerk's index (searched by hand; the Clerk's agreement bars automated access). The heirs you type in show on the matched lead. |
 | `data/scc/status.csv` | SCC status of a company you looked up. `data/scc/worklist.csv` lists which ones are worth looking up first. Inactive + still on title becomes an **X1** lead. |
+| `data/surplus/notices.csv` | A foreclosure sale you read in a newspaper notice or on a trustee's list that cannot be automated: address, sale date, borrower, deed of trust date and book/page, original loan amount, deposit, and the result if you learn it. The loan amount makes the estimate far better. |
+| `data/surplus/former-owners.csv` | What is known about an owner before title moved, by parcel ID: mailing address, taxes owed. Seeded for the June 2026 tax sales from the county's 2025 delinquent list. |
 | `data/delinquency/priority.csv` | Parcel IDs to check first in the Treasurer walk (first column), for example from a delinquent list the county gave you. It only sets the order; balances always come from the Treasurer. |
 | `data/sales/parcels.csv` | Tax map numbers from a King George tax-sale PDF (the PDF itself is not fetched) |
+
+## Surplus Funds: how a row gets there
+
+Virginia foreclosures are run by a substitute trustee with no court case, and nobody
+publishes the price. So a foreclosure is **Auction Scheduled** while it is on a trustee's
+list, and **Auction Sold** when the parcel record shows a new owner after the sale date.
+The owner and mailing address are saved the first day a sale is seen, because the county
+record shows only the buyer afterwards. A delinquent-tax sale is a court case; the
+assessor records those deeds as "SPECIAL COMMISSIONER ON BEHALF OF <former owner>" with
+the price, which is the **Tax Sale Sold** stage.
+
+Every amount is a range. Payoff is the deed-of-trust amount from the notice when you
+entered one, otherwise the owner's purchase price at 95%, amortised, plus 12%, with the
+bidder's deposit x 10 as a check. **Strong** means the price (or, before the sale, the
+assessed value) clears the high end by $25,000 and 1.3x; **possible** is $10,000 over the
+middle. Foreclosure leads are residential with $60,000 or more assessed. A foreclosure
+known only from a deed note is a candidate behind the "Deed-scan candidates" box and is
+never strong. Dropped outright: a lender taking the property back, an owner who sold
+before the sale date, a sale pulled from the list. A sold lead stays 180 days, then
+moves to the Archive box.
+
+"Has it been collected?" is a verdict by age (see `docs/virginia-law.md`), plus a
+two-minute check by a person, recorded in the status box.
+
+Notes and statuses on every tab are shared through the Maryland tool's Google Sheet
+(`static/js/config.js`). Anyone who has that web-app address can read the sheet's rows,
+so keep phone numbers and anything private out of notes.
 
 ## Title Leads: what is on the board
 
@@ -144,6 +175,7 @@ is kept separately for the death match.
 | `engine/delinquency.py` | Treasurer walk and join → `data/delinquency/` |
 | `engine/sale_notices.py` | tax-sale counsel's auction page → `data/sales/notices.json` |
 | `engine/scc_import.py`, `engine/heirs_import.py` | join what you looked up by hand |
+| `engine/auction_watch.py`, `engine/alert.py` | surplus board → `data/surplus/`; email of new strong leads |
 | `engine/build_board.py` | runs all of the above in order from what is on disk |
 | `engine/config.py` | endpoint, field map, every weight and threshold |
 | `guide.html` | the field guide: what each tab means, a real case for each, what to check and what to say |

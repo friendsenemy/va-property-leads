@@ -1,0 +1,49 @@
+name: Surplus watch (tax sales + foreclosure sales)
+
+# Once each weekday morning: read the two trustee sale lists (one request each), scan
+# the parcel record for tax-sale and trustee deeds, keep the sales with a likely
+# surplus or pre-sale equity, and email the new strong ones.
+
+on:
+  schedule:
+    - cron: '43 10 * * 1-5'      # 6:43 AM EDT / 5:43 AM EST, Monday to Friday
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/surplus/notices.csv'
+      - 'data/surplus/former-owners.csv'
+      - 'engine/auction_watch.py'
+      - '.github/workflows/auction-watch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writers
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Pull parcels into SQLite
+        run: python -m engine.parcels
+      - name: Watch sales
+        run: python -m engine.auction_watch
+      - name: Email new strong leads
+        env:
+          ALERT_TOKEN: ${{ secrets.ALERT_TOKEN }}
+        run: python -m engine.alert || echo "::warning::alert email not sent"
+      - name: Commit results
+        run: |
+          N=$(python -c "import json;c=json.load(open('data/surplus/auctions.json'))['counts'];print(f\"{c['kept']} surplus leads ({c['strong']} strong)\")")
+          .github/commit-data.sh "Surplus watch: ${N}" \
+            data/surplus/auctions.json data/surplus/auction-archive.json \
+            data/surplus/auctions-seen.json data/surplus/grantor-sample.json

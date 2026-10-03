@@ -832,3 +832,77 @@ a:hover { text-decoration: underline; }
         overflow-x: auto;
     }
 }
+
+/* --- shared notes modal: large type (ported from md-property-leads) --- */
+.modal-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px 24px 24px;
+    border-top: 1px solid var(--border);
+}
+
+.modal-footer .note-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.modal-footer .note-row label { font-size: 1rem; color: var(--text-secondary); }
+
+.modal-footer select,
+.modal-footer input[type="text"] {
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 1.1rem;
+}
+
+.modal-footer textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: var(--font);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 170px;
+}
+
+.modal-footer .btn-primary { font-size: 1.1rem; padding: 12px 26px; }
+
+.note-history { display: grid; gap: 8px; }
+.note-history .note { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; font-size: 1.02rem; line-height: 1.45; white-space: pre-wrap; }
+.note-history .note .who { font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); margin-bottom: 4px; }
+.note-sync { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
+.note-sync.on { color: var(--green); }
+.note-sync.err { color: #ff453a; }
+
+.modal-footer select:focus,
+.modal-footer textarea:focus {
+    outline: none;
+    border-color: var(--cyan-dim);
+}
+
+/* ─── Pagination ─── */
+
+
+.status-badge.verified {
+    background: rgba(50, 215, 75, 0.12);
+    color: var(--green);
+    border: 1px solid rgba(50, 215, 75, 0.3);
+}
+
+.status-badge.paid {
+    background: rgba(255, 69, 58, 0.1);
+    color: #ff6b61;
+    border: 1px solid rgba(255, 69, 58, 0.3);
+    text-decoration: line-through;
+}
+
+
+.letter-box { white-space: pre-wrap; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-size: 0.95rem; line-height: 1.55; margin: 8px 0; }
+.law-box { border-left: 3px solid var(--yellow); padding: 10px 14px; background: var(--bg-card); border-radius: var(--radius); font-size: 0.86rem; line-height: 1.55; }
+.law-box li { margin: 4px 0 4px 18px; }

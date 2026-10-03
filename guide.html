@@ -142,8 +142,43 @@ html, body { margin: 0; }
   </div>
 </div>
 
-<div class="section chapter" id="stack" style="--c: var(--stranded)">
+<div class="section chapter" id="surplus" style="--c: var(--surplus)">
   <div class="eyebrow">Tab 1</div>
+  <h2>Surplus Funds</h2>
+  <span class="tab-pill">tax sales + foreclosure sales</span>
+  <div class="grid2">
+    <div class="box">
+      <h3>What it finds</h3>
+      <p>Sales that left money owed to the person who lost the property, and sales that have not happened yet where the owner still has equity.</p>
+      <h3 style="margin-top:16px">The three stages</h3>
+      <dl>
+        <dt>Tax Sale Sold</dt><dd>The county sued for back taxes and a special commissioner sold the property. The price, less taxes, fees, costs and liens, is held by the Clerk of the Circuit Court for the former owner. The claim ends two years after the court confirmed the sale; then the county keeps it.</dd>
+        <dt>Auction Sold</dt><dd>A foreclosure by a substitute trustee, and the county now shows a new owner. If the price beat the debt, the trustee owes the rest to the former owner.</dd>
+        <dt>Auction Scheduled</dt><dd>A trustee has advertised a sale. The owner still holds title and can sell until the hammer falls. In Virginia there is no buying it back afterwards. This is a buy lead with a date on it.</dd>
+      </dl>
+      <h3 style="margin-top:16px">Strong, possible, unconfirmed, not rated</h3>
+      <p><b>Strong:</b> the price clears the high end of the estimated payoff by $25,000 and by 30%. <b>Possible:</b> $10,000 over the middle, or thin evidence. <b>Unconfirmed:</b> known only from a deed note; behind the "Deed-scan candidates" box. <b>Not rated:</b> a sale in a neighbouring county, where there is no parcel data to measure equity.</p>
+      <h3 style="margin-top:16px">Has it been collected?</h3>
+      <p>Nobody publishes that. The panel gives a verdict by the age of the sale and tells you who to ask. When one of you has checked, set the status to <b>Verified – money still unclaimed</b> or <b>Already paid out – dead</b> so the other does not check it again.</p>
+    </div>
+    <div class="box case">
+      <div class="who">case · tax sale, June 2026</div>
+      <h3>A 2-acre waterview parcel sold for the taxes</h3>
+      <p>The county's record shows a special commissioner's deed "on behalf of" the former owner, a price of <span class="money">$165,000</span>, and about <span class="money">$1,466</span> of taxes on the county's delinquent list. Her tax bill went to an address in Arlington. If the price is right, well over <span class="money">$150,000</span> is sitting with the Clerk in her name, and the clock runs out two years after confirmation.</p>
+      <ol>
+        <li>The price is six times the assessed value, so read the deed first and confirm it.</li>
+        <li>Ask the Clerk of the Circuit Court whether surplus from that sale is still held and when the sale was confirmed.</li>
+        <li>Set the status. Then use "Copy letter" and mail the address on file.</li>
+      </ol>
+      <div class="say"><b>What to say</b>"I'm writing about land in King George County that was sold for back taxes this summer. It sold for much more than the taxes. The difference belongs to you, and the court is holding it. You have to ask for it, and there is a two-year deadline. I'm not asking you for anything; I can tell you where it stands."</div>
+    </div>
+  </div>
+  <div class="warn" style="margin-top:16px"><h3>Virginia lawyer first</h3><p>Pointing a former owner to the Clerk is free and safe. Anything beyond that, such as a fee, an assignment of the surplus, or filing for them, goes to a Virginia attorney before you offer it. Filing a court petition for someone else without a license is a crime in Virginia, and an up-front fee from a homeowner in foreclosure is a prohibited practice. The lead's own panel lists the sections.</p></div>
+  <div class="warn" style="margin-top:16px"><h3>Why this tab is thin on foreclosures</h3><p>Only two trustee firms publish a sale list that their terms let a program read. The newspaper notices and most firms' lists forbid it. When you see a King George sale in the paper or on another firm's list, type it into <code>data/surplus/notices.csv</code> with the loan amount from the notice, and it joins the board the same morning.</p></div>
+</div>
+
+<div class="section chapter" id="stack" style="--c: var(--stranded)">
+  <div class="eyebrow">Tab 2</div>
   <h2>Stacked Distress</h2>
   <span class="tab-pill">death + taxes + title + condition</span>
   <div class="grid2">
@@ -170,7 +205,7 @@ html, body { margin: 0; }
 </div>
 
 <div class="section chapter" id="title" style="--c: var(--title)">
-  <div class="eyebrow">Tab 2</div>
+  <div class="eyebrow">Tab 3</div>
   <h2>Title Leads</h2>
   <span class="tab-pill">how the county's title reads</span>
   <div class="grid2">
@@ -204,7 +239,7 @@ html, body { margin: 0; }
 </div>
 
 <div class="section chapter" id="death" style="--c: var(--death)">
-  <div class="eyebrow">Tab 3</div>
+  <div class="eyebrow">Tab 4</div>
   <h2>Death Leads</h2>
   <span class="tab-pill">obituary ↔ owner on title</span>
   <div class="grid2">
@@ -238,7 +273,7 @@ html, body { margin: 0; }
 </div>
 
 <div class="section chapter" id="delinq" style="--c: var(--surplus)">
-  <div class="eyebrow">Tab 4</div>
+  <div class="eyebrow">Tab 5</div>
   <h2>Delinquent</h2>
   <span class="tab-pill">Treasurer balances</span>
   <div class="grid2">
@@ -270,7 +305,7 @@ html, body { margin: 0; }
 </div>
 
 <div class="section chapter" id="lookup" style="--c: var(--buy)">
-  <div class="eyebrow">Tab 5</div>
+  <div class="eyebrow">Tab 6</div>
   <h2>Parcel Lookup</h2>
   <span class="tab-pill">all 14,435 parcels</span>
   <p style="margin-top:12px">Not a lead list. Type a name, a street or a PIN and see every parcel that matches. Use it when you hear a name somewhere else (an obituary in another paper, a court notice, a neighbor) and want to know what that person owns in the county. The PIN links to the county's property card.</p>
