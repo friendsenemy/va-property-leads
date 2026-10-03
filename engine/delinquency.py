@@ -45,7 +45,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("delinquency")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "data", "delinquency")
+OUT = os.path.join(config.DATA_DIR, "delinquency")
 BAL, STATE, LEADS = (os.path.join(OUT, n) for n in ("balances.json", "state.json", "leads.json"))
 URL = "https://eservices.kinggeorgecountyva.gov/applications/REPublicInquiry/webform1.aspx"
 PAUSE_S = 1.5
@@ -180,11 +180,11 @@ def targets(mode, shard, rows):
         return [r for r in rows if r["pid"] % SHARDS == shard]
     want = set()
     for path, key in (("data/title/leads.json", "rows"), ("data/obits/matches.json", "rows")):
-        p = os.path.join(ROOT, path)
+        p = os.path.join(config.DATA_DIR, path[5:])
         if os.path.exists(p):
             for lead in json.load(open(p))[key]:
                 want.update(x["pid"] for x in lead["parcels"])
-    p = os.path.join(ROOT, "data", "title", "watch.json")
+    p = os.path.join(config.DATA_DIR, "title", "watch.json")
     if os.path.exists(p):
         want.update(x["pid"] for x in json.load(open(p))["rows"])
     return [r for r in rows if r["pid"] in want]
@@ -286,6 +286,19 @@ def save(balances, state):
     json.dump({"checked": dict(sorted(state.items(), key=lambda kv: int(kv[0])))}, open(STATE, "w"), separators=(",", ":"))
 
 
+def source_note():
+    """Where the balances came from, when it is not the parcel-by-parcel Treasurer walk."""
+    meta = load(os.path.join(OUT, "list-meta.json"), None)
+    if not meta:
+        return ""
+    older = [l for l in meta["lists_on_file"] if l["listed"] != meta["newest"]]
+    yrs = meta["newest_covers_years"]
+    return (f"Treasurer's Open Tax List of {meta['newest']}" + (f", which covers tax year {yrs[0]} only" if len(yrs) == 1 else "")
+            + (f". Earlier years on a parcel are from the full list of {older[-1]['listed']} and may have been paid since" if older and len(yrs) == 1 else "")
+            + f". Balances under ${config.MIN_PAST_DUE} are left out. A parcel that is not on the newest list has paid. "
+              "Confirm any balance with the Treasurer before you call.")
+
+
 def join(today=None):
     """Apply balances on file to the Title Leads board and build the Delinquent tab. No network."""
     today = today or dt.date.today()
@@ -305,7 +318,7 @@ def join(today=None):
         b["prior_year"] = min(b["years"]) < this_year
         return b
 
-    watch_path = os.path.join(ROOT, "data", "title", "watch.json")
+    watch_path = os.path.join(config.DATA_DIR, "title", "watch.json")
     watch = {x["pid"] for x in load(watch_path, {"rows": []})["rows"]}
 
     groups = {}
@@ -314,8 +327,8 @@ def join(today=None):
         if not r:
             continue
         b = position(b)
-        if not b["prior_year"]:
-            continue                             # only the current bill is late: not a lead
+        if not b["prior_year"] or b["past_due"] < config.MIN_PAST_DUE:
+            continue                             # only the current bill is late, or a trivial balance: not a lead
         if r["owner_type"] in ("GOVERNMENT", "CEMETERY"):
             continue
         g = groups.setdefault((r["owner"], r["mail_addr"].upper(), str(r["mail_zip"])), [])
@@ -355,7 +368,7 @@ def join(today=None):
     leads.sort(key=lambda l: (-l["priority"], -l["past_due"]))
 
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
-    summary = {"generated_at": now, "parcels_checked": len(state), "parcels_in_county": len(rows),
+    summary = {"generated_at": now, "source_note": source_note(), "parcels_checked": len(state), "parcels_in_county": len(rows),
                "last_checked": max(state.values()) if state else "", "leads": len(leads),
                "classes": {c: sum(1 for l in leads if l["delinquency_class"] == c) for c in CLASS_LABEL},
                "past_due_total": round(sum(l["past_due"] for l in leads), 2),
@@ -364,7 +377,7 @@ def join(today=None):
     json.dump({"summary": summary, "rows": leads}, open(LEADS, "w"), separators=(",", ":"))
 
     # annotate Title Leads
-    tpath = os.path.join(ROOT, "data", "title", "leads.json")
+    tpath = os.path.join(config.DATA_DIR, "title", "leads.json")
     if os.path.exists(tpath):
         tl = json.load(open(tpath))
         n = 0
@@ -391,7 +404,7 @@ def join(today=None):
         json.dump(tl, open(tpath, "w"), separators=(",", ":"))
         log.info("%s Title Leads carry a delinquency", n)
     # the same facts on Death Leads rows
-    mpath = os.path.join(ROOT, "data", "obits", "matches.json")
+    mpath = os.path.join(config.DATA_DIR, "obits", "matches.json")
     if os.path.exists(mpath):
         mj = json.load(open(mpath))
         for row in mj["rows"]:

@@ -1,0 +1,57 @@
+name: Westmoreland County
+
+# Once a night, after the King George build has added the day's obituaries:
+#   parcels    the county's open PARCELS layer (14 requests) -> data/westmoreland/parcels.json
+#   tax list   the Treasurer's published Open Tax List, re-read on Mondays (2 requests)
+#   boards     title scan, death match, delinquent tab, stacked signals
+# Everything it writes is under data/westmoreland/.
+
+on:
+  schedule:
+    - cron: '9 8 * * *'        # 08:09 UTC = 4:09 AM EDT / 3:09 AM EST
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/westmoreland.yml'
+      - 'engine/delinq_list.py'
+      - 'data/westmoreland/delinquency/lists/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writers
+  cancel-in-progress: false
+
+env:
+  VAPL_COUNTY: westmoreland
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: pdftotext, for the tax list's column layout
+        run: sudo apt-get install -y -q poppler-utils
+      - name: Pull parcels into SQLite
+        run: python -m engine.parcels
+      - name: Treasurer's Open Tax List (fetched on Mondays and on a manual run)
+        run: |
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python -m engine.delinq_list
+          else
+            python -m engine.delinq_list --no-fetch
+          fi
+      - name: Build the boards
+        run: python -m engine.build_board --no-fetch
+      - name: Commit results
+        run: |
+          N=$(python -c "import json;print(json.load(open('data/westmoreland/title/summary.json'))['leads'])")
+          D=$(python -c "import json;print(json.load(open('data/westmoreland/delinquency/leads.json'))['summary']['leads'])")
+          .github/commit-data.sh "Westmoreland: ${N} title leads, ${D} delinquent owners" data/westmoreland

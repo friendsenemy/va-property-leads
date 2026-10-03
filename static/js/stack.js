@@ -3,7 +3,7 @@
 const KIND = { DEATH: ["Death", "cls-E"], TAX: ["Taxes", "cls-C"], TITLE: ["Title", "cls-W"], CONDITION: ["Condition", "cls-X"] };
 
 const StackApp = new LeadTab({
-    prefix: "stack", url: "data/combined/leads.json", lsKey: "va_stack_leads_local_v1",
+    prefix: "stack", url: VAPL.DATA + "combined/leads.json", lsKey: "va_stack_leads_local_v1" + VAPL.ns,
     emptyTitle: "Nothing stacked yet", emptyText: "This fills in as the nightly build and the Treasurer walk run.",
     columns: ["Priority", "Owner on Record", "Property", "Signals", "Death", "Taxes", "Assessed", "Bill Mailed To"],
     filters: [

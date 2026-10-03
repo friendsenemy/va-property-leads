@@ -1,0 +1,31 @@
+{
+ "newest": "2026-07-17",
+ "newest_covers_years": [
+  2025
+ ],
+ "source": "supplied by the Treasurer's office",
+ "lists_on_file": [
+  {
+   "listed": "2026-02-02",
+   "parcels": 2653,
+   "years": [
+    2006,
+    2025
+   ],
+   "total_due": 2124392.35
+  },
+  {
+   "listed": "2026-07-17",
+   "parcels": 1299,
+   "years": [
+    2025,
+    2025
+   ],
+   "total_due": 535663.03
+  }
+ ],
+ "parcels_on_newest": 1299,
+ "matched_to_a_parcel": 1278,
+ "not_matched": 21,
+ "blank_owners_named_from_the_list": 302
+}

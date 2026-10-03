@@ -31,8 +31,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("death_match")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "data", "obits")
-TITLE_LEADS = os.path.join(ROOT, "data", "title", "leads.json")
+OUT = os.path.join(config.DATA_DIR, "obits")          # sources are read from the shared data/obits by engine.obits
+TITLE_LEADS = os.path.join(config.DATA_DIR, "title", "leads.json")
 
 HIGH, MEDIUM = 75, 55
 CLASS_LABEL = {
@@ -53,6 +53,8 @@ NEXT_STEP = {
 REGION = {  # places an obituary may give for someone living in or next to the county
     "KING GEORGE", "KING GEORGE COUNTY", "DAHLGREN", "DOGUE", "JERSEY", "NINDE", "SEALSTON", "SHILOH", "OWENS",
     "FAIRVIEW BEACH", "EDGEHILL", "ROLLINS FORK", "PASSAPATANZY", "WEEDONVILLE", "IGO", "COMORN", "INDEX", "PORT CONWAY"}
+if config.REGION_PLACES:
+    REGION = set(config.REGION_PLACES)
 
 
 def norm_place(p):

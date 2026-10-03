@@ -33,9 +33,9 @@ from engine import config, owner_parse
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger("parcels")
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(ROOT, ".cache", "kg.sqlite")
-DATA = os.path.join(ROOT, "data")
+ROOT = config.ROOT
+DB_PATH = config.DB_PATH
+DATA = config.DATA_DIR
 
 INT_COLS = {"pid", "mail_zip", "site_num", "land_value", "impr_value", "total_value", "year_built",
             "dwellings", "deed_book", "deed_page", "sale_price", "sale_month", "sale_day", "sale_year"}
@@ -63,7 +63,7 @@ def fetch_all(max_pages=None):
     log.info("Service reports %s rows", f"{total:,}")
     rows, offset, page = [], 0, 0
     while True:
-        params = {"where": "1=1", "outFields": ",".join(config.FIELDS), "returnGeometry": "false",
+        params = {"where": "1=1", "outFields": config.SOURCE_FIELDS or ",".join(config.FIELDS), "returnGeometry": "false",
                   "orderByFields": "FID", "resultOffset": offset, "resultRecordCount": config.PAGE_SIZE, "f": "json"}
         for attempt in range(4):
             try:
@@ -90,6 +90,8 @@ def fetch_all(max_pages=None):
 
 
 def normalise(attrs):
+    if config.ADAPT:
+        attrs = config.ADAPT(attrs)
     out = {}
     for src, col in config.FIELDS.items():
         v = attrs.get(src)
@@ -215,7 +217,7 @@ def main():
         sys.exit(1)
 
     parcels, stats = dedupe(raw)
-    if not args.max_pages and stats["parcels"] < 10000:
+    if not args.max_pages and stats["parcels"] < config.MIN_PARCELS:
         log.error("only %s parcels after dedupe; refusing to overwrite the index", stats["parcels"])
         sys.exit(1)
     enrich(parcels)

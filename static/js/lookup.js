@@ -6,7 +6,7 @@ const LookupApp = {
         const info = document.getElementById("lookupInfo");
         info.textContent = "Loading the parcel index…";
         try {
-            const j = await fetch(`data/parcels.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json());
+            const j = await fetch(`${VAPL.DATA}parcels.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json());
             j.columns.forEach((c, i) => { this.cols[c] = i; });
             this.rows = j.rows;
             const c = this.cols;

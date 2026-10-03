@@ -69,7 +69,7 @@
         <div class="header-title">
             <div>
                 <div class="logo">VA PROPERTY LEADS</div>
-                <div class="subtitle">King George County, Virginia — public-record title leads</div>
+                <div class="subtitle"><select id="countySelect" title="Switch county" style="background:var(--bg-card); color:var(--text-primary); border:1px solid var(--border); border-radius:6px; padding:3px 6px; font:inherit"></select> Virginia — public-record leads</div>
             </div>
         </div>
         <div class="header-actions">
@@ -86,6 +86,7 @@
     </header>
 
     <div id="saleBanner" class="next-step" style="display:none; margin-bottom:14px"></div>
+    <div id="countyNote" class="verify" style="display:none; margin-bottom:14px"></div>
 
     <div class="view-tabs">
         <button class="view-tab" data-view="surplus">Surplus Funds <span class="view-tab-sub">tax sales + foreclosure sales</span></button>
@@ -93,7 +94,7 @@
         <button class="view-tab active" data-view="title">Title Leads <span class="view-tab-sub">county parcel record</span></button>
         <button class="view-tab" data-view="death">Death Leads <span class="view-tab-sub">obituary ↔ owner on title</span></button>
         <button class="view-tab" data-view="delinq">Delinquent <span class="view-tab-sub">Treasurer balances</span></button>
-        <button class="view-tab" data-view="lookup">Parcel Lookup <span class="view-tab-sub">all 14k parcels</span></button>
+        <button class="view-tab" data-view="lookup">Parcel Lookup <span class="view-tab-sub">every parcel</span></button>
         <a class="view-tab" id="tabGuideLink" href="guide.html#title" target="_blank" rel="noopener" style="margin-left:auto; text-decoration:none; color:var(--text-dim)" title="Open the field guide for this tab">? what does this tab mean</a>
     </div>
 
@@ -282,13 +283,13 @@
         <div class="empty-state" id="lookupEmpty">
             <div class="icon">🗺️</div>
             <h3>Search the parcel index</h3>
-            <p>Useful when you have a name from an obituary or a court notice and want to know what that person holds in King George County.</p>
+            <p>Useful when you have a name from an obituary or a court notice and want to know what that person holds in <span data-county-name>King George</span> County.</p>
         </div>
     </div>
 </div><!-- /view-lookup -->
 
     <div class="foot">
-        Source: King George County open data, “Parcels” layer (the county’s assessment table), pulled nightly. Tax, deed and will references are the
+        Source: <span data-county-name>King George</span> County open data, “Parcels” layer (the county’s assessment table), pulled nightly. Tax, deed and will references are the
         county’s; verify against the Circuit Court Clerk’s records before acting. Virginia sells the property itself at a judicial tax sale and there is no
         redemption after the sale date (Va. Code §§ 58.1-3965, 58.1-3974). Nothing here is legal advice.
         <a href="https://github.com/friendsenemy/va-property-leads#readme" target="_blank" rel="noopener">How this board is built</a>
@@ -339,11 +340,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), stack: () => StackApp.init(), delinq: () => DelinqApp.init(), surplus: () => SurplusApp.init() };
     TitleApp.init();
     // A King George tax sale on counsel's page is the whole buy window: say so on every tab.
-    fetch(`data/sales/notices.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => {
+    if (VAPL.key === "king-george") fetch(`${VAPL.DATA}sales/notices.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => {
         const up = j && (j.king_george_upcoming || []);
         if (!up || !up.length) return;
         const b = document.getElementById("saleBanner");
-        b.innerHTML = up.map((n) => `<b>King George tax sale ${TitleApp.esc(n.sale_date)}.</b> ${TitleApp.esc(n.heading)} ` +
+        b.innerHTML = up.map((n) => `<b>${VAPL.county.name} tax sale ${TitleApp.esc(n.sale_date)}.</b> ${TitleApp.esc(n.heading)} ` +
             (n.list_pdf ? `<a style="color:var(--cyan-dim)" href="${TitleApp.esc(n.list_pdf)}" target="_blank" rel="noopener">parcel list (PDF)</a>` : "")).join("<br>") +
             `<div class="sub">Owners can redeem only before the sale date. ${(j.listed_parcels || []).length} listed parcels joined to the board.</div>`;
         b.style.display = "block";

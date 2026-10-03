@@ -1,6 +1,6 @@
 /* Title Leads tab. Reads data/title/summary.json and data/title/leads.json.
    One row is one owner (parcels listed inside). Status + notes live in localStorage. */
-const TITLE_LS_KEY = "va_title_leads_local_v1";
+const TITLE_LS_KEY = "va_title_leads_local_v1" + VAPL.ns;
 
 const TitleApp = {
     summary: null,
@@ -25,8 +25,8 @@ const TitleApp = {
         this.bindEvents();
         try {
             const [s, l] = await Promise.all([
-                fetch(`data/title/summary.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-                fetch(`data/title/leads.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+                fetch(`${VAPL.DATA}title/summary.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+                fetch(`${VAPL.DATA}title/leads.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }),
             ]);
             this.summary = s;
             this.rows = (l.rows || []).map((x) => this.decorate(x));
@@ -72,7 +72,7 @@ const TitleApp = {
 
     loadLocal() { try { this.local = JSON.parse(localStorage.getItem(TITLE_LS_KEY) || "{}"); } catch { this.local = {}; } },
     saveLocal() { try { localStorage.setItem(TITLE_LS_KEY, JSON.stringify(this.local)); } catch {} },
-    sid(r) { return `va:title:${r.id}`; },
+    sid(r) { return `va:${VAPL.ns}title:${r.id}`; },
     statusOf(r) { const s = SharedNotes.get(this.sid(r)); return (s && s.status) || (this.local[r.id] && this.local[r.id].status) || "new"; },
     notesOf(r) { const s = SharedNotes.get(this.sid(r)); return s ? (s.notes || "") : ((this.local[r.id] && this.local[r.id].notes) || ""); },
     _sharedHook: document.addEventListener("vapl:notes-loaded", () => { try { if (TitleApp.rows && TitleApp.rows.length) TitleApp.render(); } catch {} }),
@@ -187,7 +187,7 @@ const TitleApp = {
         const money = (v) => (v != null && v !== "" && !isNaN(parseFloat(v))) ? "$" + parseFloat(v).toLocaleString() : "—";
         const mail = [r.mail.addr, r.mail.addr2, `${r.mail.city || ""}${r.mail.state ? ", " + r.mail.state : ""} ${r.mail.zip || ""}`].filter((x) => x && x.trim()).join(", ");
         const next = (this.summary.next_step || {})[r.title_class] || "";
-        const gmaps = (p) => p.address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.address + ", King George County, VA")}` : "";
+        const gmaps = (p) => p.address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.address + ", " + VAPL.county.name + " County, VA")}` : "";
         document.getElementById("modalTitle").textContent = r.owner;
         document.getElementById("modalBody").innerHTML = `
             <div class="detail-section">

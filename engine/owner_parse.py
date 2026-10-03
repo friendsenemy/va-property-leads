@@ -260,6 +260,7 @@ def split_people(lnam, fnam=""):
     for seg in segments:
         natural = bool(re.search(r"\b(?:ESTATE|EST)\s+OF\s+[A-Z]", seg)) or bool(re.search(r"\bTRUST\b", seg) and not re.search(r"\bTR\b|\bTRUSTEES?\b", seg))
         s = _TRUST_NAME.sub(" ", seg) if re.search(r"\bTRUST\b", seg) else seg
+        s = re.sub(r"\bLIFE\s+(?:ESTATE|EST)\b", " ", s)          # before the estate words, or "LIFE" is left behind as a name
         s = _ESTATE_WORDS.sub(" & " if natural else " ", s)
         s = _NOISE.sub(" ", s)
         s = re.sub(r"[.()]", " ", s)

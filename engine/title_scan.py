@@ -38,8 +38,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("title_scan")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(ROOT, ".cache", "kg.sqlite")
-OUT = os.path.join(ROOT, "data", "title")
+DB_PATH = config.DB_PATH
+OUT = os.path.join(config.DATA_DIR, "title")
 
 CLASS_LABEL = {
     "E1": "Estate on title",

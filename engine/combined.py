@@ -23,13 +23,13 @@ import logging
 import os
 import sqlite3
 
-from engine import title_scan
+from engine import config, title_scan
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger("combined")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "data", "combined")
+OUT = os.path.join(config.DATA_DIR, "combined")
 
 NEXT_STEP = ("More than one public record points at this owner. Work the strongest fact first: a death tells you who to "
              "find (survivors in the obituary, heirs by law); unpaid taxes tell you how much time there is (the county may "
@@ -39,7 +39,7 @@ NEXT_STEP = ("More than one public record points at this owner. Work the stronge
 
 
 def _load(path, key="rows"):
-    p = os.path.join(ROOT, path)
+    p = os.path.join(config.DATA_DIR, path[5:])          # paths are written "data/..."; the county decides where data is
     return json.load(open(p))[key] if os.path.exists(p) else []
 
 

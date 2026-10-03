@@ -18,7 +18,7 @@ import hashlib
 import json
 import os
 
-from engine import combined, death_match, delinquency, heirs_import, scc_import, title_scan
+from engine import combined, config, death_match, delinquency, heirs_import, scc_import, title_scan
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 X1_LABEL = "Entity no longer active (SCC)"
@@ -63,8 +63,9 @@ def add_entity_leads(entity_leads):
 
 def run(fetch=True):
     title_scan.run()
-    heirs_import.run()
-    add_entity_leads(scc_import.run())
+    if config.KEY == "king-george":            # the hand-filled clerk and SCC files are King George's
+        heirs_import.run()
+        add_entity_leads(scc_import.run())
     death_match.run(fetch=fetch)
     delinquency.join()
     combined.run()

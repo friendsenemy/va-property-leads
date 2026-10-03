@@ -1,10 +1,10 @@
 /* Death Leads and Delinquent tabs. Both are a list of owner rows with a detail modal;
    LeadTab is the shared machinery, the two configs below say what each column shows. */
 const esc = (s) => TitleApp.esc(s);
-const money = (v) => (v != null && v !== "" && !isNaN(parseFloat(v))) ? "$" + parseFloat(v).toLocaleString(undefined, { maximumFractionDigits: 2 }) : "—";
+const money = (v) => (v != null && v !== "" && !isNaN(parseFloat(v)) && parseFloat(v) !== 0) ? "$" + parseFloat(v).toLocaleString(undefined, { maximumFractionDigits: 2 }) : "—";
 
 function parcelTable(parcels, extraHead, extraCell) {
-    const gmaps = (p) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.address + ", King George County, VA")}`;
+    const gmaps = (p) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.address + ", " + VAPL.county.name + " County, VA")}`;
     return `<div class="ptable-wrap"><table class="ptable">
         <thead><tr><th>PIN</th><th>Property</th><th>Assessed</th><th>Last transfer</th><th>Deed / will reference</th>${extraHead || ""}</tr></thead>
         <tbody>${parcels.map((p) => `<tr>
@@ -47,7 +47,7 @@ class LeadTab {
     }
 
     // Shared sheet first (what everyone sees), this browser's own copy as the fallback.
-    sid(r) { return `va:${this.prefix}:${r.id}`; }
+    sid(r) { return `va:${this.prefix === "surplus" ? "" : VAPL.ns}${this.prefix}:${r.id}`; }   // the Surplus tab spans counties
     statusOf(r) { const s = SharedNotes.get(this.sid(r)); return (s && s.status) || (this.local[r.id] && this.local[r.id].status) || "new"; }
     notesOf(r) { const s = SharedNotes.get(this.sid(r)); return s ? (s.notes || "") : ((this.local[r.id] && this.local[r.id].notes) || ""); }
 
@@ -113,14 +113,14 @@ function taxBlock(r) {
         <div class="detail-row"><span class="label">Sale status</span><span class="value">${d.sale_eligible ? "Old enough for the county to sue to sell (Va. Code § 58.1-3965)" : "Not yet old enough for the county to sue"}</span></div>
         <div class="detail-row"><span class="label">Checked</span><span class="value">${esc(d.checked)} · Treasurer's inquiry; confirm before calling</span></div></div>`;
     return `<div class="detail-section"><h3>Taxes</h3><div class="detail-row"><span class="label">Status</span><span class="value">${r.tax_checked
-        ? `No prior-year balance as of ${esc(r.tax_checked)} (Treasurer's inquiry)` : "Not checked yet. The Treasurer walk reaches every parcel once a month."}</span></div></div>`;
+        ? `No prior-year balance as of ${esc(r.tax_checked)} (${VAPL.county.taxSource})` : "Not checked yet. The Treasurer walk reaches every parcel once a month."}</span></div></div>`;
 }
 
 const mailLine = (r) => [r.mail.addr, `${r.mail.city || ""}${r.mail.state ? ", " + r.mail.state : ""} ${r.mail.zip || ""}`].filter((x) => x && x.trim()).join(", ");
 const conf = (c) => `<span class="prio prio-${c === "HIGH" ? "high" : "mid"}">${c}</span>`;
 
 const DeathApp = new LeadTab({
-    prefix: "death", url: "data/obits/matches.json", lsKey: "va_death_leads_local_v1",
+    prefix: "death", url: VAPL.DATA + "obits/matches.json", lsKey: "va_death_leads_local_v1" + VAPL.ns,
     emptyTitle: "No obituary matches yet", emptyText: "The obituary match runs with the nightly job.",
     columns: ["Died", "Decedent", "Owner on Record", "Property", "Class", "Identity", "Assessed"],
     filters: [
@@ -173,7 +173,7 @@ const DeathApp = new LeadTab({
 });
 
 const DelinqApp = new LeadTab({
-    prefix: "delinq", url: "data/delinquency/leads.json", lsKey: "va_delinq_leads_local_v1",
+    prefix: "delinq", url: VAPL.DATA + "delinquency/leads.json", lsKey: "va_delinq_leads_local_v1" + VAPL.ns,
     emptyTitle: "No delinquency data yet", emptyText: "The Treasurer walk runs over four nights at the start of each month.",
     columns: ["Priority", "Owner on Record", "Property", "Class", "Behind", "Past Due", "Assessed", "Bill Mailed To"],
     filters: [
@@ -185,7 +185,7 @@ const DelinqApp = new LeadTab({
     ],
     stats: (s) => [["Delinquent Owners", s.leads, "yellow"], ["Sale-Eligible (2+ yrs)", s.classes.T1 || 0, "pink"],
         ["Unreported-Death Profile", s.classes.P1 || 0, "purple"], ["Parcels Checked", `${Number(s.parcels_checked).toLocaleString()} / ${Number(s.parcels_in_county).toLocaleString()}`, "cyan"]],
-    info: (s) => `Treasurer's Real Estate Public Inquiry, last checked ${s.last_checked || "—"}. Owners with only the current bill late are not shown. ${money(s.past_due_total)} past due across the list. Balances move daily: confirm on the Treasurer's site before you call.`,
+    info: (s) => s.source_note ? s.source_note : `Treasurer's Real Estate Public Inquiry, last checked ${s.last_checked || "—"}. Owners with only the current bill late are not shown. ${money(s.past_due_total)} past due across the list. Balances move daily: confirm on the Treasurer's site before you call.`,
     searchText: (r) => `${r.owner} ${r.treasurer_name} ${r.mail.city} ${r.mail.state} ${r.class_label} ${r.parcels.map((p) => p.address + " " + p.pin).join(" ")}`,
     title: (r) => r.owner,
     row: (r) => [

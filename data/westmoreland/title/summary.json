@@ -1,0 +1,107 @@
+{
+ "generated_at": "2026-10-03T22:57:24+00:00",
+ "index_built_at": "2026-10-03T22:44:11+00:00",
+ "county": "Westmoreland",
+ "state": "VA",
+ "parcels_indexed": 27214,
+ "leads": 712,
+ "lead_parcels": 1021,
+ "classes": {
+  "E1": 146,
+  "E2": 1,
+  "C1": 353,
+  "E3": 212
+ },
+ "class_parcels": {
+  "C1": 521,
+  "E3": 278,
+  "E1": 220,
+  "E2": 2
+ },
+ "class_labels": {
+  "E1": "Estate on title",
+  "E2": "Heirs on title",
+  "E3": "Life estate on title",
+  "C1": "Et al co-owners",
+  "W1": "List of Heirs on file",
+  "W2": "Title passed by will",
+  "N1": "Death noted by assessor",
+  "N2": "Will noted by assessor"
+ },
+ "class_order": [
+  "E1",
+  "E2",
+  "E3",
+  "C1",
+  "W1",
+  "W2",
+  "N1",
+  "N2"
+ ],
+ "next_step": {
+  "E1": "The county still shows a decedent's estate as owner. Look for a qualified executor or administrator in the King George Circuit Court Clerk's will books (probate can also be in the county where the person lived). A List of Heirs (Va. Code 64.2-509) is recorded in the will book only if someone qualified or probated a will; if nobody did, there is none and the heirs take by law. Confirm who can sign before you call anyone.",
+  "E2": "Title reads 'heirs of'. Nobody has put the heirs' own names on record. Check the will book index under the decedent for a List of Heirs or a real-estate affidavit (64.2-510). Every heir has to sign a deed; one heir cannot sell alone.",
+  "E3": "A life tenant holds the property for life and named remaindermen take after. The life tenant may be living. Do not treat this as a death lead until a death is confirmed; if the life tenant has died the remaindermen own it outright and usually have not updated the record.",
+  "C1": "Several co-owners, usually family who inherited. The current deed lists all of them; pull it by the deed reference shown. Any one owner can be the way in, but all must sign to sell the whole.",
+  "W1": "The parcel carries a List of Heirs reference. That document names the heirs and their addresses as of the date of death. Pull it from the will book and page shown.",
+  "W2": "Title came by will (will book and page shown). Read the will for who took the property; the name on the tax record may be a devisee who has since died or moved.",
+  "N1": "The assessor recorded a date of death on this parcel and moved title to the survivor or devisee. Title is likely clean. This is a recent-loss lead: be respectful, and verify the note against the deed or will first.",
+  "N2": "The assessor notes this parcel passed by will recently. The devisee may not want the property. Verify the will reference before contacting."
+ },
+ "watch_hidden": 0,
+ "presets": [
+  {
+   "id": "estate",
+   "label": "Estate / heirs on title",
+   "classes": [
+    "E1",
+    "E2"
+   ]
+  },
+  {
+   "id": "etal",
+   "label": "Et al co-owners",
+   "classes": [
+    "C1"
+   ]
+  },
+  {
+   "id": "life",
+   "label": "Life estate",
+   "classes": [
+    "E3"
+   ]
+  },
+  {
+   "id": "will",
+   "label": "Will / List of Heirs reference",
+   "classes": [
+    "W1",
+    "W2"
+   ]
+  },
+  {
+   "id": "note",
+   "label": "Death or will noted by assessor",
+   "classes": [
+    "N1",
+    "N2"
+   ]
+  },
+  {
+   "id": "old",
+   "label": "No transfer in 40+ years",
+   "flag": "OLD_TITLE_40"
+  },
+  {
+   "id": "absentee",
+   "label": "Bill mailed elsewhere",
+   "flags_any": [
+    "OUT_OF_STATE",
+    "OUT_OF_COUNTY",
+    "MAIL_DIFFERS",
+    "CARE_OF"
+   ]
+  }
+ ]
+}

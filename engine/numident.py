@@ -143,7 +143,14 @@ def to_records(csv_text, places):
     return out
 
 
-def run(neighbors=False):
+WESTMORELAND_ZIPS = {"22443": "Colonial Beach", "22469": "Hague", "22488": "Kinsale", "22520": "Montross", "22529": "Oldhams",
+                     "22558": "Stratford", "22577": "Sandy Point", "22581": "Zacata", "22442": "Coles Point", "22524": "Mount Holly"}
+
+
+def run(neighbors=False, county="king-george"):
+    global KG_ZIPS, OUT
+    if county == "westmoreland":                 # same pull, Westmoreland's ZIP codes, its own file in the shared folder
+        KG_ZIPS, OUT = WESTMORELAND_ZIPS, os.path.join(ROOT, "data", "obits", "numident-westmoreland.json")
     places = dict(KG_ZIPS, **(NEIGHBOR_ZIPS if neighbors else {}))
     aad, recs = Aad(), {}
     if os.path.exists(OUT):
@@ -179,4 +186,6 @@ def run(neighbors=False):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--neighbors", action="store_true")
-    run(ap.parse_args().neighbors)
+    ap.add_argument("--county", default="king-george", choices=["king-george", "westmoreland"])
+    a = ap.parse_args()
+    run(a.neighbors, a.county)
