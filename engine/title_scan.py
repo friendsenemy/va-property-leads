@@ -33,6 +33,7 @@ import re
 import sqlite3
 
 from engine import config, owner_parse
+from engine import waterfront
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger("title_scan")
@@ -354,6 +355,7 @@ def parcel_view(r, flags, detail, this_year):
         "condition": detail.get("condition", []),
         "remarks": " | ".join(x for x in (r.get("remark1"), r.get("remark2")) if x),
         "flags": flags, "card_url": r["card_url"],
+        "water": waterfront.of(r),
     }
 
 

@@ -906,3 +906,5 @@ a:hover { text-decoration: underline; }
 .letter-box { white-space: pre-wrap; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-size: 0.95rem; line-height: 1.55; margin: 8px 0; }
 .law-box { border-left: 3px solid var(--yellow); padding: 10px 14px; background: var(--bg-card); border-radius: var(--radius); font-size: 0.86rem; line-height: 1.55; }
 .law-box li { margin: 4px 0 4px 18px; }
+
+.chip-water { padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.55); color: #7dd3fc; margin-top: 4px; display: inline-block; white-space: nowrap; }

@@ -9,7 +9,7 @@ function parcelTable(parcels, extraHead, extraCell) {
         <thead><tr><th>PIN</th><th>Property</th><th>Assessed</th><th>Last transfer</th><th>Deed / will reference</th>${extraHead || ""}</tr></thead>
         <tbody>${parcels.map((p) => `<tr>
             <td class="mono">${esc(p.parcel || p.pin)}<div><a href="${esc(p.card_url)}" target="_blank" rel="noopener">county card</a></div></td>
-            <td>${p.address ? `<a href="${gmaps(p)}" target="_blank" rel="noopener">${esc(p.address)}</a>` : '<span class="sub">no street address</span>'}<div class="sub">${esc(p.legal || "")} · ${p.acres} ac${p.year_built ? ` · built ${p.year_built}` : ""}</div></td>
+            <td>${p.address ? `<a href="${gmaps(p)}" target="_blank" rel="noopener">${esc(p.address)}</a>` : '<span class="sub">no street address</span>'}${p.water ? `<div style="color:var(--cyan)">💧 ${esc(VAPL.waterText(p.water))}</div>` : ""}<div class="sub">${esc(p.legal || "")} · ${p.acres} ac${p.year_built ? ` · built ${p.year_built}` : ""}</div></td>
             <td class="mono">${money(p.total_value)}</td>
             <td class="mono">${TitleApp.transferText(p)}</td>
             <td class="mono">${esc(p.deed_ref || "—")}${p.will_ref ? `<div style="color:var(--purple)">${esc(p.will_ref)}</div>` : ""}</td>
@@ -42,6 +42,7 @@ class LeadTab {
         this.el("Next").addEventListener("click", () => { this.state.page++; this.render(); });
         this.el("Export").addEventListener("click", () => this.exportCsv());
         document.addEventListener("vapl:notes-loaded", () => this.render());
+        document.addEventListener("vapl:water", () => { this.state.page = 1; this.render(); });
         if (this.afterInit) this.afterInit();
         this.render();
     }
@@ -53,7 +54,7 @@ class LeadTab {
 
     filtered() {
         const f = this.filters.find((x) => x.id === this.state.filter);
-        return this.rows.filter((r) => (!f || !f.test || f.test(r)) &&
+        return this.rows.filter((r) => (!f || !f.test || f.test(r)) && (!VAPL.waterOnly || VAPL.waterOf(r)) &&
             (!this.state.search || this.state.search.split(/\s+/).every((w) => r._search.includes(w))));
     }
 
@@ -66,7 +67,7 @@ class LeadTab {
         this.el("Head").innerHTML = "<tr>" + this.columns.map((c) => `<th>${c}</th>`).join("") + "<th>Status</th></tr>";
         this.el("Body").innerHTML = page.map((r) => {
             const st = this.statusOf(r);
-            return `<tr data-id="${esc(r.id)}">${this.row(r).map((c) => `<td>${c}</td>`).join("")}<td><span class="status-badge ${st}">${st.toUpperCase()}</span>${this.notesOf(r) ? '<span class="note-badge">✎</span>' : ""}</td></tr>`;
+            return `<tr data-id="${esc(r.id)}">${this.row(r).map((c, i) => `<td>${c}${i === 0 ? VAPL.drip(r) : ""}</td>`).join("")}<td><span class="status-badge ${st}">${st.toUpperCase()}</span>${this.notesOf(r) ? '<span class="note-badge">✎</span>' : ""}</td></tr>`;
         }).join("");
         this.el("Body").querySelectorAll("tr").forEach((tr) => tr.addEventListener("click", () => this.open(tr.dataset.id)));
         this.el("Empty").style.display = page.length ? "none" : "block";

@@ -190,6 +190,7 @@ const SurplusApp = new LeadTab({
             ${row("Deed", [r.trustee_deed, r.grantor_note].filter(Boolean).map(esc).join(" · "))}
             ${row("Trustee", esc(r.trustee || ""))}
             ${row("Source", r.source_url ? `<a href="${esc(r.source_url)}" target="_blank" rel="noopener">${esc(r.source)}</a>${r.file_no ? " · file " + esc(r.file_no) : ""}` : esc(r.source || ""))}
+            ${row("Waterfront", r.water ? "💧 " + esc(VAPL.waterText(r.water)) : "")}
             ${row("Assessor's remarks", esc(r.remarks || ""))}
         </div>
         ${sold ? `<div class="detail-section">

@@ -25,12 +25,28 @@ window.VAPL = {
     VAPL.county = VAPL.COUNTIES[key];
     VAPL.DATA = VAPL.county.data;
     VAPL.ns = VAPL.county.ns;
+
+    /* Waterfront. Every parcel carries `water` when its lot line reaches mapped water
+       (engine/waterfront.py) or the assessor's note says waterfront. */
+    VAPL.waterOnly = false;
+    VAPL.waterOf = (r) => (r.parcels || []).map((p) => p.water).find(Boolean) || r.water || null;
+    VAPL.waterText = (w) => !w ? "" : (w.source === "assessor" ? "the assessor's note says waterfront; not confirmed on the map"
+        : `lot line reaches ${w.water}${w.frontage_ft ? `, about ${Number(w.frontage_ft).toLocaleString()} ft of shoreline` : ""} (measured from the map)`);
+    VAPL.drip = (r) => {
+        const w = VAPL.waterOf(r);
+        if (!w) return "";
+        const n = (r.parcels || []).filter((p) => p.water).length;
+        const label = w.source === "assessor" ? "waterfront (assessor)" : `${w.water}${w.frontage_ft ? " · ~" + Number(w.frontage_ft).toLocaleString() + " ft" : ""}`;
+        return `<div><span class="chip chip-water" title="${VAPL.waterText(w).replace(/"/g, "&quot;")}">💧 ${label.replace(/</g, "&lt;")}${n > 1 ? ` · ${n} parcels` : ""}</span></div>`;
+    };
     document.addEventListener("DOMContentLoaded", () => {
         const sel = document.getElementById("countySelect");
         if (sel) {
             sel.innerHTML = Object.entries(VAPL.COUNTIES).map(([k, c]) => `<option value="${k}"${k === key ? " selected" : ""}>${c.name} County</option>`).join("");
             sel.addEventListener("change", () => { location.href = location.pathname + (sel.value === "king-george" ? "" : "?county=" + sel.value) + location.hash; });
         }
+        const wo = document.getElementById("waterOnly");
+        if (wo) wo.addEventListener("change", () => { VAPL.waterOnly = wo.checked; document.dispatchEvent(new CustomEvent("vapl:water")); });
         document.querySelectorAll("[data-county-name]").forEach((el) => { el.textContent = VAPL.county.name; });
         document.title = `VA Property Leads — ${VAPL.county.name} County`;
         const note = document.getElementById("countyNote");

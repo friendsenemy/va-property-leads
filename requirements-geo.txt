@@ -1,0 +1,3 @@
+# only for engine/waterfront.py (run by hand; the nightly jobs do not need these)
+shapely>=2.0
+pyshp>=2.3

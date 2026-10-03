@@ -58,7 +58,7 @@ import sqlite3
 
 import requests
 
-from engine import config, owner_parse
+from engine import config, owner_parse, waterfront
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger("auction_watch")
@@ -473,7 +473,8 @@ def base_row(p):
     return {"pid": p["pid"], "pin": (p.get("parcel") or p.get("pin") or "").strip(), "card_url": p.get("card_url") or "",
             "county": "King George", "address": p.get("site_addr") or "", "legal": p.get("legal") or "", "acres": p.get("acres"),
             "assessed_value": p.get("total_value") or 0, "impr_value": p.get("impr_value") or 0, "year_built": p.get("year_built") or None,
-            "residential": residential(p), "remarks": " | ".join(x for x in (p.get("remark1"), p.get("remark2")) if x)}
+            "residential": residential(p), "remarks": " | ".join(x for x in (p.get("remark1"), p.get("remark2")) if x),
+            "water": waterfront.of(p)}
 
 
 # --- stages ----------------------------------------------------------------------

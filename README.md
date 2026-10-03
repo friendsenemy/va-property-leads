@@ -22,6 +22,16 @@ walk; add a list the Treasurer sends you with
 owner for most of the Town of Colonial Beach; where the Treasurer bills such a parcel the
 name and mailing address come from the tax list.
 
+**Waterfront.** Every parcel in both counties is tested against the Census Bureau's water
+polygons (`engine/waterfront.py`): a parcel is waterfront when its lot line comes within
+15 metres of a river, creek, bay, or a lake or pond of two acres or more. Those parcels
+carry a 💧 with the water's name and an approximate shoreline length, the header has a
+"Waterfront only" switch that applies to every tab, and typing `waterfront` in Parcel
+Lookup lists them. In King George the assessor's own "waterfront" remark also counts.
+It is rebuilt by hand (`pip install -r requirements-geo.txt`, then
+`python -m engine.waterfront`, and again with `VAPL_COUNTY=westmoreland`), because
+shorelines do not change nightly.
+
 ## What runs, and when
 
 | Workflow | Schedule | What it does |

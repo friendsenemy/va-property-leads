@@ -29,6 +29,7 @@ import time
 import requests
 
 from engine import config, owner_parse
+from engine import waterfront
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger("parcels")
@@ -45,7 +46,7 @@ COLS = list(config.FIELDS.values())
 # Columns of data/parcels.json, in order.
 COMPACT = ["pid", "pin", "owner", "care_of", "owner_type", "mail_addr", "mail_city", "mail_state", "mail_zip",
            "site_addr", "acres", "land_value", "impr_value", "total_value", "year_built", "cond",
-           "deed_book", "deed_page", "will_book", "will_page", "sale_year", "sale_price", "note"]
+           "deed_book", "deed_page", "will_book", "will_page", "sale_year", "sale_price", "note", "water"]
 
 
 def _s(v):
@@ -167,6 +168,10 @@ def enrich(parcels):
 def compact_row(r):
     row = []
     for c in COMPACT:
+        if c == "water":                      # "" = not waterfront; otherwise the water's name (or "yes" from the assessor's note)
+            w = waterfront.of(r)
+            row.append("" if not w else (w["water"] or "yes"))
+            continue
         v = r["grantor_note"] if c == "note" else r[c]
         row.append(v)
     return row

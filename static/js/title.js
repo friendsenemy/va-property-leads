@@ -75,6 +75,7 @@ const TitleApp = {
     sid(r) { return `va:${VAPL.ns}title:${r.id}`; },
     statusOf(r) { const s = SharedNotes.get(this.sid(r)); return (s && s.status) || (this.local[r.id] && this.local[r.id].status) || "new"; },
     notesOf(r) { const s = SharedNotes.get(this.sid(r)); return s ? (s.notes || "") : ((this.local[r.id] && this.local[r.id].notes) || ""); },
+    _waterHook: document.addEventListener("vapl:water", () => { try { TitleApp.state.page = 1; TitleApp.render(); } catch {} }),
     _sharedHook: document.addEventListener("vapl:notes-loaded", () => { try { if (TitleApp.rows && TitleApp.rows.length) TitleApp.render(); } catch {} }),
 
     bindEvents() {
@@ -111,6 +112,7 @@ const TitleApp = {
         const preset = st.preset && this.summary ? (this.summary.presets || []).find((p) => p.id === st.preset) : null;
         return this.rows.filter((r) => {
             if (r.priority < st.minPriority) return false;
+            if (VAPL.waterOnly && !VAPL.waterOf(r)) return false;
             if (st.status !== "all" && this.statusOf(r) !== st.status) return false;
             if (preset) {
                 if (preset.classes && !preset.classes.includes(r.title_class)) return false;
@@ -163,7 +165,7 @@ const TitleApp = {
                     <td><span class="prio prio-${this.tier(r.priority)}">${r.priority}</span></td>
                     <td class="name-cell" style="font-family:var(--font-mono); font-size:0.8rem">${this.esc(r.owner)}${r.care_of ? `<div class="sub">c/o ${this.esc(r.care_of)}</div>` : ""}${this.notesOf(r) ? '<span class="note-badge" title="Has notes">✎</span>' : ""}</td>
                     <td class="property-cell">
-                        <div class="address">${this.esc(r._addr || "No street address (land)")}</div>
+                        <div class="address">${this.esc(r._addr || "No street address (land)")}</div>${VAPL.drip(r)}
                         <div class="meta">${more}</div>
                     </td>
                     <td><span class="cls cls-${r.title_class[0]}" title="${this.esc(r.class_label)}">${r.title_class}</span> <span class="sub">${this.esc(r.class_label)}</span><div>${this.flagChips(r.flags)}</div></td>
@@ -216,7 +218,7 @@ const TitleApp = {
                     <thead><tr><th>PIN</th><th>Property</th><th>Assessed</th><th>Last transfer</th><th>Deed / will reference</th><th>Assessor's note</th></tr></thead>
                     <tbody>${r.parcels.map((p) => `<tr>
                         <td class="mono">${this.esc(p.parcel || p.pin)}<div><a href="${this.esc(p.card_url)}" target="_blank" rel="noopener">county card</a></div></td>
-                        <td>${p.address ? `<a href="${gmaps(p)}" target="_blank" rel="noopener">${this.esc(p.address)}</a>` : '<span class="sub">no street address</span>'}<div class="sub">${this.esc(p.legal || "")} · ${p.acres} ac${p.year_built ? ` · built ${p.year_built}` : ""}${p.cond ? ` · cond ${this.esc(p.cond)}` : ""}</div></td>
+                        <td>${p.address ? `<a href="${gmaps(p)}" target="_blank" rel="noopener">${this.esc(p.address)}</a>` : '<span class="sub">no street address</span>'}${p.water ? `<div style="color:var(--cyan)">💧 ${this.esc(VAPL.waterText(p.water))}</div>` : ""}<div class="sub">${this.esc(p.legal || "")} · ${p.acres} ac${p.year_built ? ` · built ${p.year_built}` : ""}${p.cond ? ` · cond ${this.esc(p.cond)}` : ""}</div></td>
                         <td class="mono">${money(p.total_value)}<div class="sub">${money(p.land_value)} land</div></td>
                         <td class="mono">${this.transferText(p)}${p.sale_price ? `<div class="sub">${money(p.sale_price)}</div>` : ""}</td>
                         <td class="mono">${this.esc(p.deed_ref || "—")}${p.will_ref ? `<div style="color:var(--purple)">${this.esc(p.will_ref)}</div>` : ""}${p.will_ref_raw && !p.will_ref ? `<div class="sub">will field: ${this.esc(p.will_ref_raw)}</div>` : ""}</td>
