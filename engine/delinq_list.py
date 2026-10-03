@@ -106,7 +106,9 @@ def fetch_current():
     url = KNOWN_LIST
     try:
         html = requests.get(TREASURER_PAGE, headers=UA, timeout=60).text
-        m = re.search(r'href="(/DocumentCenter/View/\d+/[^"]*(?:Delq|Delinq)[^"]*)"', html, re.I)
+        # the page links a personal-property list too; the real estate one has "RE" in its name
+        m = (re.search(r'href="(/DocumentCenter/View/\d+/[^"]*(?:RE|Real)[^"]*Del(?:in)?q[^"]*)"', html, re.I)
+             or re.search(r'href="(/DocumentCenter/View/\d+/[^"]*Del(?:in)?q[^"]*(?:RE|Real)[^"]*)"', html, re.I))
         if m:
             url = "https://www.westmoreland-county.org" + m.group(1)
     except requests.RequestException as e:
