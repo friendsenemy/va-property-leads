@@ -191,6 +191,11 @@ def run(fetch=True, today=None):
             pts, why = res
             if bool(o.get("suffix")) != bool(person.get("suffix")):
                 pts = min(pts, HIGH - 5)             # Jr / III on one side only: never better than Medium
+            if config.NO_DEED_DATES and dy and today.year - dy >= 15:
+                # No deed date to test against the death: a later owner with the same name cannot be ruled out.
+                pts = min(pts, HIGH - 5)
+                why.append("this county publishes no deed date, so the owner may be a later person of the same name: "
+                           "look at the deed book and page before treating this as the same person")
             if dy and today.year - dy >= 15:
                 why.append(f"the death was {today.year - dy} years ago: confirm no later deed, and that this is not a parent of the same name")
             if o["last"] != person["last"]:

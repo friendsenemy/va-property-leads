@@ -23,6 +23,7 @@ ADAPT = None                                              # county hook: raw lay
 REGION_PLACES = set()                                     # extra places an obituary may give for a resident
 HAS_TREASURER_WALK = True
 MIN_PAST_DUE = 0                                          # smallest balance that makes a delinquent lead
+NO_DEED_DATES = False                                     # True where the parcel record has no sale / transfer date
 
 # King George County open data (ArcGIS Online). The item's licence is a warranty
 # disclaimer only; anonymous query is enabled. See docs/sources-and-terms.md.
@@ -148,6 +149,7 @@ if KEY == "westmoreland":
     KG_ZIPS = {22443, 22469, 22488, 22520, 22529, 22558, 22577, 22581, 22442, 22524}
     REGION_PLACES = set(KG_CITIES) | {"WESTMORELAND COUNTY", "NOMINI", "MACHODOC", "LEEDSTOWN", "POTOMAC BEACH", "ERICA"}
     LAST_DEED_BOOK = 0                  # no sale dates in the layer, so a deed book cannot be turned into a year
+    NO_DEED_DATES = True
     MIN_PAST_DUE = 150                  # the list carries hundreds of balances of a few dollars
 elif KEY != "king-george":
     raise SystemExit(f"unknown county '{KEY}': use king-george or westmoreland")
