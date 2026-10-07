@@ -85,7 +85,12 @@ TARGETS = {
     "Fredericksburg": {"22401", "22402", "22403", "22404"},
     "Caroline": {"22427", "22428", "22514", "22535", "22538", "22546", "22552", "22580", "22501"},
     "Westmoreland": {"22443", "22469", "22488", "22520", "22529", "22558", "22577", "22581", "22442", "22524"},
+    "Fauquier": {"20186", "20187", "20188", "22712", "20115", "20116", "20198", "22734", "22728", "20119", "22742", "22720", "20138",
+                 "20137", "20144", "22639", "20128", "22643", "20184", "20185", "20130", "20139", "20140", "22739"},
 }
+# Counties whose parcel record has values and sale history, so a listed sale there can be
+# matched to a parcel and measured. Their ids do not collide (Fauquier's are offset).
+PARCEL_DBS = {"King George": DB, "Fauquier": os.path.join(ROOT, ".cache", "fauquier.sqlite")}
 ZIP_COUNTY = {z: c for c, zs in TARGETS.items() for z in zs}
 
 KEEP_SOLD_DAYS = 180            # a sold lead stays on the live board this long, then moves to the archive
@@ -387,10 +392,13 @@ def street_key(addr):
     return t[0], " ".join(words)
 
 
-def load_parcels():
-    con = sqlite3.connect(DB)
+def load_parcels(county="King George"):
+    path = PARCEL_DBS[county]
+    if not os.path.exists(path):
+        return []
+    con = sqlite3.connect(path)
     con.row_factory = sqlite3.Row
-    rows = [dict(r) for r in con.execute("SELECT * FROM parcels")]
+    rows = [dict(r, _county=county) for r in con.execute("SELECT * FROM parcels")]
     con.close()
     return rows
 
@@ -471,7 +479,7 @@ def changes_log():
 
 def base_row(p):
     return {"pid": p["pid"], "pin": (p.get("parcel") or p.get("pin") or "").strip(), "card_url": p.get("card_url") or "",
-            "county": "King George", "address": p.get("site_addr") or "", "legal": p.get("legal") or "", "acres": p.get("acres"),
+            "county": p.get("_county", "King George"), "address": p.get("site_addr") or "", "legal": p.get("legal") or "", "acres": p.get("acres"),
             "assessed_value": p.get("total_value") or 0, "impr_value": p.get("impr_value") or 0, "year_built": p.get("year_built") or None,
             "residential": residential(p), "remarks": " | ".join(x for x in (p.get("remark1"), p.get("remark2")) if x),
             "water": waterfront.of(p)}
@@ -489,7 +497,7 @@ def scheduled_row(lot, p, seen_entry, today):
         row.update({"tier": "UNRATED", "payoff_est": None, "surplus_est": None, "assessed_value": None, "owner_of_record": lot.get("borrower") or "",
                     "former_owner": lot.get("borrower") or "", "mail": "", "held_as": ""})
         reasons.append("outside King George, or not matched to a parcel: no assessed value to measure equity against"
-                       if lot["county"] != "King George" else "address not matched to a King George parcel: check the tax map by hand")
+                       if lot["county"] not in PARCEL_DBS else f"address not matched to a {lot['county']} parcel: check the tax map by hand")
         row["why"] = "; ".join(reasons)
         return row
     snap = seen_entry.get("snap") or snapshot(p)
@@ -684,13 +692,14 @@ def deed_rows(parcels, today, former, changes):
 def build(do_fetch=True, today=None):
     today = today or dt.date.today()
     os.makedirs(OUT, exist_ok=True)
-    parcels = load_parcels()
+    parcels = load_parcels()                          # King George: also scanned for tax-sale and trustee deeds
+    others = [p for c in PARCEL_DBS if c != "King George" for p in load_parcels(c)]
     by_key = {}
-    for p in parcels:
+    for p in parcels + others:
         k = street_key(p.get("site_addr"))
         if k:
-            by_key.setdefault(k, []).append(p)
-    by_pid = {p["pid"]: p for p in parcels}
+            by_key.setdefault((p["_county"],) + k, []).append(p)
+    by_pid = {p["pid"]: p for p in parcels + others}
     former, changes = former_overrides(), changes_log()
     seen = json.load(open(SEEN_PATH))["lots"] if os.path.exists(SEEN_PATH) else {}
 
@@ -702,8 +711,8 @@ def build(do_fetch=True, today=None):
         listed_now.add(lot["lot_id"])
         e = seen.setdefault(lot["lot_id"], {"first_seen": now_iso()})
         e["last_seen"], e["lot"] = today.isoformat(), lot
-        if lot["county"] == "King George" and "snap" not in e:
-            cand = by_key.get(street_key(lot["address"]) or ("", ""), [])
+        if lot["county"] in PARCEL_DBS and "snap" not in e:
+            cand = by_key.get((lot["county"],) + (street_key(lot["address"]) or ("", "")), [])
             if len(cand) == 1:
                 e["snap"] = snapshot(cand[0])
             elif cand:

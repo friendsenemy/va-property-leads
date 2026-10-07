@@ -27,7 +27,7 @@ const StackApp = new LeadTab({
         r.kinds.map((k) => `<span class="cls ${KIND[k][1]}">${KIND[k][0]}</span>`).join(" ") +
             `<div class="sub">${esc([r.signals.TITLE && r.signals.TITLE.label, r.signals.CONDITION && r.signals.CONDITION.label].filter(Boolean).join(" · "))}</div>`,
         r.signals.DEATH ? `<span class="mono" style="white-space:nowrap">${esc(r.signals.DEATH.death_date || "—")}</span><div class="sub">${esc(r.signals.DEATH.decedent)} · ${esc(r.signals.DEATH.identity_confidence.toLowerCase())}</div>` : '<span class="sub">—</span>',
-        r.signals.TAX ? `<span class="mono" style="color:var(--red)">${money(r.signals.TAX.past_due)}</span><div class="sub">${r.signals.TAX.payments_behind} payments behind${r.signals.TAX.sale_eligible ? " · sale-eligible" : ""}</div>` : '<span class="sub">—</span>',
+        r.signals.TAX ? `<span class="mono" style="color:var(--red)">${money(r.signals.TAX.past_due)}</span><div class="sub">${LO() ? esc(VAPL.county.listShort) : `${r.signals.TAX.payments_behind} payments behind${r.signals.TAX.sale_eligible ? " · sale-eligible" : ""}`}</div>` : '<span class="sub">—</span>',
         `<span class="value-cell">${money(r.total_value)}</span>`,
         `${esc(r.mail.city || "—")}${r.mail.state ? ", " + esc(r.mail.state) : ""}`,
     ],
@@ -47,8 +47,8 @@ const StackApp = new LeadTab({
             ${(d.heirs || []).length ? `<div class="detail-row"><span class="label">Heirs on file</span><span class="value">${d.heirs.map(esc).join("<br>")}</span></div>` : ""}</div>` : ""}
         ${t ? `<div class="detail-section"><h3>Taxes — delinquent</h3>
             <div class="detail-row"><span class="label">Past due</span><span class="value mono" style="color:var(--red)">${money(t.past_due)}</span></div>
-            <div class="detail-row"><span class="label">Payments behind</span><span class="value">${t.payments_behind} half-year installments · tax years ${t.years.join(", ")} · unpaid since ${esc(t.oldest_due)}</span></div>
-            <div class="detail-row"><span class="label">Sale status</span><span class="value">${t.sale_eligible ? "Old enough for the county to sue to sell (Va. Code § 58.1-3965)" : "Not yet old enough for the county to sue"}</span></div>
+            <div class="detail-row"><span class="label">Payments behind</span><span class="value">${LO() || `${t.payments_behind} half-year installments · tax years ${t.years.join(", ")} · unpaid since ${esc(t.oldest_due)}`}</span></div>
+            <div class="detail-row"><span class="label">Sale status</span><span class="value">${LO() ? "Not known: the list gives no tax years" : (t.sale_eligible ? "Old enough for the county to sue to sell (Va. Code § 58.1-3965)" : "Not yet old enough for the county to sue")}</span></div>
             <div class="detail-row"><span class="label">Checked</span><span class="value">${esc(t.checked)} · Treasurer's inquiry</span></div></div>` : ""}
         ${c ? `<div class="detail-section"><h3>Condition — assessor's notes</h3>
             <div class="detail-row"><span class="label">Noted</span><span class="value">${esc(c.label)}</span></div>

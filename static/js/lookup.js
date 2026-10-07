@@ -36,7 +36,7 @@ const LookupApp = {
         body.innerHTML = hits.map((r) => `<tr>
             <td class="name-cell" style="font-family:var(--font-mono); font-size:0.8rem">${e(r[c.owner])}${r[c.care_of] ? `<div class="sub">c/o ${e(r[c.care_of])}</div>` : ""}</td>
             <td class="property-cell"><div class="address">${e(r[c.site_addr] || "No street address")}</div>${c.water != null && r[c.water] ? `<div style="color:var(--cyan)">💧 ${e(r[c.water] === "yes" ? "waterfront (assessor's note)" : r[c.water])}</div>` : ""}<div class="meta">${r[c.acres]} ac${r[c.year_built] ? ` · built ${r[c.year_built]}` : ""}</div></td>
-            <td class="mono">${VAPL.key === "king-george" ? `<a style="color:var(--cyan-dim)" href="https://gis.vgsi.com/kinggeorgecountyva/Parcel.aspx?Pid=${r[c.pid]}" target="_blank" rel="noopener">${e(r[c.pin])}</a>` : e(r[c.pin])}</td>
+            <td class="mono">${VAPL.key === "king-george" ? `<a style="color:var(--cyan-dim)" href="https://gis.vgsi.com/kinggeorgecountyva/Parcel.aspx?Pid=${r[c.pid]}" target="_blank" rel="noopener">${e(r[c.pin])}</a>` : e(r[c.pin])}${VAPL.key === "fauquier" ? `<div class="sub">Vision PID ${r[c.pid] - 5000000}</div>` : ""}</td>
             <td class="sub">${e(String(r[c.owner_type]).replace("_", " "))}</td>
             <td class="date-cell">${r[c.sale_year] && r[c.sale_year] !== 1900 ? r[c.sale_year] : "—"}</td>
             <td class="value-cell">$${Number(r[c.total_value]).toLocaleString()}</td>

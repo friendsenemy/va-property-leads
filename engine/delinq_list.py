@@ -204,11 +204,43 @@ def build(today=None):
     log.info("balances as of %s: %s parcels matched, %s not matched; %s blank owners named from the lists", newest["listed"], len(balances), unmatched, filled)
 
 
+HAND_LIST = os.path.join(delinquency.OUT, "hand-list.csv")
+
+
+def build_hand_list():
+    """A county with no public tax data at all (Fauquier): balances from a list someone was
+    given, kept as pid,total_due,as_of,source. Only an amount is known, so no tax years, no
+    payment count and no sale-eligibility are claimed; the dashboard says the list is old."""
+    import csv
+    rows = list(csv.DictReader(open(HAND_LIST, newline="")))
+    con = sqlite3.connect(config.DB_PATH)
+    known = {r[0]: r[1] for r in con.execute("SELECT pid, pin FROM parcels")}
+    con.close()
+    balances, state = {}, {}
+    for r in rows:
+        pid = int(r["pid"])
+        if pid not in known:
+            continue
+        year = int(re.sub(r"\D", "", r["as_of"])[:4] or 0)
+        balances[str(pid)] = {"tickets": 1, "name": "", "not_yet_due": 0, "past_due": round(float(r["total_due"]), 2),
+                              "oldest_due": f"{year}-12-05", "years": [year], "installments": 1, "sale_eligible": False,
+                              "sale_eligible_on": "2999-12-31", "pid": pid, "pin": known[pid], "checked": r["as_of"], "source": r["source"]}
+        state[str(pid)] = r["as_of"]
+    delinquency.save(balances, state)
+    src = rows[0]["source"] if rows else ""
+    json.dump({"hand_list": True, "as_of": rows[0]["as_of"] if rows else "", "source": src, "parcels": len(balances)},
+              open(os.path.join(delinquency.OUT, "list-meta.json"), "w"), indent=1)
+    log.info("balances from the hand list: %s parcels", len(balances))
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-fetch", action="store_true")
     ap.add_argument("--add", help="a TR501S Open Tax List PDF to add to the lists on file")
     a = ap.parse_args()
+    if os.path.exists(HAND_LIST):
+        build_hand_list()
+        raise SystemExit(0)
     if a.add:
         add_pdf(a.add, "supplied by the Treasurer's office")
     elif not a.no_fetch:

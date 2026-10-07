@@ -291,6 +291,10 @@ def source_note():
     meta = load(os.path.join(OUT, "list-meta.json"), None)
     if not meta:
         return ""
+    if meta.get("hand_list"):
+        return (f"Not a live balance. These {meta['parcels']} parcels were on {meta['source']} ({meta['as_of']}), with the amount due then. "
+                "The county publishes nothing to check them against: no tax years, no payment count, and any of them may have been paid. "
+                "Call the Treasurer before you call the owner.")
     older = [l for l in meta["lists_on_file"] if l["listed"] != meta["newest"]]
     yrs = meta["newest_covers_years"]
     return (f"Treasurer's Open Tax List of {meta['newest']}" + (f", which covers tax year {yrs[0]} only" if len(yrs) == 1 else "")

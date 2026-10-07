@@ -36,14 +36,14 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("waterfront")
 
 OUT = os.path.join(config.DATA_DIR, "waterfront.json")
-FIPS = {"king-george": "51099", "westmoreland": "51193"}
+FIPS = {"king-george": "51099", "westmoreland": "51193", "fauquier": "51061"}
 TIGER = "https://www2.census.gov/geo/tiger/TIGER2024/AREAWATER/tl_2024_{fips}_areawater.zip"
 NEAR_M = 15                 # a lot line this close to the water's mapped edge counts as touching it
 MIN_POND_M2 = 8094          # two acres: smaller ponds are farm ponds, not waterfront
 MIN_FRONT_FT = 20           # less boundary than this inside the band is a corner clipping the buffer
 KIND = {"H2030": "lake or pond", "H2040": "reservoir", "H2051": "bay or estuary", "H2053": "ocean", "H3010": "river or creek",
         "H3013": "river or creek", "H3020": "canal"}
-ID_FIELD = {"king-george": "PID", "westmoreland": "PARCELJOIN"}
+ID_FIELD = {"king-george": "PID", "westmoreland": "PARCELJOIN", "fauquier": "VisionPID"}
 
 
 def projector(lat0):
@@ -120,7 +120,12 @@ def parcel_outlines(proj):
             raw = f["attributes"].get(idf)
             if not rings or raw in (None, "", 0, " "):
                 continue
-            pid = config.ADAPT({"PARCELJOIN": raw})["PID"] if config.ADAPT else int(raw)
+            if config.KEY == "westmoreland":
+                pid = config.ADAPT({"PARCELJOIN": raw})["PID"]
+            elif config.KEY == "fauquier":
+                pid = config.FQ_PID_BASE + int(raw) if str(raw).strip().isdigit() else 0
+            else:
+                pid = int(raw)
             polys = []
             for ring in rings:
                 if len(ring) >= 4:

@@ -248,6 +248,10 @@ def scan_parcel(r, this_year):
     elif kind == "WB":
         flags.append("WILL_BOOK_REF")
         detail["will_ref"] = f"WB {book} PG {page}" if page and page != "0" else f"WB {book}"
+    elif note.startswith("WILL:"):
+        # Fauquier records the TYPE of the last instrument: title passed by will, recorded at this book and page.
+        flags.append("WILL_BOOK_REF")
+        detail["will_ref"] = f"Passed by will, recorded {deed_ref(r['deed_book'], r['deed_page'], 0)}"
     if raw:
         detail["will_ref_raw"] = raw
     is_grantor_line = note.upper().startswith("GRANTOR")

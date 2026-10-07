@@ -1,16 +1,26 @@
 # VA Property Leads
 
-Public-record lead generator for **King George County** and **Westmoreland County**, Virginia, built the same way as
+Public-record lead generator for **King George**, **Westmoreland** and **Fauquier** counties, Virginia, built the same way as
 [md-property-leads](https://github.com/friendsenemy/md-property-leads): scheduled GitHub
 Actions read free public records and commit JSON; a static dashboard on GitHub Pages
 reads it. No server, no paid data, no credentials in the repo.
 
 **Dashboard:** https://pagesofpurposellc.com/va-property-leads/
 
-**Two counties, one dashboard.** The county is picked in the header
-(`?county=westmoreland`). King George's boards are at the top of `data/`; Westmoreland's
-are under `data/westmoreland/`. The same engine builds both: `VAPL_COUNTY=westmoreland`
-switches the endpoint, the field adapter and the folder (`engine/config.py`).
+**Three counties, one dashboard.** The county is picked in the header
+(`?county=westmoreland`, `?county=fauquier`). King George's boards are at the top of
+`data/`; the others are under `data/westmoreland/` and `data/fauquier/`. The same engine
+builds all three: `VAPL_COUNTY=<county>` switches the endpoint, the field adapter and the
+folder (`engine/config.py`).
+
+Fauquier is the reverse of Westmoreland: a rich parcel record and no tax data. The layer
+gives the type of the last instrument, so Title Leads there include **title passed by
+will**, **List of Heirs recorded** and **heirship affidavit recorded**, along with sale
+date and price and values. The county's tax inquiry needs a login and it publishes no
+delinquent list, so the Delinquent tab holds only the parcels in
+`data/fauquier/delinquency/hand-list.csv` (parcel id, amount, year: from a 2025 list
+Ray supplied), labelled as old and unverified. Foreclosure sales listed in Fauquier are
+matched to its parcels and given an equity range on the Surplus Funds tab.
 
 Westmoreland publishes less. Its parcel layer has owner, mailing address and deed book
 and page only: no values, sale dates or prices, grantors, will references or assessor
@@ -39,6 +49,7 @@ shorelines do not change nightly.
 | `nightly-parcels.yml` | every night, 3:17 AM ET | Parcels layer (8 requests) → SQLite; new obituaries from the Storke RSS feed (1 request); tax-sale notices (1 request, Mondays); then every board is rebuilt and committed |
 | `auction-watch.yml` | weekday mornings, 6:43 AM ET | Two trustee sale lists (one request each), the tax-sale and trustee deeds in the parcel record, the surplus estimates, and an email of new strong leads |
 | `westmoreland.yml` | every night, 4:09 AM ET | Westmoreland's parcel layer (14 requests), the Treasurer's Open Tax List on Mondays (2 requests), then Westmoreland's boards |
+| `fauquier.yml` | every night, 4:39 AM ET | Fauquier's parcel layer (19 requests), then Fauquier's boards |
 | `monthly-delinquency.yml` | first six nights of the month, 12:30 AM ET | Treasurer balance for every parcel. Each night takes the parcels not checked in the last 20 days, oldest first (one request, then a 1.5 s pause), so a missed night is made up by the next |
 
 Nothing needs starting by hand. When a run ends with parcels still unchecked it starts the next run itself, so the first full pass runs back to back until the county is done. Both workflows have a Run button on the Actions tab if

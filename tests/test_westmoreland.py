@@ -45,3 +45,16 @@ def test_westmoreland_adapter_keeps_unnamed_parcels_and_reads_the_deed_reference
     blank = config.adapt_westmoreland({"PARCELJOIN": "3A315C24", "PARCEL_ID_": "3A3 1 5C 24", "NAME1": " "})
     assert blank["PID"] > 0 and blank["LNAM"] == ""
     assert config.adapt_westmoreland({"PARCELJOIN": " "}) == {"PID": 0}
+
+
+def test_fauquier_adapter_reads_deed_type_sale_and_co_owner():
+    a = config.adapt_fauquier({"VisionPID": "40130", "PARCELID": "7901-69-0576-000", "OWNERNME1": "SMARTE, GRACIA", "Co_Owner2": "SMARTE, NEIL CHRISTIAN",
+                               "SITEADDRES": "9421 ROGUES RD", "PSTLADDRES": "C/O BURKE, ROBERT", "PSTLADDR_1": "8231 TAUNTON PLACE", "PSTLCITY": "SPRINGFIELD",
+                               "PSTLSTATE": "VA", "PSTLZIP5": "22152", "CURRENTOWN": "1467/1694", "Deed_Type": "L/HR", "LASTSALEDA": "2014-09-11",
+                               "LASTSALEPR": "509000", "Building_V": "572900", "Outbuildin": "0", "Land_Value": "185400", "Final_Valu": "758300", "Year_Built": "2014"})
+    assert a["PID"] == config.FQ_PID_BASE + 40130 and a["LNAM"] == "SMARTE GRACIA; SMARTE NEIL CHRISTIAN"
+    assert (a["DBOOK"], a["DPAGE"], a["YRSLD"], a["SELLP"], a["TOTPR"]) == (1467, 1694, 2014, 509000, 758300)
+    assert a["WBOOK"] == "LH" and a["ADD1"] == "8231 TAUNTON PLACE" and a["FNAM"].startswith("C/O")
+    assert config.adapt_fauquier({"VisionPID": " ", "PARCELID": ""}) == {"PID": 0}
+    will = config.adapt_fauquier({"VisionPID": "1", "PARCELID": "x", "OWNERNME1": "DOE, JANE", "Deed_Type": "WILL", "CURRENTOWN": "1826/1038"})
+    assert will["GRNTR"].startswith("WILL:")

@@ -147,8 +147,16 @@ WESTMORELAND_ZIPS = {"22443": "Colonial Beach", "22469": "Hague", "22488": "Kins
                      "22558": "Stratford", "22577": "Sandy Point", "22581": "Zacata", "22442": "Coles Point", "22524": "Mount Holly"}
 
 
+FAUQUIER_ZIPS = {"20186": "Warrenton", "20187": "Warrenton", "20188": "Warrenton", "22712": "Bealeton", "20115": "Marshall", "20116": "Marshall",
+                 "20198": "The Plains", "22734": "Remington", "22728": "Midland", "20119": "Catlett", "22742": "Sumerduck", "22720": "Goldvein",
+                 "20138": "Calverton", "20137": "Broad Run", "20144": "Delaplane", "22639": "Hume", "20128": "Orlean", "22643": "Markham",
+                 "20184": "Upperville", "20185": "Upperville", "20130": "Paris", "20139": "Casanova", "20140": "Rectortown", "22739": "Somerville"}
+
+
 def run(neighbors=False, county="king-george"):
     global KG_ZIPS, OUT
+    if county == "fauquier":
+        KG_ZIPS, OUT = FAUQUIER_ZIPS, os.path.join(ROOT, "data", "obits", "numident-fauquier.json")
     if county == "westmoreland":                 # same pull, Westmoreland's ZIP codes, its own file in the shared folder
         KG_ZIPS, OUT = WESTMORELAND_ZIPS, os.path.join(ROOT, "data", "obits", "numident-westmoreland.json")
     places = dict(KG_ZIPS, **(NEIGHBOR_ZIPS if neighbors else {}))
@@ -186,6 +194,6 @@ def run(neighbors=False, county="king-george"):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--neighbors", action="store_true")
-    ap.add_argument("--county", default="king-george", choices=["king-george", "westmoreland"])
+    ap.add_argument("--county", default="king-george", choices=["king-george", "westmoreland", "fauquier"])
     a = ap.parse_args()
     run(a.neighbors, a.county)

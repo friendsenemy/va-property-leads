@@ -35,6 +35,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Pull parcels into SQLite
         run: python -m engine.parcels
+      - name: Fauquier parcels too, so a sale listed there can be matched and measured
+        run: VAPL_COUNTY=fauquier python -m engine.parcels || echo "::warning::Fauquier parcels not pulled; its sales will show unrated"
       - name: Watch sales
         run: python -m engine.auction_watch
       - name: Email new strong leads

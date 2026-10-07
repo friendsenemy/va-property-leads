@@ -135,7 +135,83 @@ def adapt_westmoreland(a):
     }
 
 
-if KEY == "westmoreland":
+# ================================ Fauquier County ================================
+# The county's "Tax_Parcels_DL" layer is rich: owner and co-owner, mailing address, deed
+# book/page, the TYPE of the last instrument (WILL, list of heirs, heirship affidavit,
+# foreclosure, trustee's deed ...), last sale date and price, values, year built. What
+# Fauquier does not publish is anything about unpaid taxes: the tax inquiry needs a login
+# and there is no delinquent list. So there is no tax walk here.
+FQ_PID_BASE = 5_000_000          # keeps Fauquier's Vision parcel ids clear of King George's
+# Deed types that say how the present owner got title. Each is mapped onto the will-book
+# column the title scan already reads ("LH" = List of Heirs, a number = will book).
+FQ_HEIR_TYPES = {"L/HR": "list of heirs", "HAFD": "heirship affidavit", "AFD": "affidavit"}
+FQ_DEED_TYPE = {
+    "WILL": "title passed by will", "L/HR": "List of Heirs recorded", "HAFD": "heirship affidavit recorded", "AFD": "affidavit recorded",
+    "DEXC": "executor's deed", "FCLS": "foreclosure deed", "LFCL": "foreclosure deed",
+    "TDD": "transfer-on-death deed recorded", "CM/D": "commissioner's deed (court-ordered sale)",
+    "DECR": "court decree", "D/G": "deed of gift", "QC": "quitclaim deed", "CNFD": "confirmation deed", "DOA": "deed of assumption",
+    "PTN": "partition", "N/C": "name change", "TEED": "deed creating a tenancy by the entirety", "DNTR": "deed, no tax (family or entity transfer)",
+}
+
+
+def _fq_name(n):
+    """'SMARTE, GRACIA' -> 'SMARTE GRACIA' (the county's LAST, FIRST)."""
+    n = re.sub(r"\s+", " ", (n or "").replace("&amp;", "&")).strip()
+    m = re.match(r"^([A-Z'\- ]+?),\s*(.*)$", n)
+    return f"{m.group(1)} {m.group(2)}".strip() if m and len(m.group(1).split()) <= 3 else n
+
+
+def adapt_fauquier(a):
+    g = lambda k: re.sub(r"\s+", " ", str(a.get(k) or "").replace("&amp;", "&")).strip()
+    vp = g("VisionPID")
+    if not vp.isdigit() or not g("PARCELID"):
+        return {"PID": 0}
+    num = lambda k: int(float(g(k))) if re.fullmatch(r"-?\d+(\.\d+)?", g(k)) else 0
+    owner, co = _fq_name(g("OWNERNME1")), _fq_name(g("Co_Owner2"))
+    lines = [g("PSTLADDRES"), g("PSTLADDR_1"), g("PSTLADDR_2")]
+    care = next((x for x in lines if re.match(r"^(C/O|%|ATTN)", x, re.I)), "")
+    street = [x for x in lines if x and x != care]
+    m = re.match(r"^(\d+)\s*/\s*(\d+)$", g("CURRENTOWN"))
+    dtype = g("Deed_Type").upper()
+    sale = re.match(r"^(\d{4})-(\d{2})-(\d{2})", g("LASTSALEDA"))
+    site = g("SITEADDRES")
+    n = re.match(r"\d+", site)
+    # each owner is a separate party; a co-owner line that carries on a trust's name is joined with a space
+    lnam = owner if not co else (f"{owner} {co}" if owner.endswith(("U/", "OF", "THE", "&")) or "TRUST" in co.split(",")[0] else f"{owner}; {co}")
+    return {
+        "PID": FQ_PID_BASE + int(vp), "PIN": g("PARCELID"), "PINNOSPACE": g("PARCELID").replace("-", ""), "PARCEL": g("PARCELID"),
+        "LNAM": lnam, "FNAM": re.sub(r"^ATTN:?\s*", "C/O ", care, flags=re.I),
+        "ADD1": street[0] if street else "", "ADD2": street[1] if len(street) > 1 else "", "CITY": g("PSTLCITY"), "STATE": g("PSTLSTATE")[:2], "ZIP5": g("PSTLZIP5")[:5],
+        "PHYSICALAD": site, "HSENUM": n.group(0) if n else "", "STRT": site[len(n.group(0)):].strip() if n else site,
+        "ACRE": g("ACREAGE") or None, "DESC1": " · ".join(x for x in (g("Legal_Desc"), g("Primary__1")) if x),
+        "TOTLD": num("Land_Value"), "IMPRV": num("Building_V") + num("Outbuildin"), "TOTPR": num("Final_Valu"),
+        "YRBLT": num("Year_Built"), "DWELL": 1 if num("Building_V") > 0 else 0,
+        "REM1": g("NOTE_TEXT")[:400], "REM2": g("Style_DESC"),
+        "DBOOK": int(m.group(1)) if m else 0, "DPAGE": int(m.group(2)) if m else 0,
+        "WBOOK": "LH" if dtype in FQ_HEIR_TYPES else (g("CURRENTOWN") if dtype == "WILL" else ""), "WPAGE": "",
+        "GRNTR": f"{dtype}: {FQ_DEED_TYPE[dtype]}" if dtype in FQ_DEED_TYPE else "",
+        "SELLP": num("LASTSALEPR"), "YRSLD": int(sale.group(1)) if sale else 0, "MOSLD": int(sale.group(2)) if sale else 0, "DASLD": int(sale.group(3)) if sale else 0,
+        "GISPCLink": "https://www.actdatascout.com/RealProperty/Virginia/Fauquier",
+    }
+
+
+if KEY == "fauquier":
+    COUNTY = "Fauquier"
+    PARCELS_URL = "https://services.arcgis.com/oAoeYJ1kqmAwcEC2/arcgis/rest/services/Tax_Parcels_DL/FeatureServer/0"
+    DATA_DIR = os.path.join(ROOT, "data", "fauquier")
+    DB_PATH = os.path.join(ROOT, ".cache", "fauquier.sqlite")
+    MIN_PARCELS = 30000
+    SOURCE_FIELDS = "*"
+    ADAPT = adapt_fauquier
+    HAS_TREASURER_WALK = False
+    KG_CITIES = {"WARRENTON", "BEALETON", "MARSHALL", "THE PLAINS", "REMINGTON", "MIDLAND", "CATLETT", "SUMERDUCK", "GOLDVEIN", "CALVERTON",
+                 "BROAD RUN", "DELAPLANE", "HUME", "ORLEAN", "MARKHAM", "UPPERVILLE", "PARIS", "CASANOVA", "SOMERVILLE", "NEW BALTIMORE",
+                 "OPAL", "MORRISVILLE", "RECTORTOWN", "LINDEN", "FAUQUIER"}
+    KG_ZIPS = {20186, 20187, 20188, 22712, 20115, 20116, 20198, 22734, 22728, 20119, 22742, 22720, 20138, 20137, 20144, 22639, 20128,
+               22643, 20184, 20185, 20130, 20139, 20140, 22739, 22406, 20106, 22642}
+    REGION_PLACES = set(KG_CITIES) | {"FAUQUIER COUNTY"}
+    LAST_DEED_BOOK = 0                  # every parcel carries its own sale date; no need to guess a year from the book
+elif KEY == "westmoreland":
     COUNTY = "Westmoreland"
     PARCELS_URL = "https://services5.arcgis.com/uEb6ucnhLOwh4rfI/arcgis/rest/services/PARCELS/FeatureServer/0"
     DATA_DIR = os.path.join(ROOT, "data", "westmoreland")
@@ -152,4 +228,4 @@ if KEY == "westmoreland":
     NO_DEED_DATES = True
     MIN_PAST_DUE = 150                  # the list carries hundreds of balances of a few dollars
 elif KEY != "king-george":
-    raise SystemExit(f"unknown county '{KEY}': use king-george or westmoreland")
+    raise SystemExit(f"unknown county '{KEY}': use king-george, westmoreland or fauquier")

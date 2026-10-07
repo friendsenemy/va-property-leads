@@ -2,12 +2,13 @@
    browser only and never uploaded. Each note is added to the Notes box of every lead that
    holds that parcel, on every tab, including leads that appear on the board later. */
 (function () {
-    const MAP_KEY = "va_imported_notes_v1";
+    // Per county: the notes file is loaded while that county is selected, and stays with it.
+    const MAP_KEY = "va_imported_notes_v1" + VAPL.ns;
     const BOARDS = [
-        ["data/title/leads.json", "va_title_leads_local_v1"],
-        ["data/obits/matches.json", "va_death_leads_local_v1"],
-        ["data/delinquency/leads.json", "va_delinq_leads_local_v1"],
-        ["data/combined/leads.json", "va_stack_leads_local_v1"],
+        [VAPL.DATA + "title/leads.json", "va_title_leads_local_v1" + VAPL.ns],
+        [VAPL.DATA + "obits/matches.json", "va_death_leads_local_v1" + VAPL.ns],
+        [VAPL.DATA + "delinquency/leads.json", "va_delinq_leads_local_v1" + VAPL.ns],
+        [VAPL.DATA + "combined/leads.json", "va_stack_leads_local_v1" + VAPL.ns],
     ];
     const read = (k) => { try { return JSON.parse(localStorage.getItem(k) || "{}"); } catch { return {}; } };
 

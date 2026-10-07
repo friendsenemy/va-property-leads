@@ -15,7 +15,12 @@ window.VAPL = {
         "king-george": { name: "King George", data: "data/", ns: "", thin: false,
             taxSource: "Treasurer's Real Estate Public Inquiry" },
         "westmoreland": { name: "Westmoreland", data: "data/westmoreland/", ns: "wm:", thin: true,
-            taxSource: "Treasurer's Open Tax List" },
+            taxSource: "Treasurer's Open Tax List",
+            note: "<b>Westmoreland County publishes less.</b> Its parcel record has owners, mailing addresses and deed book and page, but no assessed values, sale dates or prices, grantors, will references or assessor notes. So there is no title-age scoring and no condition signal here, and value columns are blank. Unpaid taxes come from the Treasurer's published Open Tax List. In the Town of Colonial Beach the county record names no owner; where the Treasurer bills a parcel, the name and address are taken from the tax list." },
+        "fauquier": { name: "Fauquier", data: "data/fauquier/", ns: "fq:", thin: false,
+            taxSource: "a 2025 delinquent list", listShort: "on a 2025 list",
+            listOnly: "On a 2025 delinquent list you supplied. The list gives an amount only: no tax years, no payment count, and it has not been re-checked.",
+            note: "<b>Fauquier County publishes no tax balances.</b> Its tax inquiry needs a login and there is no public delinquent list, so the Delinquent tab shows only the parcels on a 2025 list you supplied, with the amount due then. Treat every one as possibly paid until the Treasurer confirms it. The parcel record is rich: it gives the type of the last instrument (will, list of heirs, heirship affidavit), sale date and price, and values. Obituaries are not automated here yet; deaths come from federal records through 2007 and anything entered by hand." },
     },
 };
 (function () {
@@ -50,9 +55,9 @@ window.VAPL = {
         document.querySelectorAll("[data-county-name]").forEach((el) => { el.textContent = VAPL.county.name; });
         document.title = `VA Property Leads — ${VAPL.county.name} County`;
         const note = document.getElementById("countyNote");
-        if (note && VAPL.county.thin) {
+        if (note && VAPL.county.note) {
             note.style.display = "block";
-            note.innerHTML = `<b>${VAPL.county.name} County publishes less.</b> Its parcel record has owners, mailing addresses and deed book and page, but no assessed values, sale dates or prices, grantors, will references or assessor notes. So there is no title-age scoring and no condition signal here, and value columns are blank. Unpaid taxes come from the Treasurer's published Open Tax List. In the Town of Colonial Beach the county record names no owner; where the Treasurer bills a parcel, the name and address are taken from the tax list.`;
+            note.innerHTML = VAPL.county.note;
         }
     });
 })();

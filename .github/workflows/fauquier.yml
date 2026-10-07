@@ -1,0 +1,50 @@
+name: Fauquier County
+
+# Once a night, after the King George build has added the day's obituaries:
+#   parcels    the county's open Tax_Parcels_DL layer (19 requests) -> data/fauquier/parcels.json
+#   boards     title scan (will / list of heirs / heirship affidavit deed types), death match,
+#              the 2025 delinquent list on file, stacked signals
+# Fauquier publishes no tax balances, so nothing is fetched for taxes.
+# Everything it writes is under data/fauquier/.
+
+on:
+  schedule:
+    - cron: '39 8 * * *'       # 08:39 UTC = 4:39 AM EDT / 3:39 AM EST
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fauquier.yml'
+      - 'data/fauquier/delinquency/hand-list.csv'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writers
+  cancel-in-progress: false
+
+env:
+  VAPL_COUNTY: fauquier
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Pull parcels into SQLite
+        run: python -m engine.parcels
+      - name: Balances from the delinquent list on file
+        run: python -m engine.delinq_list --no-fetch
+      - name: Build the boards
+        run: python -m engine.build_board --no-fetch
+      - name: Commit results
+        run: |
+          N=$(python -c "import json;print(json.load(open('data/fauquier/title/summary.json'))['leads'])")
+          D=$(python -c "import json;print(json.load(open('data/fauquier/delinquency/leads.json'))['summary']['leads'])")
+          .github/commit-data.sh "Fauquier: ${N} title leads, ${D} on the 2025 delinquent list" data/fauquier
