@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-10-07T15:29:31+00:00",
- "index_built_at": "2026-10-07T15:29:30+00:00",
+ "generated_at": "2026-10-08T15:31:55+00:00",
+ "index_built_at": "2026-10-08T15:31:53+00:00",
  "county": "Westmoreland",
  "state": "VA",
- "parcels_indexed": 27214,
+ "parcels_indexed": 27218,
  "leads": 712,
  "lead_parcels": 1021,
  "classes": {

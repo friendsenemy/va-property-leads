@@ -1,0 +1,93 @@
+[
+{
+"date":"2026-10-08",
+"pid":158968488,
+"pin":"45 59G",
+"change":"NEW_PARCEL",
+"new_owner":"TATE MARY L"
+},
+{
+"date":"2026-10-08",
+"pid":580759873,
+"pin":"5 80A",
+"change":"NEW_PARCEL",
+"new_owner":"BYDAIRK LISA"
+},
+{
+"date":"2026-10-08",
+"pid":1104628634,
+"pin":"33 9A",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"POSEY ROBERT & SARAH",
+"new_owner":"TAYLOR JEROME & RACHAEL B",
+"old_mail":"1295 NEW MONROVIA ROAD, COLONIAL BEACH, VA, 22443",
+"old_deed":[
+85,
+71
+],
+"new_deed":[
+910,
+1924
+],
+"sale_year":0,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-10-08",
+"pid":1176756964,
+"pin":"2 36B",
+"site_addr":"20837 RIDGE ROAD",
+"change":"OWNER",
+"old_owner":"JONES VIVIAN B",
+"new_owner":"JOHNSON WILLIAM C & FRANCES PLATA",
+"old_mail":"2341 CURRIOMAN ROAD, MONTROSS, VA, 22520",
+"old_deed":[
+955,
+334
+],
+"new_deed":[
+647,
+738
+],
+"sale_year":0,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-10-08",
+"pid":1329060551,
+"pin":"36 83",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"VIRGINIA COOPERATIVE CROP IMPROVEMENT ASSOC INC",
+"new_owner":"THE VIRGINIA COOPERATIVE CROP IMPROVEMENT ASSOC",
+"old_mail":"P O BOX 78, MOUNT HOLLY, VA, 22524",
+"old_deed":[
+331,
+786
+],
+"new_deed":[
+942,
+380
+],
+"sale_year":0,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-10-08",
+"pid":1378889545,
+"pin":"45 59H",
+"change":"NEW_PARCEL",
+"new_owner":"TATE MARY L"
+},
+{
+"date":"2026-10-08",
+"pid":1781494232,
+"pin":"45 59F",
+"change":"NEW_PARCEL",
+"new_owner":"TATE MARY L"
+}
+]
