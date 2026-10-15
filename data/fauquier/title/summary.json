@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-14T13:59:30+00:00",
- "index_built_at": "2026-10-14T13:59:28+00:00",
+ "generated_at": "2026-10-15T02:52:22+00:00",
+ "index_built_at": "2026-10-15T02:52:05+00:00",
  "county": "Fauquier",
  "state": "VA",
  "parcels_indexed": 35921,
@@ -102,6 +102,38 @@
     "MAIL_DIFFERS",
     "CARE_OF"
    ]
+  },
+  {
+   "id": "signal",
+   "label": "Distress signal (any)",
+   "flags_any": [
+    "FIRE",
+    "VACANT_NOTICE",
+    "DERELICT_STRUCTURE",
+    "RECEIVERSHIP",
+    "SPOT_BLIGHT",
+    "CODE_VIOLATIONS",
+    "DEMO_PERMIT",
+    "NUISANCE_CASE",
+    "REPEAT_CODE_CASES",
+    "ZONING_CASE"
+   ]
+  },
+  {
+   "id": "fire",
+   "label": "\ud83d\udd25 Fire-damaged",
+   "flag": "FIRE"
+  },
+  {
+   "id": "stacked",
+   "label": "\u26a1 Stacked 2+ kinds",
+   "flag": "STACKED_SIGNALS"
+  },
+  {
+   "id": "repeat",
+   "label": "Repeat code cases",
+   "flag": "REPEAT_CODE_CASES"
   }
- ]
+ ],
+ "signal_parcels": 1
 }
