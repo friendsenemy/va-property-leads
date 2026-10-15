@@ -19,9 +19,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'engine/distress.py'
-      - 'data/distress/manual.csv'
-      - '.github/workflows/distress-watch.yml'
+      - 'data/distress/manual.csv'     # a FOIA export dropped in is matched right away; code changes wait for the night
 
 permissions:
   contents: write
