@@ -78,9 +78,9 @@ Fill in the sender block and the date; nothing else.
 > 3. The permit list since January 1, 2020 for demolition permits: permit number, address,
 >    tax map number, date. (The County's online permit portal cannot be searched without a
 >    CAPTCHA, so I am asking for the list directly.)
-> 4. The Treasurer's current delinquent real estate list (the "Open Tax List" report,
->    TR501S), which was published at westmoreland-county.org until the website migration
->    and is no longer linked.
+> 4. The Treasurer's delinquent real estate list in its original electronic form (CSV or
+>    Excel rather than the "2025 RE Delq List" PDF published on the Treasurer's page), with
+>    the tax map number, owner, years owed and balance for each account.
 >
 > Please provide the records in the electronic form in which they are kept (§ 2.2-3704(G)).
 > I do not need inspector notes, photographs or complainant information. If any part is

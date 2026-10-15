@@ -217,7 +217,7 @@ def merge_cases(data, key, recs, failed):
         cases[k]["last_seen"] = now
     mine = [c for c in cases.values()]
     data["meta"] = {"last_run": now, "failed": failed, "seen": len(recs), "new": new, "status_changed": changed,
-                    "kept": len(mine), "open": sum(1 for c in mine if is_open(c.get("status")))}
+                    "kept": len(mine), "open": sum(1 for c in mine if to_signal(c, dt.date.today())["open"])}
     data["generated_at"] = now
     return data
 
@@ -408,25 +408,43 @@ def _pdf_text(b):
         return ""
 
 
+def _get(url, headers, timeout=60, **kw):
+    """One GET with three tries: the CivicPlus hosts reset connections now and then."""
+    for attempt in range(3):
+        try:
+            r = requests.get(url, headers=headers, timeout=timeout, **kw)
+            r.raise_for_status()
+            return r
+        except requests.RequestException:
+            if attempt == 2:
+                raise
+            time.sleep(5 * (attempt + 1))
+
+
 def agenda_files(site, frm, to):
     """-> [(file id, meeting date ISO, title, url)] for the window."""
     H = {"User-Agent": UA}
     out = []
     if site["list"] == "civicclerk":
-        j = requests.get(f"https://{site['tenant']}.api.civicclerk.com/v1/Events", headers=H, timeout=60,
-                         params={"$filter": f"startDateTime ge {frm.isoformat()}T00:00:00Z and startDateTime le {to.isoformat()}T23:59:59Z",
-                                 "$orderby": "startDateTime desc", "$top": 200}).json()
-        for e in j.get("value", []):
-            if "Supervisors" not in (e.get("categoryName") or ""):
-                continue
-            for f in e.get("publishedFiles") or []:
-                out.append((f"cc-{f['fileId']}", e["startDateTime"][:10], f"{e['eventName']}: {f.get('name') or f.get('type')}",
-                            f"https://{site['tenant']}.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId={f['fileId']},plainText=false)"))
+        url = f"https://{site['tenant']}.api.civicclerk.com/v1/Events"
+        params = {"$filter": f"startDateTime ge {frm.isoformat()}T00:00:00Z and startDateTime le {to.isoformat()}T23:59:59Z",
+                  "$orderby": "startDateTime desc", "$top": 200}
+        while url:                                      # the API pages 15 events at a time via @odata.nextLink
+            j = _get(url, H, params=params).json()
+            params = None
+            for e in j.get("value", []):
+                if "Supervisors" not in (e.get("categoryName") or ""):
+                    continue
+                for f in e.get("publishedFiles") or []:
+                    out.append((f"cc-{f['fileId']}", e["startDateTime"][:10], f"{e['eventName']}: {f.get('name') or f.get('type')}",
+                                f"https://{site['tenant']}.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId={f['fileId']},plainText=false)"))
+            url = j.get("@odata.nextLink")
+            time.sleep(SLEEP)
     else:
         seen = set()
         for word in ("derelict", "blight", "unsafe structure", "condemned", "demolition"):
-            t = requests.get(site["base"] + "/AgendaCenter/Search/", headers=H, timeout=60,
-                             params={"term": word, "CIDs": "all", "startDate": frm.strftime("%m/%d/%Y"), "endDate": to.strftime("%m/%d/%Y"), "dateRange": "", "dateSelector": ""}).text
+            t = _get(site["base"] + "/AgendaCenter/Search/", H, timeout=60,
+                     params={"term": word, "CIDs": "all", "startDate": frm.strftime("%m/%d/%Y"), "endDate": to.strftime("%m/%d/%Y"), "dateRange": "", "dateSelector": ""}).text
             for path in re.findall(r'href="(/AgendaCenter/ViewFile/(?:Agenda|Minutes)/_(\d{8})-\d+)"', t):
                 if path[0] in seen:
                     continue
@@ -449,7 +467,7 @@ def agenda_rows(site, frm, to, cache):
             text = cache[key]
         else:
             try:
-                b = requests.get(url, headers={"User-Agent": UA}, timeout=120).content
+                b = _get(url, {"User-Agent": UA}, timeout=120).content
                 text = _pdf_text(b) if b[:4] == b"%PDF" else ""
             except requests.RequestException:
                 text = ""
