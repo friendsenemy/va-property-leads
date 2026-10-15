@@ -205,6 +205,39 @@ def build(today=None):
 
 
 HAND_LIST = os.path.join(delinquency.OUT, "hand-list.csv")
+_FQ_ROW = re.compile(r"^(?P<name>.+?)\s+(?P<pin>\d{13})\s+\$?\s*(?P<amt>[\d,]+\.\d\d)\s*$")
+_FQ_DATE = re.compile(r"[Aa]s of\s+(\d{1,2})/(\d{1,2})/(\d{4})")
+
+
+def add_fauquier_pdf(path):
+    """Fauquier's "Real Estate Delinquent Aging Account List" PDF (Treasurer's delinquent listings
+    page), downloaded by hand because fauquiercounty.gov sits behind a bot wall. Rows are
+    NAME, 13-digit PIN, AMOUNT DUE. Replaces the hand list with the county's own figures."""
+    import csv
+    text = pdf_text(path)
+    m = _FQ_DATE.search(text)
+    as_of = f"{m.group(3)}-{int(m.group(1)):02d}-{int(m.group(2)):02d}" if m else dt.date.today().isoformat()
+    con = sqlite3.connect(config.DB_PATH)
+    by_pin = {re.sub(r"\D", "", r[0]): r[1] for r in con.execute("SELECT pin, pid FROM parcels")}
+    con.close()
+    rows, miss = [], 0
+    for line in text.splitlines():
+        mm = _FQ_ROW.match(line.strip())
+        if not mm:
+            continue
+        pid = by_pin.get(mm.group("pin"))
+        if not pid:
+            miss += 1
+            continue
+        rows.append([pid, mm.group("amt").replace(",", ""), as_of, f"Treasurer's Real Estate Delinquent Aging Account List as of {as_of}", mm.group("name").strip()])
+    if len(rows) < 50:
+        raise RuntimeError(f"{path}: only {len(rows)} rows read; not the Treasurer's aging list?")
+    with open(HAND_LIST, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["pid", "total_due", "as_of", "source", "name"])
+        w.writerows(sorted(rows, key=lambda r: -float(r[1])))
+    log.info("Fauquier aging list as of %s: %s parcels matched, %s PINs not in the parcel layer", as_of, len(rows), miss)
+
 
 
 def build_hand_list():
@@ -222,7 +255,7 @@ def build_hand_list():
         if pid not in known:
             continue
         year = int(re.sub(r"\D", "", r["as_of"])[:4] or 0)
-        balances[str(pid)] = {"tickets": 1, "name": "", "not_yet_due": 0, "past_due": round(float(r["total_due"]), 2),
+        balances[str(pid)] = {"tickets": 1, "name": r.get("name", ""), "not_yet_due": 0, "past_due": round(float(r["total_due"]), 2),
                               "oldest_due": f"{year}-12-05", "years": [year], "installments": 1, "sale_eligible": False,
                               "sale_eligible_on": "2999-12-31", "pid": pid, "pin": known[pid], "checked": r["as_of"], "source": r["source"]}
         state[str(pid)] = r["as_of"]
@@ -238,6 +271,11 @@ if __name__ == "__main__":
     ap.add_argument("--no-fetch", action="store_true")
     ap.add_argument("--add", help="a TR501S Open Tax List PDF to add to the lists on file")
     a = ap.parse_args()
+    if config.KEY == "fauquier":
+        if a.add:
+            add_fauquier_pdf(a.add)
+        build_hand_list()
+        raise SystemExit(0)
     if os.path.exists(HAND_LIST):
         build_hand_list()
         raise SystemExit(0)

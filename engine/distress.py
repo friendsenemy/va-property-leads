@@ -69,9 +69,50 @@ COUNTY_DBS = {"King George": os.path.join(config.ROOT, ".cache", "kg.sqlite"),
               "Westmoreland": os.path.join(config.ROOT, ".cache", "westmoreland.sqlite"),
               "Fauquier": os.path.join(config.ROOT, ".cache", "fauquier.sqlite")}
 
-# ---- what each portal is. Filled in from the source check; see docs/sources-and-terms.md.
-# kind: "energov" | "accela" | "arcgis"
-SITES = {}
+# ---- what each source is (verified 2026-10-14; docs/sources-and-terms.md, "Distress signals").
+# kind: energov_permits | accela | arcgis | active911 | agendas
+SITES = {
+    "fauquier-demolition": {
+        "kind": "energov_permits", "county": "Fauquier", "source": "Fauquier County Civic Access: demolition permits",
+        "api": "https://commdevpay.fauquiercounty.gov/energov_prod/selfservice/api", "template": "fauquier_search_template.json",
+        "headers": {"tenantId": "1", "tenantName": "FauquierCountyVAProd", "Tyler-TenantUrl": "FauquierCountyVAProd"},
+        "case_url": "https://commdevpay.fauquiercounty.gov/Energov_Prod/SelfService#/permit/{id}",
+        # the four demolition permit types the portal lists (Residential Building, Residential Accessory, Commercial, Accessory C)
+        "type_ids": ["3962f3cb-4559-42ae-b010-4803733fda8b_853da3fe-20f1-4335-b929-8efd4df2f193", "ad49c7e3-f579-4326-a51f-63d056d67058_853da3fe-20f1-4335-b929-8efd4df2f193",
+                     "85f386a8-931c-47ef-b52d-74405d7698fe_853da3fe-20f1-4335-b929-8efd4df2f193", "f59a8ac2-29e2-41a4-b65d-b425674ec903_853da3fe-20f1-4335-b929-8efd4df2f193"],
+        "signal_kind": "DEMO_PERMIT",
+    },
+    "king-george-fire-calls": {
+        "kind": "active911", "county": "King George", "source": "King George Fire and Rescue: live CAD calls (county site)",
+        "url": "https://access.active911.com/interface/js.php?r3vd471", "page": "https://www.kinggeorgecountyva.gov/774/Active-CAD-Calls",
+    },
+    "king-george-fire-2022": {
+        "kind": "arcgis", "county": "King George", "source": "King George Fire & Rescue incidents 2022-23 (county GIS)",
+        "url": "https://services2.arcgis.com/S8zMJrpz61FbvL5t/ArcGIS/rest/services/FireRescueIncidents2022/FeatureServer/0",
+        "where": "USER_Natur IN ('STRUCFIREF','NSTRUCFIRE','APARTFIRF','BUILDFIRF','FIREEND')", "date_filter": False,
+        "fields": {"case_number": "USER_Incid", "type": "USER_Natur", "status": "USER_Disp", "opened": "USER_DateT", "address": "USER_Addre"},
+        "signal_kind": "FIRE", "static": True,
+    },
+    "westmoreland-agendas": {
+        "kind": "agendas", "county": "Westmoreland", "source": "Westmoreland Board of Supervisors agendas and minutes (CivicClerk)",
+        "list": "civicclerk", "tenant": "westmorelandcova",
+    },
+    "king-george-agendas": {
+        "kind": "agendas", "county": "King George", "source": "King George Board of Supervisors agendas and minutes (AgendaCenter)",
+        "list": "agendacenter", "base": "https://www.kinggeorgecountyva.gov",
+    },
+    "colonial-beach-agendas": {
+        "kind": "agendas", "county": "Westmoreland", "source": "Town of Colonial Beach council agendas and minutes (AgendaCenter)",
+        "list": "agendacenter", "base": "https://www.colonialbeachva.gov",
+    },
+}
+AGENDA_WORDS = re.compile(r"derelict|spot blight|blighted|blight abatement|unsafe (?:structure|building)|condemn(?:ed|ation)|demolition order|order(?:ed)? (?:the )?demoli|"
+                          r"demolish|unfit for (?:human )?habitation|nuisance abatement|15\.2-906|15\.2-907|36-49\.1", re.I)
+AGENDA_NOISE = re.compile(r"prayer|invocation|scripture|psalm|zoning ordinance text|text amendment", re.I)
+TAXMAP_RE = re.compile(r"(?:tax map|TM|parcel|GPIN|PIN)\s*(?:no\.?|#|number)?:?\s*([0-9]{1,3}[A-Z]?(?:[- ][0-9A-Z]{1,4}){1,5}|[0-9]{4}-[0-9]{2}-[0-9]{4}(?:-[0-9]{3})?)", re.I)
+STREET_RE = re.compile(r"\b(\d{2,6})\s+((?:[A-Z][A-Za-z'.-]*\s+){1,4}(?:Road|Rd|Street|St|Avenue|Ave|Boulevard|Blvd|Drive|Dr|Court|Ct|Lane|Ln|Way|Place|Pl|Terrace|Ter|Circle|Cir|Highway|Hwy|Trail|Trl|Loop|Point|Pt|Landing))\b")
+FIRE_WORDS = re.compile(r"structure fire|house fire|dwelling fire|building fire|residential fire|fire -? ?(?:single|multi|residential|structure|dwelling|house|building)|working fire|chimney fire", re.I)
+NOT_FIRE = re.compile(r"alarm|vehicle|brush|woods|grass|dumpster|trash|odor|smoke investigation|outside|illegal burn|controlled burn|ems|medical|accident|mva", re.I)
 
 OPEN_WORDS = re.compile(r"open|progress|escalat|hold|pending|new|re-?open|active|cited|citation|notice|hearing|court|abat", re.I)
 CLOSED_WORDS = re.compile(r"closed|complete|resolved|abated|void|cancel|dismiss|no violation|unfounded|duplicate|withdrawn|compliance|complied|expired|final", re.I)
@@ -290,25 +331,172 @@ def arcgis_rows(site, frm, to):
     return out
 
 
-COLLECT = {"energov": energov_search, "accela": accela_search, "arcgis": arcgis_rows}
+def energov_permits(site, frm, to):
+    """Civic Access permit search (the portal's own request shape, captured), one type at a time."""
+    s = requests.Session()
+    s.headers.update({"User-Agent": UA, "Accept": "application/json", "Content-Type": "application/json", **site.get("headers", {})})
+    base = json.load(open(os.path.join(config.ROOT, "engine", site["template"])))
+    out = []
+    for tid in site["type_ids"]:
+        page = 1
+        while True:
+            m = json.loads(json.dumps(base))
+            m.update({"PageNumber": page, "PageSize": PAGE})
+            m["PermitCriteria"].update({"PageNumber": page, "PageSize": PAGE, "PermitTypeId": tid,
+                                        "ApplyDateFrom": f"{frm.isoformat()}T00:00:00", "ApplyDateTo": f"{to.isoformat()}T23:59:59"})
+            r = s.post(site["api"] + "/energov/search/search", data=json.dumps(m), timeout=90)
+            r.raise_for_status()
+            j = r.json()
+            if not j.get("Success"):
+                raise RuntimeError(j.get("ErrorMessage") or "search failed")
+            res = j["Result"]
+            for e in res.get("EntityResults") or []:
+                a = e.get("Address") or {}
+                out.append({"case_number": e.get("CaseNumber"), "type": e.get("CaseType") or "", "status": e.get("CaseStatus") or "",
+                            "opened": (e.get("ApplyDate") or "")[:10] or None, "closed": (e.get("CompleteDate") or e.get("FinalDate") or "")[:10] or None,
+                            "issued": (e.get("IssueDate") or "")[:10] or None,
+                            "address": (e.get("AddressDisplay") or a.get("FullAddress") or "").strip(), "street": (a.get("AddressLine1") or "").strip(),
+                            "city": a.get("City") or "", "zip": (a.get("PostalCode") or "")[:5], "parcel": (e.get("MainParcel") or "").strip(),
+                            "description": (e.get("Description") or e.get("ProjectName") or "")[:300], "url": site["case_url"].format(id=e.get("CaseId")),
+                            "county": site["county"], "source": site["source"], "kind": site["signal_kind"]})
+            if page >= (res.get("TotalPages") or 1) or not res.get("EntityResults"):
+                break
+            page += 1
+            time.sleep(SLEEP)
+        time.sleep(SLEEP)
+    return out
+
+
+def active911_rows(site, frm, to):
+    """The county's live CAD feed: the last few alarms. Polled daily; every structure fire ever seen is kept."""
+    t = requests.get(site["url"], headers={"User-Agent": UA}, timeout=60).text
+    i = t.index("a91.data=")
+    d, _ = json.JSONDecoder().raw_decode(t[i + 9:])
+    out = []
+    for a in d.get("alarms", []):
+        desc = a.get("description") or ""
+        if a.get("generic_title") != "Fire" or not FIRE_WORDS.search(desc) or NOT_FIRE.search(desc) or not a.get("address"):
+            continue
+        when = dt.datetime.fromtimestamp(a["stamp"], dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-4)))
+        out.append({"case_number": f"CAD-{a['id']}", "type": desc, "status": "dispatched", "opened": when.date().isoformat(), "closed": None,
+                    "address": f"{a['address']}, {a.get('city') or ''}".strip(", "), "street": a["address"], "city": a.get("city") or "", "zip": "",
+                    "parcel": "", "description": f"{desc} · dispatched {when.strftime('%Y-%m-%d %H:%M')}", "url": site["page"],
+                    "county": site["county"], "source": site["source"], "kind": "FIRE"})
+    return out
+
+
+def _pdf_text(b):
+    from pypdf import PdfReader
+    import io
+    try:
+        return "\n".join((p.extract_text() or "") for p in PdfReader(io.BytesIO(b)).pages)
+    except Exception:  # noqa: BLE001
+        return ""
+
+
+def agenda_files(site, frm, to):
+    """-> [(file id, meeting date ISO, title, url)] for the window."""
+    H = {"User-Agent": UA}
+    out = []
+    if site["list"] == "civicclerk":
+        j = requests.get(f"https://{site['tenant']}.api.civicclerk.com/v1/Events", headers=H, timeout=60,
+                         params={"$filter": f"startDateTime ge {frm.isoformat()}T00:00:00Z and startDateTime le {to.isoformat()}T23:59:59Z",
+                                 "$orderby": "startDateTime desc", "$top": 200}).json()
+        for e in j.get("value", []):
+            if "Supervisors" not in (e.get("categoryName") or ""):
+                continue
+            for f in e.get("publishedFiles") or []:
+                out.append((f"cc-{f['fileId']}", e["startDateTime"][:10], f"{e['eventName']}: {f.get('name') or f.get('type')}",
+                            f"https://{site['tenant']}.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId={f['fileId']},plainText=false)"))
+    else:
+        seen = set()
+        for word in ("derelict", "blight", "unsafe structure", "condemned", "demolition"):
+            t = requests.get(site["base"] + "/AgendaCenter/Search/", headers=H, timeout=60,
+                             params={"term": word, "CIDs": "all", "startDate": frm.strftime("%m/%d/%Y"), "endDate": to.strftime("%m/%d/%Y"), "dateRange": "", "dateSelector": ""}).text
+            for path in re.findall(r'href="(/AgendaCenter/ViewFile/(?:Agenda|Minutes)/_(\d{8})-\d+)"', t):
+                if path[0] in seen:
+                    continue
+                seen.add(path[0])
+                d8 = path[1]
+                out.append((path[0].rsplit("/", 1)[-1] + ("-A" if "/Agenda/" in path[0] else "-M"), f"{d8[4:]}-{d8[:2]}-{d8[2:4]}",
+                            ("Agenda " if "/Agenda/" in path[0] else "Minutes ") + d8, site["base"] + path[0]))
+            time.sleep(SLEEP)
+    return out
+
+
+def agenda_rows(site, frm, to, cache):
+    """Board agendas and minutes read for derelict / blight / unsafe-structure / demolition actions.
+    A hit is a paragraph with one of those phrases AND a street address or tax-map number; each
+    becomes a DERELICT_STRUCTURE (or SPOT_BLIGHT) candidate. Files already read are not fetched again."""
+    out = []
+    for fid, when, title, url in agenda_files(site, frm, to):
+        key = f"{site['county']}|{fid}"
+        if key in cache:
+            text = cache[key]
+        else:
+            try:
+                b = requests.get(url, headers={"User-Agent": UA}, timeout=120).content
+                text = _pdf_text(b) if b[:4] == b"%PDF" else ""
+            except requests.RequestException:
+                text = ""
+            cache[key] = text
+            time.sleep(SLEEP)
+        if not text:
+            continue
+        for para in re.split(r"\n\s*\n|(?<=\.)\s*\n", text):
+            p = re.sub(r"\s+", " ", para).strip()
+            if len(p) < 30 or not AGENDA_WORDS.search(p) or AGENDA_NOISE.search(p):
+                continue
+            kind = "SPOT_BLIGHT" if re.search(r"spot blight|36-49", p, re.I) else "DERELICT_STRUCTURE"
+            addrs = [f"{n} {s}" for n, s in STREET_RE.findall(p)]
+            maps = [m for m in TAXMAP_RE.findall(p)]
+            for ref, is_map in [(a, False) for a in addrs] + [(m, True) for m in maps]:
+                out.append({"case_number": hashlib.sha1(f"{fid}|{ref}".encode()).hexdigest()[:10], "type": "Board action: " + kind.replace("_", " ").title(),
+                            "status": "on the agenda", "opened": when, "closed": None, "address": "" if is_map else ref, "street": "" if is_map else ref,
+                            "zip": "", "parcel": ref if is_map else "", "description": p[:300], "url": url, "county": site["county"],
+                            "source": f"{site['source']}: {title}", "kind": kind, "agenda": True})
+    return out
+
+
+COLLECT = {"energov": energov_search, "accela": accela_search, "arcgis": arcgis_rows, "energov_permits": energov_permits, "active911": active911_rows}
+
+
+AGENDA_CACHE = os.path.join(config.ROOT, ".cache", "agenda-text.json")
 
 
 def collect(full=False, only=None):
     status = {}
+    cache = json.load(open(AGENDA_CACHE)) if os.path.exists(AGENDA_CACHE) else {}
     for key, site in SITES.items():
         if only and key not in only:
             continue
         data, recs, failed = load_portal(key), [], False
-        for frm, to in windows(full):
+        if site.get("static") and data.get("cases"):
+            status[key] = data.get("meta", {})
+            continue                                    # a fixed historical layer: read once
+        wins = windows(full)
+        if site["kind"] == "active911":
+            wins = wins[-1:]                            # the feed only ever shows the last few calls
+        if site["kind"] == "agendas":
+            wins = [(wins[0][0] if full else dt.date.today() - dt.timedelta(days=548), dt.date.today())]
+        for frm, to in wins:
             try:
-                rows = COLLECT[site["kind"]](site, frm, to)
+                if site["kind"] == "agendas":
+                    rows = agenda_rows(site, frm, to, cache)
+                else:
+                    rows = COLLECT[site["kind"]](site, frm, to)
                 log.info("%s %s..%s: %s records", key, frm, to, len(rows))
                 recs += rows
             except Exception as e:  # noqa: BLE001
                 failed = True
                 log.warning("%s %s..%s failed: %s", key, frm, to, e)
             time.sleep(SLEEP)
+        if site["kind"] == "arcgis" and site.get("signal_kind"):
+            for r in recs:
+                r["kind"] = site["signal_kind"]
         data = merge_cases(data, key, recs, failed)
+        os.makedirs(os.path.dirname(AGENDA_CACHE), exist_ok=True)
+        json.dump(cache, open(AGENDA_CACHE, "w"))
         if full and not failed:
             data["last_full_sweep"] = now_iso()
         save_portal(key, data)
@@ -411,6 +599,14 @@ def match(case, idx):
 def to_signal(case, today):
     kind = case.get("kind") or kind_of(case.get("type", ""), case.get("description", ""))
     open_ = is_open(case.get("status"))
+    d0 = case.get("opened") or ""
+    age = (today - dt.date.fromisoformat(d0[:10])).days if d0 else None
+    if kind == "FIRE":
+        open_ = age is not None and age <= 730           # a fire counts for two years, then it is history
+    elif case.get("agenda"):
+        open_ = age is not None and age <= 548           # a board action counts for 18 months
+    elif kind == "DEMO_PERMIT":
+        open_ = bool(re.search(r"issued|applied|pending|in review|approved|active", case.get("status", ""), re.I)) and (age is None or age <= 730)
     confirmed = bool(CONFIRMED_WORDS.search(case.get("status", "") + " " + case.get("type", "")))
     complaint = bool(re.search(r"complaint", case.get("type", ""), re.I)) and not confirmed
     d = case.get("opened") or ""

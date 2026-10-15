@@ -20,7 +20,7 @@ window.VAPL = {
         "fauquier": { name: "Fauquier", data: "data/fauquier/", ns: "fq:", thin: false,
             taxSource: "a 2025 delinquent list", listShort: "on a 2025 list",
             listOnly: "On a 2025 delinquent list you supplied. The list gives an amount only: no tax years, no payment count, and it has not been re-checked.",
-            note: "<b>Fauquier County publishes no tax balances.</b> Its tax inquiry needs a login and there is no public delinquent list, so the Delinquent tab shows only the parcels on a 2025 list you supplied, with the amount due then. Treat every one as possibly paid until the Treasurer confirms it. The parcel record is rich: it gives the type of the last instrument (will, list of heirs, heirship affidavit), sale date and price, and values. Obituaries are not automated here yet; deaths come from federal records through 2007 and anything entered by hand." },
+            note: "<b>Fauquier's tax balances are loaded by hand.</b> The Treasurer posts a Real Estate Delinquent Aging Account List (PIN, owner, amount) on its Delinquent Listings page, but the county website blocks automated readers, so the Delinquent tab shows the newest list that was downloaded and loaded by hand, with the amount due on its date. Treat every one as possibly paid until the Treasurer confirms it. The parcel record is rich: it gives the type of the last instrument (will, list of heirs, heirship affidavit), sale date and price, and values. Obituaries are not automated here yet; deaths come from federal records through 2007 and anything entered by hand." },
     },
 };
 (function () {

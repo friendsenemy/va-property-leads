@@ -360,6 +360,27 @@ html, body { margin: 0; }
   </div>
 </div>
 
+<div class="section" id="signals">
+  <div class="eyebrow">All counties</div>
+  <h2>Distress Signals</h2>
+  <p>Public agency records about a property, attached to the parcel and shown on every tab: 🔥 FIRE, 🏚 VACANT / DERELICT, 🏛 SPOT BLIGHT, ⚠ CODE CASE, ⚠ NUISANCE, 🧱 DEMO PERMIT, ⚠ REPEAT CODE CASES, and ⚡ STACKED when two or more kinds land on one owner. Only open records add points. Use the header filter (Distress signal, Fire-damaged, Stacked, Repeat code cases) on any tab, or the Stacked Distress tab's "Signal + deceased owner" and "Signal + tax delinquent" buttons.</p>
+  <div class="grid2">
+    <div class="box">
+      <h3>Where they come from</h3>
+      <dl>
+        <dt>🧱 Demolition permits (Fauquier)</dt><dd>The county's permit portal, four demolition permit types, with address and PIN. A demolition permit means the owner is tearing down or has a house to tear down.</dd>
+        <dt>🔥 Fires (King George)</dt><dd>The county's own live Fire &amp; Rescue dispatch feed, structure fires only, plus the county's 2022–23 incident map. A dispatch is a dispatch: the house may be fine. Under 30 days it is marked cooling. Do not call that week.</dd>
+        <dt>🏚 🏛 Board actions (Westmoreland, King George, Colonial Beach)</dt><dd>Agendas and minutes read for derelict structure, spot blight, unsafe structure and demolition items that name an address or tax map number. Read the linked minutes before you act; the match is by what the board wrote.</dd>
+      </dl>
+    </div>
+    <div class="box">
+      <h3>What does not exist</h3>
+      <p>None of the three counties publishes a code-enforcement case list. The FOIA letters asking for one are written and ready in <code>docs/foia-requests.md</code>; they must go from a Virginia resident or business, and the county has five working days to answer. When a response arrives, the rows go in <code>data/distress/manual.csv</code> and match the next morning.</p>
+      <p><b>A record is not a condition.</b> An open case means the agency has a file. A closed or old record says nothing about the house today. Every lead's panel shows the date, status, whether an inspector confirmed it or it is still a complaint, and whether the match to the parcel was exact.</p>
+    </div>
+  </div>
+</div>
+
 <div class="section" id="waterfront">
   <div class="eyebrow">Both counties</div>
   <h2>💧 Waterfront</h2>

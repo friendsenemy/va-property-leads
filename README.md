@@ -235,3 +235,31 @@ python -m pytest tests -q
 Property records are public. This tool reads how title is recorded; it does not know who
 is alive, who the heirs are, or what is owed. Verify in the Clerk's records before you
 contact anyone.
+
+## Distress signals
+
+Public agency records about a property, matched to the parcel and stacked on whatever it
+already carries. `engine/distress.py` runs once a day (`distress-watch.yml`, 3:53 AM ET;
+Sundays walk back to 2020) and writes `data/distress/signals.json` plus one file per
+source. Every signal is attached to an existing parcel by parcel id or by street address
+inside the county; an address shared by more than three parcels is marked ambiguous and not
+attached. Only open records score (`DISTRESS_POINTS` in `engine/config.py`); closed ones
+are kept for history and the repeat count. A fire under 30 days old is "cooling".
+
+What exists in these three counties (checked October 2026; details and the FOIA letters for
+what does not exist are in `docs/foia-requests.md` and `docs/sources-and-terms.md`):
+
+| Source | County | Signal | How |
+|---|---|---|---|
+| Civic Access demolition permits (four permit types) | Fauquier | 🧱 DEMO_PERMIT | the portal's own public search request, replayed; address and PIN |
+| Fire & Rescue live CAD calls (county website feed) | King George | 🔥 FIRE | polled daily; structure-fire dispatches only, kept for two years |
+| Fire & Rescue incidents 2022-23 (county GIS layer) | King George | 🔥 FIRE (history) | read once |
+| Board of Supervisors agendas and minutes | Westmoreland (CivicClerk API), King George and Colonial Beach (AgendaCenter search) | 🏚 DERELICT_STRUCTURE, 🏛 SPOT_BLIGHT | PDFs read for derelict / blight / unsafe-structure / demolition actions with an address or tax map number |
+| `data/distress/manual.csv` | any | any | rows from a FOIA response or a press release |
+
+**No county publishes a code-enforcement case list.** King George and Westmoreland have no
+online case search; Fauquier's portal has a Code Case search that returns nothing (no public
+case types configured); Warrenton's and Westmoreland's permit portals are behind a token or
+a CAPTCHA with robots files that bar automation. The Fauquier Treasurer's delinquent list and
+tax-sale notice are public pages behind a bot wall; download the list by hand and load it with
+`VAPL_COUNTY=fauquier python -m engine.delinq_list --add <pdf>`.

@@ -55,3 +55,20 @@ polite rate.
 
 The matcher reads every file in `data/obits/`. This repo does not contain code to get
 past a site's bot block; data from any other source can be dropped in as a file.
+
+## Distress signals (checked 2026-10-14)
+
+| Source | What it gives | Terms / robots | Used |
+|---|---|---|---|
+| **Fauquier Civic Access** (`commdevpay.fauquiercounty.gov/energov_prod/selfservice`) | Public permit search by apply-date range, 100 per page, with address and PIN; demolition permit types filtered. The Code Case search exists but returns nothing: no public code case types are configured. | No robots.txt; no terms text in the portal; nothing in results is login-gated (only "my permits"). The request sent is the page's own search body. | Daily, demolition permits |
+| **King George Active CAD Calls** (county page `kinggeorgecountyva.gov/774/Active-CAD-Calls`, feed `access.active911.com/interface/js.php?r3vd471`) | The county's own live feed of the last few Fire & Rescue dispatches: type, address, time | Published by the county for the public; no robots file or terms on the feed host. Only structure-fire dispatches are kept; medical calls are discarded unread. | Daily poll |
+| **King George FireRescueIncidents2022** (county ArcGIS) | 4,273 geocoded incidents, 2022 to May 2023, static | Public ArcGIS layer | Once, structure fires only |
+| **Westmoreland CivicClerk** (`westmorelandcova.api.civicclerk.com`) | Board meetings and agenda / minutes PDFs via an anonymous JSON API | Portal robots allows all | Daily, Board of Supervisors files |
+| **King George and Colonial Beach AgendaCenter** | Full-text search of agendas and minutes; PDFs | robots allow /AgendaCenter | Daily keyword search, PDFs read |
+| **Fauquier Granicus agendas** | Agenda and minutes PDFs via RSS | `fauquier-va.granicus.com/robots.txt` disallows everything | **Not used** |
+| **Fauquier county website** (`fauquiercounty.gov`: delinquent listings PDF, judicial tax-sale notice) | Treasurer's Real Estate Delinquent Aging Account List (PIN, owner, amount), tax-sale notice with PINs | Akamai returns 403 to anything but a browser's full header set. Getting past a bot wall is not something this tool does. | **By hand**: download, then `delinq_list --add` |
+| **Fauquier DelinquentParcelsService** (county ArcGIS) | 870 delinquent parcels with owner and mailing address, snapshot June 2024 | Public ArcGIS layer | Not used: a 2024 snapshot would mislead |
+| **Westmoreland iWorQ permit portal** | Permit search by date range | Google reCAPTCHA on every search; `robots.txt: Disallow: /` | **Not used** |
+| **Town of Warrenton OpenGov portal** | Permits since 2021; no code-enforcement record type | List API needs an Authorization token; `robots.txt: Disallow: /` | **Not used** |
+| **Virginia Department of Fire Programs** | Aggregate annual reports only | n/a | Nothing to use |
+| Code enforcement case lists (King George, Westmoreland, Colonial Beach, Warrenton) | Do not exist online | n/a | FOIA letters in `docs/foia-requests.md` |
