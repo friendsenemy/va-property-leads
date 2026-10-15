@@ -124,6 +124,20 @@ DEMO_RE = re.compile(r"demol|raze|tear ?down", re.I)
 ZONING_RE = re.compile(r"zoning|land use|setback|sign", re.I)
 
 
+def norm_date(s):
+    """'02/09/23  15:02' | '2026-10-01T..' | '10/1/2026' -> 'YYYY-MM-DD' or None."""
+    s = (s or "").strip()
+    m = re.match(r"^(\d{4})-(\d{2})-(\d{2})", s)
+    if m:
+        return m.group(0)
+    m = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{2,4})", s)
+    if m:
+        y = int(m.group(3))
+        y = y + 2000 if y < 100 else y
+        return f"{y:04d}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
+    return None
+
+
 def now_iso():
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
 
@@ -319,7 +333,7 @@ def arcgis_rows(site, frm, to):
                 v = g(k)
                 if isinstance(v, (int, float)) and v > 10 ** 11:
                     return dt.datetime.fromtimestamp(v / 1000, dt.timezone.utc).date().isoformat()
-                return str(v)[:10] if v else None
+                return norm_date(str(v)) if v else None
             out.append({"case_number": str(g("case_number") or a.get("OBJECTID")), "type": str(g("type")), "status": str(g("status")),
                         "opened": d("opened"), "closed": d("closed"), "address": str(g("address")).strip(), "street": str(g("address")).split(",")[0].strip(),
                         "zip": str(g("zip"))[:5], "parcel": str(g("parcel")).strip(), "description": str(g("description"))[:300],
@@ -477,6 +491,9 @@ def collect(full=False, only=None):
         wins = windows(full)
         if site["kind"] == "active911":
             wins = wins[-1:]                            # the feed only ever shows the last few calls
+        if site["kind"] == "energov_permits" and full:
+            # a demolition type has well under 100 permits a year, so yearly windows (paged) are enough
+            wins = [(dt.date(y, 1, 1), min(dt.date(y, 12, 31), dt.date.today())) for y in range(HISTORY_START.year, dt.date.today().year + 1)]
         if site["kind"] == "agendas":
             wins = [(wins[0][0] if full else dt.date.today() - dt.timedelta(days=548), dt.date.today())]
         for frm, to in wins:
@@ -599,8 +616,9 @@ def match(case, idx):
 def to_signal(case, today):
     kind = case.get("kind") or kind_of(case.get("type", ""), case.get("description", ""))
     open_ = is_open(case.get("status"))
-    d0 = case.get("opened") or ""
-    age = (today - dt.date.fromisoformat(d0[:10])).days if d0 else None
+    d0 = norm_date(case.get("opened")) or ""
+    case["opened"] = d0 or None
+    age = (today - dt.date.fromisoformat(d0)).days if d0 else None
     if kind == "FIRE":
         open_ = age is not None and age <= 730           # a fire counts for two years, then it is history
     elif case.get("agenda"):
