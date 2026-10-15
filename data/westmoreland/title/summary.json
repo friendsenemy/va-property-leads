@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-08T15:31:55+00:00",
- "index_built_at": "2026-10-08T15:31:53+00:00",
+ "generated_at": "2026-10-15T01:37:48+00:00",
+ "index_built_at": "2026-10-15T01:37:47+00:00",
  "county": "Westmoreland",
  "state": "VA",
  "parcels_indexed": 27218,
@@ -102,6 +102,38 @@
     "MAIL_DIFFERS",
     "CARE_OF"
    ]
+  },
+  {
+   "id": "signal",
+   "label": "Distress signal (any)",
+   "flags_any": [
+    "FIRE",
+    "VACANT_NOTICE",
+    "DERELICT_STRUCTURE",
+    "RECEIVERSHIP",
+    "SPOT_BLIGHT",
+    "CODE_VIOLATIONS",
+    "DEMO_PERMIT",
+    "NUISANCE_CASE",
+    "REPEAT_CODE_CASES",
+    "ZONING_CASE"
+   ]
+  },
+  {
+   "id": "fire",
+   "label": "\ud83d\udd25 Fire-damaged",
+   "flag": "FIRE"
+  },
+  {
+   "id": "stacked",
+   "label": "\u26a1 Stacked 2+ kinds",
+   "flag": "STACKED_SIGNALS"
+  },
+  {
+   "id": "repeat",
+   "label": "Repeat code cases",
+   "flag": "REPEAT_CODE_CASES"
   }
- ]
+ ],
+ "signal_parcels": 0
 }
