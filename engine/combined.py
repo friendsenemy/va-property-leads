@@ -23,7 +23,7 @@ import logging
 import os
 import sqlite3
 
-from engine import config, title_scan
+from engine import config, distress, title_scan
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger("combined")
@@ -108,16 +108,36 @@ def run(today=None):
             c, flags, detail = title_scan.scan_parcel(r, today.year)
             o["parcels"][r["pid"]] = title_scan.parcel_view(r, flags, detail, today.year)
 
+    # distress signals: every parcel in the county with an open public-agency record
+    for r in rows:
+        sigs = [s for s in distress.of(r["pid"]) if s.get("open")]
+        if not sigs or r["owner_type"] in ("GOVERNMENT", "CEMETERY"):
+            continue
+        dflags, dpts = distress.flags_for(sigs)
+        kinds = [k for k in config.DISTRESS_POINTS if k in dflags and k != "STACKED_SIGNALS"]
+        o = slot(r["owner"], r["mail_addr"])
+        cur = o["signals"].get("DISTRESS")
+        pts = min(60, dpts)
+        if not cur or pts > cur["points"]:
+            o["signals"]["DISTRESS"] = {"label": ", ".join(config.DISTRESS_LABEL[k] for k in kinds), "points": pts, "kinds": kinds,
+                                        "cooling": "FIRE_COOLING" in dflags, "records": len(sigs)}
+        o.setdefault("meta", {"owner_type": r["owner_type"], "care_of": r["care_of"],
+                              "mail": {"addr": r["mail_addr"], "city": r["mail_city"], "state": r["mail_state"], "zip": r["mail_zip"] or None}})
+        if r["pid"] not in o["parcels"]:
+            c, flags, detail = title_scan.scan_parcel(r, today.year)
+            o["parcels"][r["pid"]] = title_scan.parcel_view(r, flags, detail, today.year)
+
     leads = []
     for (owner, _mail), o in owners.items():
         sig = o["signals"]
-        if len(sig) < 2 and not (sig.get("CONDITION", {}).get("strong")):
+        strong_alone = sig.get("CONDITION", {}).get("strong") or (sig.get("DISTRESS", {}).get("points", 0) >= 40)
+        if len(sig) < 2 and not strong_alone:
             continue
         parcels = sorted(o["parcels"].values(), key=lambda p: -p["total_value"])
         pts = min(100, sum(s["points"] for s in sig.values()) + (10 if len(sig) >= 3 else 0))
         leads.append({
             "id": "c" + str(parcels[0]["pid"]), "priority": pts, "signal_count": len(sig),
-            "kinds": [k for k in ("DEATH", "TAX", "TITLE", "CONDITION") if k in sig], "signals": sig,
+            "kinds": [k for k in ("DEATH", "TAX", "TITLE", "CONDITION", "DISTRESS") if k in sig], "signals": sig,
             "owner": owner, "owner_type": o["meta"]["owner_type"], "care_of": o["meta"]["care_of"], "mail": o["meta"]["mail"],
             "parcel_count": len(parcels), "total_value": sum(p["total_value"] for p in parcels), "parcels": parcels,
         })
@@ -128,6 +148,10 @@ def run(today=None):
                "death_and_tax": sum(1 for l in leads if "DEATH" in l["signals"] and "TAX" in l["signals"]),
                "condition": sum(1 for l in leads if "CONDITION" in l["signals"]),
                "condition_strong_alone": sum(1 for l in leads if l["signal_count"] == 1),
+               "distress": sum(1 for l in leads if "DISTRESS" in l["signals"]),
+               "distress_and_death": sum(1 for l in leads if "DISTRESS" in l["signals"] and "DEATH" in l["signals"]),
+               "distress_and_tax": sum(1 for l in leads if "DISTRESS" in l["signals"] and "TAX" in l["signals"]),
+               "signal_parcels": sum(1 for l in leads for p in l["parcels"] if any(s.get("open") for s in p.get("signals", []))),
                "next_step": NEXT_STEP}
     os.makedirs(OUT, exist_ok=True)
     json.dump({"summary": summary, "rows": leads}, open(os.path.join(OUT, "leads.json"), "w"), separators=(",", ":"))

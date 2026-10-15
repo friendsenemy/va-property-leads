@@ -908,3 +908,6 @@ a:hover { text-decoration: underline; }
 .law-box li { margin: 4px 0 4px 18px; }
 
 .chip-water { padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.55); color: #7dd3fc; margin-top: 4px; display: inline-block; white-space: nowrap; }
+
+.chip-sig { padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; background: rgba(251, 146, 60, 0.14); border: 1px solid rgba(251, 146, 60, 0.6); color: #fdba74; margin-top: 4px; display: inline-block; white-space: nowrap; }
+.chip-fire { background: rgba(248, 113, 113, 0.18); border-color: rgba(248, 113, 113, 0.7); color: #fca5a5; }

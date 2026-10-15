@@ -33,7 +33,7 @@ import re
 import sqlite3
 
 from engine import config, owner_parse
-from engine import waterfront
+from engine import distress, waterfront
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 log = logging.getLogger("title_scan")
@@ -288,6 +288,11 @@ def scan_parcel(r, this_year):
         detail["condition"] = [l for l, _st in notes]
     if typ == "INDIVIDUAL" and re.search(r"\sOR\s", r["owner"]):
         flags.append("SURVIVORSHIP_OR")
+    sigs = distress.of(r["pid"])
+    if sigs:
+        dflags, _pts = distress.flags_for(sigs)
+        flags += dflags
+        detail["signals"] = sigs
 
     cls = ""
     f = set(flags)
@@ -341,6 +346,10 @@ def score(cls, flags, n_parcels):
     if n_parcels > 1:
         pts += config.MULTI_PARCEL_POINTS
         reasons.append(f"+{config.MULTI_PARCEL_POINTS} same owner holds {n_parcels} parcels")
+    for k, p in config.DISTRESS_POINTS.items():
+        if k in f:
+            pts += p
+            reasons.append(f"+{p} {config.DISTRESS_LABEL[k]}" + (" (cooling: under 30 days, do not call yet)" if k == "FIRE" and "FIRE_COOLING" in f else ""))
     return min(100, pts), reasons
 
 
@@ -360,6 +369,7 @@ def parcel_view(r, flags, detail, this_year):
         "remarks": " | ".join(x for x in (r.get("remark1"), r.get("remark2")) if x),
         "flags": flags, "card_url": r["card_url"],
         "water": waterfront.of(r),
+        "signals": detail.get("signals", []),
     }
 
 
@@ -446,7 +456,12 @@ def run(db_path=DB_PATH, out_dir=OUT, today=None):
             {"id": "note", "label": "Death or will noted by assessor", "classes": ["N1", "N2"]},
             {"id": "old", "label": "No transfer in 40+ years", "flag": "OLD_TITLE_40"},
             {"id": "absentee", "label": "Bill mailed elsewhere", "flags_any": ["OUT_OF_STATE", "OUT_OF_COUNTY", "MAIL_DIFFERS", "CARE_OF"]},
+            {"id": "signal", "label": "Distress signal (any)", "flags_any": [k for k in config.DISTRESS_POINTS if k != "STACKED_SIGNALS"]},
+            {"id": "fire", "label": "🔥 Fire-damaged", "flag": "FIRE"},
+            {"id": "stacked", "label": "⚡ Stacked 2+ kinds", "flag": "STACKED_SIGNALS"},
+            {"id": "repeat", "label": "Repeat code cases", "flag": "REPEAT_CODE_CASES"},
         ],
+        "signal_parcels": sum(1 for l in leads for p in l["parcels"] if any(s.get("open") for s in p.get("signals", []))),
     }
     os.makedirs(out_dir, exist_ok=True)
     json.dump({"generated_at": now, "rows": leads}, open(os.path.join(out_dir, "leads.json"), "w"), separators=(",", ":"))

@@ -25,6 +25,19 @@ HAS_TREASURER_WALK = True
 MIN_PAST_DUE = 0                                          # smallest balance that makes a delinquent lead
 NO_DEED_DATES = False                                     # True where the parcel record has no sale / transfer date
 
+# Distress signals (engine/distress.py): points added to a lead for each kind of OPEN
+# public-agency record on one of its parcels. Additive; nothing else is reset.
+DISTRESS_POINTS = {
+    "FIRE": 45, "VACANT_NOTICE": 40, "DERELICT_STRUCTURE": 40, "RECEIVERSHIP": 40, "SPOT_BLIGHT": 40,
+    "CODE_VIOLATIONS": 25, "DEMO_PERMIT": 25, "NUISANCE_CASE": 20, "REPEAT_CODE_CASES": 20, "ZONING_CASE": 10,
+    "STACKED_SIGNALS": 10,
+}
+DISTRESS_LABEL = {
+    "FIRE": "🔥 Fire", "VACANT_NOTICE": "🏚 Vacant / derelict", "DERELICT_STRUCTURE": "🏚 Derelict structure", "RECEIVERSHIP": "🏛 Receivership",
+    "SPOT_BLIGHT": "🏛 Spot blight", "CODE_VIOLATIONS": "⚠ Code case", "DEMO_PERMIT": "🧱 Demo permit", "NUISANCE_CASE": "⚠ Nuisance",
+    "REPEAT_CODE_CASES": "⚠ Repeat code cases", "ZONING_CASE": "⚠ Zoning case", "STACKED_SIGNALS": "⚡ Stacked",
+}
+
 # King George County open data (ArcGIS Online). The item's licence is a warranty
 # disclaimer only; anonymous query is enabled. See docs/sources-and-terms.md.
 PARCELS_URL = ("https://services2.arcgis.com/S8zMJrpz61FbvL5t/arcgis/rest/services/"

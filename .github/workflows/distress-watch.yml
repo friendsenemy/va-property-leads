@@ -1,0 +1,58 @@
+name: Distress signals (fire, vacancy, code, demolition, blight)
+
+# Once a day, early: read each agency's public case list for the last 60 days (new cases
+# and status changes on recent ones), match every case to a parcel, write
+# data/distress/signals.json plus one JSON per portal, and commit. On Sundays walk every
+# month back to 2020 so an old case that closes or escalates is caught. The nightly
+# county builds read signals.json and stack the signals onto their leads; nothing else
+# is touched here.
+
+on:
+  schedule:
+    - cron: '53 7 * * *'       # 07:53 UTC = 3:53 AM EDT / 2:53 AM EST, before the county builds
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Walk every month back to 2020'
+        default: 'false'
+        required: false
+  push:
+    branches: [main]
+    paths:
+      - 'engine/distress.py'
+      - 'data/distress/manual.csv'
+      - '.github/workflows/distress-watch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writers
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Parcel indexes for the three counties (to match cases to parcels)
+        run: |
+          python -m engine.parcels
+          VAPL_COUNTY=westmoreland python -m engine.parcels
+          VAPL_COUNTY=fauquier python -m engine.parcels
+      - name: Collect and match
+        run: |
+          if [ "$(date -u +%u)" = "7" ] || [ "${{ github.event.inputs.full }}" = "true" ]; then
+            python -m engine.distress --full
+          else
+            python -m engine.distress
+          fi
+      - name: Commit results
+        run: |
+          N=$(python -c "import json;c=json.load(open('data/distress/signals.json'))['counts'];print(f\"{c['parcels_with_open_signals']} parcels with an open signal ({c['stacked_2plus']} stacked)\")")
+          .github/commit-data.sh "Distress signals: ${N}" data/distress

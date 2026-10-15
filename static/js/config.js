@@ -34,6 +34,47 @@ window.VAPL = {
     /* Waterfront. Every parcel carries `water` when its lot line reaches mapped water
        (engine/waterfront.py) or the assessor's note says waterfront. */
     VAPL.waterOnly = false;
+
+    /* Distress signals (engine/distress.py). Each parcel carries `signals`: public agency
+       records matched to it. Chips show OPEN kinds; the panel lists every record. */
+    VAPL.SIG = { FIRE: "🔥 FIRE", VACANT_NOTICE: "🏚 VACANT / DERELICT", DERELICT_STRUCTURE: "🏚 DERELICT", RECEIVERSHIP: "🏛 RECEIVERSHIP", SPOT_BLIGHT: "🏛 SPOT BLIGHT",
+                 CODE_VIOLATIONS: "⚠ CODE CASE", NUISANCE_CASE: "⚠ NUISANCE", DEMO_PERMIT: "🧱 DEMO PERMIT", REPEAT_CODE_CASES: "⚠ REPEAT CODE CASES", ZONING_CASE: "⚠ ZONING" };
+    VAPL.sigFilter = "";
+    VAPL.sigsOf = (r) => (r.parcels || []).flatMap((p) => (p.signals || []).map((s) => Object.assign({ _pin: p.parcel || p.pin, _addr: p.address }, s)));
+    VAPL.openKinds = (r) => [...new Set(VAPL.sigsOf(r).filter((s) => s.open).map((s) => s.kind))];
+    VAPL.sigChips = (r) => {
+        const kinds = VAPL.openKinds(r);
+        if (!kinds.length) return "";
+        const cooling = VAPL.sigsOf(r).some((s) => s.open && s.cooling);
+        const e = (s) => String(s).replace(/</g, "&lt;");
+        return `<div>${kinds.map((k) => `<span class="chip chip-sig${k === "FIRE" ? " chip-fire" : ""}" title="${e(VAPL.SIG[k] || k)}: an open public-agency record on one of this owner's parcels">${e(VAPL.SIG[k] || k)}</span>`).join(" ")}${kinds.length >= 2 ? '<span class="chip chip-sig" title="Two or more different kinds of record">⚡ STACKED</span>' : ""}${cooling ? '<span class="chip" style="opacity:.8" title="Fire under 30 days old: do not call this week">cooling</span>' : ""}</div>`;
+    };
+    VAPL.sigPass = (r) => {
+        const f = VAPL.sigFilter; if (!f) return true;
+        const k = VAPL.openKinds(r);
+        if (f === "any") return k.length > 0;
+        if (f === "fire") return k.includes("FIRE");
+        if (f === "stacked") return k.length >= 2;
+        if (f === "repeat") return k.includes("REPEAT_CODE_CASES");
+        return true;
+    };
+    VAPL.sigPanel = (r) => {
+        const sigs = VAPL.sigsOf(r);
+        if (!sigs.length) return "";
+        const e = (s) => (s == null ? "" : String(s)).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        const open = sigs.filter((s) => s.open), closed = sigs.filter((s) => !s.open);
+        const row = (s) => `<tr>
+            <td class="mono">${e(s.date || "—")}</td>
+            <td>${e(VAPL.SIG[s.kind] || s.kind)}${s.cooling ? ' <span class="chip">cooling</span>' : ""}<div class="sub">${e(s.type || "")}</div></td>
+            <td>${e(s.status || "—")}<div class="sub">${s.confirmed ? "inspector-confirmed" : (s.complaint ? "complaint, not yet inspected" : "")}</div></td>
+            <td class="mono">${s.url ? `<a href="${e(s.url)}" target="_blank" rel="noopener">${e(s.case_number || "record")}</a>` : e(s.case_number || "")}<div class="sub">${e(s.source || "")}</div></td>
+            <td><div class="sub">${e(s._addr || s.address || "")} · map ${e(s._pin || "")} · ${s.match === "parcel" ? "exact (parcel id)" : s.match === "address" ? "exact (address)" : e(s.match || "")}</div>${s.description ? `<div class="sub">${e(s.description)}</div>` : ""}</td></tr>`;
+        return `<div class="detail-section"><h3>Distress Signals <span class="sub">${open.length} open · ${closed.length} closed</span></h3>
+            <div class="verify"><b>A record is not a condition.</b> An open case means the agency has an active file; a closed or old one says nothing about the property today. Fires under 30 days are marked cooling: do not call that week. Click the case number to read the agency's own record.</div>
+            <div class="ptable-wrap"><table class="ptable"><thead><tr><th>Date</th><th>Kind</th><th>Status</th><th>Case / source</th><th>Match</th></tr></thead>
+            <tbody>${open.map(row).join("")}${closed.length ? `<tr><td colspan="5" class="sub" style="padding-top:8px">Closed records (history and repeat count only; no points)</td></tr>` + closed.map(row).join("") : ""}</tbody></table></div></div>`;
+    };
+    VAPL.sigCsv = (r) => { const s = VAPL.sigsOf(r).filter((x) => x.open); return [s.map((x) => x.kind).join("|"), s.map((x) => x.date || "").join("|"), s.map((x) => `${x.source || ""} ${x.case_number || ""}`.trim()).join("|")]; };
     VAPL.waterOf = (r) => (r.parcels || []).map((p) => p.water).find(Boolean) || r.water || null;
     VAPL.waterText = (w) => !w ? "" : (w.source === "assessor" ? "the assessor's note says waterfront; not confirmed on the map"
         : `lot line reaches ${w.water}${w.frontage_ft ? `, about ${Number(w.frontage_ft).toLocaleString()} ft of shoreline` : ""} (measured from the map)`);
@@ -50,6 +91,8 @@ window.VAPL = {
             sel.innerHTML = Object.entries(VAPL.COUNTIES).map(([k, c]) => `<option value="${k}"${k === key ? " selected" : ""}>${c.name} County</option>`).join("");
             sel.addEventListener("change", () => { location.href = location.pathname + (sel.value === "king-george" ? "" : "?county=" + sel.value) + location.hash; });
         }
+        const sf = document.getElementById("sigFilter");
+        if (sf) sf.addEventListener("change", () => { VAPL.sigFilter = sf.value; document.dispatchEvent(new CustomEvent("vapl:water")); });
         const wo = document.getElementById("waterOnly");
         if (wo) wo.addEventListener("change", () => { VAPL.waterOnly = wo.checked; document.dispatchEvent(new CustomEvent("vapl:water")); });
         document.querySelectorAll("[data-county-name]").forEach((el) => { el.textContent = VAPL.county.name; });

@@ -1,6 +1,6 @@
 /* Stacked Distress tab: one row per owner, every signal side by side.
    Uses LeadTab and the helpers defined in tabs.js. */
-const KIND = { DEATH: ["Death", "cls-E"], TAX: ["Taxes", "cls-C"], TITLE: ["Title", "cls-W"], CONDITION: ["Condition", "cls-X"] };
+const KIND = { DEATH: ["Death", "cls-E"], TAX: ["Taxes", "cls-C"], TITLE: ["Title", "cls-W"], CONDITION: ["Condition", "cls-X"], DISTRESS: ["Signals", "cls-E"] };
 
 const StackApp = new LeadTab({
     prefix: "stack", url: VAPL.DATA + "combined/leads.json", lsKey: "va_stack_leads_local_v1" + VAPL.ns,
@@ -14,10 +14,16 @@ const StackApp = new LeadTab({
         { id: "death", label: "Any death", test: (r) => !!r.signals.DEATH },
         { id: "tax", label: "Any unpaid taxes", test: (r) => !!r.signals.TAX },
         { id: "cond", label: "House in bad shape", test: (r) => !!r.signals.CONDITION },
+        { id: "sig", label: "Distress signal (any)", test: (r) => !!r.signals.DISTRESS },
+        { id: "sigdeath", label: "Signal + deceased owner", test: (r) => r.signals.DISTRESS && r.signals.DEATH },
+        { id: "sigtax", label: "Signal + tax delinquent", test: (r) => r.signals.DISTRESS && r.signals.TAX },
+        { id: "sigfire", label: "🔥 Fire-damaged", test: (r) => (r.signals.DISTRESS || {}).kinds?.includes("FIRE") },
+        { id: "sigstack", label: "⚡ Stacked 2+ kinds", test: (r) => ((r.signals.DISTRESS || {}).kinds || []).length >= 2 },
+        { id: "sigrepeat", label: "Repeat code cases", test: (r) => (r.signals.DISTRESS || {}).kinds?.includes("REPEAT_CODE_CASES") },
     ],
     stats: (s) => [["Owners With Stacked Distress", s.leads, "yellow"], ["Death + Unpaid Taxes", s.death_and_tax, "pink"],
-        ["Three or More Signals", s.three_plus, "purple"], ["Bad-Condition Notes", s.condition, "cyan"]],
-    info: () => "One row per owner, every signal side by side: title, death, unpaid taxes, and the assessor's condition notes. Shown when two or more stack, or when the assessor notes a house as unsafe, abandoned, burned, unlivable or vacant. King George publishes no code-violation or fines list; the assessor's notes are the nearest free record.",
+        ["Three or More Signals", s.three_plus, "purple"], ["Parcels With a Distress Signal", s.signal_parcels || 0, "cyan"]],
+    info: () => "One row per owner, every signal side by side: title, death, unpaid taxes, the assessor's condition notes, and distress signals from public agency records (fire, vacancy, code enforcement, demolition, blight). Shown when two or more stack, when the assessor notes a house as unsafe, abandoned, burned, unlivable or vacant, or when an open agency record scores 40 or more on its own.",
     searchText: (r) => `${r.owner} ${r.mail.city} ${r.mail.state} ${Object.values(r.signals).map((x) => x.label + " " + (x.remarks || "")).join(" ")} ${r.parcels.map((p) => p.address + " " + p.pin).join(" ")}`,
     title: (r) => r.owner,
     row: (r) => [
@@ -25,7 +31,7 @@ const StackApp = new LeadTab({
         `<span class="mono" style="font-size:0.8rem">${esc(r.owner)}</span>${r.care_of ? `<div class="sub">c/o ${esc(r.care_of)}</div>` : ""}`,
         `<div class="address">${esc((r.parcels.find((p) => p.address) || {}).address || "No street address (land)")}</div><div class="meta">${r.parcel_count > 1 ? r.parcel_count + " parcels" : esc(r.parcels[0].legal || "")}</div>`,
         r.kinds.map((k) => `<span class="cls ${KIND[k][1]}">${KIND[k][0]}</span>`).join(" ") +
-            `<div class="sub">${esc([r.signals.TITLE && r.signals.TITLE.label, r.signals.CONDITION && r.signals.CONDITION.label].filter(Boolean).join(" · "))}</div>`,
+            `<div class="sub">${esc([r.signals.TITLE && r.signals.TITLE.label, r.signals.CONDITION && r.signals.CONDITION.label, r.signals.DISTRESS && r.signals.DISTRESS.label].filter(Boolean).join(" · "))}</div>`,
         r.signals.DEATH ? `<span class="mono" style="white-space:nowrap">${esc(r.signals.DEATH.death_date || "—")}</span><div class="sub">${esc(r.signals.DEATH.decedent)} · ${esc(r.signals.DEATH.identity_confidence.toLowerCase())}</div>` : '<span class="sub">—</span>',
         r.signals.TAX ? `<span class="mono" style="color:var(--red)">${money(r.signals.TAX.past_due)}</span><div class="sub">${LO() ? esc(VAPL.county.listShort) : `${r.signals.TAX.payments_behind} payments behind${r.signals.TAX.sale_eligible ? " · sale-eligible" : ""}`}</div>` : '<span class="sub">—</span>',
         `<span class="value-cell">${money(r.total_value)}</span>`,

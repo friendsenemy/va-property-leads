@@ -12,6 +12,8 @@ const TitleApp = {
         ESTATE_IN_NAME: "Estate", HEIRS_IN_NAME: "Heirs of", LIFE_ESTATE: "Life Estate", EXECUTOR_IN_NAME: "Executor named",
         ET_AL: "Et Al", LIST_OF_HEIRS_REF: "List of Heirs ref", WILL_BOOK_REF: "Will Book ref",
         ASSESSOR_DOD_NOTE: "Death noted", ASSESSOR_WILL_NOTE: "Will noted",
+        FIRE: "🔥 Fire", FIRE_COOLING: "cooling", VACANT_NOTICE: "🏚 Vacant", DERELICT_STRUCTURE: "🏚 Derelict", RECEIVERSHIP: "🏛 Receivership", SPOT_BLIGHT: "🏛 Spot blight",
+        CODE_VIOLATIONS: "⚠ Code case", NUISANCE_CASE: "⚠ Nuisance", DEMO_PERMIT: "🧱 Demo permit", REPEAT_CODE_CASES: "⚠ Repeat code cases", ZONING_CASE: "⚠ Zoning", STACKED_SIGNALS: "⚡ Stacked",
         OLD_TITLE_40: "40+ yrs", OLD_TITLE_25: "25+ yrs", OLD_TITLE_12: "12+ yrs",
         OUT_OF_STATE: "Out of state", OUT_OF_COUNTY: "Out of county", MAIL_DIFFERS: "Mail ≠ site", CARE_OF: "C/O",
         OBITUARY_MATCH: "Obituary match", TAX_SALE_ELIGIBLE: "Taxes 2+ yrs unpaid", TAX_DELINQUENT: "Taxes unpaid", ENTITY_INACTIVE: "SCC: not active",
@@ -57,7 +59,7 @@ const TitleApp = {
         document.getElementById("tstatLeads").textContent = Number(s.leads || 0).toLocaleString();
         document.getElementById("tstatEstate").textContent = ((c.E1 || 0) + (c.E2 || 0)).toLocaleString();
         document.getElementById("tstatParcels").textContent = Number(s.lead_parcels || 0).toLocaleString();
-        document.getElementById("tstatIndexed").textContent = Number(s.parcels_indexed || 0).toLocaleString();
+        document.getElementById("tstatSignals").textContent = Number(s.signal_parcels || 0).toLocaleString();
         document.getElementById("runInfo").innerHTML = `Parcels pulled ${this.fmtDT(s.index_built_at)}<br>Scan ${this.fmtDT(s.generated_at)}`;
         document.getElementById("titleRunInfo").textContent =
             (s.class_order || []).filter((k) => c[k]).map((k) => `${k} ${s.class_labels[k]}: ${c[k]}`).join(" · ");
@@ -113,6 +115,7 @@ const TitleApp = {
         return this.rows.filter((r) => {
             if (r.priority < st.minPriority) return false;
             if (VAPL.waterOnly && !VAPL.waterOf(r)) return false;
+            if (!VAPL.sigPass(r)) return false;
             if (st.status !== "all" && this.statusOf(r) !== st.status) return false;
             if (preset) {
                 if (preset.classes && !preset.classes.includes(r.title_class)) return false;
@@ -165,7 +168,7 @@ const TitleApp = {
                     <td><span class="prio prio-${this.tier(r.priority)}">${r.priority}</span></td>
                     <td class="name-cell" style="font-family:var(--font-mono); font-size:0.8rem">${this.esc(r.owner)}${r.care_of ? `<div class="sub">c/o ${this.esc(r.care_of)}</div>` : ""}${this.notesOf(r) ? '<span class="note-badge" title="Has notes">✎</span>' : ""}</td>
                     <td class="property-cell">
-                        <div class="address">${this.esc(r._addr || "No street address (land)")}</div>${VAPL.drip(r)}
+                        <div class="address">${this.esc(r._addr || "No street address (land)")}</div>${VAPL.sigChips(r)}${VAPL.drip(r)}
                         <div class="meta">${more}</div>
                     </td>
                     <td><span class="cls cls-${r.title_class[0]}" title="${this.esc(r.class_label)}">${r.title_class}</span> <span class="sub">${this.esc(r.class_label)}</span><div>${this.flagChips(r.flags)}</div></td>
@@ -212,6 +215,7 @@ const TitleApp = {
                 <div class="detail-row"><span class="label">Decedent</span><span class="value">${this.esc(r.obituary.decedent)}${r.obituary.age ? ", " + r.obituary.age : ""}${r.obituary.place ? " · of " + this.esc(r.obituary.place) : ""} · died ${this.esc(r.obituary.death_date || "date not parsed")}</span></div>
                 <div class="detail-row"><span class="label">Matches</span><span class="value">${this.esc(r.obituary.matched_owner)} · identity confidence ${this.esc(r.obituary.identity_confidence)}${r.obituary.obituary_url ? ` · <a style="color:var(--cyan-dim)" href="${this.esc(r.obituary.obituary_url)}" target="_blank" rel="noopener">obituary</a>` : ""}</span></div></div>` : ""}
             ${taxBlock(r)}
+            ${VAPL.sigPanel(r)}
             <div class="detail-section">
                 <h3>${r.parcel_count} parcel${r.parcel_count > 1 ? "s" : ""} · ${money(r.total_value)} assessed · ${Number(r.acres).toLocaleString()} acres</h3>
                 <div class="ptable-wrap"><table class="ptable">
@@ -242,13 +246,13 @@ const TitleApp = {
         const rows = this.sorted(this.filtered());
         const H = ["Priority", "Class", "Class Label", "Owner", "Care Of", "Owner Type", "People", "Mail Address", "Mail City", "Mail State", "Mail Zip",
             "Signals", "Parcels", "Total Assessed", "Acres", "PIN", "Property Address", "Legal", "Parcel Assessed", "Year Built", "Last Transfer Year",
-            "Years Since Transfer", "Sale Price", "Deed Ref", "Will Ref", "Death Noted", "Assessor Note", "County Card", "Status", "Notes"];
+            "Years Since Transfer", "Sale Price", "Deed Ref", "Will Ref", "Death Noted", "Assessor Note", "County Card", "Signals", "Signal Dates", "Signal Sources", "Status", "Notes"];
         const q = (v) => { const s = String(v == null ? "" : v); return /^=".*"$/.test(s) ? s : `"${s.replace(/"/g, '""')}"`; };
         const lines = [H.join(",")];
         rows.forEach((r) => r.parcels.forEach((p) => lines.push([
             r.priority, r.title_class, r.class_label, r.owner, r.care_of, r.owner_type, (r.people || []).join("; "), r.mail.addr, r.mail.city, r.mail.state, r.mail.zip,
             (r.flags || []).map((f) => this.FLAGS[f] || f).join("|"), r.parcel_count, r.total_value, r.acres, `="${p.pin}"`, p.address, p.legal, p.total_value, p.year_built,
-            p.sale_year_estimated ? "" : p.sale_year, p.years_since_transfer, p.sale_price, p.deed_ref, p.will_ref || p.will_ref_raw, p.note_dod, p.note, p.card_url, this.statusOf(r), this.notesOf(r),
+            p.sale_year_estimated ? "" : p.sale_year, p.years_since_transfer, p.sale_price, p.deed_ref, p.will_ref || p.will_ref_raw, p.note_dod, p.note, p.card_url, ...VAPL.sigCsv({ parcels: [p] }), this.statusOf(r), this.notesOf(r),
         ].map(q).join(","))));
         const blob = new Blob([lines.join("\r\n")], { type: "text/csv;charset=utf-8;" });
         const a = document.createElement("a");

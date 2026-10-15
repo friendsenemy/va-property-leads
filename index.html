@@ -80,6 +80,13 @@
             <a class="btn" href="guide.html" target="_blank" rel="noopener" title="What each tab means, how to work a lead, and what to say" style="margin-left:6px">
                 <span class="icon">📖</span> How to Use
             </a>
+            <select class="btn" id="sigFilter" title="Public-agency records (fire, vacancy, code enforcement, demolition, blight) matched to parcels. Applies to every tab." style="margin-left:6px">
+                <option value="">All leads</option>
+                <option value="any">Distress signal (any)</option>
+                <option value="fire">🔥 Fire-damaged</option>
+                <option value="stacked">⚡ Stacked 2+ kinds</option>
+                <option value="repeat">⚠ Repeat code cases</option>
+            </select>
             <label class="btn" style="margin-left:6px; cursor:pointer; display:inline-flex; align-items:center; gap:6px" title="Show only owners with a parcel whose lot line reaches a river, creek, bay or lake. Applies to every tab."><input type="checkbox" id="waterOnly"> 💧 Waterfront only</label>
             <button class="btn" id="importNotesBtn" type="button" title="Load a private notes file. It stays in this browser and is never uploaded." style="margin-left:6px">Import notes</button>
             <input type="file" id="importNotesFile" accept=".json,application/json" style="display:none">
@@ -114,8 +121,8 @@
             <div class="stat-value" id="tstatParcels">0</div>
         </div>
         <div class="stat-card cyan">
-            <div class="stat-label">Parcels Scanned</div>
-            <div class="stat-value" id="tstatIndexed">0</div>
+            <div class="stat-label">Parcels With a Distress Signal</div>
+            <div class="stat-value" id="tstatSignals">0</div>
         </div>
     </div>
 

@@ -56,7 +56,7 @@ class LeadTab {
 
     filtered() {
         const f = this.filters.find((x) => x.id === this.state.filter);
-        return this.rows.filter((r) => (!f || !f.test || f.test(r)) && (!VAPL.waterOnly || VAPL.waterOf(r)) &&
+        return this.rows.filter((r) => (!f || !f.test || f.test(r)) && (!VAPL.waterOnly || VAPL.waterOf(r)) && VAPL.sigPass(r) &&
             (!this.state.search || this.state.search.split(/\s+/).every((w) => r._search.includes(w))));
     }
 
@@ -69,7 +69,7 @@ class LeadTab {
         this.el("Head").innerHTML = "<tr>" + this.columns.map((c) => `<th>${c}</th>`).join("") + "<th>Status</th></tr>";
         this.el("Body").innerHTML = page.map((r) => {
             const st = this.statusOf(r);
-            return `<tr data-id="${esc(r.id)}">${this.row(r).map((c, i) => `<td>${c}${i === 0 ? VAPL.drip(r) : ""}</td>`).join("")}<td><span class="status-badge ${st}">${st.toUpperCase()}</span>${this.notesOf(r) ? '<span class="note-badge">✎</span>' : ""}</td></tr>`;
+            return `<tr data-id="${esc(r.id)}">${this.row(r).map((c, i) => `<td>${c}${i === 0 ? VAPL.sigChips(r) + VAPL.drip(r) : ""}</td>`).join("")}<td><span class="status-badge ${st}">${st.toUpperCase()}</span>${this.notesOf(r) ? '<span class="note-badge">✎</span>' : ""}</td></tr>`;
         }).join("");
         this.el("Body").querySelectorAll("tr").forEach((tr) => tr.addEventListener("click", () => this.open(tr.dataset.id)));
         this.el("Empty").style.display = page.length ? "none" : "block";
@@ -83,7 +83,7 @@ class LeadTab {
         const r = this.rows.find((x) => x.id === id);
         if (!r) return;
         document.getElementById("modalTitle").textContent = this.title(r);
-        document.getElementById("modalBody").innerHTML = this.detail(r, this.summary);
+        document.getElementById("modalBody").innerHTML = this.detail(r, this.summary) + VAPL.sigPanel(r);
         const sel = document.getElementById("leadStatusSelect"), notes = document.getElementById("leadNotes");
         sel.value = this.statusOf(r); notes.value = this.notesOf(r);
         SharedNotes.footer(this.sid(r));
@@ -99,8 +99,8 @@ class LeadTab {
 
     exportCsv() {
         const q = (v) => { const s = String(v == null ? "" : v); return /^=".*"$/.test(s) ? s : `"${s.replace(/"/g, '""')}"`; };
-        const lines = [this.csvHead.join(",")];
-        this.filtered().forEach((r) => r.parcels.forEach((p) => lines.push(this.csvRow(r, p).concat([this.statusOf(r), this.notesOf(r)]).map(q).join(","))));
+        const lines = [this.csvHead.concat(["Signals", "Signal Dates", "Signal Sources"]).join(",")];
+        this.filtered().forEach((r) => r.parcels.forEach((p) => lines.push(this.csvRow(r, p).concat(VAPL.sigCsv({ parcels: [p] }), [this.statusOf(r), this.notesOf(r)]).map(q).join(","))));
         const a = document.createElement("a");
         a.href = URL.createObjectURL(new Blob([lines.join("\r\n")], { type: "text/csv;charset=utf-8;" }));
         a.download = `kg-${this.prefix}-${new Date().toISOString().slice(0, 10)}.csv`;
