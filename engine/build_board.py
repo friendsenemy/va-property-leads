@@ -34,7 +34,7 @@ def add_entity_leads(entity_leads):
     for e in entity_leads:
         r0, parcels = e["r0"], e["parcels"]
         flags = sorted({f for p in parcels for f in p["flags"]} | {"ENTITY_INACTIVE"})
-        pts = min(100, X1_WEIGHT + (15 if e["past_due"] else 0) + (10 if "OUT_OF_STATE" in flags else 0) + (10 if "OLD_TITLE_25" in flags or "OLD_TITLE_40" in flags else 0))
+        pts = min(100, X1_WEIGHT + (15 if e["past_due"] else 0) + (20 if "OUT_OF_STATE" in flags else 0) + (10 if "OLD_TITLE_25" in flags or "OLD_TITLE_40" in flags else 0))
         ys = [p["years_since_transfer"] for p in parcels if p["years_since_transfer"] is not None]
         tl["rows"].append({
             "id": hashlib.sha1(("x1|" + e["owner"]).encode()).hexdigest()[:12], "priority": pts,

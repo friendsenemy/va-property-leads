@@ -134,10 +134,12 @@ def run(today=None):
         if len(sig) < 2 and not strong_alone:
             continue
         parcels = sorted(o["parcels"].values(), key=lambda p: -p["total_value"])
-        pts = min(100, sum(s["points"] for s in sig.values()) + (10 if len(sig) >= 3 else 0))
+        oos = (o["meta"]["mail"].get("state") or "").strip().upper() not in ("", "VA")   # tax bill mailed out of state
+        pts = min(100, sum(s["points"] for s in sig.values()) + (10 if len(sig) >= 3 else 0) + (10 if oos else 0))
         leads.append({
             "id": "c" + str(parcels[0]["pid"]), "priority": pts, "signal_count": len(sig),
             "kinds": [k for k in ("DEATH", "TAX", "TITLE", "CONDITION", "DISTRESS") if k in sig], "signals": sig,
+            "out_of_state": oos,
             "owner": owner, "owner_type": o["meta"]["owner_type"], "care_of": o["meta"]["care_of"], "mail": o["meta"]["mail"],
             "parcel_count": len(parcels), "total_value": sum(p["total_value"] for p in parcels), "parcels": parcels,
         })
@@ -145,6 +147,7 @@ def run(today=None):
     now = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     summary = {"generated_at": now, "leads": len(leads),
                "three_plus": sum(1 for l in leads if l["signal_count"] >= 3),
+               "out_of_state": sum(1 for l in leads if l["out_of_state"]),
                "death_and_tax": sum(1 for l in leads if "DEATH" in l["signals"] and "TAX" in l["signals"]),
                "condition": sum(1 for l in leads if "CONDITION" in l["signals"]),
                "condition_strong_alone": sum(1 for l in leads if l["signal_count"] == 1),

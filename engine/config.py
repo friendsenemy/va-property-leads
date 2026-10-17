@@ -90,7 +90,7 @@ CLASS_WEIGHT = {
     "N2": 30,   # assessor note: title passed by will
 }
 AGE_POINTS = ((40, 20), (25, 14), (12, 7))
-ABSENTEE_POINTS = {"OUT_OF_STATE": 10, "OUT_OF_COUNTY": 7, "MAIL_DIFFERS": 5}
+ABSENTEE_POINTS = {"OUT_OF_STATE": 20, "OUT_OF_COUNTY": 7, "MAIL_DIFFERS": 5}
 CARE_OF_POINTS = 6
 POOR_COND_POINTS = 5
 MULTI_PARCEL_POINTS = 4                 # owner group holds 2+ parcels

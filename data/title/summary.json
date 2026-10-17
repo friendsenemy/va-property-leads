@@ -105,6 +105,39 @@
    "flag": "OLD_TITLE_40"
   },
   {
+   "id": "out_of_state",
+   "label": "\ud83c\udf0e Out of State Owner",
+   "out_of_state": true,
+   "sort": "problems"
+  },
+  {
+   "id": "out_of_state_1",
+   "label": "\ud83c\udf0e Out of State + Any Problem",
+   "out_of_state": true,
+   "min_problems": 1,
+   "sort": "problems"
+  },
+  {
+   "id": "out_of_state_2",
+   "label": "\ud83c\udf0e Out of State + 2 or More Problems",
+   "out_of_state": true,
+   "min_problems": 2,
+   "sort": "problems"
+  },
+  {
+   "id": "out_of_state_3",
+   "label": "\ud83c\udf0e Out of State + 3 or More Problems",
+   "out_of_state": true,
+   "min_problems": 3,
+   "sort": "problems"
+  },
+  {
+   "id": "stack_3",
+   "label": "Problem Stack: 3+ problem types (any owner)",
+   "min_problems": 3,
+   "sort": "problems"
+  },
+  {
    "id": "absentee",
    "label": "Bill mailed elsewhere",
    "flags_any": [

@@ -15,11 +15,27 @@ const TitleApp = {
         FIRE: "🔥 Fire", FIRE_COOLING: "cooling", VACANT_NOTICE: "🏚 Vacant", DERELICT_STRUCTURE: "🏚 Derelict", RECEIVERSHIP: "🏛 Receivership", SPOT_BLIGHT: "🏛 Spot blight",
         CODE_VIOLATIONS: "⚠ Code case", NUISANCE_CASE: "⚠ Nuisance", DEMO_PERMIT: "🧱 Demo permit", REPEAT_CODE_CASES: "⚠ Repeat code cases", ZONING_CASE: "⚠ Zoning", STACKED_SIGNALS: "⚡ Stacked",
         OLD_TITLE_40: "40+ yrs", OLD_TITLE_25: "25+ yrs", OLD_TITLE_12: "12+ yrs",
-        OUT_OF_STATE: "Out of state", OUT_OF_COUNTY: "Out of county", MAIL_DIFFERS: "Mail ≠ site", CARE_OF: "C/O",
+        OUT_OF_STATE: "🌎 OUT OF STATE", OUT_OF_COUNTY: "Out of county", MAIL_DIFFERS: "Mail ≠ site", CARE_OF: "C/O",
         OBITUARY_MATCH: "Obituary match", TAX_SALE_ELIGIBLE: "Taxes 2+ yrs unpaid", TAX_DELINQUENT: "Taxes unpaid", ENTITY_INACTIVE: "SCC: not active",
         CONDITION_STRONG: "House unsafe / abandoned / vacant", CONDITION_NOTE: "Condition note",
         VACANT_LAND: "No building", POOR_CONDITION: "Fair/poor cond.", SURVIVORSHIP_OR: "A or B",
     },
+    // Problem stack: distinct KINDS of trouble on one owner. Each group counts once no matter how
+    // many of its flags fire. Out-of-state owner is the multiplier, not a problem itself. A bare lot
+    // is not a problem on its own, so VACANT_LAND is left out.
+    PROBLEM_GROUPS: {
+        "Owner deceased": ["OBITUARY_MATCH", "ASSESSOR_DOD_NOTE"],
+        "Estate / heirs": ["ESTATE_IN_NAME", "HEIRS_IN_NAME", "EXECUTOR_IN_NAME", "LIFE_ESTATE", "LIST_OF_HEIRS_REF", "WILL_BOOK_REF", "ASSESSOR_WILL_NOTE"],
+        "Taxes unpaid": ["TAX_DELINQUENT", "TAX_SALE_ELIGIBLE"],
+        "Code / nuisance": ["CODE_VIOLATIONS", "NUISANCE_CASE", "ZONING_CASE", "REPEAT_CODE_CASES", "SPOT_BLIGHT"],
+        "Vacant / derelict": ["VACANT_NOTICE", "DERELICT_STRUCTURE"],
+        "Fire / damage": ["FIRE", "DEMO_PERMIT"],
+        "Poor condition": ["POOR_CONDITION", "CONDITION_NOTE", "CONDITION_STRONG"],
+        "Receivership": ["RECEIVERSHIP"],
+        "Messy title": ["ET_AL", "SURVIVORSHIP_OR", "ENTITY_INACTIVE"],
+    },
+    problemStack(flags) { const f = new Set(flags || []); return Object.keys(this.PROBLEM_GROUPS).filter((g) => this.PROBLEM_GROUPS[g].some((x) => f.has(x))); },
+    oos(r) { return (r.flags || []).includes("OUT_OF_STATE") || !!(r.mail && r.mail.state && !["VA", ""].includes(String(r.mail.state).toUpperCase())); },
     STRONG: new Set(["ESTATE_IN_NAME", "HEIRS_IN_NAME", "LIFE_ESTATE", "EXECUTOR_IN_NAME", "LIST_OF_HEIRS_REF", "ASSESSOR_DOD_NOTE", "OBITUARY_MATCH", "TAX_SALE_ELIGIBLE", "TAX_DELINQUENT", "ENTITY_INACTIVE"]),
 
     async init() {
@@ -44,7 +60,9 @@ const TitleApp = {
     decorate(r) {
         const p0 = r.parcels[0] || {};
         const best = r.parcels.find((p) => p.address) || p0;
+        const stack = this.problemStack(r.flags);
         return Object.assign(r, {
+            _stack: stack, _problems: stack.length, _oos: this.oos(r),
             _addr: best.address || "",
             _years: r.oldest_transfer_years,
             _mail: `${r.mail.city || ""} ${r.mail.state || ""}`.trim(),
@@ -68,7 +86,10 @@ const TitleApp = {
             (s.presets || []).map((p) => `<button class="filter-btn" data-preset="${p.id}">${this.esc(p.label)}</button>`).join("");
         presets.querySelectorAll(".filter-btn").forEach((b) => b.addEventListener("click", () => {
             presets.querySelectorAll(".filter-btn").forEach((x) => x.classList.remove("active"));
-            b.classList.add("active"); this.state.preset = b.dataset.preset; this.state.page = 1; this.render();
+            b.classList.add("active"); this.state.preset = b.dataset.preset; this.state.page = 1;
+            const spec = (this.summary.presets || []).find((p) => p.id === b.dataset.preset);
+            if (spec && spec.sort) { this.state.sort = spec.sort; this.state.dir = -1; }
+            this.render();
         }));
     },
 
@@ -121,6 +142,8 @@ const TitleApp = {
                 if (preset.classes && !preset.classes.includes(r.title_class)) return false;
                 if (preset.flag && !(r.flags || []).includes(preset.flag)) return false;
                 if (preset.flags_any && !(r.flags || []).some((f) => preset.flags_any.includes(f))) return false;
+                if (preset.out_of_state && !r._oos) return false;
+                if (preset.min_problems && !(r._problems >= preset.min_problems)) return false;
             }
             if (st.search && !st.search.split(/\s+/).every((w) => r._search.includes(w))) return false;
             return true;
@@ -132,6 +155,7 @@ const TitleApp = {
         const order = (this.summary && this.summary.class_order) || [];
         const val = {
             priority: (r) => r.priority, owner: (r) => r.owner, cls: (r) => order.indexOf(r.title_class),
+            problems: (r) => r._problems * 1000 + r.priority,
             years: (r) => (r._years == null ? -1 : r._years), value: (r) => r.total_value, mail: (r) => `${r.mail.state || ""} ${r.mail.city || ""}`,
         }[k];
         return rows.slice().sort((a, b) => {
@@ -171,7 +195,7 @@ const TitleApp = {
                         <div class="address">${this.esc(r._addr || "No street address (land)")}</div>${VAPL.sigChips(r)}${VAPL.drip(r)}
                         <div class="meta">${more}</div>
                     </td>
-                    <td><span class="cls cls-${r.title_class[0]}" title="${this.esc(r.class_label)}">${r.title_class}</span> <span class="sub">${this.esc(r.class_label)}</span><div>${this.flagChips(r.flags)}</div></td>
+                    <td><span class="cls cls-${r.title_class[0]}" title="${this.esc(r.class_label)}">${r.title_class}</span> <span class="sub">${this.esc(r.class_label)}</span><div>${this.flagChips(r.flags)}</div>${r._problems ? `<div class="sub">${r._problems} problem type${r._problems === 1 ? "" : "s"}${r._oos ? " · 🌎 out of state" : ""}</div>` : ""}</td>
                     <td class="date-cell">${this.transferText(oldest)}</td>
                     <td class="value-cell">$${Number(r.total_value).toLocaleString()}</td>
                     <td class="county-cell">${this.esc(r.mail.city || "—")}${r.mail.state ? `, ${this.esc(r.mail.state)}` : ""}</td>
@@ -208,9 +232,13 @@ const TitleApp = {
                 <div class="detail-row"><span class="label">Read as</span><span class="value">${this.esc(r.owner_type.replace("_", " "))}${r.owner_subtype ? " · " + this.esc(r.owner_subtype.replace("_", " ").toLowerCase()) : ""}${(r.people || []).length ? ` — ${r.people.map((x) => this.esc(x)).join("; ")}` : ""}</span></div>
                 ${(r.people || []).length && r.title_class !== "X1" ? `<div class="detail-row"><span class="label">Check by hand</span><span class="value m-links">${r.people.slice(0, 4).map((n) => { const t = n.split(" ").filter((x) => !["JR", "SR", "II", "III", "IV"].includes(x)); return `<a href="https://www.findagrave.com/memorial/search?firstname=${encodeURIComponent(t[0])}&lastname=${encodeURIComponent(t[t.length - 1])}&location=Virginia" target="_blank" rel="noopener">Find a Grave: ${this.esc(n)}</a>`; }).join("")}</span></div>` : ""}
                 ${r.care_of ? `<div class="detail-row"><span class="label">Care of</span><span class="value">${this.esc(r.care_of)}</span></div>` : ""}
-                <div class="detail-row"><span class="label">Bill mailed to</span><span class="value">${this.esc(mail || "—")}</span></div>
+                <div class="detail-row"><span class="label">Bill mailed to</span><span class="value">${this.esc(mail || "—")}${r._oos ? ` <span class="chip chip-strong">🌎 OUT OF STATE${r.mail.state ? " (" + this.esc(String(r.mail.state).toUpperCase()) + ")" : ""}</span>` : ""}</span></div>
                 ${r.note_dod ? `<div class="detail-row"><span class="label">Death noted</span><span class="value" style="font-family:var(--font-mono)">${this.esc(r.note_dod)} <span class="sub">(assessor's note)</span></span></div>` : ""}
             </div>
+            ${r._stack.length ? `<div class="detail-section">
+                <h3>Problem Stack — ${r._problems} problem type${r._problems === 1 ? "" : "s"}${r._oos ? " · 🌎 owner out of state" : ""}</h3>
+                <div>${r._stack.map((g) => `<span class="chip chip-strong">${this.esc(g)}</span>`).join(" ")}</div>
+            </div>` : ""}
             ${r.obituary ? `<div class="detail-section"><h3>Obituary match</h3>
                 <div class="detail-row"><span class="label">Decedent</span><span class="value">${this.esc(r.obituary.decedent)}${r.obituary.age ? ", " + r.obituary.age : ""}${r.obituary.place ? " · of " + this.esc(r.obituary.place) : ""} · died ${this.esc(r.obituary.death_date || "date not parsed")}</span></div>
                 <div class="detail-row"><span class="label">Matches</span><span class="value">${this.esc(r.obituary.matched_owner)} · identity confidence ${this.esc(r.obituary.identity_confidence)}${r.obituary.obituary_url ? ` · <a style="color:var(--cyan-dim)" href="${this.esc(r.obituary.obituary_url)}" target="_blank" rel="noopener">obituary</a>` : ""}</span></div></div>` : ""}
@@ -246,13 +274,13 @@ const TitleApp = {
         const rows = this.sorted(this.filtered());
         const H = ["Priority", "Class", "Class Label", "Owner", "Care Of", "Owner Type", "People", "Mail Address", "Mail City", "Mail State", "Mail Zip",
             "Signals", "Parcels", "Total Assessed", "Acres", "PIN", "Property Address", "Legal", "Parcel Assessed", "Year Built", "Last Transfer Year",
-            "Years Since Transfer", "Sale Price", "Deed Ref", "Will Ref", "Death Noted", "Assessor Note", "County Card", "Signals", "Signal Dates", "Signal Sources", "Status", "Notes"];
+            "Years Since Transfer", "Sale Price", "Deed Ref", "Will Ref", "Death Noted", "Assessor Note", "County Card", "Signals", "Signal Dates", "Signal Sources", "Problem Count", "Problem Stack", "Out of State", "Status", "Notes"];
         const q = (v) => { const s = String(v == null ? "" : v); return /^=".*"$/.test(s) ? s : `"${s.replace(/"/g, '""')}"`; };
         const lines = [H.join(",")];
         rows.forEach((r) => r.parcels.forEach((p) => lines.push([
             r.priority, r.title_class, r.class_label, r.owner, r.care_of, r.owner_type, (r.people || []).join("; "), r.mail.addr, r.mail.city, r.mail.state, r.mail.zip,
             (r.flags || []).map((f) => this.FLAGS[f] || f).join("|"), r.parcel_count, r.total_value, r.acres, `="${p.pin}"`, p.address, p.legal, p.total_value, p.year_built,
-            p.sale_year_estimated ? "" : p.sale_year, p.years_since_transfer, p.sale_price, p.deed_ref, p.will_ref || p.will_ref_raw, p.note_dod, p.note, p.card_url, ...VAPL.sigCsv({ parcels: [p] }), this.statusOf(r), this.notesOf(r),
+            p.sale_year_estimated ? "" : p.sale_year, p.years_since_transfer, p.sale_price, p.deed_ref, p.will_ref || p.will_ref_raw, p.note_dod, p.note, p.card_url, ...VAPL.sigCsv({ parcels: [p] }), r._problems, r._stack.join(" + "), r._oos ? "yes" : "", this.statusOf(r), this.notesOf(r),
         ].map(q).join(","))));
         const blob = new Blob([lines.join("\r\n")], { type: "text/csv;charset=utf-8;" });
         const a = document.createElement("a");

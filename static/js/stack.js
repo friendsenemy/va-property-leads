@@ -2,12 +2,18 @@
    Uses LeadTab and the helpers defined in tabs.js. */
 const KIND = { DEATH: ["Death", "cls-E"], TAX: ["Taxes", "cls-C"], TITLE: ["Title", "cls-W"], CONDITION: ["Condition", "cls-X"], DISTRESS: ["Signals", "cls-E"] };
 
+const stackOOS = (r) => r.out_of_state || !!(r.mail && r.mail.state && String(r.mail.state).toUpperCase() !== "VA");
+const OOS_CHIP = (r) => stackOOS(r) ? ` <span class="chip chip-strong">🌎 OUT OF STATE${r.mail.state ? " (" + esc(String(r.mail.state).toUpperCase()) + ")" : ""}</span>` : "";
+
 const StackApp = new LeadTab({
     prefix: "stack", url: VAPL.DATA + "combined/leads.json", lsKey: "va_stack_leads_local_v1" + VAPL.ns,
     emptyTitle: "Nothing stacked yet", emptyText: "This fills in as the nightly build and the Treasurer walk run.",
     columns: ["Priority", "Owner on Record", "Property", "Signals", "Death", "Taxes", "Assessed", "Bill Mailed To"],
     filters: [
         { id: "all", label: "All" },
+        { id: "oos", label: "🌎 Out of State Owner", test: (r) => stackOOS(r) },
+        { id: "oos2", label: "🌎 Out of State + 2 or More Problems", test: (r) => stackOOS(r) && r.signal_count >= 2 },
+        { id: "oos3", label: "🌎 Out of State + 3 or More Problems", test: (r) => stackOOS(r) && r.signal_count >= 3 },
         { id: "dt", label: "Death + unpaid taxes", test: (r) => r.signals.DEATH && r.signals.TAX },
         { id: "three", label: "3+ signals", test: (r) => r.signal_count >= 3 },
         { id: "two", label: "2+ signals", test: (r) => r.signal_count >= 2 },
@@ -35,13 +41,13 @@ const StackApp = new LeadTab({
         r.signals.DEATH ? `<span class="mono" style="white-space:nowrap">${esc(r.signals.DEATH.death_date || "—")}</span><div class="sub">${esc(r.signals.DEATH.decedent)} · ${esc(r.signals.DEATH.identity_confidence.toLowerCase())}</div>` : '<span class="sub">—</span>',
         r.signals.TAX ? `<span class="mono" style="color:var(--red)">${money(r.signals.TAX.past_due)}</span><div class="sub">${LO() ? esc(VAPL.county.listShort) : `${r.signals.TAX.payments_behind} payments behind${r.signals.TAX.sale_eligible ? " · sale-eligible" : ""}`}</div>` : '<span class="sub">—</span>',
         `<span class="value-cell">${money(r.total_value)}</span>`,
-        `${esc(r.mail.city || "—")}${r.mail.state ? ", " + esc(r.mail.state) : ""}`,
+        `${esc(r.mail.city || "—")}${r.mail.state ? ", " + esc(r.mail.state) : ""}${stackOOS(r) ? '<div class="sub" style="color:var(--pink)">🌎 out of state</div>' : ""}`,
     ],
     detail: (r, s) => {
         const g = r.signals, d = g.DEATH, t = g.TAX, c = g.CONDITION;
         return `
         <div class="detail-section">
-            <h3>${r.signal_count} signal${r.signal_count > 1 ? "s" : ""} on this owner <span class="prio prio-${TitleApp.tier(r.priority)}" style="margin-left:8px">${r.priority}</span></h3>
+            <h3>${r.signal_count} signal${r.signal_count > 1 ? "s" : ""} on this owner${stackOOS(r) ? " · 🌎 owner out of state" : ""} <span class="prio prio-${TitleApp.tier(r.priority)}" style="margin-left:8px">${r.priority}</span></h3>
             <div class="next-step"><b>Next step.</b> ${esc(s.next_step)}</div>
             <div class="verify">Each line below comes from a different public record and each can be wrong or out of date on its own. Verify before contact.</div>
         </div>
@@ -63,7 +69,7 @@ const StackApp = new LeadTab({
         <div class="detail-section">
             <h3>Owner</h3>
             <div class="detail-row"><span class="label">On record</span><span class="value mono">${esc(r.owner)}</span></div>
-            <div class="detail-row"><span class="label">Bill mailed to</span><span class="value">${esc(mailLine(r))}${r.care_of ? ` · c/o ${esc(r.care_of)}` : ""}</span></div>
+            <div class="detail-row"><span class="label">Bill mailed to</span><span class="value">${esc(mailLine(r))}${r.care_of ? ` · c/o ${esc(r.care_of)}` : ""}${OOS_CHIP(r)}</span></div>
         </div>
         <div class="detail-section"><h3>${r.parcel_count} parcel${r.parcel_count > 1 ? "s" : ""} · ${money(r.total_value)} assessed</h3>
             ${parcelTable(r.parcels, "<th>Assessor's remarks</th>", (p) => `<td class="sub">${esc(p.remarks || "")}</td>`)}</div>`;
