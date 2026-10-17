@@ -880,6 +880,22 @@
     "person_id": "62094029"
   },
   {
+    "full_name": "Thomas Wilson Mills Jr.",
+    "first_name": "Thomas",
+    "last_name": "Mills",
+    "middle_name": "Wilson",
+    "date_of_death": "2026",
+    "date_of_birth": "1937",
+    "age": 88,
+    "city": "Spotsylvania",
+    "state": "VA",
+    "obituary_url": "https://www.legacy.com/us/obituaries/name/thomas-mills-obituary?id=62728393",
+    "obituary_text": "Thomas Wilson Mills, Jr., 88, of Spotsylvania, Virginia, passed away peacefully at home on Friday, October 9, 2026. Tom was born to T. (Thomas) Wilson Mills, Sr., and Julia Coakley Mills on December 10, 1937, in Spotsylvania County, VA, where he lived nearly his entire life. He was a 1955...",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62633422"
+  },
+  {
     "full_name": "Dale Arthur Meyn",
     "first_name": "Dale",
     "last_name": "Meyn",
@@ -7456,22 +7472,6 @@
     "person_id": "4965942"
   },
   {
-    "full_name": "Eva Marie Saint",
-    "first_name": "Eva",
-    "last_name": "Saint",
-    "middle_name": "Marie",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/eva-marie-saint-62597195",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62597195"
-  },
-  {
     "full_name": "WANDA SHUPE",
     "first_name": "WANDA",
     "last_name": "SHUPE",
@@ -8766,6 +8766,22 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "32167303"
+  },
+  {
+    "full_name": "Alan Mandell",
+    "first_name": "Alan",
+    "last_name": "Mandell",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/alan-mandell-62673007",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62673007"
   },
   {
     "full_name": "Roy Fairfax Mahon",
@@ -10174,6 +10190,22 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "32064590"
+  },
+  {
+    "full_name": "Cliff Hagan",
+    "first_name": "Cliff",
+    "last_name": "Hagan",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/cliff-hagan-62673040",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62673040"
   },
   {
     "full_name": "JOSEPH HARGRAVE",
@@ -12736,22 +12768,6 @@
     "person_id": "17167004"
   },
   {
-    "full_name": "Martina Arroyo",
-    "first_name": "Martina",
-    "last_name": "Arroyo",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/martina-arroyo-62666331",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62666331"
-  },
-  {
     "full_name": "Carol Arnott",
     "first_name": "Carol",
     "last_name": "Arnott",
@@ -12896,22 +12912,6 @@
     "person_id": "35714322"
   },
   {
-    "full_name": "Verne Allison",
-    "first_name": "Verne",
-    "last_name": "Allison",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/verne-allison-62609581",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62609581"
-  },
-  {
     "full_name": "Wanda S. Allen",
     "first_name": "Wanda",
     "last_name": "Allen",
@@ -13038,5 +13038,21 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "29984552"
+  },
+  {
+    "full_name": "MARTINA ARROYO",
+    "first_name": "MARTINA",
+    "last_name": "ARROYO",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/martina-arroyo-62666331",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62666331"
   }
 ]
