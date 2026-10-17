@@ -69,9 +69,14 @@ jobs:
       - name: Build the boards
         run: python -m engine.build_board
 
+      - name: Parcel map points for the imagery panel (Sundays and manual runs)
+        run: |
+          if [ "$(date -u +%u)" = "7" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            pip install -q -r requirements-geo.txt && python -m engine.centroids || echo "::warning::parcel outlines not reachable; keeping last week's points"
+          fi
       - name: Commit results
         run: |
           N=$(python -c "import json;print(json.load(open('data/title/summary.json'))['leads'])")
           .github/commit-data.sh "Nightly: ${N} title leads" \
-            data/parcels.json data/parcels-meta.json data/owner-changes.json \
+            data/parcels.json data/parcels-meta.json data/owner-changes.json data/centroids.json \
             data/obits/storke.json data/obits/legacy.json data/sales/notices.json

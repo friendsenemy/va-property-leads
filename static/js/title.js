@@ -217,8 +217,8 @@ const TitleApp = {
         const mail = [r.mail.addr, r.mail.addr2, `${r.mail.city || ""}${r.mail.state ? ", " + r.mail.state : ""} ${r.mail.zip || ""}`].filter((x) => x && x.trim()).join(", ");
         const next = (this.summary.next_step || {})[r.title_class] || "";
         const gmaps = (p) => p.address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.address + ", " + VAPL.county.name + " County, VA")}` : "";
-        document.getElementById("modalTitle").textContent = r.owner;
-        document.getElementById("modalBody").innerHTML = `
+        document.getElementById("modalTitle").textContent = r._addr ? `${r._addr} · ${r.owner}` : r.owner;
+        document.getElementById("modalBody").innerHTML = Aerial.insert(`
             <div class="detail-section">
                 <h3>${r.title_class} — ${this.esc(r.class_label)} <span class="prio prio-${this.tier(r.priority)}" style="margin-left:8px">${r.priority}</span></h3>
                 <div class="next-step"><b>Next step.</b> ${this.esc(next)}</div>
@@ -258,7 +258,8 @@ const TitleApp = {
                     </tr>`).join("")}</tbody>
                 </table></div>
                 <div class="sub" style="margin-top:8px">“DB / PG” is a deed book and page. “Instr.” is an instrument number within that year (the Clerk stopped using book and page about 2006). Type either into the Clerk's land-records search by hand.</div>
-            </div>`;
+            </div>`, r);
+        Aerial.bind(document.getElementById("modalBody"));
         const sel = document.getElementById("leadStatusSelect"), notes = document.getElementById("leadNotes");
         sel.value = this.statusOf(r); notes.value = this.notesOf(r);
         SharedNotes.footer(this.sid(r));

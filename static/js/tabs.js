@@ -83,7 +83,8 @@ class LeadTab {
         const r = this.rows.find((x) => x.id === id);
         if (!r) return;
         document.getElementById("modalTitle").textContent = this.title(r);
-        document.getElementById("modalBody").innerHTML = this.detail(r, this.summary) + VAPL.sigPanel(r);
+        document.getElementById("modalBody").innerHTML = Aerial.insert(this.detail(r, this.summary), r) + VAPL.sigPanel(r);
+        Aerial.bind(document.getElementById("modalBody"));
         const sel = document.getElementById("leadStatusSelect"), notes = document.getElementById("leadNotes");
         sel.value = this.statusOf(r); notes.value = this.notesOf(r);
         SharedNotes.footer(this.sid(r));

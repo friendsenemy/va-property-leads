@@ -278,7 +278,7 @@ def scan_parcel(r, this_year):
         flags.append(ab)
     if r["care_of"]:
         flags.append("CARE_OF")
-    if not r["impr_value"]:
+    if not r["impr_value"] and config.HAS_VALUES:
         flags.append("VACANT_LAND")
     if r["cond"] in ("P", "F", "D"):
         flags.append("POOR_CONDITION")

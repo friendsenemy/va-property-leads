@@ -50,6 +50,11 @@ jobs:
           fi
       - name: Build the boards
         run: python -m engine.build_board --no-fetch
+      - name: Parcel map points for the imagery panel (Sundays and manual runs)
+        run: |
+          if [ "$(date -u +%u)" = "7" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            pip install -q -r requirements-geo.txt && python -m engine.centroids || echo "::warning::parcel outlines not reachable; keeping last week's points"
+          fi
       - name: Commit results
         run: |
           N=$(python -c "import json;print(json.load(open('data/westmoreland/title/summary.json'))['leads'])")

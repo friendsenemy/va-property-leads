@@ -57,6 +57,25 @@
         .m-links { display:flex; gap:14px; flex-wrap:wrap; font-size:0.82rem; }
         .m-links a, .ptable a { color:var(--cyan-dim); }
         .lookup-results { margin-top:10px; }
+        /* aerial imagery panel (same as the Maryland tool) */
+        .aerial-tabs { display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
+        .aerial-tab { background:var(--bg-card); border:1px solid var(--border); color:var(--text-secondary); border-radius:var(--radius); padding:5px 10px; font-size:0.75rem; cursor:pointer; font-family:var(--font-mono); }
+        .aerial-tab.active { color:var(--cyan); border-color:var(--cyan-dim); }
+        .aerial-date { color:var(--text-dim); margin-left:4px; }
+        .aerial-img-wrap { display:block; position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); background:#000; aspect-ratio:1/1; max-width:640px; }
+        .aerial-img { width:100%; height:100%; object-fit:cover; display:block; }
+        .aerial-fail { display:none; position:absolute; inset:0; align-items:center; justify-content:center; color:var(--text-dim); font-size:0.85rem; }
+        .aerial-img-wrap.failed .aerial-img, .aerial-img-wrap.failed .tile-grid { visibility:hidden; }
+        .aerial-img-wrap.failed .aerial-fail { display:flex; }
+        .aerial-stage { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+        .tile-grid { max-width:100%; }
+        .tile-attrib { position:absolute; right:4px; bottom:3px; font-size:0.6rem; color:#fff; background:rgba(0,0,0,0.55); padding:1px 5px; border-radius:3px; font-family:var(--font-mono); }
+        .aerial-pin { position:absolute; left:50%; top:50%; width:14px; height:14px; margin:-7px 0 0 -7px; border:2px solid #ff3b6b; border-radius:50%; box-shadow:0 0 0 2px rgba(0,0,0,0.5); pointer-events:none; }
+        .aerial-links { display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; font-size:0.8rem; align-items:center; }
+        .aerial-links a { color:var(--cyan); }
+        .aerial-coords { color:var(--text-dim); font-family:var(--font-mono); font-size:0.72rem; margin-left:auto; }
+        .aerial-note, .aerial-missing { font-size:0.72rem; color:var(--text-dim); margin-top:6px; line-height:1.4; }
+        .aerial-pick { background:var(--bg-card); color:var(--text-secondary); border:1px solid var(--border); border-radius:var(--radius); font-size:0.75rem; margin-left:8px; max-width:260px; }
         .foot { margin:26px 0 10px; font-size:0.72rem; color:var(--text-dim); line-height:1.6; }
         .foot a { color:var(--cyan-dim); }
     </style>
@@ -337,6 +356,7 @@
 <script src="static/js/config.js"></script>
 <script src="static/js/shared.js"></script>
 <script src="static/js/title.js"></script>
+<script src="static/js/aerial.js"></script>
 <script src="static/js/tabs.js"></script>
 <script src="static/js/stack.js"></script>
 <script src="static/js/surplus.js"></script>

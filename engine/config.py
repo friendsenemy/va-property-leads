@@ -19,6 +19,7 @@ DB_PATH = os.path.join(ROOT, ".cache", "kg.sqlite")
 OBITS_DIR = os.path.join(ROOT, "data", "obits")           # death sources are shared by every county
 MIN_PARCELS = 10000                                       # refuse to overwrite the index with fewer than this
 SOURCE_FIELDS = None                                      # None = ask the layer for the keys of FIELDS
+HAS_VALUES = True                                         # False: the parcel layer publishes no assessed values
 ADAPT = None                                              # county hook: raw layer attributes -> FIELDS-shaped attributes
 REGION_PLACES = set()                                     # extra places an obituary may give for a resident
 HAS_TREASURER_WALK = True
@@ -232,6 +233,7 @@ elif KEY == "westmoreland":
     MIN_PARCELS = 18000
     SOURCE_FIELDS = "*"
     ADAPT = adapt_westmoreland
+    HAS_VALUES = False                  # no values at all, so "no building" cannot be read from a $0 improvement
     HAS_TREASURER_WALK = False
     KG_CITIES = {"MONTROSS", "COLONIAL BEACH", "HAGUE", "KINSALE", "OLDHAMS", "COLES POINT", "MOUNT HOLLY", "MT HOLLY", "OAK GROVE",
                  "SANDY POINT", "STRATFORD", "TEMPLEMANS", "ZACATA", "LERTY", "BALDWIN", "TUCKER HILL", "WESTMORELAND"}
