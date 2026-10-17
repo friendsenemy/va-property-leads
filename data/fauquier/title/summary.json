@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-16T13:29:47+00:00",
- "index_built_at": "2026-10-16T13:29:45+00:00",
+ "generated_at": "2026-10-17T05:26:51+00:00",
+ "index_built_at": "2026-10-17T05:26:49+00:00",
  "county": "Fauquier",
  "state": "VA",
  "parcels_indexed": 35921,
@@ -9,8 +9,8 @@
  "classes": {
   "E2": 94,
   "E1": 56,
-  "W1": 142,
-  "W2": 502
+  "W2": 502,
+  "W1": 142
  },
  "class_parcels": {
   "W2": 692,
