@@ -461,6 +461,8 @@ def run(db_path=DB_PATH, out_dir=OUT, today=None):
             {"id": "out_of_state_3", "label": "🌎 Out of State + 3 or More Problems", "out_of_state": True, "min_problems": 3, "sort": "problems"},
             {"id": "stack_3", "label": "Problem Stack: 3+ problem types (any owner)", "min_problems": 3, "sort": "problems"},
             {"id": "absentee", "label": "Bill mailed elsewhere", "flags_any": ["OUT_OF_STATE", "OUT_OF_COUNTY", "MAIL_DIFFERS", "CARE_OF"]},
+            # Lien-buy play: old liens on absentee parcels with real value are worth buying from the holder
+            {"id": "lien_buy", "label": "💰 Lien-Buy Candidates (tax bill mailed elsewhere, $100K+ value, dead owner / estate / heirs / unpaid taxes)", "flags_any": ["OUT_OF_STATE", "OUT_OF_COUNTY", "MAIL_DIFFERS", "CARE_OF"], "flags_any2": ["ESTATE_IN_NAME", "HEIRS_IN_NAME", "EXECUTOR_IN_NAME", "LIFE_ESTATE", "LIST_OF_HEIRS_REF", "WILL_BOOK_REF", "ASSESSOR_DOD_NOTE", "ASSESSOR_WILL_NOTE", "OBITUARY_MATCH", "TAX_DELINQUENT", "TAX_SALE_ELIGIBLE", "ENTITY_INACTIVE"], "min_value": 100000, "sort": "value"},
             {"id": "signal", "label": "Distress signal (any)", "flags_any": [k for k in config.DISTRESS_POINTS if k != "STACKED_SIGNALS"]},
             {"id": "fire", "label": "🔥 Fire-damaged", "flag": "FIRE"},
             {"id": "stacked", "label": "⚡ Stacked 2+ kinds", "flag": "STACKED_SIGNALS"},

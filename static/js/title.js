@@ -142,6 +142,8 @@ const TitleApp = {
                 if (preset.classes && !preset.classes.includes(r.title_class)) return false;
                 if (preset.flag && !(r.flags || []).includes(preset.flag)) return false;
                 if (preset.flags_any && !(r.flags || []).some((f) => preset.flags_any.includes(f))) return false;
+                if (preset.flags_any2 && !(r.flags || []).some((f) => preset.flags_any2.includes(f))) return false;
+                if (preset.min_value && !((r.total_value || 0) >= preset.min_value)) return false;
                 if (preset.out_of_state && !r._oos) return false;
                 if (preset.min_problems && !(r._problems >= preset.min_problems)) return false;
             }
