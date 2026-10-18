@@ -13,9 +13,12 @@
    confirm with a Virginia title attorney before relying on any of them for a purchase. */
 const VA_RULES = {
     judgmentRate: 6,              // § 6.2-302 judgment rate, unless the judgment states a contract rate
-    circuitYears: 20,             // § 8.01-251(A): circuit court judgment, 20 years from entry
-    gdcYears: 10,                 // § 8.01-251(A)/(B): general district court judgment, 10 years (can be extended)
-    dotAfterMaturityYears: 20,    // § 8.01-241: deed of trust lien unenforceable 20 yrs after the last payment falls due
+    circuitYears: 10,             // § 8.01-251(A): judgments dated on/after 7/1/2021 last 10 years...
+    circuitYearsPre2021: 20,      // ...judgments dated before 7/1/2021 last 20; either can be extended twice by 10-yr certificates (§ 8.01-251(B), (G))
+    gdcYears: 10,                 // § 16.1-94.1: GDC judgments 10 years (entered on/after 7/1/2026 can't be stretched by docketing; Acts 2026 c. 848)
+    dotAfterMaturityYears: 10,    // § 8.01-241(A): deed of trust unenforceable 10 yrs after the last-maturing payment falls due (acceleration ignored)
+    presumedPaidYears: 15,        // § 55.1-344: court may release a lien 15+ yrs past maturity (presumption of payment)
+    soldLandYears: 5,             // § 8.01-251(C): creditor must sue (and record lis pendens) within 5 yrs after a deed to a buyer for value
     rentsYears: 5,                // § 8.01-462: court orders a sale only if 5 years of rents won't pay the judgment
 };
 
@@ -98,6 +101,7 @@ const Worksheet = {
             taxFace: num(dq.past_due),
             taxStatus: dq.past_due ? `unpaid ${(dq.years || []).join(", ")}${dq.sale_eligible ? " — eligible for a tax sale suit" : ""}` : "",
             outOfState: mailState && mailState !== "VA" ? mailState : "",
+            lastSaleYear: Math.max(0, ...ps.map((x) => +x.sale_year || 0)) || null,
             // Virginia records have no owner-occupancy code: treat "bill mailed to the property, with a building" as likely lived in
             occupied: building && !absentee,
             occupiedNote: "VA records have no owner-occupancy code; mail goes to the site and there's a building",
@@ -306,7 +310,7 @@ const Worksheet = {
             </div>
             <div class="ws-buy" data-buy="${i}"></div>
             <button type="button" class="ws-del" data-del="liens:${i}" title="Remove this lien">✕</button></div>`).join("");
-        return `<div class="ws-help">Lien stack: treat every lien as a claim, not a fact. Check: right person? docketed in <b>this</b> county's circuit court judgment lien docket (§ 8.01-458)? still enforceable (VA circuit judgments 20 yrs, GDC 10 yrs — § 8.01-251; can be extended)? released under a misspelled name? attaches to the property or only one owner's share? Run judgments on the decedent <b>and</b> every heir. Taxes go in the calculator, not here — unless it's a separate municipal or water bill.</div>
+        return `<div class="ws-help">Lien stack: treat every lien as a claim, not a fact. Check: right person? docketed in <b>this</b> county's circuit court judgment lien docket (§ 8.01-458)? still enforceable (VA judgments 10 yrs if dated 7/1/2021 or later, 20 if older, GDC 10 — § 8.01-251, § 16.1-94.1; extendable by recorded certificate)? property sold to a buyer since? (5-yr rule, § 8.01-251(C)) released under a misspelled name? attaches to the property or only one owner's share? Run judgments on the decedent <b>and</b> every heir. Taxes go in the calculator, not here — unless it's a separate municipal or water bill.</div>
             <details class="ws-paste"${this.pasteOpen ? " open" : ""}><summary>📥 Paste OCIS / judgment-lien docket results (search each owner and heir by name in OCIS 2.0 or the clerk\'s judgment index, select the results, copy, paste here)</summary>
                 <textarea id="wsPasteCS" placeholder="Case Number  Name  Party Type  Court  Case Type  Case Status  Filing Date  Case Caption …"></textarea>
                 <button type="button" class="btn" id="wsPasteGo">Add cases as liens</button> <span class="ws-totals" id="wsPasteMsg"></span>
@@ -442,15 +446,16 @@ const Worksheet = {
             let expTxt = "";
             if (a && l.type === "Judgment") {
                 const gdc = /^GV|general district|\bGDC\b/i.test((l.ref || "") + " " + (l.note || ""));
-                const life = gdc ? VA_RULES.gdcYears : VA_RULES.circuitYears;
+                const life = gdc ? VA_RULES.gdcYears : (a.dt < new Date("2021-07-01T00:00:00") ? VA_RULES.circuitYearsPre2021 : VA_RULES.circuitYears);
                 const exp = new Date(a.dt); exp.setFullYear(exp.getFullYear() + life);
                 const left = (exp - Date.now()) / 31557600000;
-                expTxt = left > 0 ? `${life}-yr ${gdc ? "GDC" : "circuit"} judgment runs to ${exp.toLocaleDateString("en-US")} (${left.toFixed(1)} yrs left) unless extended` : `PAST ${life} years (${exp.toLocaleDateString("en-US")}) — worthless unless it was extended (§ 8.01-251, check the docket)`;
+                expTxt = left > 0 ? `${life}-yr ${gdc ? "GDC" : "circuit"} judgment runs to ${exp.toLocaleDateString("en-US")} (${left.toFixed(1)} yrs left) unless extended` : `PAST ${life} years (${exp.toLocaleDateString("en-US")}) — worthless unless a certificate of extension was recorded in time (§ 8.01-251, check the docket)`;
                 if (left <= 0) warn.push("Judgment may be expired — confirm an extension before paying anything.");
                 else if (left < 1.5) warn.push("Judgment expires soon — the holder may sell cheap, but you'd need to extend or enforce fast.");
                 warn.push(`Virginia sells land for a judgment only through a creditor's bill in circuit court, and only if ${VA_RULES.rentsYears} years of rents won't pay it (§ 8.01-462). Expect a lawsuit, not a quick sheriff's sale.`);
             }
-            if (a && l.type === "Mortgage / deed of trust") warn.push(`Check the note's maturity date: a deed of trust can't be enforced ${VA_RULES.dotAfterMaturityYears} years after the last payment was due (§ 8.01-241). Inside that, Virginia foreclosure is by trustee's sale without court.`);
+            if (a && l.type === "Judgment" && f.lastSaleYear && a.dt.getFullYear() < f.lastSaleYear) warn.push(`The property sold after this judgment. Against land sold to a buyer for value the creditor must sue within ${VA_RULES.soldLandYears} years of that deed (§ 8.01-251(C)) — may be dead against this parcel.`);
+            if (a && l.type === "Mortgage / deed of trust") warn.push(`Check the note's maturity date: a deed of trust can't be enforced ${VA_RULES.dotAfterMaturityYears} years after the last payment was due (§ 8.01-241), and ${VA_RULES.presumedPaidYears}+ years past maturity a court can release it as presumed paid (§ 55.1-344). Inside that, Virginia foreclosure is by trustee's sale without court; record the assignment so you get notice.`);
             // equity behind this lien: value minus taxes minus liens recorded earlier (lower index = senior, as listed)
             const senior = d.liens.slice(0, i).filter((x) => this.LIVE_LIEN.includes(x.status)).reduce((s2, x) => s2 + (this.n(x.payoff) || this.n(x.amount) || 0), 0);
             const val = m.value || f.assessed || 0;
