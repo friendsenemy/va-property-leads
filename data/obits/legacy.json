@@ -1008,6 +1008,22 @@
     "person_id": "61729974"
   },
   {
+    "full_name": "Alice Shuss Malone",
+    "first_name": "Alice",
+    "last_name": "Malone",
+    "middle_name": "Shuss",
+    "date_of_death": "2026",
+    "date_of_birth": "1934",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/us/obituaries/name/alice-malone-obituary?id=62781582",
+    "obituary_text": "Alice Shuss Malone passed away October 2nd, 2026 at home in King George, VA, surrounded by her family, at the age of 92. Alice was born on February 19, 1934 to her parents, Samuel and Zola Shuss, in Fayette County, Pennsylvania. She graduated from Germantown High School. She earned her Bachelor's...",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62686611"
+  },
+  {
     "full_name": "EARNEST WEBSTER MCDOWNEY",
     "first_name": "EARNEST",
     "last_name": "MCDOWNEY",
@@ -9616,22 +9632,6 @@
     "person_id": "54026479"
   },
   {
-    "full_name": "Heidi Burge Horton",
-    "first_name": "Heidi",
-    "last_name": "Horton",
-    "middle_name": "Burge",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/heidi-burge-horton-62617547",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62617547"
-  },
-  {
     "full_name": "Kell Hoovler",
     "first_name": "Kell",
     "last_name": "Hoovler",
@@ -10062,22 +10062,6 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "17319879"
-  },
-  {
-    "full_name": "Margaret Hamilton",
-    "first_name": "Margaret",
-    "last_name": "Hamilton",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/margaret-hamilton-62573113",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62573113"
   },
   {
     "full_name": "Ellen Hamilton",
@@ -10880,6 +10864,22 @@
     "person_id": "59005184"
   },
   {
+    "full_name": "Michael Forest",
+    "first_name": "Michael",
+    "last_name": "Forest",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/michael-forest-62685584",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62685584"
+  },
+  {
     "full_name": "Virginia Ford",
     "first_name": "Virginia",
     "last_name": "Ford",
@@ -11104,6 +11104,22 @@
     "person_id": "12876617"
   },
   {
+    "full_name": "Brooke Eby",
+    "first_name": "Brooke",
+    "last_name": "Eby",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/brooke-eby-62583357",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62583357"
+  },
+  {
     "full_name": "John James E. Jr.",
     "first_name": "John",
     "last_name": "E.",
@@ -11246,22 +11262,6 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "9281151"
-  },
-  {
-    "full_name": "Mike Ditka",
-    "first_name": "Mike",
-    "last_name": "Ditka",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/mike-ditka-62617528",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62617528"
   },
   {
     "full_name": "Marylou H. Dickens",
@@ -13006,6 +13006,22 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "12619614"
+  },
+  {
+    "full_name": "Noah Adams",
+    "first_name": "Noah",
+    "last_name": "Adams",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/noah-adams-62685842",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62685842"
   },
   {
     "full_name": "Thomas (Tommy) Wilbur Abel",
