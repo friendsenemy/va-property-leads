@@ -153,6 +153,7 @@
         <button class="view-tab active" data-view="title">Title Leads <span class="view-tab-sub">county parcel record</span></button>
         <button class="view-tab" data-view="death">Death Leads <span class="view-tab-sub">obituary ↔ owner on title</span></button>
         <button class="view-tab" data-view="delinq">Delinquent <span class="view-tab-sub">Treasurer balances</span></button>
+        <button class="view-tab" data-view="land">🌱 Dirt Deals <span class="view-tab-sub">land a builder would want</span></button>
         <button class="view-tab" data-view="d4d">Driving for Dollars <span class="view-tab-sub">spotted on the road</span></button>
         <button class="view-tab" data-view="lookup">Parcel Lookup <span class="view-tab-sub">every parcel</span></button>
         <a class="view-tab" id="tabGuideLink" href="guide.html#title" target="_blank" rel="noopener" style="margin-left:auto; text-decoration:none; color:var(--text-dim)" title="Open the field guide for this tab">? what does this tab mean</a>
@@ -417,6 +418,83 @@
     </div>
 </div><!-- /view-d4d -->
 
+<div id="view-land" style="display:none">
+    <div class="stats-grid">
+        <div class="stat-card green"><div class="stat-label">Parcels With Development Potential</div><div class="stat-value" id="lstatTotal">0</div></div>
+        <div class="stat-card cyan"><div class="stat-label">In a Growth Area</div><div class="stat-value" id="lstatTier2">0</div></div>
+        <div class="stat-card yellow"><div class="stat-label">With a Seller Signal</div><div class="stat-value" id="lstatSeller">0</div></div>
+        <div class="stat-card red"><div class="stat-label">With a Distress Stack</div><div class="stat-value" id="lstatDistress">0</div><div class="stat-sub" id="lstatDistressSub" style="font-size:0.72rem; color:var(--text-dim); margin-top:2px"></div></div>
+        <div class="stat-card purple"><div class="stat-label">Total Acres</div><div class="stat-value" id="lstatAcres">0</div></div>
+    </div>
+    <div class="controls">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="landSearch" placeholder="Search tax map, owner, address, zoning, growth area…">
+        </div>
+        <div class="county-filter">
+            <select id="landTier">
+                <option value="">All growth levels</option>
+                <option value="1">Utilities / growth now</option>
+                <option value="2">Growth area · utilities coming</option>
+                <option value="3">Rural · well and septic</option>
+            </select>
+        </div>
+        <div class="county-filter">
+            <select id="landAcres">
+                <option value="0">Any size (5+ ac)</option>
+                <option value="10">10+ acres</option>
+                <option value="25">25+ acres</option>
+                <option value="50">50+ acres</option>
+                <option value="100">100+ acres</option>
+            </select>
+        </div>
+        <div class="county-filter">
+            <select id="landDistress">
+                <option value="">All distress</option>
+                <option value="ANY">Any distress stack</option>
+                <option value="MULTI">2+ stacked</option>
+                <option value="DEATH">Owner died / estate</option>
+                <option value="TAX">Unpaid taxes</option>
+                <option value="CONDITION">Assessor condition note</option>
+            </select>
+        </div>
+        <label style="font-size:0.78rem; color:var(--text-secondary); display:flex; align-items:center; gap:4px"><input type="checkbox" id="landSeller"> Seller signal</label>
+        <label style="font-size:0.78rem; color:var(--text-secondary); display:flex; align-items:center; gap:4px"><input type="checkbox" id="landWater"> Waterfront</label>
+        <label style="font-size:0.78rem; color:var(--text-secondary); display:flex; align-items:center; gap:4px"><input type="checkbox" id="landHideRezone"> Hide needs-rezoning</label>
+        <button class="btn btn-export" id="landExport"><span class="icon">⬇</span> Export CSV</button>
+    </div>
+    <div class="run-info" id="landRunInfo" style="text-align:left; margin:6px 0 10px;"></div>
+    <div class="leads-container">
+        <table class="leads-table" id="landTable">
+            <thead>
+                <tr>
+                    <th data-sort="score">Score <span class="sort-arrow">↕</span></th>
+                    <th>Property</th>
+                    <th>Owner</th>
+                    <th data-sort="acres">Acres <span class="sort-arrow">↕</span></th>
+                    <th>Growth / Zoning</th>
+                    <th data-sort="lots">Rough Homes <span class="sort-arrow">↕</span></th>
+                    <th data-sort="homes">Builder Activity <span class="sort-arrow">↕</span></th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="landBody"></tbody>
+        </table>
+        <div class="empty-state" id="landEmpty" style="display:none;">
+            <div class="icon">🌱</div>
+            <h3 id="landEmptyTitle">No land scored yet</h3>
+            <p id="landEmptyText">Run the “Dirt Deals” workflow on GitHub (it also runs itself every Tuesday).</p>
+        </div>
+        <div class="pagination">
+            <span id="landPageInfo">No parcels</span>
+            <div class="pagination-buttons">
+                <button class="page-btn" id="landPrev">← Prev</button>
+                <button class="page-btn" id="landNext">Next →</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /view-land -->
+
 <div id="view-lookup" style="display:none">
     <div class="controls">
         <div class="search-box">
@@ -495,13 +573,14 @@
 <script src="static/js/surplus.js"></script>
 <script src="static/js/lookup.js"></script>
 <script src="static/js/d4d.js"></script>
+<script src="static/js/land.js"></script>
 <script src="static/js/myleads.js"></script>
 <script src="static/js/worksheet.js?v=1"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const VIEWS = ["myleads", "surplus", "stack", "title", "death", "delinq", "d4d", "lookup"];
+    const VIEWS = ["myleads", "surplus", "stack", "title", "death", "delinq", "land", "d4d", "lookup"];
     const started = { title: true };
-    const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), stack: () => StackApp.init(), delinq: () => DelinqApp.init(), surplus: () => SurplusApp.init(), d4d: () => D4DApp.init(), myleads: () => MyLeadsApp.init() };
+    const LAZY = { lookup: () => LookupApp.init(), death: () => DeathApp.init(), stack: () => StackApp.init(), delinq: () => DelinqApp.init(), surplus: () => SurplusApp.init(), d4d: () => D4DApp.init(), land: () => LandApp.init(), myleads: () => MyLeadsApp.init() };
     TitleApp.init();
     // A King George tax sale on counsel's page is the whole buy window: say so on every tab.
     if (VAPL.key === "king-george") fetch(`${VAPL.DATA}sales/notices.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => {

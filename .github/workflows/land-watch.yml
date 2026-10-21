@@ -1,0 +1,42 @@
+name: Dirt Deals (land a builder would want)
+
+# Weekly: score every 5+ acre parcel in King George, Westmoreland and Fauquier against
+# each county's own growth layers (settlement areas / service districts, water and sewer
+# areas and the lines being built, zoning, rezonings filed nearby), new homes and builder
+# purchases nearby, and the seller signals the other boards found. Writes
+# <county>/land/candidates.json for the Dirt Deals tab. Reads only committed parcel data
+# plus public county ArcGIS layers.
+
+on:
+  schedule:
+    - cron: '37 11 * * 2'        # Tuesday 7:37 AM EDT, after the Monday parcel refresh
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'engine/land_watch.py'
+      - '.github/workflows/land-watch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-writers
+  cancel-in-progress: false
+
+jobs:
+  land:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt -r requirements-geo.txt
+      - name: Score land
+        run: python -m engine.land_watch
+      - name: Commit results
+        run: |
+          .github/commit-data.sh "Dirt Deals: weekly land scan" \
+            data/land data/westmoreland/land data/fauquier/land
