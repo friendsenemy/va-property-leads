@@ -3,7 +3,7 @@
  "non_parcel_rows": 242,
  "duplicate_polygons": 51,
  "parcels": 35921,
- "generated_at": "2026-10-21T14:05:02+00:00",
+ "generated_at": "2026-10-22T14:03:18+00:00",
  "source": "https://services.arcgis.com/oAoeYJ1kqmAwcEC2/arcgis/rest/services/Tax_Parcels_DL/FeatureServer/0",
  "county": "Fauquier",
  "state": "VA",
