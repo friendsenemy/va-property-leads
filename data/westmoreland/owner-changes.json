@@ -1,5 +1,75 @@
 [
 {
+"date":"2026-10-31",
+"pid":757179257,
+"pin":"38 186A",
+"change":"NEW_PARCEL",
+"new_owner":"MINOR CHARLES WILLIAM"
+},
+{
+"date":"2026-10-31",
+"pid":1104628634,
+"pin":"3 39A",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"TAYLOR JEROME & RACHAEL B",
+"new_owner":"POSEY ROBERT & SARAH",
+"old_mail":"8369 COLFAX DRIVE, KING GEORGE, VA, 22485",
+"old_deed":[
+910,
+1924
+],
+"new_deed":[
+85,
+71
+],
+"sale_year":0,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-10-31",
+"pid":1176756964,
+"pin":"23 6B",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"JOHNSON WILLIAM C & FRANCES PLATA",
+"new_owner":"JONES VIVIAN B",
+"old_mail":"20837 RIDGE ROAD, COLONIAL BEACH, VA, 22443",
+"old_deed":[
+647,
+738
+],
+"new_deed":[
+955,
+334
+],
+"sale_year":0,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-10-31",
+"pid":1329060551,
+"pin":"45 10A",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"THE VIRGINIA COOPERATIVE CROP IMPROVEMENT ASSOC",
+"new_owner":"VIRGINIA COOPERATIVE CROP IMPROVEMENT ASSOC INC",
+"old_mail":"P O BOX 78, MOUNT HOLLY, VA, 22524",
+"old_deed":[
+942,
+380
+],
+"new_deed":[
+331,
+786
+],
+"sale_year":0,
+"sale_price":0,
+"note":""
+},
+{
 "date":"2026-10-16",
 "pid":620883685,
 "pin":"55 98J",

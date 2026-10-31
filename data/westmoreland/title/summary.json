@@ -1,21 +1,21 @@
 {
- "generated_at": "2026-10-30T14:59:57+00:00",
- "index_built_at": "2026-10-30T14:59:55+00:00",
+ "generated_at": "2026-10-31T14:28:53+00:00",
+ "index_built_at": "2026-10-31T14:28:51+00:00",
  "county": "Westmoreland",
  "state": "VA",
- "parcels_indexed": 27220,
- "leads": 712,
- "lead_parcels": 1021,
+ "parcels_indexed": 21623,
+ "leads": 707,
+ "lead_parcels": 1005,
  "classes": {
-  "E1": 146,
+  "E1": 144,
   "E2": 1,
-  "C1": 353,
-  "E3": 212
+  "C1": 352,
+  "E3": 210
  },
  "class_parcels": {
-  "C1": 521,
-  "E3": 278,
-  "E1": 220,
+  "C1": 511,
+  "E3": 275,
+  "E1": 217,
   "E2": 2
  },
  "class_labels": {
