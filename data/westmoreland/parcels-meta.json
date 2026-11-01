@@ -3,7 +3,7 @@
  "non_parcel_rows": 0,
  "duplicate_polygons": 33,
  "parcels": 21623,
- "generated_at": "2026-10-31T14:28:51+00:00",
+ "generated_at": "2026-11-01T14:57:54+00:00",
  "source": "https://services5.arcgis.com/uEb6ucnhLOwh4rfI/arcgis/rest/services/PARCELS/FeatureServer/0",
  "county": "Westmoreland",
  "state": "VA",
@@ -19,5 +19,5 @@
   "BLANK": 8,
   "CEMETERY": 8
  },
- "changes_this_run": 4
+ "changes_this_run": 0
 }
