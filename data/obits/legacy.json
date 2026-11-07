@@ -682,7 +682,7 @@
     "city": "",
     "state": "",
     "obituary_url": "https://www.legacy.com/person/jerome-sands,-jr.-62810208",
-    "obituary_text": "Jerome Daly Sands Jr., former Chairman and Chief Executive Officer of The Robinson-Humphrey Company, Inc., died at home on October 25, 2026, following a long illness. Jerome D. Sands Jr. \"Jerry\" was born in Columbia, South Carolina, in 1939, to Jerome D. Sands of Atlanta and Margaret Ridley...",
+    "obituary_text": "Jerome Sands Jr Jerome Daly Sands Jr., former Chairman and Chief Executive Officer of The Robinson-Humphrey Co. Inc., died at home on Oct. 25, 2026, following a long illness. Jerome D. Sands Jr. \"Jerry\" was born in Columbia, South Carolina, in 1939, to Jerome D. Sands of Atlanta and Margaret...",
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "62810208"
@@ -5328,6 +5328,22 @@
     "person_id": "9295553"
   },
   {
+    "full_name": "Simon Winchester",
+    "first_name": "Simon",
+    "last_name": "Winchester",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/simon-winchester-62830074",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62830074"
+  },
+  {
     "full_name": "Fred Ernest Wilfong",
     "first_name": "Fred",
     "last_name": "Wilfong",
@@ -7408,22 +7424,6 @@
     "person_id": "12333291"
   },
   {
-    "full_name": "Stephen Kovacevich",
-    "first_name": "Stephen",
-    "last_name": "Kovacevich",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/stephen-kovacevich-62780657",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62780657"
-  },
-  {
     "full_name": "John Koufoudakis",
     "first_name": "John",
     "last_name": "Koufoudakis",
@@ -7472,22 +7472,6 @@
     "person_id": "49944378"
   },
   {
-    "full_name": "June Jones",
-    "first_name": "June",
-    "last_name": "Jones",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/june-jones-62776557",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62776557"
-  },
-  {
     "full_name": "Marcel Johnson",
     "first_name": "Marcel",
     "last_name": "Johnson",
@@ -7518,6 +7502,22 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "55998648"
+  },
+  {
+    "full_name": "Kimmarie Johnson",
+    "first_name": "Kimmarie",
+    "last_name": "Johnson",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/kimmarie-johnson-62832404",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62832404"
   },
   {
     "full_name": "Gaye Johnson",
@@ -9584,6 +9584,22 @@
     "person_id": "33610571"
   },
   {
+    "full_name": "Herbert Blomstedt",
+    "first_name": "Herbert",
+    "last_name": "Blomstedt",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/herbert-blomstedt-62829313",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62829313"
+  },
+  {
     "full_name": "Robert Lee Blake Sr.",
     "first_name": "Robert",
     "last_name": "Blake",
@@ -9790,22 +9806,6 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "8421846"
-  },
-  {
-    "full_name": "Allen Bailey",
-    "first_name": "Allen",
-    "last_name": "Bailey",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/allen-bailey-62709958",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62709958"
   },
   {
     "full_name": "DONALD BURKLEW",
