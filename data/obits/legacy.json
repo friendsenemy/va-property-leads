@@ -1754,7 +1754,7 @@
     "city": "Charlottesville",
     "state": "VA",
     "obituary_url": "https://www.legacy.com/person/allen-myers-fleishman-62842321",
-    "obituary_text": "Allen Myers Fleishman, 96, of Charlottesville, VA passed away on Wednesday. November 4th, 2026 at Linden House Assisted Living. He was born on November 19th, 1929, and was a son of the late Dewey D. and Dessie (Myers) Fleishman. He attended Bridgewater College and following his graduation worked...",
+    "obituary_text": "Allen Myers Fleishman November 19, 1929 - November 4, 2026 Allen Myers Fleishman, 96, of Charlottesville, Va., passed away on Wednesday. November 4, 2026 at Linden House Assisted Living. He was born on November 19, 1929, and was a son of the late Dewey D. and Dessie (Myers) Fleishman. He attended...",
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "62842321"
@@ -7232,6 +7232,22 @@
     "person_id": "5318719"
   },
   {
+    "full_name": "Toukie Smith",
+    "first_name": "Toukie",
+    "last_name": "Smith",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/toukie-smith-62855445",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62855445"
+  },
+  {
     "full_name": "Terri Smith",
     "first_name": "Terri",
     "last_name": "Smith",
@@ -8176,22 +8192,6 @@
     "person_id": "60551286"
   },
   {
-    "full_name": "Matt Pavelich",
-    "first_name": "Matt",
-    "last_name": "Pavelich",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/matt-pavelich-62806856",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62806856"
-  },
-  {
     "full_name": "Edwin M. Parry",
     "first_name": "Edwin",
     "last_name": "Parry",
@@ -8350,22 +8350,6 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "17548893"
-  },
-  {
-    "full_name": "John Nicks",
-    "first_name": "John",
-    "last_name": "Nicks",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/john-nicks-62820781",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62820781"
   },
   {
     "full_name": "Videll Mavis NELSON",
@@ -9550,22 +9534,6 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "11068761"
-  },
-  {
-    "full_name": "Marcel Johnson",
-    "first_name": "Marcel",
-    "last_name": "Johnson",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/marcel-johnson-62812440",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62812440"
   },
   {
     "full_name": "Linda C. Johnson",
@@ -10912,22 +10880,6 @@
     "person_id": "13682231"
   },
   {
-    "full_name": "John Frieda",
-    "first_name": "John",
-    "last_name": "Frieda",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/john-frieda-62811742",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62811742"
-  },
-  {
     "full_name": "Rayfield Frenzley Jr.",
     "first_name": "Rayfield",
     "last_name": "Frenzley",
@@ -12016,6 +11968,22 @@
     "person_id": "8283135"
   },
   {
+    "full_name": "JoBe Cerny",
+    "first_name": "JoBe",
+    "last_name": "Cerny",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/jobe-cerny-62854586",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62854586"
+  },
+  {
     "full_name": "Betty Jo Frank Catlett",
     "first_name": "Betty",
     "last_name": "Catlett",
@@ -12512,6 +12480,22 @@
     "person_id": "33610571"
   },
   {
+    "full_name": "Bob Boone",
+    "first_name": "Bob",
+    "last_name": "Boone",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/bob-boone-62855293",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62855293"
+  },
+  {
     "full_name": "Pamela Ann Bock",
     "first_name": "Pamela",
     "last_name": "Bock",
@@ -12910,6 +12894,22 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "30617099"
+  },
+  {
+    "full_name": "Hubert (Geese) Ausbie",
+    "first_name": "Hubert",
+    "last_name": "Ausbie",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/hubert-(geese)-ausbie-62855753",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62855753"
   },
   {
     "full_name": "Charles Atwell",
