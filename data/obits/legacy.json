@@ -4384,6 +4384,22 @@
     "person_id": "9306294"
   },
   {
+    "full_name": "Alice Marie Tritt (Rafftesaeth)",
+    "first_name": "Alice",
+    "last_name": "Tritt",
+    "middle_name": "Marie",
+    "date_of_death": "2018",
+    "date_of_birth": "1936",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/alice-marie-tritt-(rafftesaeth)-11806634",
+    "obituary_text": "Alice Marie (Rafftesaeth) Tritt, 81, formerly of Myersville, MD, passed away on Mother's Day, May 13, 2018 at Messiah Village, Mechanicsburg, PA. She was born in Buffalo, NY, on October 15, 1936 to the late Dorothy (Light) and Marion Rafftesaeth. Alice was preceded in death by her husband of 41...",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "11806634"
+  },
+  {
     "full_name": "Timothy (Tim) F. Trigger",
     "first_name": "Timothy",
     "last_name": "Trigger",
@@ -12896,22 +12912,6 @@
     "person_id": "30617099"
   },
   {
-    "full_name": "Hubert (Geese) Ausbie",
-    "first_name": "Hubert",
-    "last_name": "Ausbie",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/hubert-(geese)-ausbie-62855753",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62855753"
-  },
-  {
     "full_name": "Charles Atwell",
     "first_name": "Charles",
     "last_name": "Atwell",
@@ -13246,5 +13246,21 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "29984552"
+  },
+  {
+    "full_name": "HA",
+    "first_name": "HA",
+    "last_name": "",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/hubert-(geese)-ausbie-62855753",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62855753"
   }
 ]
