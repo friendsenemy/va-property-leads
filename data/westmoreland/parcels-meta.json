@@ -1,14 +1,14 @@
 {
- "service_rows": 21656,
+ "service_rows": 21655,
  "non_parcel_rows": 0,
  "duplicate_polygons": 33,
- "parcels": 21623,
- "generated_at": "2026-11-12T16:45:33+00:00",
+ "parcels": 21622,
+ "generated_at": "2026-11-13T16:08:27+00:00",
  "source": "https://services5.arcgis.com/uEb6ucnhLOwh4rfI/arcgis/rest/services/PARCELS/FeatureServer/0",
  "county": "Westmoreland",
  "state": "VA",
  "owner_types": {
-  "INDIVIDUAL": 16699,
+  "INDIVIDUAL": 16698,
   "TRUST": 1372,
   "BUSINESS": 2073,
   "ET_AL": 511,
@@ -19,5 +19,5 @@
   "BLANK": 8,
   "CEMETERY": 8
  },
- "changes_this_run": 0
+ "changes_this_run": 3
 }
