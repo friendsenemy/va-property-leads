@@ -1,21 +1,21 @@
 {
- "service_rows": 36214,
- "non_parcel_rows": 242,
+ "service_rows": 36327,
+ "non_parcel_rows": 241,
  "duplicate_polygons": 51,
- "parcels": 35921,
- "generated_at": "2026-11-15T15:50:54+00:00",
+ "parcels": 36035,
+ "generated_at": "2026-11-16T18:50:48+00:00",
  "source": "https://services.arcgis.com/oAoeYJ1kqmAwcEC2/arcgis/rest/services/Tax_Parcels_DL/FeatureServer/0",
  "county": "Fauquier",
  "state": "VA",
  "owner_types": {
-  "INDIVIDUAL": 25803,
-  "TRUST": 3398,
-  "GOVERNMENT": 460,
-  "BUSINESS": 4833,
+  "INDIVIDUAL": 25778,
+  "TRUST": 3445,
+  "GOVERNMENT": 458,
+  "BUSINESS": 4921,
   "CEMETERY": 172,
-  "ASSOCIATION": 776,
-  "CHURCH": 279,
-  "ESTATE": 200
+  "ASSOCIATION": 786,
+  "CHURCH": 280,
+  "ESTATE": 195
  },
- "changes_this_run": 0
+ "changes_this_run": 485
 }

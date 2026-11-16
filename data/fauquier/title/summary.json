@@ -1,22 +1,22 @@
 {
- "generated_at": "2026-11-15T15:50:55+00:00",
- "index_built_at": "2026-11-15T15:50:53+00:00",
+ "generated_at": "2026-11-16T18:50:50+00:00",
+ "index_built_at": "2026-11-16T18:50:48+00:00",
  "county": "Fauquier",
  "state": "VA",
- "parcels_indexed": 35921,
- "leads": 794,
- "lead_parcels": 1060,
+ "parcels_indexed": 36035,
+ "leads": 798,
+ "lead_parcels": 1070,
  "classes": {
-  "E2": 94,
-  "E1": 56,
-  "W2": 502,
-  "W1": 142
+  "E2": 93,
+  "E1": 55,
+  "W2": 501,
+  "W1": 149
  },
  "class_parcels": {
-  "W2": 692,
-  "E1": 89,
-  "W1": 168,
-  "E2": 111
+  "W2": 700,
+  "E1": 88,
+  "W1": 175,
+  "E2": 107
  },
  "class_labels": {
   "E1": "Estate on title",
@@ -48,7 +48,7 @@
   "N1": "The assessor recorded a date of death on this parcel and moved title to the survivor or devisee. Title is likely clean. This is a recent-loss lead: be respectful, and verify the note against the deed or will first.",
   "N2": "The assessor notes this parcel passed by will recently. The devisee may not want the property. Verify the will reference before contacting."
  },
- "watch_hidden": 134,
+ "watch_hidden": 135,
  "presets": [
   {
    "id": "estate",

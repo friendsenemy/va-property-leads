@@ -1,0 +1,8535 @@
+[
+{
+"date":"2026-11-16",
+"pid":5001206,
+"pin":"6000-42-9534-000",
+"site_addr":"3964 HIDDEN VALLEY LN",
+"change":"OWNER",
+"old_owner":"CROWN OLGA D TRUSTEE OCV SOLO 401K TRUST",
+"new_owner":"BILLS ZACHARY WARREN",
+"old_mail":"5617 ARTEMUS RD, GAINESVILLE, VA, 20155",
+"old_deed":[
+1812,
+1004
+],
+"new_deed":[
+1829,
+2025
+],
+"sale_year":2026,
+"sale_price":190000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5001228,
+"pin":"6000-60-2538-000",
+"site_addr":"4154 FIERY RUN RD",
+"change":"OWNER",
+"old_owner":"BAUMBACH GLADYS",
+"new_owner":"KOWALICK CYNTHIA",
+"old_mail":"4154 FIERY RUN RD, LINDEN, VA, 22642",
+"old_deed":[
+1701,
+902
+],
+"new_deed":[
+1721,
+2391
+],
+"sale_year":2022,
+"sale_price":0,
+"note":"TDD: transfer-on-death deed recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5001672,
+"pin":"6011-25-9622-000",
+"site_addr":"13016 BELLE MEADE LN",
+"change":"OWNER",
+"old_owner":"WEBSTER WILLIAM J",
+"new_owner":"HUFFMAN ELLIOT ALEXANDER; HUFFMAN STONE JOHANNAH EMMA III",
+"old_mail":"13016 BELLE MEADE LN, MARKHAM, VA, 22643",
+"old_deed":[
+610,
+844
+],
+"new_deed":[
+1829,
+2096
+],
+"sale_year":2026,
+"sale_price":759000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5001690,
+"pin":"6011-35-2107-000",
+"site_addr":"13010 BELLE MEADE LN",
+"change":"OWNER",
+"old_owner":"HEUSTIS CHRISTINA A; HEUSTIS CHRISTOPHER P",
+"new_owner":"WITSCH PHILIP; TIBBS CASEY",
+"old_mail":"13010 BELLE MEADE LN, MARKHAM, VA, 22643",
+"old_deed":[
+1777,
+1974
+],
+"new_deed":[
+1826,
+2430
+],
+"sale_year":2026,
+"sale_price":515000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5001704,
+"pin":"6011-42-3465-000",
+"site_addr":"3241 DISTILLERY RD",
+"change":"OWNER",
+"old_owner":"DELONG LEAH A",
+"new_owner":"DELONG AARON PAUL",
+"old_mail":"167 LONG MEADOWS LN, MIDDLETOWN, VA, 22645",
+"old_deed":[
+939,
+680
+],
+"new_deed":[
+1828,
+2147
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5001781,
+"pin":"6012-10-3215-000",
+"site_addr":"4791 OBSERVATORY LN",
+"change":"OWNER",
+"old_owner":"STAVREV GUEORGUI S; NGUYEN DIANE P",
+"new_owner":"PARKS DELBERT; PARKS ERNESTINE MICHELLE",
+"old_mail":"3921 SANTA CARLOTTA ST, GLENDALE, CA, 91214",
+"old_deed":[
+1698,
+2388
+],
+"new_deed":[
+1829,
+538
+],
+"sale_year":2026,
+"sale_price":1400000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5001921,
+"pin":"6020-52-7823-000",
+"site_addr":"3847 LEEDS MANOR RD",
+"change":"OWNER",
+"old_owner":"WEAVER HELEN; RICHARDS DEBORAH",
+"new_owner":"UPLINGER DREW R",
+"old_mail":"10204 DUNDALK ST, FAIRFAX, VA, 22032",
+"old_deed":[
+1587,
+98
+],
+"new_deed":[
+1827,
+1347
+],
+"sale_year":2026,
+"sale_price":250000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5001925,
+"pin":"6020-52-9683-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"WEAVER HELEN; RICHARDS DEBORAH",
+"new_owner":"UPLINGER DREW R",
+"old_mail":"10204 DUNDALK ST, FAIRFAX, VA, 22032",
+"old_deed":[
+1587,
+98
+],
+"new_deed":[
+1827,
+1345
+],
+"sale_year":2026,
+"sale_price":255000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5002024,
+"pin":"6021-42-8760-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5002187,
+"pin":"6022-79-9295-000",
+"site_addr":"11470 APPLE MANOR RD",
+"change":"OWNER",
+"old_owner":"SIMON LISA P TRUSTEE; SIMON, LISA P REVOC LVG TRUST; SIMON, PAUL S TRUSTEE; SIMON, LISA P TRUSTEE; SIMON, PAUL S REVOC LVG TRUST SIMON PAUL S TRUSTEE",
+"new_owner":"SIMON LISA P TRUSTEE SIMON LISA P REVOCABLE LVG TRUST",
+"old_mail":"11470 APPLE MANOR RD, MARKHAM, VA, 22643",
+"old_deed":[
+1735,
+158
+],
+"new_deed":[
+1829,
+742
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5002414,
+"pin":"6030-69-2702-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"HAILEY CHARLES HENRY; HAILEY BLANCHE M",
+"new_owner":"HALEY CHARLES HENRY; HALEY BLANCHE M",
+"old_mail":"PO BOX 36, MARKHAM, VA, 22643",
+"old_deed":[
+271,
+27
+],
+"new_deed":[
+1827,
+1123
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"CNFD: confirmation deed"
+},
+{
+"date":"2026-11-16",
+"pid":5002526,
+"pin":"6031-50-5229-000",
+"site_addr":"3378 FENNY HILL RD",
+"change":"OWNER",
+"old_owner":"HAILEY CHARLES HENRY; HAILEY BLANCHE M",
+"new_owner":"HALEY CHARLES HENRY; HALEY BLANCHE M",
+"old_mail":"PO BOX 36, MARKHAM, VA, 22643",
+"old_deed":[
+271,
+27
+],
+"new_deed":[
+1827,
+1123
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"CNFD: confirmation deed"
+},
+{
+"date":"2026-11-16",
+"pid":5002674,
+"pin":"6033-21-9545-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GREEN RIDGE LLC",
+"new_owner":"VIRIDIAN RIDGE LLC",
+"old_mail":"PO BOX 148, MIDDLEBURG, VA, 20117",
+"old_deed":[
+1772,
+417
+],
+"new_deed":[
+1772,
+417
+],
+"sale_year":2024,
+"sale_price":5000000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5002780,
+"pin":"6034-89-8597-000",
+"site_addr":"687 FEDERAL ST",
+"change":"OWNER",
+"old_owner":"METCALF RAMSAY",
+"new_owner":"SEFFENS JUSTIN; SEFFENS, JERRY; SEFFENS KARYN",
+"old_mail":"PO BOX 1247, MIDDLEBURG, VA, 20118",
+"old_deed":[
+1704,
+2493
+],
+"new_deed":[
+1828,
+1610
+],
+"sale_year":2026,
+"sale_price":789000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5002800,
+"pin":"6035-70-7190-000",
+"site_addr":"642 REPUBLICAN ST",
+"change":"OWNER",
+"old_owner":"MILLER JOHN M",
+"new_owner":"MILLER JOHN M TRUSTEE MILLER JOHN M REVOC TRUST",
+"old_mail":"PO BOX 623, UPPERVILLE, VA, 20185",
+"old_deed":[
+1795,
+317
+],
+"new_deed":[
+1829,
+228
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5002802,
+"pin":"6035-70-8555-000",
+"site_addr":"622 FEDERAL ST",
+"change":"OWNER",
+"old_owner":"MILLER JOHN M",
+"new_owner":"MILLER JOHN M TRUSTEE MILLER JOHN M REVOC TRUST",
+"old_mail":"PO BOX 623, UPPERVILLE, VA, 20185",
+"old_deed":[
+883,
+1274
+],
+"new_deed":[
+1829,
+228
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5002819,
+"pin":"6035-80-0757-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"MILLER JOHN M",
+"new_owner":"MILLER JOHN M TRUSTEE MILLER JOHN M REVOC TRUST",
+"old_mail":"PO BOX 623, UPPERVILLE, VA, 20185",
+"old_deed":[
+1088,
+2402
+],
+"new_deed":[
+1829,
+228
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5002820,
+"pin":"6035-80-1628-000",
+"site_addr":"621 FEDERAL ST",
+"change":"OWNER",
+"old_owner":"MILLER JOHN M",
+"new_owner":"MILLER JOHN M TRUSTEE MILLER JOHN M REVOC TRUST",
+"old_mail":"PO BOX 623, UPPERVILLE, VA, 20185",
+"old_deed":[
+1088,
+2402
+],
+"new_deed":[
+1829,
+228
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003017,
+"pin":"6040-80-1921-000",
+"site_addr":"4098 ASHVILLE RD",
+"change":"OWNER",
+"old_owner":"TOONE MARK H; BRIGHT YVONNE STEPHANIE CHRISTINE",
+"new_owner":"BRIGHT YVONNE S",
+"old_mail":"4098 ASHVILLE RD, DELAPLANE, VA, 20144",
+"old_deed":[
+1412,
+1
+],
+"new_deed":[
+1827,
+158
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003108,
+"pin":"6041-26-5996-000",
+"site_addr":"10371 JACKSONTOWN RD",
+"change":"OWNER",
+"old_owner":"HALEY CANDACE R",
+"new_owner":"MECKLEM CANDACE ROSE",
+"old_mail":"10371 JACKSONTOWN RD, DELAPLANE, VA, 20144",
+"old_deed":[
+803,
+369
+],
+"new_deed":[
+803,
+369
+],
+"sale_year":1998,
+"sale_price":265000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003109,
+"pin":"6041-26-6432-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"HALEY CANDACE R",
+"new_owner":"MECKLEM CANDACE ROSE",
+"old_mail":"10371 JACKSONTOWN RD, DELAPLANE, VA, 20144",
+"old_deed":[
+780,
+1336
+],
+"new_deed":[
+780,
+1336
+],
+"sale_year":1997,
+"sale_price":9600,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003143,
+"pin":"6041-45-4322-000",
+"site_addr":"10358 WILLOW HILL RD",
+"change":"OWNER",
+"old_owner":"SZENTE DANIEL M; SZENTE MONA M",
+"new_owner":"SZENTE MONA M",
+"old_mail":"PO BOX 218, DELAPLANE, VA, 20144",
+"old_deed":[
+1465,
+168
+],
+"new_deed":[
+1465,
+168
+],
+"sale_year":2014,
+"sale_price":1350000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003551,
+"pin":"6051-25-4705-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"KEAHON ANDREW T; GASCON DORRY L",
+"new_owner":"ADLER STERN RAPHAELA; STERN CHANANYA",
+"old_mail":"9393 BRIAR LN, DELAPLANE, VA, 20144",
+"old_deed":[
+784,
+1429
+],
+"new_deed":[
+1829,
+1791
+],
+"sale_year":2026,
+"sale_price":1300000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003553,
+"pin":"6051-26-8236-000",
+"site_addr":"9393 BRIAR LN",
+"change":"OWNER",
+"old_owner":"KEAHON ANDREW T; GASCON DORRY L",
+"new_owner":"ADLER STERN RAPHAELA; STERN CHANANYA",
+"old_mail":"9393 BRIAR LN, DELAPLANE, VA, 20144",
+"old_deed":[
+784,
+1429
+],
+"new_deed":[
+1829,
+1791
+],
+"sale_year":2026,
+"sale_price":1300000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003559,
+"pin":"6051-34-0440-000",
+"site_addr":"9470 MAIDSTONE RD",
+"change":"OWNER",
+"old_owner":"LONGVIEW ORCHARD LLC",
+"new_owner":"MAGNOLIA VIEW LLC",
+"old_mail":"9135 MAIDSTONE RD, DELAPLANE, VA, 20144",
+"old_deed":[
+1564,
+2225
+],
+"new_deed":[
+1829,
+1149
+],
+"sale_year":2026,
+"sale_price":2100000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003572,
+"pin":"6051-47-1851-000",
+"site_addr":"9425 BLACKPOND LN",
+"change":"OWNER",
+"old_owner":"NUNEZ ELPIDIO PEDRO",
+"new_owner":"LA NUBE EQUESTRIAN FARM LLC",
+"old_mail":"PO BOX 10718, SAN JUAN, PR, 922",
+"old_deed":[
+1820,
+2356
+],
+"new_deed":[
+1827,
+2029
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5003762,
+"pin":"6054-55-9548-000",
+"site_addr":"9240 PATRICK ST",
+"change":"OWNER",
+"old_owner":"WILLIAMS ROBERT ALLEN",
+"new_owner":"WILLIAMS JEFFREY SCOTT",
+"old_mail":"9240 PATRICK ST, UPPERVILLE, VA, 20184",
+"old_deed":[
+1729,
+994
+],
+"new_deed":[
+1732,
+257
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"TDD: transfer-on-death deed recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5004130,
+"pin":"6060-51-3073-000",
+"site_addr":"4065 ROBERTS CIR",
+"change":"OWNER",
+"old_owner":"WALTERS ANDREW Z; JORDAN BRYCE G",
+"new_owner":"WALTERS ANDREW Z TRUSTEE; WALTERS, ANDREW Z & BRYCE G TRUST WALTERS BRYCE G TRUSTEE",
+"old_mail":"4065 ROBERTS CIR, MARSHALL, VA, 20115",
+"old_deed":[
+1600,
+1750
+],
+"new_deed":[
+1827,
+698
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5004222,
+"pin":"6060-62-4988-000",
+"site_addr":"3961 RECTORTOWN RD",
+"change":"OWNER",
+"old_owner":"SINGLETON ALAN H; SINGLETON KELLY J",
+"new_owner":"KELLY MONICA; KELLY JOSEPH",
+"old_mail":"3961 RECTORTOWN RD, MARSHALL, VA, 20115",
+"old_deed":[
+892,
+1875
+],
+"new_deed":[
+1828,
+2478
+],
+"sale_year":2026,
+"sale_price":430000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5004514,
+"pin":"6061-72-7911-000",
+"site_addr":"3247 FORTUNE MOUNTAIN RD",
+"change":"OWNER",
+"old_owner":"GRANT DARRELL EDWARD",
+"new_owner":"GRANT DARRELL EDWARD; ROSENTHAL JOYCE",
+"old_mail":"3247 FORTUNE MOUNTAIN RD, MARSHALL, VA, 20115",
+"old_deed":[
+1319,
+2012
+],
+"new_deed":[
+1828,
+2390
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5004959,
+"pin":"6071-59-3643-000",
+"site_addr":"2674 FIVE POINTS RD",
+"change":"OWNER",
+"old_owner":"JARAMILLO MARYJANE; PATRICKSWELL HIDEAWAY LLC",
+"new_owner":"PATRICKSWELL HIDEAWAY LLC",
+"old_mail":"2045 LOUDOUN ST, WINCHESTER, VA, 22601",
+"old_deed":[
+1826,
+679
+],
+"new_deed":[
+1826,
+679
+],
+"sale_year":2026,
+"sale_price":1250000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5005217,
+"pin":"6080-22-5959-000",
+"site_addr":"3730 MILESTONE RD",
+"change":"OWNER",
+"old_owner":"COWASJEE RUSTOM A",
+"new_owner":"KLEIN BENJAMIN JAMES; KLEIN JENNIFER ELIZABETH",
+"old_mail":"3730 MILESTONE RD, THE PLAINS, VA, 20198",
+"old_deed":[
+1445,
+838
+],
+"new_deed":[
+1829,
+2278
+],
+"sale_year":2026,
+"sale_price":3665000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5005891,
+"pin":"6092-93-0014-000",
+"site_addr":"2547 HALFWAY RD",
+"change":"OWNER",
+"old_owner":"MANDIA KEVIN TRUSTEE KRM REVOC TRUST",
+"new_owner":"SHELTON JUDY L",
+"old_mail":"2547 HALFWAY RD, THE PLAINS, VA, 20198",
+"old_deed":[
+1752,
+2181
+],
+"new_deed":[
+1826,
+1813
+],
+"sale_year":2026,
+"sale_price":7500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5006185,
+"pin":"6877-87-9782-000",
+"site_addr":"2228 SEDGWICK DR",
+"change":"OWNER",
+"old_owner":"REAVES JOHN DANIEL; REAVES ANDRIA DAWN",
+"new_owner":"REVIVE HOME TRANSFORMATIONS LLC",
+"old_mail":"2228 SEDGWICK DR, REMINGTON, VA, 22734",
+"old_deed":[
+1640,
+644
+],
+"new_deed":[
+1826,
+1479
+],
+"sale_year":2026,
+"sale_price":276597,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5006353,
+"pin":"6877-97-6831-000",
+"site_addr":"9119 FREEMANS FORD RD",
+"change":"OWNER",
+"old_owner":"SANDOVAL ALEXANDER",
+"new_owner":"SANDOVAL ALEXANDER; GONZALEZ AVALOS DINA",
+"old_mail":"9119 FREEMANS FORD RD, REMINGTON, VA, 22734",
+"old_deed":[
+1562,
+1854
+],
+"new_deed":[
+1828,
+1163
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5006391,
+"pin":"6877-98-0286-000",
+"site_addr":"183 WANKOMA DR",
+"change":"OWNER",
+"old_owner":"JAMES JALEEL; HASHIMI MURSAL",
+"new_owner":"ESLAVA MIA JULISSA CARMONA",
+"old_mail":"183 WANKOMA DR, REMINGTON, VA, 22734",
+"old_deed":[
+1695,
+1606
+],
+"new_deed":[
+1827,
+1316
+],
+"sale_year":2026,
+"sale_price":300000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5006397,
+"pin":"6877-98-1204-000",
+"site_addr":"184 WANKOMA DR",
+"change":"OWNER",
+"old_owner":"KILTZ GLEN A",
+"new_owner":"RAINEY NICOLE; RAINEY ZACHARY",
+"old_mail":"184 WANKOMA DR, REMINGTON, VA, 22734",
+"old_deed":[
+734,
+46
+],
+"new_deed":[
+1829,
+489
+],
+"sale_year":2026,
+"sale_price":180000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5006433,
+"pin":"6877-98-4201-000",
+"change":"NEW_PARCEL",
+"new_owner":"PEREZ ANGELICA RUELAS; RUELAS ANGELICA A/K/A"
+},
+{
+"date":"2026-11-16",
+"pid":5006462,
+"pin":"6877-98-6760-000",
+"site_addr":"403 WEST MAIN ST",
+"change":"OWNER",
+"old_owner":"HAGAN ADAM J",
+"new_owner":"DAVIDSON CHARLES B; SMITH MELINDA D",
+"old_mail":"403 W MAIN ST, REMINGTON, VA, 22734",
+"old_deed":[
+1726,
+1143
+],
+"new_deed":[
+1827,
+38
+],
+"sale_year":2026,
+"sale_price":499000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5006570,
+"pin":"6878-15-7301-000",
+"site_addr":"11786 FREEMANS FORD RD",
+"change":"OWNER",
+"old_owner":"BAILEY ELOISE; BAILEY KEVIN",
+"new_owner":"BAILEY KEVIN",
+"old_mail":"11786 FREEMANS FORD RD, REMINGTON, VA, 22734",
+"old_deed":[
+1552,
+1841
+],
+"new_deed":[
+1552,
+1841
+],
+"sale_year":2017,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5007489,
+"pin":"6887-18-3950-000",
+"site_addr":"105 EAST WASHINGTON ST",
+"change":"OWNER",
+"old_owner":"WARGO ROBERT M",
+"new_owner":"TONTY LAURIE VICTORIA; FRELAND CLIFF",
+"old_mail":"105 E WASHINGTON ST, REMINGTON, VA, 22734",
+"old_deed":[
+1775,
+2291
+],
+"new_deed":[
+1827,
+1049
+],
+"sale_year":2026,
+"sale_price":600000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5007728,
+"pin":"6887-46-7225-000",
+"site_addr":"12312 PINEY LN",
+"change":"OWNER",
+"old_owner":"IRONWOOD HOMES INC",
+"new_owner":"GUEVERA GUEVERA JOSE RIGOBERTO; JOVEL JOVEL, MERLIN G; GUEVERA GUEVERA PABLO;",
+"old_mail":"6310 FIVE MILE CENTRE PK #207, FREDERICKSBURG, VA, 22407",
+"old_deed":[
+1785,
+2439
+],
+"new_deed":[
+1829,
+187
+],
+"sale_year":2026,
+"sale_price":475000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5007764,
+"pin":"6887-47-3740-000",
+"site_addr":"7100 MCHENRY CT",
+"change":"OWNER",
+"old_owner":"JACKSON RICHARD A; JACKSON KAREN W",
+"new_owner":"JACKSON KAREN W",
+"old_mail":"7100 MCHENRY CT, REMINGTON, VA, 22734",
+"old_deed":[
+685,
+1965
+],
+"new_deed":[
+685,
+1965
+],
+"sale_year":1992,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5007887,
+"pin":"6887-57-5989-000",
+"site_addr":"12166 AMANDA CT",
+"change":"DEED_REF",
+"old_owner":"NICOLAI JARED T",
+"new_owner":"NICOLAI JARED T",
+"old_mail":"493 BLACKWELL RD STE 350, WARRENTON, VA, 20186",
+"old_deed":[
+1817,
+1116
+],
+"new_deed":[
+1826,
+1574
+],
+"sale_year":2026,
+"sale_price":450000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008344,
+"pin":"6888-43-7956-000",
+"site_addr":"11634 JENNINGS DR",
+"change":"OWNER",
+"old_owner":"FOSTER JESSICA HARBESON TRUSTEE JENNINGS DRIVE REVOCABLE TRUST",
+"new_owner":"*; *",
+"old_mail":"11634 JENNINGS DR, REMINGTON, VA, 22734",
+"old_deed":[
+1772,
+2425
+],
+"new_deed":[
+1772,
+2425
+],
+"sale_year":2024,
+"sale_price":0,
+"note":"QC: quitclaim deed"
+},
+{
+"date":"2026-11-16",
+"pid":5008490,
+"pin":"6889-03-1150-000",
+"site_addr":"7323 OKEEFE RD",
+"change":"OWNER",
+"old_owner":"HUDSON GLENN HOWARD",
+"new_owner":"GUE ROBERT BRANDON; GUE NATALIE M",
+"old_mail":"5805 PRIVATE RD, MINERAL, VA, 23117",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1826,
+2471
+],
+"sale_year":2026,
+"sale_price":709000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008502,
+"pin":"6889-07-6808-000",
+"site_addr":"7305 BOTHA RD",
+"change":"OWNER",
+"old_owner":"MAENZA WILLIAM; MAENZA CHRISTINE",
+"new_owner":"MAENZA WILLIAM",
+"old_mail":"7305 BOTHA RD, BEALETON, VA, 22712",
+"old_deed":[
+1590,
+453
+],
+"new_deed":[
+1828,
+1569
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008600,
+"pin":"6889-26-1496-000",
+"site_addr":"10756 JAMES MADISON HWY",
+"change":"OWNER",
+"old_owner":"BUDD HARRY E; BUDD PAMELA J",
+"new_owner":"MARTINEZ TERESA A",
+"old_mail":"10756 JAMES MADISON HWY, BEALETON, VA, 22712",
+"old_deed":[
+1731,
+1248
+],
+"new_deed":[
+1827,
+1354
+],
+"sale_year":2026,
+"sale_price":435000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008603,
+"pin":"6889-26-5797-000",
+"site_addr":"10741 JAMES MADISON HWY",
+"change":"OWNER",
+"old_owner":"FAZEL FAZEL RAHMAN",
+"new_owner":"MATUTE VALERY CARRASCO; BARRERA, DANIEL; CARRASCO THAMARA AMADOR",
+"old_mail":"4506 KENTMORE DR, WOODBRIDGE, VA, 22193",
+"old_deed":[
+1767,
+1
+],
+"new_deed":[
+1829,
+1263
+],
+"sale_year":2026,
+"sale_price":424000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008612,
+"pin":"6889-26-7738-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"FAZEL FAZEL RAHMAN",
+"new_owner":"MATUTE VALERY CARRASCO; BARRERA, DANIEL; CARRASCO THAMARA AMADOR",
+"old_mail":"4506 KENTMORE DR, WOODBRIDGE, VA, 22193",
+"old_deed":[
+1767,
+1
+],
+"new_deed":[
+1829,
+1263
+],
+"sale_year":2026,
+"sale_price":424000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008664,
+"pin":"6889-33-7350-000",
+"site_addr":"10967 SOUTHCOATE VILLAGE DR",
+"change":"OWNER",
+"old_owner":"WEEKS BRADLEY R; GILBERT-WEEKS DEBORAH",
+"new_owner":"CARTER SHANAE VICTORIA; SMITH LOVE TORIANO",
+"old_mail":"10967 SOUTHCOATE VILLAGE DR, BEALETON, VA, 22712",
+"old_deed":[
+1371,
+2339
+],
+"new_deed":[
+1828,
+1535
+],
+"sale_year":2026,
+"sale_price":630000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008780,
+"pin":"6889-45-6095-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"JMR PROPERTIES LLC",
+"new_owner":"SHERBEYN DONALD L; SHERBEYN DEBRA L",
+"old_mail":"7407 SUMERDUCK RD, REMINGTON, VA, 22734",
+"old_deed":[
+1728,
+60
+],
+"new_deed":[
+1826,
+2192
+],
+"sale_year":2026,
+"sale_price":270000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5008929,
+"pin":"6889-60-2157-000",
+"site_addr":"6555 TIFFANY DR",
+"change":"OWNER",
+"old_owner":"HOWARD SHEILA A",
+"new_owner":"HOWARD JEFFREY WAYNE",
+"old_mail":"6555 TIFFANY DR, BEALETON, VA, 22712",
+"old_deed":[
+902,
+512
+],
+"new_deed":[
+1773,
+2270
+],
+"sale_year":2025,
+"sale_price":0,
+"note":"TDD: transfer-on-death deed recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5009093,
+"pin":"6889-72-5127-000",
+"site_addr":"11258 EDGEWOOD DR",
+"change":"OWNER",
+"old_owner":"GOMEZ TORIBIO JOSE",
+"new_owner":"SNIDER MADELINE; BLESI THOMAS",
+"old_mail":"11258 EDGEWOOD DR, BEALETON, VA, 22712",
+"old_deed":[
+1662,
+1307
+],
+"new_deed":[
+1826,
+1191
+],
+"sale_year":2026,
+"sale_price":450000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5009121,
+"pin":"6889-73-9209-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5009223,
+"pin":"6889-83-3823-000",
+"site_addr":"6731 FORBES PL W",
+"change":"OWNER",
+"old_owner":"ALBRIGHT JORDAN J",
+"new_owner":"CAMPOS SARA PARADA",
+"old_mail":"20020 FROG LEVEL RD, RUTHER GLEN, VA, 22546",
+"old_deed":[
+1692,
+1530
+],
+"new_deed":[
+1826,
+1842
+],
+"sale_year":2026,
+"sale_price":424900,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5009225,
+"pin":"6889-83-4614-000",
+"site_addr":"6734 SCHOOLHOUSE RD",
+"change":"OWNER",
+"old_owner":"WADE DAVID; WADE MELISSA",
+"new_owner":"WADE DAVID",
+"old_mail":"6734 SCHOOLHOUSE RD, BEALETON, VA, 22712",
+"old_deed":[
+1704,
+1171
+],
+"new_deed":[
+1827,
+872
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5009280,
+"pin":"6889-85-6950-000",
+"site_addr":"6741 HUNTLAND DR",
+"change":"OWNER",
+"old_owner":"CARDINALE JOSHUA",
+"new_owner":"HILBERT SUZANNE G; HILBERT THOMAS M",
+"old_mail":"6741 HUNTLAND DR, BEALETON, VA, 22712",
+"old_deed":[
+1461,
+666
+],
+"new_deed":[
+1829,
+2417
+],
+"sale_year":2026,
+"sale_price":430000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5009331,
+"pin":"6889-86-9140-000",
+"site_addr":"6723 HUNTLAND DR",
+"change":"OWNER",
+"old_owner":"PHILLIPS DAVID W JR",
+"new_owner":"SPROLES ROBERT OWEN; SPROLES ERIN",
+"old_mail":"6723 HUNTLAND DR, BEALETON, VA, 22712",
+"old_deed":[
+1430,
+540
+],
+"new_deed":[
+1829,
+1085
+],
+"sale_year":2026,
+"sale_price":375000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5009727,
+"pin":"6895-97-7691-000",
+"site_addr":"5823 SUMERDUCK RD",
+"change":"OWNER",
+"old_owner":"SANDERS DONALD; SANDERS STEFFANI",
+"new_owner":"MICHELE A KUCIC FARM LLC",
+"old_mail":"5823 SUMERDUCK RD, SUMERDUCK, VA, 22742",
+"old_deed":[
+808,
+226
+],
+"new_deed":[
+1827,
+1547
+],
+"sale_year":2026,
+"sale_price":780000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5009731,
+"pin":"6895-98-2908-000",
+"site_addr":"5619 COURTNEYS CORNER RD",
+"change":"OWNER",
+"old_owner":"WHISENHUNT LESTER H; WHISENHUNT NELLIE L",
+"new_owner":"VCS HOMES LLC",
+"old_mail":"5619 COURTNEYS CORNER RD, SUMERDUCK, VA, 22742",
+"old_deed":[
+372,
+307
+],
+"new_deed":[
+1827,
+389
+],
+"sale_year":2026,
+"sale_price":285000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010086,
+"pin":"6899-07-8934-000",
+"site_addr":"8539 ROSS ST",
+"change":"OWNER",
+"old_owner":"DE RAEDT DAAN; DE RAEDT MAURA",
+"new_owner":"8539 ROSS LLC",
+"old_mail":"1373 CAMERON HEATH DR, RESTON, VA, 20194",
+"old_deed":[
+1483,
+585
+],
+"new_deed":[
+1826,
+1816
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010111,
+"pin":"6899-08-3544-000",
+"site_addr":"9059 RANDOLPH CIR",
+"change":"OWNER",
+"old_owner":"STREAT STEPHANIE E",
+"new_owner":"UMANZOR ALVARADO LINO J; PINEDA MELGAR KENSY ISABEL",
+"old_mail":"9059 RANDOLPH CIR, BEALETON, VA, 22712",
+"old_deed":[
+1752,
+1135
+],
+"new_deed":[
+1827,
+767
+],
+"sale_year":2026,
+"sale_price":595000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010127,
+"pin":"6899-08-5660-000",
+"site_addr":"7554 HANCOCK ST",
+"change":"OWNER",
+"old_owner":"ARCENEAUX AMIEE N; FABRICIUS CYRUS R",
+"new_owner":"ABREGO PENA BEQUER D; LURVIN FRANCO MARIA",
+"old_mail":"7554 HANCOCK ST, BEALETON, VA, 22712",
+"old_deed":[
+1651,
+690
+],
+"new_deed":[
+1827,
+877
+],
+"sale_year":2026,
+"sale_price":433000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010280,
+"pin":"6899-16-1576-000",
+"site_addr":"6620 LAFAYETTE AVE",
+"change":"OWNER",
+"old_owner":"GUERRERO ROSA CAROLINA; BONILLA DIANNA",
+"new_owner":"GUERRERO HENRIQUEZ ROSA CAROLINA",
+"old_mail":"6620 LAFAYETTE AVE, BEALETON, VA, 22712",
+"old_deed":[
+1824,
+1697
+],
+"new_deed":[
+1828,
+1393
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5010362,
+"pin":"6899-21-2799-000",
+"site_addr":"11291 MEADFIELD DR",
+"change":"OWNER",
+"old_owner":"BOWEN STEPHEN M; BOWEN RACHEL M",
+"new_owner":"VIRGINIA SELL NOW 2026 LLC",
+"old_mail":"11291 MEADFIELD DR, BEALETON, VA, 22712",
+"old_deed":[
+1725,
+2447
+],
+"new_deed":[
+1829,
+760
+],
+"sale_year":2026,
+"sale_price":385625,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010481,
+"pin":"6899-22-7665-304",
+"site_addr":"11228 TORRIE WAY UNIT #D",
+"change":"OWNER",
+"old_owner":"MCKUSKER JOHN W; RIDGEWAY, JOYCE; MCKUSKER JOYCE M",
+"new_owner":"MCKUSKER JOHN W; MCKUSKER JOYCE M",
+"old_mail":"6182 WEST POINTE LN, WARRENTON, VA, 20187",
+"old_deed":[
+1397,
+1881
+],
+"new_deed":[
+1829,
+2303
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010551,
+"pin":"6899-26-5498-000",
+"site_addr":"6328 CATLETT RD",
+"change":"OWNER",
+"old_owner":"SHERBEYN DONALD L",
+"new_owner":"SHERBEYN DONALD L; SHERBEYN DEBRA L",
+"old_mail":"6328 CATLETT RD, BEALETON, VA, 22712",
+"old_deed":[
+1722,
+177
+],
+"new_deed":[
+1828,
+612
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5010573,
+"pin":"6899-31-9757-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5010574,
+"pin":"6899-31-9774-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5010575,
+"pin":"6899-31-9790-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5010607,
+"pin":"6899-32-6962-045",
+"site_addr":"6217 WILLOW PL UNIT #45",
+"change":"OWNER",
+"old_owner":"CLARK ANNE; BUTLER ADAM",
+"new_owner":"WILLIAMS KAYLA",
+"old_mail":"6217 WILLOW PL, BEALETON, VA, 22712",
+"old_deed":[
+1564,
+922
+],
+"new_deed":[
+1828,
+1372
+],
+"sale_year":2026,
+"sale_price":347000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010819,
+"pin":"6899-42-0918-029",
+"site_addr":"6184 WILLOW PL UNIT #29",
+"change":"OWNER",
+"old_owner":"MARIN CARIAS KATERINE D; MORENO ORELLANA RODOLFO",
+"new_owner":"DUARTE STEVEN MANUEL",
+"old_mail":"6184 WILLOW PL UNIT 29, BEALETON, VA, 22712",
+"old_deed":[
+1774,
+1660
+],
+"new_deed":[
+1826,
+1998
+],
+"sale_year":2026,
+"sale_price":380000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010856,
+"pin":"6899-43-1208-106",
+"site_addr":"6161 WILLOW PL UNIT #106",
+"change":"OWNER",
+"old_owner":"SECRIST BETH ANN",
+"new_owner":"SWEET NANCY L",
+"old_mail":"6161 WILLOW PL #106, BEALETON, VA, 22712",
+"old_deed":[
+1633,
+1045
+],
+"new_deed":[
+1827,
+1443
+],
+"sale_year":2026,
+"sale_price":251400,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010909,
+"pin":"6899-43-6538-000",
+"site_addr":"6139 WINSTON CT",
+"change":"OWNER",
+"old_owner":"TURCIOS TITO N; TURCIOS MARIA ANGELA",
+"new_owner":"TURCIOS TITO N",
+"old_mail":"6139 WINSTON CT, BEALETON, VA, 22712",
+"old_deed":[
+1693,
+917
+],
+"new_deed":[
+1827,
+1271
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5010923,
+"pin":"6899-44-0490-000",
+"site_addr":"10866 DEPOT DR",
+"change":"OWNER",
+"old_owner":"VANNATTER BRIAN K; VANNATTER SONJA R",
+"new_owner":"JOHNSON RASHEED; JOHNSON AMY",
+"old_mail":"10866 DEPOT DR, BEALETON, VA, 22712",
+"old_deed":[
+1491,
+1397
+],
+"new_deed":[
+1829,
+1405
+],
+"sale_year":2026,
+"sale_price":404900,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5010963,
+"pin":"6899-44-2933-000",
+"site_addr":"6145 NEWTON LN",
+"change":"OWNER",
+"old_owner":"SHIPLEY JENNIFER LAUREN",
+"new_owner":"BALOS ANTHONY; BALOS KATHERINE",
+"old_mail":"6145 NEWTON LN, BEALETON, VA, 22712",
+"old_deed":[
+1699,
+1234
+],
+"new_deed":[
+1829,
+2159
+],
+"sale_year":2026,
+"sale_price":417525,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5011058,
+"pin":"6899-45-6622-000",
+"site_addr":"10829 KING NOBEL LN",
+"change":"OWNER",
+"old_owner":"POTTER JEROME",
+"new_owner":"ALVARADO CONSTANZA ISMAEL ALBERTO",
+"old_mail":"10829 KING NOBEL LN, BEALETON, VA, 22712",
+"old_deed":[
+1076,
+1031
+],
+"new_deed":[
+1828,
+234
+],
+"sale_year":2026,
+"sale_price":599999,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5011231,
+"pin":"6908-15-2008-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"CIRCLE T RANCH LLC",
+"new_owner":"TRAXLER RANCH LLC",
+"old_mail":"13601 HUME RD, HUME, VA, 22639",
+"old_deed":[
+1804,
+730
+],
+"new_deed":[
+1827,
+260
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5011232,
+"pin":"6908-16-7192-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"CIRCLE T RANCH LLC",
+"new_owner":"TRAXLER RANCH LLC",
+"old_mail":"13601 HUME RD, HUME, VA, 22639",
+"old_deed":[
+1804,
+730
+],
+"new_deed":[
+1827,
+260
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5011241,
+"pin":"6908-27-4579-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"CIRCLE T RANCH LLC",
+"new_owner":"TRAXLER RANCH LLC",
+"old_mail":"13601 HUME RD, HUME, VA, 22639",
+"old_deed":[
+1804,
+730
+],
+"new_deed":[
+1827,
+260
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5011243,
+"pin":"6908-28-6969-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"CIRCLE T RANCH LLC",
+"new_owner":"TRAXLER RANCH LLC",
+"old_mail":"13601 HUME RD, HUME, VA, 22639",
+"old_deed":[
+1804,
+730
+],
+"new_deed":[
+1827,
+260
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012038,
+"pin":"6928-55-6293-000",
+"site_addr":"5092 LEEDS MANOR RD",
+"change":"OWNER",
+"old_owner":"MCAREE CHARLES A III; BENOIT REBECCA",
+"new_owner":"MCAREE CHARLES A P III TRUSTEE; BENOIT, REBECCA SCOTT TRUSTEE MCAREE CHARLES A P III REV TRUST; BENOIT, REBECCA SCOTT REV TRUST",
+"old_mail":"5092 LEEDS MANOR RD, HUME, VA, 22639",
+"old_deed":[
+1639,
+2449
+],
+"new_deed":[
+1828,
+712
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012126,
+"pin":"6928-76-8621-000",
+"site_addr":"11515 HUME RD",
+"change":"OWNER",
+"old_owner":"POLES FREDERICK G; POLES GLADYS",
+"new_owner":"11515 HUME RD LLC",
+"old_mail":"PO BOX 585, MARSHALL, VA, 20116",
+"old_deed":[
+211,
+581
+],
+"new_deed":[
+1827,
+1753
+],
+"sale_year":2026,
+"sale_price":242000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012139,
+"pin":"6928-84-7326-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"DOUBLE L RANCH LLC",
+"new_owner":"TRAXLER CATTLE COMPANY LLC",
+"old_mail":"13601 HUME RD, HUME, VA, 22639",
+"old_deed":[
+1166,
+1700
+],
+"new_deed":[
+1827,
+251
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012148,
+"pin":"6929-04-4310-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"SULLIVAN TIMOTHY J TRUSTEE SULLIVAN FAMILY TRUST OF THE",
+"new_owner":"KEYSTONE INVESTMENT GROUP LLC",
+"old_mail":"2510 RIO GRANGE DR, PUNTA GORDA, FL, 33950",
+"old_deed":[
+1571,
+1766
+],
+"new_deed":[
+1827,
+2284
+],
+"sale_year":2026,
+"sale_price":390000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012275,
+"pin":"6933-49-5222-000",
+"site_addr":"7904 BELMONT CT",
+"change":"OWNER",
+"old_owner":"KURTZER DANIEL S; TIPPITT CAROLTON LEE",
+"new_owner":"KURTZER DANIEL S; KURTZER CAROLTON LEE TIPPITT",
+"old_mail":"7904 BELMONT CT, MARSHALL, VA, 20115",
+"old_deed":[
+1737,
+611
+],
+"new_deed":[
+1737,
+611
+],
+"sale_year":2022,
+"sale_price":585000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012685,
+"pin":"6936-63-6731-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5012707,
+"pin":"6936-73-3405-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5012709,
+"pin":"6936-73-6826-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5012710,
+"pin":"6936-73-7199-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"ROBINSON ERNEST HEIRS",
+"new_owner":"A&E SOLUTIONS LLC",
+"old_mail":"7413 LEEDS MANOR RD, MARSHALL, VA, 20115",
+"old_deed":[
+154,
+441
+],
+"new_deed":[
+1827,
+544
+],
+"sale_year":2026,
+"sale_price":360000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012711,
+"pin":"6936-73-7534-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"ROBINSON ERNEST HEIRS",
+"new_owner":"A&E SOLUTIONS LLC",
+"old_mail":"7413 LEEDS MANOR RD, MARSHALL, VA, 20115",
+"old_deed":[
+154,
+441
+],
+"new_deed":[
+1827,
+544
+],
+"sale_year":2026,
+"sale_price":360000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012713,
+"pin":"6936-74-1131-000",
+"site_addr":"11009 LOCKHART LN",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5012738,
+"pin":"6936-88-8513-000",
+"site_addr":"6190 REDBUD LN",
+"change":"OWNER",
+"old_owner":"NIEPOKOJ KEITH; NIEPOKOJ DEBRA ANN",
+"new_owner":"NIEPOKOJ KEITH CO-TRUSTEE; NIEPOKOJ, KEITH &; NIEPOKOJ, DEBRA A JT REV TRUST NIEPOKOJ DEBRA A CO-TRUSTEE",
+"old_mail":"6190 REDBUD LN, MARSHALL, VA, 20115",
+"old_deed":[
+1512,
+912
+],
+"new_deed":[
+1828,
+588
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5012755,
+"pin":"6936-95-2539-000",
+"site_addr":"6370 JOHN BARTON PAYNE RD",
+"change":"OWNER",
+"old_owner":"HECK ANDREW R; HECK JENNIFER MCNEILL",
+"new_owner":"LAUNFAL LLC",
+"old_mail":"11604 NORWOOD DR, OVERLAND PARK, KS, 66211",
+"old_deed":[
+867,
+1821
+],
+"new_deed":[
+1829,
+1230
+],
+"sale_year":2026,
+"sale_price":2700000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5013335,
+"pin":"6945-00-1781-000",
+"site_addr":"7389 LEEDS MANOR RD",
+"change":"OWNER",
+"old_owner":"EVANS PAMELA KELLY; LORENZ KATHRYN S",
+"new_owner":"SADR LLC",
+"old_mail":"1229 SE 11TH ST, OCALA, FL, 34471",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1827,
+450
+],
+"sale_year":2026,
+"sale_price":1220000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5013343,
+"pin":"6945-02-9112-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"EVANS PAMELA KELLY; LORENZ KATHRYN S",
+"new_owner":"SADR LLC",
+"old_mail":"1229 SE 11TH ST, OCALA, FL, 34471",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1827,
+450
+],
+"sale_year":2026,
+"sale_price":1220000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5013454,
+"pin":"6945-45-3594-000",
+"site_addr":"10418 CLIFF MILLS RD",
+"change":"OWNER",
+"old_owner":"CAUSSEAUX ROBERT MICHAEL; TONELLA JESSICA",
+"new_owner":"VENN GARRETT; SWEENEY KENLEY",
+"old_mail":"10418 CLIFF MILLS RD, MARSHALL, VA, 20115",
+"old_deed":[
+1501,
+2008
+],
+"new_deed":[
+1826,
+2255
+],
+"sale_year":2026,
+"sale_price":700000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5014055,
+"pin":"6948-27-8889-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"SMITH BRIAN CRAIG; SMITH ALICE BELINDA",
+"new_owner":"SMITH BRIAN CRAIG CO-TRUSTEE; SMITH, BRIAN & ALICE REV TRUST SMITH ALICE BELINDA CO-TRUSTEE",
+"old_mail":"10660 RAMEY RD, MARSHALL, VA, 20115",
+"old_deed":[
+1695,
+1535
+],
+"new_deed":[
+1829,
+385
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5014163,
+"pin":"6948-99-1688-000",
+"site_addr":"10006 VALLEY DALE LN",
+"change":"OWNER",
+"old_owner":"HAMBRICK CURTIS N II; HAMBRICK MICHELE C",
+"new_owner":"HAMBRICK CURTIS N II TRUSTEE; HAMBRICK JOINT DECL OF TRUST HAMBRICK MICHELE C TRUSTEE",
+"old_mail":"10006 VALLEY DALE LN, MARSHALL, VA, 20115",
+"old_deed":[
+700,
+797
+],
+"new_deed":[
+1829,
+352
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5014285,
+"pin":"6953-26-9398-000",
+"change":"NEW_PARCEL",
+"new_owner":"CONNORS TRISTAN JOHN; GUIFFRE CHRISTRINA GUARDIAN FOR"
+},
+{
+"date":"2026-11-16",
+"pid":5014895,
+"pin":"6956-30-3343-000",
+"site_addr":"9359 LOCHLOW LN",
+"change":"OWNER",
+"old_owner":"LENEHAN LOUISA W TRUSTEE; LENEHAN, LOUISA W REVOC TRUST KAHN HERMAN L TRUSTEE",
+"new_owner":"LENEHAN LOUISA W TRUSTEE; LENEHAN, LOUISA W REVOC TRUST",
+"old_mail":"PO BOX 169, WARRENTON, VA, 20188",
+"old_deed":[
+1377,
+1932
+],
+"new_deed":[
+1377,
+1932
+],
+"sale_year":2011,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5014915,
+"pin":"6956-37-5005-000",
+"site_addr":"9495 CONDE RD",
+"change":"OWNER",
+"old_owner":"ASHBY PAUL LAWLER; ASHBY SUZANNE H",
+"new_owner":"ASHBY PAUL LAWLER TRUSTEE; ASHBY, PAUL LAWLER REVOCABLE TRUST; ASHBY, SUZANNE H REVOCABLE TRUST ASHBY SUZANNE H TRUSTEE",
+"old_mail":"9495 CONDE RD, MARSHALL, VA, 20115",
+"old_deed":[
+590,
+513
+],
+"new_deed":[
+1826,
+2142
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5014941,
+"pin":"6956-47-1441-000",
+"site_addr":"9471 CONDE RD",
+"change":"OWNER",
+"old_owner":"ASHBY PAUL L; ASHBY SUZANNE H",
+"new_owner":"ASHBY PAUL LAWLER TRUSTEE; ASHBY, PAUL LAWLER REVOCABLE TRUST; ASHBY, SUZANNE H REVOCABLE TRUST ASHBY SUZANNE H TRUSTEE",
+"old_mail":"9495 CONDE RD, MARSHALL, VA, 20115",
+"old_deed":[
+910,
+970
+],
+"new_deed":[
+1826,
+2142
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5014945,
+"pin":"6956-49-1696-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"OLINGER FRANKLIN D; OLINGER MARY A",
+"new_owner":"BROWN JOSIE L; YEAGER JOSEPH B",
+"old_mail":"6200 WILSON RD, MARSHALL, VA, 20115",
+"old_deed":[
+232,
+645
+],
+"new_deed":[
+1828,
+1573
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5015092,
+"pin":"6957-17-5036-000",
+"site_addr":"9808 TIMBER HTS",
+"change":"OWNER",
+"old_owner":"LOVING DAVID M; LOVING MARGARET R",
+"new_owner":"CUBBAGE GARY E; ALLEN-CUBBAGE AIMEE Q",
+"old_mail":"PO BOX 396, MARSHALL, VA, 20116",
+"old_deed":[
+255,
+213
+],
+"new_deed":[
+1827,
+1802
+],
+"sale_year":2026,
+"sale_price":665000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5015128,
+"pin":"6957-34-8063-000",
+"site_addr":"9560 POORHOUSE RD",
+"change":"OWNER",
+"old_owner":"KOLENKO MARC M; KOLENKO DORIS R",
+"new_owner":"KOLENKO MARC MICHAEL TRUSTEE; KOLENKO FAM TRUST DATED 06/18/2026 KOLENKO DORIS ROCIO TRUSTEE",
+"old_mail":"9560 POORHOUSE RD, MARSHALL, VA, 20115",
+"old_deed":[
+1593,
+1530
+],
+"new_deed":[
+1829,
+2491
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5015178,
+"pin":"6957-74-6472-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"WHITE JON J; WHITE GREGORY",
+"new_owner":"WHITE JON J; WHITE, KURTIS STEWART; WHITE GREGORY",
+"old_mail":"7131 GRAYS MILL RD, WARRENTON, VA, 20187",
+"old_deed":[
+1801,
+1800
+],
+"new_deed":[
+1827,
+981
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5015350,
+"pin":"6958-32-5845-000",
+"site_addr":"5400 FREE STATE RD",
+"change":"OWNER",
+"old_owner":"BRADLEY JOHN R III; BRADLEY ANDREA F",
+"new_owner":"PIPER GREGORY ALAN TRUSTEE PIPER GREGORY ALAN REV LVG TRUST",
+"old_mail":"5400 FREE STATE RD, MARSHALL, VA, 20115",
+"old_deed":[
+1517,
+1904
+],
+"new_deed":[
+1826,
+1184
+],
+"sale_year":2026,
+"sale_price":855000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5015379,
+"pin":"6958-37-5876-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"DEAN MICHAEL RAY",
+"new_owner":"AMITAY MARTHA KAUFMAN",
+"old_mail":"506 JERSEY ST, KINGSPORT, TN, 37660",
+"old_deed":[
+1310,
+61
+],
+"new_deed":[
+1826,
+2277
+],
+"sale_year":2026,
+"sale_price":85000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5015429,
+"pin":"6958-57-5898-000",
+"site_addr":"4742 GREENE LOVE LN",
+"change":"OWNER",
+"old_owner":"THOMAS ROBERT C TRUSTEE; THOMAS FAMILY TRUST U/ THOMAS KATHLEEN E TRUSTEE",
+"new_owner":"COLEMAN ROBERT MASON TRUSTEE; COLEMAN FAMILY LIVING TRUST COLEMAN RENEE MESSIER TRUSTEE",
+"old_mail":"4742 GREENE LOVE LN, MARSHALL, VA, 20115",
+"old_deed":[
+1348,
+2060
+],
+"new_deed":[
+1829,
+917
+],
+"sale_year":2026,
+"sale_price":850000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5015501,
+"pin":"6959-10-0311-000",
+"site_addr":"9707 CREST HILL RD",
+"change":"OWNER",
+"old_owner":"NORRIS GENEVA C",
+"new_owner":"SANDSTROM TERESA NORRIS; SCHRADER, JOSHUA R; SCHRADER, AARON M; RITTER JANET LEIGH",
+"old_mail":"9707 CREST HILL RD, MARSHALL, VA, 20115",
+"old_deed":[
+220,
+251
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5016012,
+"pin":"6961-63-7015-000",
+"site_addr":"8318 DIAMOND HILL RD",
+"change":"OWNER",
+"old_owner":"BUNDENS STACEY",
+"new_owner":"CROSS JANE F; CROSS DAVID",
+"old_mail":"8318 DIAMOND HILL RD, WARRENTON, VA, 20186",
+"old_deed":[
+1716,
+1967
+],
+"new_deed":[
+1829,
+1110
+],
+"sale_year":2026,
+"sale_price":870000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5016054,
+"pin":"6961-86-1129-000",
+"site_addr":"8265 OPAL RD",
+"change":"OWNER",
+"old_owner":"DOUGLAS MICHELLE R",
+"new_owner":"WHITE WILLIAM CHARLES",
+"old_mail":"8279 OPAL RD, WARRENTON, VA, 20186",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1829,
+1897
+],
+"sale_year":2026,
+"sale_price":590000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5016067,
+"pin":"6961-92-5651-000",
+"site_addr":"9697 SOUTH PINES RD",
+"change":"OWNER",
+"old_owner":"FRANCIS JEAN L TRUSTEE FRANCIS JEAN L REVOC LVG TRUST",
+"new_owner":"FRANCIS JEAN L",
+"old_mail":"9697 S PINES RD, WARRENTON, VA, 20186",
+"old_deed":[
+1466,
+149
+],
+"new_deed":[
+1828,
+582
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5016175,
+"pin":"6962-36-9049-000",
+"site_addr":"8464 HOT SPRINGS LN",
+"change":"OWNER",
+"old_owner":"CARDINO GABRIEL; PIRO SAMANTHA",
+"new_owner":"CARDINO GABRIEL; CARDINO SAMANTHA",
+"old_mail":"8464 HOT SPRINGS LN, WARRENTON, VA, 20186",
+"old_deed":[
+1341,
+1571
+],
+"new_deed":[
+1828,
+1804
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5016292,
+"pin":"6962-56-2689-000",
+"site_addr":"9330 SPRINGS RD",
+"change":"OWNER",
+"old_owner":"BRUGUERAS RALPH S",
+"new_owner":"FERREIRA MOTA MANUEL; PINTO DE SOUSA ADLAIDE",
+"old_mail":"5037 W GLEN GROVE STALEY RD, DEER PARK, WA, 99006",
+"old_deed":[
+1548,
+2314
+],
+"new_deed":[
+1828,
+2449
+],
+"sale_year":2026,
+"sale_price":535000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5016375,
+"pin":"6962-78-7774-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"LESSLEY SHARON R",
+"new_owner":"BUCK RUN CONTRACTING LLC",
+"old_mail":"4604 49TH ST N, SAINT PETERSBURG, FL, 33709",
+"old_deed":[
+1728,
+803
+],
+"new_deed":[
+1828,
+219
+],
+"sale_year":2026,
+"sale_price":150000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5016438,
+"pin":"6963-37-3585-000",
+"site_addr":"8640 HOLTZCLAW RD",
+"change":"OWNER",
+"old_owner":"HENKE PAUL G; HENKE LISA A",
+"new_owner":"NICHOLSON-BOUCHER HEATHER KRISTEN; BOUCHER MICHAEL DAVID",
+"old_mail":"8640 HOLTZCLAW RD, WARRENTON, VA, 20186",
+"old_deed":[
+1494,
+1341
+],
+"new_deed":[
+1829,
+1849
+],
+"sale_year":2026,
+"sale_price":2100000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5016517,
+"pin":"6964-12-6903-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"TURNER LEWIS JOHN",
+"new_owner":"TURNER LEWIS JOHN JR TRUST TRUSTEE",
+"old_mail":"7705 WATERLOO FARM RD, WARRENTON, VA, 20186",
+"old_deed":[
+392,
+542
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5016538,
+"pin":"6964-22-2556-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"TURNER LEWIS JOHN JR TEE TURNER LEWIS JOHN JR TRUST U/",
+"new_owner":"TURNER LEWIS JOHN JR TRUST TRUSTEE",
+"old_mail":"7705 WATERLOO FARM RD, WARRENTON, VA, 20186",
+"old_deed":[
+796,
+1777
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5016986,
+"pin":"6966-84-1601-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"DAVIDSON JOHN V; DAVIDSON HILLARY R",
+"new_owner":"DAVIDSON HILLARY R TRUSTEE; DAVIDSON, JOHN V TRUSTEE DAVIDSON HILLARY R REVOC TRUST; DAVIDSON, JOHN V REVOCABLE TRUST",
+"old_mail":"8259 ROCKINGHAM RD, WARRENTON, VA, 20186",
+"old_deed":[
+905,
+1458
+],
+"new_deed":[
+1828,
+721
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5016988,
+"pin":"6966-85-6353-000",
+"site_addr":"8259 ROCKINGHAM RD",
+"change":"OWNER",
+"old_owner":"DAVIDSON JOHN V; DAVIDSON HILLARY R",
+"new_owner":"DAVIDSON HILLARY R TRUSTEE; DAVIDSON, JOHN V TRUSTEE DAVIDSON HILLARY R REVOC TRUST; DAVIDSON, JOHN V REVOCABLE TRUST",
+"old_mail":"8259 ROCKINGHAM RD, WARRENTON, VA, 20186",
+"old_deed":[
+868,
+627
+],
+"new_deed":[
+1828,
+721
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5017062,
+"pin":"6967-43-0690-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"BLOMSTROM MAGGI MACQUILLIAM",
+"new_owner":"BLOMSTROM MAGGI MACQUILLIAM; BLOMSTROM SEAN CHRISTOPHER",
+"old_mail":"11 MIDDLE STREET APT.1, BOSTON, MA, 2137",
+"old_deed":[
+1722,
+1078
+],
+"new_deed":[
+1829,
+1741
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5017269,
+"pin":"6969-34-0567-000",
+"site_addr":"4400 SCOTTS RD",
+"change":"OWNER",
+"old_owner":"LONE PINE WEST LLC",
+"new_owner":"BARTHOLOMEW ERIC PAUL; BARTHOLOMEW RACHAEL NICHOLE",
+"old_mail":"4415 SCOTTS RD, MARSHALL, VA, 20115",
+"old_deed":[
+1413,
+133
+],
+"new_deed":[
+1828,
+1688
+],
+"sale_year":2026,
+"sale_price":635000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017270,
+"pin":"6969-34-3558-000",
+"site_addr":"4405 SCOTTS RD",
+"change":"OWNER",
+"old_owner":"UMBEL RUTH PAYNE",
+"new_owner":"UMBEL RUTH P TRUSTEE UMBEL RUTH P TRUST",
+"old_mail":"4405 SCOTTS RD, MARSHALL, VA, 20115",
+"old_deed":[
+1567,
+2429
+],
+"new_deed":[
+1828,
+2426
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5017281,
+"pin":"6969-37-3066-000",
+"site_addr":"8474 EMERALD LN",
+"change":"OWNER",
+"old_owner":"OSORIO MONTANO ERICK ALEXANDER; CASTELAN-OSORIO LEZLI BERENICE",
+"new_owner":"CRUMPLER ETHAN",
+"old_mail":"8474 EMERALD LN, MARSHALL, VA, 20115",
+"old_deed":[
+1727,
+469
+],
+"new_deed":[
+1827,
+1391
+],
+"sale_year":2026,
+"sale_price":310000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017315,
+"pin":"6969-46-4898-000",
+"site_addr":"5007 MILO ST",
+"change":"OWNER",
+"old_owner":"OLD SALEM COMMUNITY DEVELOPMENT LLC",
+"new_owner":"HERNANDEZ MOISES CABRERA; HERNANDEZ JOYCE CABRERA",
+"old_mail":"9900 MAIN ST #500, FAIRFAX, VA, 22031",
+"old_deed":[
+1410,
+797
+],
+"new_deed":[
+1829,
+1
+],
+"sale_year":2026,
+"sale_price":832449,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017326,
+"pin":"6969-46-8925-000",
+"site_addr":"9020 PURYEAR PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"MORELLO ARNALDO; MORELLO MARTHA CUARTAS",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1828,
+1891
+],
+"sale_year":2026,
+"sale_price":812210,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017353,
+"pin":"6969-47-4375-000",
+"site_addr":"8704 ANDERSON AVE",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"CHUM DESIREE; CHUM STEPHEN",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1827,
+2185
+],
+"sale_year":2026,
+"sale_price":718680,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017361,
+"pin":"6969-47-5318-000",
+"site_addr":"8702 ANDERSON AVE",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"MCMURRER KATELYN E; MCMURRER GREGORY R",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1827,
+2227
+],
+"sale_year":2026,
+"sale_price":708110,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017367,
+"pin":"6969-47-6034-000",
+"site_addr":"5166 CARTERS CROSSING AVE",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"STIMER ANDREW WILLIAM; ROGOFF MALLORY",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1817,
+1485
+],
+"new_deed":[
+1827,
+1853
+],
+"sale_year":2026,
+"sale_price":645310,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017371,
+"pin":"6969-47-6159-000",
+"site_addr":"9008 PURYEAR PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"GALIMBA DAVE CASINOS; DE LEON PAMELLA ANN P",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1827,
+138
+],
+"sale_year":2026,
+"sale_price":643262,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017372,
+"pin":"6969-47-6185-000",
+"site_addr":"9010 PURYEAR PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"MERUPULA RANGAIAH SRINIVAS VENUGOPAL, AKHIL GOUD; BEEMANAPALLY DEEKSHA",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1828,
+1964
+],
+"sale_year":2026,
+"sale_price":723840,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017375,
+"pin":"6969-47-6447-000",
+"site_addr":"8694 ANDERSON AVE",
+"change":"OWNER",
+"old_owner":"OLD SALEM COMMUNITY DEVELOPMENT LLC",
+"new_owner":"NIRANJAN VASUDHA",
+"old_mail":"9900 MAIN ST #500, FAIRFAX, VA, 22031",
+"old_deed":[
+1410,
+797
+],
+"new_deed":[
+1829,
+1206
+],
+"sale_year":2026,
+"sale_price":681850,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017376,
+"pin":"6969-47-6580-000",
+"site_addr":"8692 ANDERSON AVE",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"PIERCE JASON MICHAEL; PIERCE MORGANNE LEA",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1827,
+1552
+],
+"sale_year":2026,
+"sale_price":702040,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017394,
+"pin":"6969-47-8241-000",
+"site_addr":"9013 PURYEAR PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"CLARK DIANE S; BROYLES, JUDY C; BROYLES KEITH E",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1826,
+1220
+],
+"sale_year":2026,
+"sale_price":720175,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017403,
+"pin":"6969-47-9114-000",
+"site_addr":"9017 PURYEAR PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"BUTLER STUART ELLIOTT JR; BUTLER REBEKAH LASLOW",
+"old_mail":"11700 PLAZA AMERICA DR #500, RESTON, VA, 20190",
+"old_deed":[
+1811,
+758
+],
+"new_deed":[
+1828,
+2345
+],
+"sale_year":2026,
+"sale_price":692775,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017505,
+"pin":"6969-56-4809-000",
+"site_addr":"2570 BLUE RIDGE AVE",
+"change":"OWNER",
+"old_owner":"OLD SALEM COMMUNITY DEVELOPMENT LLC",
+"new_owner":"LABURTHE FRANCK CO-TRUSTEE; LABURTHE REVOCABLE LIVING TRUST LABURTHE STEPHANIE G CO-TRUSTEE",
+"old_mail":"9900 MAIN ST #500, FAIRFAX, VA, 22031",
+"old_deed":[
+1410,
+797
+],
+"new_deed":[
+1826,
+1413
+],
+"sale_year":2026,
+"sale_price":804604,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017510,
+"pin":"6969-56-5948-000",
+"site_addr":"2571 BLUE RIDGE AVE",
+"change":"OWNER",
+"old_owner":"OLD SALEM COMMUNITY DEVELOPMENT LLC",
+"new_owner":"WONG BLANCHE",
+"old_mail":"9900 MAIN ST #500, FAIRFAX, VA, 22031",
+"old_deed":[
+1410,
+797
+],
+"new_deed":[
+1829,
+1531
+],
+"sale_year":2026,
+"sale_price":895000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017566,
+"pin":"6969-57-3776-000",
+"site_addr":"8639 ANDERSON AVE",
+"change":"OWNER",
+"old_owner":"OLD SALEM COMMUNITY DEVELOPMENT LLC",
+"new_owner":"LOMAX BUCK BAKER; LOMAX SHANNON MARIE",
+"old_mail":"9900 MAIN ST #500, FAIRFAX, VA, 22031",
+"old_deed":[
+1410,
+797
+],
+"new_deed":[
+1829,
+561
+],
+"sale_year":2026,
+"sale_price":875000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017629,
+"pin":"6969-57-9882-000",
+"site_addr":"3582 STEPHENSONS HILL LN",
+"change":"OWNER",
+"old_owner":"BUTLER STUART E JR; BUTLER REBEKAH LASLOW",
+"new_owner":"COLSON HUNTER JAMES; ADAMS TAYLOR DANIELLE",
+"old_mail":"3582 STEPHENSONS HILL LN, MARSHALL, VA, 20115",
+"old_deed":[
+1764,
+742
+],
+"new_deed":[
+1828,
+1580
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017882,
+"pin":"6969-67-0945-000",
+"site_addr":"4252 FROST ST",
+"change":"OWNER",
+"old_owner":"GORDON ANDREW; FAZEKAS AMANDA",
+"new_owner":"NISBET WILLIAM ALEXANDER II",
+"old_mail":"4252 FROST ST, MARSHALL, VA, 20115",
+"old_deed":[
+1765,
+1503
+],
+"new_deed":[
+1829,
+1453
+],
+"sale_year":2026,
+"sale_price":510000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5017928,
+"pin":"6969-67-6051-000",
+"change":"NEW_PARCEL",
+"new_owner":"HAMILTON MICHELLE SOPHIA; HARKLEROAD, NICHOLAS; HARKLEROAD, ANDREW; HARKLEROAD, HANNAH; HARKLEROAD, KATELYN; HARKLEROAD CHRISTOPHER"
+},
+{
+"date":"2026-11-16",
+"pid":5018214,
+"pin":"6969-77-0671-000",
+"site_addr":"8566 PELLAM CT",
+"change":"OWNER",
+"old_owner":"ROCHFORD WILLIAM AUGUSTUS; ROCHFORD DARLENE DAWN",
+"new_owner":"RAMOS CHRIS; BERMEJO QUEZADA MARIA LUISA",
+"old_mail":"8566 PELHAM CT, MARSHALL, VA, 20115",
+"old_deed":[
+1177,
+2404
+],
+"new_deed":[
+1829,
+1301
+],
+"sale_year":2026,
+"sale_price":375000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5018603,
+"pin":"6970-23-7493-000",
+"site_addr":"8029 BOTHA RD",
+"change":"OWNER",
+"old_owner":"THARPE WILLIAM LEWIS; THARPE ALICE M",
+"new_owner":"HEFLIN PATRICIA HUGHES",
+"old_mail":"8029 BOTHA RD, WARRENTON, VA, 20186",
+"old_deed":[
+528,
+514
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5018609,
+"pin":"6970-24-4266-000",
+"site_addr":"8084 BOTHA RD",
+"change":"OWNER",
+"old_owner":"MUTTERER ANDREA C",
+"new_owner":"MUTTERER ANDREA C TRUSTEE MUTTERER ANDREA C REV LVG TRUST",
+"old_mail":"8084 BOTHA RD, WARRENTON, VA, 20186",
+"old_deed":[
+716,
+1136
+],
+"new_deed":[
+1828,
+85
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5018671,
+"pin":"6970-32-8803-000",
+"site_addr":"10419 ST PAULS RD",
+"change":"OWNER",
+"old_owner":"JENKINS FIESTA A",
+"new_owner":"JENKINS JOHN A IV",
+"old_mail":"11156 WILLOW DR, BEALETON, VA, 22712",
+"old_deed":[
+1243,
+1927
+],
+"new_deed":[
+1829,
+1365
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5018727,
+"pin":"6970-42-6441-000",
+"site_addr":"7703 BOTHA RD",
+"change":"OWNER",
+"old_owner":"DAVIS WILLIE C; ROBINSON, WILLIAM DONALD; ALLEN, MARY ETHEL ROBINSON; WILLIAMS ANTOINETTE DAVIS",
+"new_owner":"RW CUSTOM HOMES INC",
+"old_mail":"7703 BOTHA RD, BEALETON, VA, 22712",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1828,
+1049
+],
+"sale_year":2026,
+"sale_price":175000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5019159,
+"pin":"6971-72-3953-000",
+"site_addr":"7453 OPAL RD",
+"change":"OWNER",
+"old_owner":"TRAVIS DONALD R; TRAVIS DEANA M",
+"new_owner":"FTF PROPERTY LLC",
+"old_mail":"9829 COBBLESTONE DR, WARRENTON, VA, 20186",
+"old_deed":[
+952,
+1417
+],
+"new_deed":[
+1828,
+2004
+],
+"sale_year":2026,
+"sale_price":1895000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5019251,
+"pin":"6971-95-5432-000",
+"site_addr":"7294 RIDGEDALE DR",
+"change":"OWNER",
+"old_owner":"PELL JASON P",
+"new_owner":"PELL JASON P; PELL STACEY R",
+"old_mail":"7294 RIDGEDALE DR, WARRENTON, VA, 20186",
+"old_deed":[
+1516,
+1204
+],
+"new_deed":[
+1829,
+758
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5019364,
+"pin":"6973-37-8366-000",
+"site_addr":"8546 SPRINGS RD",
+"change":"OWNER",
+"old_owner":"PETER EMMANUEL",
+"new_owner":"THE STABLE AT SPRINGS ROAD LLC",
+"old_mail":"PO BOX 3086, WARRENTON, VA, 20188",
+"old_deed":[
+1709,
+2083
+],
+"new_deed":[
+1829,
+1666
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5019397,
+"pin":"6973-75-0751-000",
+"site_addr":"7489 LEIGH RD",
+"change":"OWNER",
+"old_owner":"CATINO DEAN J; CATINO SHEILA A",
+"new_owner":"CATINO DEAN J TRUSTEE; CATINO FAM TRUST DATED 10/09/2025 CATINO SHEILA A TRUSTEE",
+"old_mail":"7489 LEIGH RD, WARRENTON, VA, 20186",
+"old_deed":[
+1662,
+1337
+],
+"new_deed":[
+1828,
+2042
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5019520,
+"pin":"6974-33-4578-000",
+"site_addr":"7722 LEE HWY",
+"change":"OWNER",
+"old_owner":"LIONS GATE FAMILY FOUNDATION LLC",
+"new_owner":"HARDY MARK W",
+"old_mail":"7722 LEE HWY, WARRENTON, VA, 20186",
+"old_deed":[
+1804,
+792
+],
+"new_deed":[
+1829,
+1767
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5019657,
+"pin":"6974-66-3351-000",
+"site_addr":"9010 STONE CREST DR",
+"change":"OWNER",
+"old_owner":"HINCHMAN BRIDGET LEA",
+"new_owner":"DUPREE PHILIP R; DUPREE BARBARA A",
+"old_mail":"9010 STONE CREST DR, WARRENTON, VA, 20186",
+"old_deed":[
+1638,
+2031
+],
+"new_deed":[
+1829,
+1338
+],
+"sale_year":2026,
+"sale_price":915000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5019699,
+"pin":"6974-67-6610-000",
+"site_addr":"7477 ADMIRAL NELSON DR",
+"change":"OWNER",
+"old_owner":"GARRISON WILLIAM JAMES VICTOR",
+"new_owner":"GARRISON WILLIAM JAMES VICTOR TRUSTEE GARRISON WILLIAM JAMES VICTOR REV LVG TRUST",
+"old_mail":"7477 ADMIRAL NELSON DR, WARRENTON, VA, 20186",
+"old_deed":[
+1430,
+1832
+],
+"new_deed":[
+1828,
+717
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5019855,
+"pin":"6974-87-7778-000",
+"site_addr":"770 BLACK SWEEP RD",
+"change":"OWNER",
+"old_owner":"PFANNKUCH ROBERT B; PFANNKUCH MARIA M",
+"new_owner":"HUGHES ANDREW WILLIS; HUGHES CHRISTINA",
+"old_mail":"770 BLACK SWEEP RD, WARRENTON, VA, 20186",
+"old_deed":[
+1075,
+1629
+],
+"new_deed":[
+1829,
+2057
+],
+"sale_year":2026,
+"sale_price":729500,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5020345,
+"pin":"6975-43-8476-000",
+"site_addr":"7610 BEAR WALLOW RD",
+"change":"OWNER",
+"old_owner":"SPARACINO RONALD ANTHONY; SPARACINO LINETTE REONNE",
+"new_owner":"GOFF GLEN A",
+"old_mail":"7610 BEAR WALLOW RD, WARRENTON, VA, 20186",
+"old_deed":[
+1589,
+316
+],
+"new_deed":[
+1827,
+1740
+],
+"sale_year":2026,
+"sale_price":1175000,
+"note":"DOA: deed of assumption"
+},
+{
+"date":"2026-11-16",
+"pid":5020449,
+"pin":"6975-70-2760-000",
+"site_addr":"7395 FILLY LN",
+"change":"OWNER",
+"old_owner":"JOULFAIAN CIMA K TRUSTEE JOULFAIAN CIMA K REV LVG TRUST",
+"new_owner":"FERGUSON VITA NOVIK",
+"old_mail":"7395 FILLY LN, WARRENTON, VA, 20186",
+"old_deed":[
+1773,
+873
+],
+"new_deed":[
+1828,
+493
+],
+"sale_year":2026,
+"sale_price":322000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5020577,
+"pin":"6976-20-6149-000",
+"site_addr":"7724 CANNONBALL GATE RD",
+"change":"OWNER",
+"old_owner":"DUPREE PHILIP RANDALL; DUPREE BARBARA ANNE",
+"new_owner":"ROGERS ELIZABETH A",
+"old_mail":"7724 CANNONBALL GATE RD, WARRENTON, VA, 20186",
+"old_deed":[
+1542,
+686
+],
+"new_deed":[
+1829,
+1241
+],
+"sale_year":2026,
+"sale_price":1700000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5020788,
+"pin":"6977-45-8944-000",
+"site_addr":"5634 MERRY OAKS RD",
+"change":"OWNER",
+"old_owner":"WILLOW OAK POND LLC",
+"new_owner":"ANDREWS JOHN E; ANDREWS KELLY M",
+"old_mail":"5295 MERRY OAKS RD, THE PLAINS, VA, 20198",
+"old_deed":[
+1738,
+1539
+],
+"new_deed":[
+1827,
+448
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5020877,
+"pin":"6977-98-1196-000",
+"site_addr":"5549 JAMES MADISON HWY",
+"change":"OWNER",
+"old_owner":"SHELTON LLOYD M; SHELTON GLORIA J",
+"new_owner":"SHELTON GLORIA J",
+"old_mail":"5549 JAMES MADISON HWY, THE PLAINS, VA, 20198",
+"old_deed":[
+852,
+1301
+],
+"new_deed":[
+852,
+1301
+],
+"sale_year":1999,
+"sale_price":56666,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5021176,
+"pin":"6979-57-4795-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"BELVOIR RIDGE OF VIRGINIA LLC",
+"new_owner":"NPA BELVOIR RIDGE LLC",
+"old_mail":"8401 CONNECTICUT AVE #1110, CHEVY CHASE, MD, 20815",
+"old_deed":[
+1134,
+38
+],
+"new_deed":[
+1826,
+1626
+],
+"sale_year":2026,
+"sale_price":22000000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5021919,
+"pin":"6981-32-4576-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"BROWN RICKY L INC; TRI-STAR DEVELOPMENT CORPORATION",
+"new_owner":"RICKY L BROWN INC",
+"old_mail":"4235 WHITING RD, MARSHALL, VA, 20115",
+"old_deed":[
+1331,
+1689
+],
+"new_deed":[
+1828,
+2263
+],
+"sale_year":2026,
+"sale_price":295500,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5021980,
+"pin":"6981-42-1195-000",
+"site_addr":"6678 CLARKES MEADOW DR",
+"change":"OWNER",
+"old_owner":"STOOPS HOPE ELIZABETH",
+"new_owner":"ELY JENNIFER LYN",
+"old_mail":"6678 CLARKES MEADOW DR, BEALETON, VA, 22712",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1827,
+1879
+],
+"sale_year":2026,
+"sale_price":515000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5022276,
+"pin":"6982-36-4183-000",
+"site_addr":"9032 JAMES MADISON HWY",
+"change":"OWNER",
+"old_owner":"COXSEY PASINI",
+"new_owner":"FAQEERZAI FAHIM",
+"old_mail":"PO BOX 1969, MIDDLEBURG, VA, 20118",
+"old_deed":[
+928,
+696
+],
+"new_deed":[
+1826,
+2286
+],
+"sale_year":2026,
+"sale_price":850000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5022417,
+"pin":"6982-65-6025-000",
+"change":"NEW_PARCEL",
+"new_owner":"FARSHT DIANA PATRICIA MURRAY; FARSHT, JUDSON; FARSHT, JASMINE; FARSHT JOEL"
+},
+{
+"date":"2026-11-16",
+"pid":5022510,
+"pin":"6983-08-7614-000",
+"site_addr":"8215 LEES RIDGE RD",
+"change":"OWNER",
+"old_owner":"HOYSA CHARLES R; HOYSA, ERIN A/K/A; HOYSA, BRIAN C; HOYSA, BRIAN A/K/A; WATSON ERIN M",
+"new_owner":"UNTERMAN MARIAN WOOTTEN",
+"old_mail":"7111 BALDWIN RIDGE RD, WARRENTON, VA, 20187",
+"old_deed":[
+1791,
+1769
+],
+"new_deed":[
+1828,
+1644
+],
+"sale_year":2026,
+"sale_price":575000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5022539,
+"pin":"6983-14-2276-000",
+"site_addr":"8439 LEES RIDGE RD",
+"change":"OWNER",
+"old_owner":"PONSART DWIGHT D; PONSART LISA",
+"new_owner":"AYERS WILLIAM G; AYERS JENNIFER L",
+"old_mail":"8439 LEES RIDGE RD, WARRENTON, VA, 20186",
+"old_deed":[
+1489,
+1723
+],
+"new_deed":[
+1827,
+1418
+],
+"sale_year":2026,
+"sale_price":1000000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5022640,
+"pin":"6983-29-5976-000",
+"site_addr":"478 DEVON DR",
+"change":"OWNER",
+"old_owner":"RODRIGUEZ MARIO",
+"new_owner":"DONOVAN KYLE J; DONOVAN REBECCA N",
+"old_mail":"478 DEVON DR, WARRENTON, VA, 20186",
+"old_deed":[
+1795,
+1251
+],
+"new_deed":[
+1829,
+359
+],
+"sale_year":2026,
+"sale_price":628000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5022690,
+"pin":"6983-49-3930-000",
+"site_addr":"258 JEFFERSON ST",
+"change":"OWNER",
+"old_owner":"GRUNETT KIMBERLY RENEE",
+"new_owner":"STRAIGHT MICHAEL L; STRAIGHT TERRY A",
+"old_mail":"258 JEFFERSON ST, WARRENTON, VA, 20186",
+"old_deed":[
+1679,
+720
+],
+"new_deed":[
+1828,
+769
+],
+"sale_year":2026,
+"sale_price":550000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5022774,
+"pin":"6983-59-9539-000",
+"site_addr":"61 TAYLOR ST",
+"change":"OWNER",
+"old_owner":"RANNEFELD WILLIAM",
+"new_owner":"CALI RACHEL CYNTHIA",
+"old_mail":"61 TAYLOR ST, WARRENTON, VA, 20186",
+"old_deed":[
+1676,
+400
+],
+"new_deed":[
+1827,
+1633
+],
+"sale_year":2026,
+"sale_price":400000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5023033,
+"pin":"6984-00-3298-000",
+"site_addr":"5120 DAKOTA SPRINGS CT",
+"change":"OWNER",
+"old_owner":"BERAR CINDEE M",
+"new_owner":"BERAR CINDEE M; O'LEAR RICHARD J",
+"old_mail":"5120 DAKOTA SPRINGS CT, WARRENTON, VA, 20186",
+"old_deed":[
+1808,
+1987
+],
+"new_deed":[
+1829,
+383
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5023073,
+"pin":"6984-01-3911-000",
+"site_addr":"256 CARRIAGE CHASE CIR",
+"change":"OWNER",
+"old_owner":"KECK CLINTON J TRUSTEE; KECK, CARLA L TRUSTEE; KECK, CARLA L LIVING TRUST KECK CLINTON J LIVING TRUST",
+"new_owner":"CHEEK MARILYN Z",
+"old_mail":"256 CARRIAGE CHASE CIR, WARRENTON, VA, 20186",
+"old_deed":[
+1115,
+1881
+],
+"new_deed":[
+1829,
+1146
+],
+"sale_year":2026,
+"sale_price":695000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5023141,
+"pin":"6984-02-3076-000",
+"site_addr":"230 CARRIAGE CHASE CIR",
+"change":"OWNER",
+"old_owner":"KASLEY HUGH ROBERT",
+"new_owner":"KASLEY HUGH ROBERT TRUSTEE KASLEY HUGH REVOCABLE TRUST",
+"old_mail":"230 CARRIAGE CHASE CIR, WARRENTON, VA, 20186",
+"old_deed":[
+1796,
+648
+],
+"new_deed":[
+1826,
+1127
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5023181,
+"pin":"6984-02-6262-000",
+"site_addr":"52 QUARTERPOLE CT",
+"change":"OWNER",
+"old_owner":"MILLER MARCEL; MILLER LINDA LOUISE",
+"new_owner":"GEITHMAN ANDREW; GEITHMAN ASHLEY",
+"old_mail":"52 QUARTERPOLE CT, WARRENTON, VA, 20186",
+"old_deed":[
+1672,
+2307
+],
+"new_deed":[
+1829,
+540
+],
+"sale_year":2026,
+"sale_price":440000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5023359,
+"pin":"6984-06-0852-000",
+"site_addr":"162 BLUE RIDGE ST",
+"change":"OWNER",
+"old_owner":"WILLER MAUREEN S; WILLER, MAUREEN SLOAN KENDRICK A/K/A; WOOD, COLEEN MARIE KENDRICK; WOOD, COLEEN MARIE A/K/A; WOOD, COLEEN M A/K/A; GRAVELL, JACQUELINE; GRAVELL, JACQUELINE KENDRICK A/K/A; WILLER MAUREEN SLOAN A/K/A",
+"new_owner":"MINTER RANDOLPH T II",
+"old_mail":"5 BOUNDARY LN, WARRENTON, VA, 20186",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1828,
+1838
+],
+"sale_year":2026,
+"sale_price":475000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5023542,
+"pin":"6984-09-6508-000",
+"site_addr":"446 RIDGE CT",
+"change":"OWNER",
+"old_owner":"OTT MADELINE A",
+"new_owner":"WILSON RIARA",
+"old_mail":"446 RIDGE CT, WARRENTON, VA, 20186",
+"old_deed":[
+1661,
+52
+],
+"new_deed":[
+1828,
+880
+],
+"sale_year":2026,
+"sale_price":413000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5023720,
+"pin":"6984-13-8200-000",
+"site_addr":"144 MOFFETT AVE",
+"change":"OWNER",
+"old_owner":"POLES BESSIE Y",
+"new_owner":"POLES QUANTIA",
+"old_mail":"144 MOFFETT AVE, WARRENTON, VA, 20186",
+"old_deed":[
+761,
+1434
+],
+"new_deed":[
+1686,
+118
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"TDD: transfer-on-death deed recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5023737,
+"pin":"6984-14-0522-000",
+"site_addr":"39 GARRETT ST",
+"change":"OWNER",
+"old_owner":"39 GARRETT STREET LC",
+"new_owner":"C&G RICH LLC",
+"old_mail":"39 GARRETT ST SUITE 101, WARRENTON, VA, 20186",
+"old_deed":[
+1323,
+905
+],
+"new_deed":[
+1828,
+2265
+],
+"sale_year":2026,
+"sale_price":1000000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5023985,
+"pin":"6984-19-0410-000",
+"site_addr":"452 DENNING CT",
+"change":"OWNER",
+"old_owner":"OWENS ROBIN LOUISE",
+"new_owner":"FLORES SALMERON GUILLERMO DE JESUS; VELIZ HERNANDEZ SAIDY MAHOLY",
+"old_mail":"410 S MAPLE AVE #407, FALLS CHURCH, VA, 22046",
+"old_deed":[
+904,
+1362
+],
+"new_deed":[
+1827,
+1493
+],
+"sale_year":2026,
+"sale_price":390000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5024138,
+"pin":"6984-22-7886-000",
+"site_addr":"102 MOSBY CIR",
+"change":"OWNER",
+"old_owner":"RUDE DENNIS D; RUDE PATRICIA J",
+"new_owner":"KELLY THOMAS R; KELLY LAURIE S",
+"old_mail":"102 MOSBY CIR, WARRENTON, VA, 20186",
+"old_deed":[
+1571,
+865
+],
+"new_deed":[
+1826,
+2105
+],
+"sale_year":2026,
+"sale_price":549000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5024273,
+"pin":"6984-24-2948-000",
+"change":"NEW_PARCEL",
+"new_owner":"QUEEN JAMES E; QUEEN, PAMELA A; FOSTER, BEVERLY; QUEEN JAMES EDWARD A/K/A"
+},
+{
+"date":"2026-11-16",
+"pid":5024292,
+"pin":"6984-24-4635-000",
+"site_addr":"179 WATERLOO ST",
+"change":"OWNER",
+"old_owner":"HARLOW HALBERT COREY TRUSTEE; BERTUCCIO, CARRIE ELIZABETH LVG TRUST BERTUCCIO CARRIE ELIZABETH TRUSTEE",
+"new_owner":"ARON BARRY IRA; ARON DEANNE CARPENTER",
+"old_mail":"7717 CHURCHILL CT, MARSHALL, VA, 20115",
+"old_deed":[
+1760,
+376
+],
+"new_deed":[
+1827,
+1599
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5024294,
+"pin":"6984-24-4812-000",
+"site_addr":"23 FAIRFAX ST",
+"change":"OWNER",
+"old_owner":"WINES PAIGE",
+"new_owner":"OORBEEK DENISE",
+"old_mail":"23 FAIRFAX ST, WARRENTON, VA, 20186",
+"old_deed":[
+1783,
+180
+],
+"new_deed":[
+1829,
+2133
+],
+"sale_year":2026,
+"sale_price":632000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5024764,
+"pin":"6984-32-0644-000",
+"site_addr":"132 MOSBY CIR",
+"change":"OWNER",
+"old_owner":"HILL EMERY STEPHEN; CARTER JUDITH ANNE",
+"new_owner":"HILL EMERY STEPHEN",
+"old_mail":"132 MOSBY CIR, WARRENTON, VA, 20186",
+"old_deed":[
+1596,
+2360
+],
+"new_deed":[
+1596,
+2360
+],
+"sale_year":2019,
+"sale_price":370000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5024949,
+"pin":"6984-33-7459-000",
+"site_addr":"10 HOTEL ST",
+"change":"OWNER",
+"old_owner":"FAUQUIER COUNTY BD OF SUPERVISORS",
+"new_owner":"WG LODGINGS LLC",
+"old_mail":"40 CULPEPER ST, WARRENTON, VA, 20186",
+"old_deed":[
+210,
+234
+],
+"new_deed":[
+1827,
+1383
+],
+"sale_year":2026,
+"sale_price":2000000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5024969,
+"pin":"6984-33-8623-000",
+"site_addr":"18 COURT ST",
+"change":"OWNER",
+"old_owner":"WARRENTON TOWN OF",
+"new_owner":"WG LODGINGS LLC",
+"old_mail":"PO DRAWER 341, WARRENTON, VA, 20188",
+"old_deed":[
+290,
+2
+],
+"new_deed":[
+1829,
+100
+],
+"sale_year":2026,
+"sale_price":509286,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5025463,
+"pin":"6984-41-7748-002",
+"site_addr":"186 FAIRFIELD DR",
+"change":"OWNER",
+"old_owner":"STATHIS PETER ANDREAS; STATHIS KARA LARKIN",
+"new_owner":"CONLONPHILLIPS ETHAN HENRY; TALOMIE PEYTON",
+"old_mail":"186 FAIRFIELD DR, WARRENTON, VA, 20186",
+"old_deed":[
+1740,
+756
+],
+"new_deed":[
+1829,
+2001
+],
+"sale_year":2026,
+"sale_price":390000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5025611,
+"pin":"6984-42-7281-003",
+"site_addr":"160C LEEDS CT W",
+"change":"OWNER",
+"old_owner":"HOGAN ANNA A; DOZAL, ELIZABETH; HOGAN ARTHUR MCCLURE BOAL",
+"new_owner":"HOGAN ANNA A; DOZAL, EMILY; HOGAN ARTHUR MCCLURE BOAL",
+"old_mail":"160-C LEEDS CT W, WARRENTON, VA, 20186",
+"old_deed":[
+1823,
+1907
+],
+"new_deed":[
+1826,
+2055
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5025920,
+"pin":"6984-45-0594-000",
+"site_addr":"68 JOHN E MANN ST",
+"change":"OWNER",
+"old_owner":"WADE PAUL G",
+"new_owner":"WADE CHRISTINE E",
+"old_mail":"68 JOHN E MANN ST, WARRENTON, VA, 20186",
+"old_deed":[
+313,
+684
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5026222,
+"pin":"6984-50-2968-000",
+"site_addr":"206 AVIARY ST",
+"change":"OWNER",
+"old_owner":"GRAHAM AUDREY E",
+"new_owner":"GRAHAM AUDREY E TRUSTEE GRAHAM REV TRUST DATED 10/26/2026",
+"old_mail":"206 AVIARY ST, WARRENTON, VA, 20186",
+"old_deed":[
+579,
+317
+],
+"new_deed":[
+1829,
+592
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5026463,
+"pin":"6984-52-9953-000",
+"site_addr":"233 HIDDEN CREEK LN",
+"change":"OWNER",
+"old_owner":"WICKENHOFER PATRICIA J",
+"new_owner":"WICKENHOFER PATRICIA J TRUSTEE WICKENHOFER PATRICIA J REV TRUST",
+"old_mail":"233 HIDDEN CREEK LN, WARRENTON, VA, 20186",
+"old_deed":[
+1140,
+132
+],
+"new_deed":[
+1828,
+840
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5026849,
+"pin":"6984-60-9026-000",
+"site_addr":"545 OLD MEETZE RD",
+"change":"OWNER",
+"old_owner":"WILLIAM DANIELS LLC",
+"new_owner":"TI-WARRENTON CROSSING LLC",
+"old_mail":"545 OLD MEETZE RD, WARRENTON, VA, 20186",
+"old_deed":[
+860,
+501
+],
+"new_deed":[
+1829,
+1524
+],
+"sale_year":2026,
+"sale_price":665000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5026948,
+"pin":"6984-63-6599-000",
+"site_addr":"123 FLIKEID LN",
+"change":"OWNER",
+"old_owner":"ADAMS RUSSELL; ADAMS LACEY",
+"new_owner":"PINNER ZACKARY",
+"old_mail":"123 FLIKEID LN, WARRENTON, VA, 20187",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1828,
+1503
+],
+"sale_year":2026,
+"sale_price":390000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027148,
+"pin":"6984-64-9503-048",
+"site_addr":"249 SAPPHIRE CT",
+"change":"OWNER",
+"old_owner":"EVERT NANCY",
+"new_owner":"HYATT RAYMOND; HYATT ROBYN",
+"old_mail":"249 SAPPHIRE CT #48, WARRENTON, VA, 20186",
+"old_deed":[
+1544,
+1043
+],
+"new_deed":[
+1827,
+1694
+],
+"sale_year":2026,
+"sale_price":599000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027172,
+"pin":"6984-65-4613-000",
+"site_addr":"338 SINGLETON CIR",
+"change":"OWNER",
+"old_owner":"SCHMITT JUSTIN P; SCHMITT ERIN M",
+"new_owner":"STATHIS PETER; STATHIS KARA LARKIN",
+"old_mail":"338 SINGLETON CIR, WARRENTON, VA, 20186",
+"old_deed":[
+1586,
+586
+],
+"new_deed":[
+1829,
+2310
+],
+"sale_year":2026,
+"sale_price":669000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027225,
+"pin":"6984-66-5039-000",
+"site_addr":"364 SINGLETON CIR",
+"change":"OWNER",
+"old_owner":"GOFF GLEN A",
+"new_owner":"JARVIS CHRISTOPHER D; DIESSELHORST MEGAN R",
+"old_mail":"364 SINGLETON CIR, WARRENTON, VA, 20186",
+"old_deed":[
+1558,
+1710
+],
+"new_deed":[
+1829,
+1828
+],
+"sale_year":2026,
+"sale_price":700000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027318,
+"pin":"6984-67-8539-000",
+"site_addr":"557 ESTATE AVE",
+"change":"OWNER",
+"old_owner":"STONE CHRISTOPHER S; STONE VICTORIA",
+"new_owner":"STONE CHRISTOPHER S TRUSTEE; STONE FAMILY LIVING TRUST STONE VICTORIA TRUSTEE",
+"old_mail":"557 ESTATE AVE, WARRENTON, VA, 20186",
+"old_deed":[
+1296,
+1531
+],
+"new_deed":[
+1827,
+1094
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027424,
+"pin":"6984-70-1108-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"WILLIAM DANIELS LLC",
+"new_owner":"TI-WARRENTON CROSSING LLC",
+"old_mail":"545 OLD MEETZE RD, WARRENTON, VA, 20186",
+"old_deed":[
+860,
+501
+],
+"new_deed":[
+1829,
+1524
+],
+"sale_year":2026,
+"sale_price":665000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027426,
+"pin":"6984-70-2394-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"WILLIAM DANIELS LLC",
+"new_owner":"TI-WARRENTON CROSSING LLC",
+"old_mail":"545 OLD MEETZE RD, WARRENTON, VA, 20186",
+"old_deed":[
+860,
+501
+],
+"new_deed":[
+1829,
+1524
+],
+"sale_year":2026,
+"sale_price":665000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027722,
+"pin":"6984-85-5863-000",
+"site_addr":"7721 MOVERN LN",
+"change":"OWNER",
+"old_owner":"DUKE JONATHAN R; DUKE DEANNA MARIE",
+"new_owner":"MOON ZACHARY JAMES; MOON ELISSA LYNN",
+"old_mail":"7721 MOVERN LN, WARRENTON, VA, 20187",
+"old_deed":[
+1494,
+174
+],
+"new_deed":[
+1827,
+1017
+],
+"sale_year":2026,
+"sale_price":825000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5027825,
+"pin":"6984-90-8751-000",
+"site_addr":"8093 MEETZE RD",
+"change":"OWNER",
+"old_owner":"JOLLY INVESTMENTS LLC",
+"new_owner":"ANDREWS KELLY M; ANDREWS JOHN E",
+"old_mail":"PO BOX 1199, WARRENTON, VA, 20188",
+"old_deed":[
+1815,
+1330
+],
+"new_deed":[
+1828,
+2209
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5028090,
+"pin":"6985-01-8074-000",
+"site_addr":"611 EVANS AVE",
+"change":"OWNER",
+"old_owner":"MCGEE MICHAEL P; MCGEE MARY ELLEN",
+"new_owner":"MCGEE MICHAEL P TRUSTEE; MCGEE JOINT DECLARATION OF TRUST MCGEE MARY ELLEN TRUSTEE",
+"old_mail":"611 EVANS AVE, WARRENTON, VA, 20186",
+"old_deed":[
+799,
+609
+],
+"new_deed":[
+1827,
+1090
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5028356,
+"pin":"6985-31-8303-000",
+"site_addr":"843 OAK LEAF CT",
+"change":"OWNER",
+"old_owner":"KELLEY DOREEN M",
+"new_owner":"VCS HOMES LLC",
+"old_mail":"843 OAK LEAF CT, WARRENTON, VA, 20186",
+"old_deed":[
+679,
+654
+],
+"new_deed":[
+1829,
+1152
+],
+"sale_year":2026,
+"sale_price":249000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029037,
+"pin":"6985-82-7547-000",
+"site_addr":"7232 MARR DR",
+"change":"OWNER",
+"old_owner":"JONES DAVID W; JONES DAWN A",
+"new_owner":"JONES DAVID W TRUSTEE; JONES FAMILY REVOCABLE TRUST JONES DAWN A TRUSTEE",
+"old_mail":"7232 MARR DR, WARRENTON, VA, 20187",
+"old_deed":[
+1603,
+2282
+],
+"new_deed":[
+1828,
+785
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029252,
+"pin":"6985-93-1174-000",
+"site_addr":"6416 NORDIX DR",
+"change":"OWNER",
+"old_owner":"MOORE JASON CLAY",
+"new_owner":"NEIDERHISER ADAM; BROGNANO BERNADETTE",
+"old_mail":"6416 NORDIX DR, WARRENTON, VA, 20187",
+"old_deed":[
+1692,
+945
+],
+"new_deed":[
+1826,
+1348
+],
+"sale_year":2026,
+"sale_price":615000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029326,
+"pin":"6985-97-1026-000",
+"site_addr":"6981 WAYLAND DR",
+"change":"OWNER",
+"old_owner":"PHILLIPS JEFFREY JR; PHILLIPS ELIZABETH",
+"new_owner":"SPAULDING AARON FRANCIS; CLAFFEY KATHRYN ROSE",
+"old_mail":"6981 WAYLAND DR, WARRENTON, VA, 20187",
+"old_deed":[
+1364,
+2139
+],
+"new_deed":[
+1829,
+959
+],
+"sale_year":2026,
+"sale_price":785000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029464,
+"pin":"6986-22-3455-000",
+"site_addr":"7131 ACADEMY RD",
+"change":"OWNER",
+"old_owner":"ADAMS KENNETH M; ADAMS PATRICIA E",
+"new_owner":"BULLOCK DANIEL W III; BULLOCK DONNA M",
+"old_mail":"7131 ACADEMY RD, WARRENTON, VA, 20187",
+"old_deed":[
+1046,
+2065
+],
+"new_deed":[
+1829,
+517
+],
+"sale_year":2026,
+"sale_price":610000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029669,
+"pin":"6987-19-2009-000",
+"site_addr":"7187 KENTHURST LN",
+"change":"OWNER",
+"old_owner":"PEAY JAMES HENRY BINFORD III; PEAY PAMELA JANE",
+"new_owner":"PEAY JAMES HENRY BINFORD III",
+"old_mail":"7187 KENTHURST LN, THE PLAINS, VA, 20198",
+"old_deed":[
+1666,
+15
+],
+"new_deed":[
+1666,
+15
+],
+"sale_year":2021,
+"sale_price":1381650,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029682,
+"pin":"6987-27-8175-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"JACOBS PAUL FRANCIS",
+"new_owner":"HAMILL DEVON WALKER",
+"old_mail":"16402 WATERFALL RD, HAYMARKET, VA, 20169",
+"old_deed":[
+1334,
+196
+],
+"new_deed":[
+1828,
+2285
+],
+"sale_year":2026,
+"sale_price":309494,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029702,
+"pin":"6987-37-7458-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"JACOBS PAUL FRANCIS",
+"new_owner":"IMG EQUITY GROUP INC",
+"old_mail":"16402 WATERFALL RD, HAYMARKET, VA, 20169",
+"old_deed":[
+1334,
+196
+],
+"new_deed":[
+1828,
+1857
+],
+"sale_year":2026,
+"sale_price":600000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029708,
+"pin":"6987-46-4205-000",
+"site_addr":"5553 PIGNUT MOUNTAIN DR",
+"change":"OWNER",
+"old_owner":"PIGNUT HOME LLC",
+"new_owner":"NEFF JOSHUA; NEFF JESSICA",
+"old_mail":"15121 RIDING CLUB DR, HAYMARKET, VA, 20169",
+"old_deed":[
+1784,
+249
+],
+"new_deed":[
+1828,
+991
+],
+"sale_year":2026,
+"sale_price":1836618,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5029734,
+"pin":"6988-00-9237-000",
+"site_addr":"5558 OBANNON RD",
+"change":"OWNER",
+"old_owner":"ROBINSON CLAUDE B JR; ROBINSON CATHERINE",
+"new_owner":"ROBINSON CLAUDE B JR CO-TRUSTEE; ROBINSON REVOCABLE TRUST ROBINSON CATHERINE A CO-TRUSTEE",
+"old_mail":"5558 OBANNON RD, THE PLAINS, VA, 20198",
+"old_deed":[
+677,
+905
+],
+"new_deed":[
+1826,
+1133
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5030296,
+"pin":"6990-12-8401-000",
+"site_addr":"6343 LIBERTY RD",
+"change":"OWNER",
+"old_owner":"BG INVESTMENTS & HOLDINGS LLC",
+"new_owner":"KESTNER DAWN",
+"old_mail":"10438 BUSINESS CENTER CT, MANASSAS, VA, 20110",
+"old_deed":[
+1816,
+2249
+],
+"new_deed":[
+1828,
+594
+],
+"sale_year":2026,
+"sale_price":475000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5030298,
+"pin":"6990-12-9453-000",
+"site_addr":"6335 LIBERTY RD",
+"change":"OWNER",
+"old_owner":"CEDAR RUN INVESTMENTS LLC",
+"new_owner":"RMH BUILDERS LLC",
+"old_mail":"10251 SLATE RUN LN, NOKESVILLE, VA, 20181",
+"old_deed":[
+1816,
+1593
+],
+"new_deed":[
+1826,
+1488
+],
+"sale_year":2026,
+"sale_price":180000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5030457,
+"pin":"6990-79-1342-000",
+"site_addr":"6026 GERMANTOWN RD",
+"change":"OWNER",
+"old_owner":"CHARNOCK HOWARD L JR; CHARNOCK DIANA B",
+"new_owner":"VALLADARES GABRIEL ANTONIO ARRIOLA SR; GOMEZ DE ARRIOLA CLAUDIA CAROLINA",
+"old_mail":"6026 GERMANTOWN RD, MIDLAND, VA, 22728",
+"old_deed":[
+1506,
+380
+],
+"new_deed":[
+1827,
+1421
+],
+"sale_year":2026,
+"sale_price":370000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5030604,
+"pin":"6991-28-8714-000",
+"site_addr":"9448 GREEN RD",
+"change":"OWNER",
+"old_owner":"HALL ADAM BROWER",
+"new_owner":"MORALES FRANCISCO JAVIER",
+"old_mail":"9448 GREEN RD, MIDLAND, VA, 22728",
+"old_deed":[
+1519,
+805
+],
+"new_deed":[
+1826,
+2412
+],
+"sale_year":2026,
+"sale_price":495000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5030659,
+"pin":"6991-38-5640-000",
+"site_addr":"9427 BEALE LN",
+"change":"OWNER",
+"old_owner":"FENWICK DEREK MICHAEL",
+"new_owner":"PASCHAL BRENDA COLLEEN",
+"old_mail":"9427 BEALE LN, MIDLAND, VA, 22728",
+"old_deed":[
+1645,
+1769
+],
+"new_deed":[
+1829,
+718
+],
+"sale_year":2026,
+"sale_price":480000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5030680,
+"pin":"6991-47-6916-000",
+"site_addr":"",
+"change":"DEED_REF",
+"old_owner":"THOMAS VICKY R",
+"new_owner":"THOMAS VICKY R",
+"old_mail":"9508 BEALE LN, MIDLAND, VA, 22728",
+"old_deed":[
+1803,
+842
+],
+"new_deed":[
+1828,
+82
+],
+"sale_year":2026,
+"sale_price":100000,
+"note":"QC: quitclaim deed"
+},
+{
+"date":"2026-11-16",
+"pid":5030682,
+"pin":"6991-47-8677-000",
+"site_addr":"9508 BEALE LN",
+"change":"DEED_REF",
+"old_owner":"THOMAS VICKY R",
+"new_owner":"THOMAS VICKY R",
+"old_mail":"9508 BEALE LN, MIDLAND, VA, 22728",
+"old_deed":[
+974,
+871
+],
+"new_deed":[
+1828,
+82
+],
+"sale_year":2026,
+"sale_price":100000,
+"note":"QC: quitclaim deed"
+},
+{
+"date":"2026-11-16",
+"pid":5030684,
+"pin":"6991-47-9933-000",
+"site_addr":"",
+"change":"DEED_REF",
+"old_owner":"THOMAS VICKY R",
+"new_owner":"THOMAS VICKY R",
+"old_mail":"9508 BEALE LN, MIDLAND, VA, 22728",
+"old_deed":[
+1306,
+1842
+],
+"new_deed":[
+1828,
+82
+],
+"sale_year":2026,
+"sale_price":100000,
+"note":"QC: quitclaim deed"
+},
+{
+"date":"2026-11-16",
+"pid":5030685,
+"pin":"6991-48-1124-000",
+"site_addr":"",
+"change":"DEED_REF",
+"old_owner":"THOMAS VICKY R",
+"new_owner":"THOMAS VICKY R",
+"old_mail":"9508 BEALE LN, MIDLAND, VA, 22728",
+"old_deed":[
+1720,
+906
+],
+"new_deed":[
+1828,
+82
+],
+"sale_year":2026,
+"sale_price":100000,
+"note":"QC: quitclaim deed"
+},
+{
+"date":"2026-11-16",
+"pid":5030883,
+"pin":"6992-82-6061-000",
+"site_addr":"5533 BEACH RD",
+"change":"OWNER",
+"old_owner":"MOORE JOHN N",
+"new_owner":"FLORES VANIA SOFIA; FLORES JAVIER",
+"old_mail":"5533 BEACH RD, MIDLAND, VA, 22728",
+"old_deed":[
+258,
+672
+],
+"new_deed":[
+1827,
+1670
+],
+"sale_year":2026,
+"sale_price":250000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5030920,
+"pin":"6992-92-6523-000",
+"site_addr":"5483 BEACH RD",
+"change":"OWNER",
+"old_owner":"MUSE LINDSAY JEANNE; REICHLEN JAMES R",
+"new_owner":"BUNDENS STACEY P",
+"old_mail":"5483 BEACH RD, MIDLAND, VA, 22728",
+"old_deed":[
+1735,
+309
+],
+"new_deed":[
+1829,
+1374
+],
+"sale_year":2026,
+"sale_price":785000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5031146,
+"pin":"6993-49-6645-000",
+"site_addr":"6105 FRYS LN",
+"change":"OWNER",
+"old_owner":"HALL RANDOLPH S; MORTON-HALL CAROLYN L",
+"new_owner":"HALL RANDOLPH STEVENSON II",
+"old_mail":"6105 FRYS LN, WARRENTON, VA, 20187",
+"old_deed":[
+868,
+379
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5031305,
+"pin":"6994-01-2767-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"RFI WC LC",
+"new_owner":"FAUQUIER COUNTY BOARD OF COUNTY SUPERVISORS",
+"old_mail":"PO BOX 5, MARKHAM, VA, 22643",
+"old_deed":[
+1353,
+54
+],
+"new_deed":[
+1827,
+1096
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5031314,
+"pin":"6994-02-0848-000",
+"site_addr":"6468 BOB WHITE DR",
+"change":"OWNER",
+"old_owner":"KENNEDY MICHAEL JAMES",
+"new_owner":"GILLESPIE KENNETH",
+"old_mail":"6468 BOB WHITE DR, WARRENTON, VA, 20187",
+"old_deed":[
+1605,
+2088
+],
+"new_deed":[
+1828,
+1717
+],
+"sale_year":2026,
+"sale_price":1005000,
+"note":"DOA: deed of assumption"
+},
+{
+"date":"2026-11-16",
+"pid":5031332,
+"pin":"6994-02-8119-000",
+"site_addr":"7783 WARRENTON CHASE DR",
+"change":"OWNER",
+"old_owner":"LINCOLN HORATIO A JR",
+"new_owner":"LINCOLN HORATIO ALONZO JR TRUSTEE LINCOLN H A JR LIVING TRUST",
+"old_mail":"7783 WARRENTON CHASE DR, WARRENTON, VA, 20187",
+"old_deed":[
+1560,
+2062
+],
+"new_deed":[
+1826,
+1374
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5031438,
+"pin":"6994-09-1868-000",
+"site_addr":"7349 COMFORT INN DR",
+"change":"OWNER",
+"old_owner":"MID ATLANTIC POSTAL PROPERTIES INC",
+"new_owner":"APIF-VIRGINIA LLC",
+"old_mail":"PO BOX 10395, ALEXANDRIA, VA, 22310",
+"old_deed":[
+1305,
+21
+],
+"new_deed":[
+1760,
+306
+],
+"sale_year":2023,
+"sale_price":3800000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5031778,
+"pin":"6994-36-9779-000",
+"site_addr":"7566 FRYTOWN RD",
+"change":"OWNER",
+"old_owner":"TIPPETT CHARLES S JR",
+"new_owner":"TIPPETT CHARLES ROSS; TIPPETT, ALBERT CHANNING; TIPPETT, VICTORIA MAY; TIPPETT CHARLES A/K/A",
+"old_mail":"7566 FRYTOWN RD, WARRENTON, VA, 20187",
+"old_deed":[
+511,
+384
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"HAFD: heirship affidavit recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5032092,
+"pin":"6994-99-2867-000",
+"site_addr":"7471 CEDAR KNOLLS DR",
+"change":"OWNER",
+"old_owner":"BUCHANAN CHRISTINA LYNN MARTIN; BUCHANAN STEPHEN EUGENE JR",
+"new_owner":"HARTMAN DAVID L; HARTMAN TRACEY M",
+"old_mail":"7471 CEDAR KNOLLS DR, WARRENTON, VA, 20187",
+"old_deed":[
+1807,
+2335
+],
+"new_deed":[
+1826,
+1323
+],
+"sale_year":2026,
+"sale_price":570000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032172,
+"pin":"6995-02-6666-000",
+"site_addr":"6517 BEECHNUT CIR",
+"change":"OWNER",
+"old_owner":"STOUT JEFFREY A; STOUT SHILA JAYNE",
+"new_owner":"DINOFSKY REECE; WALKER MADISON LEE",
+"old_mail":"6517 BEECHNUT CIR, WARRENTON, VA, 20187",
+"old_deed":[
+1567,
+125
+],
+"new_deed":[
+1827,
+1125
+],
+"sale_year":2026,
+"sale_price":670000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032173,
+"pin":"6995-02-6713-000",
+"site_addr":"6518 BEECHNUT CIR",
+"change":"OWNER",
+"old_owner":"WYNN KEVIN L; WYNN LISA M",
+"new_owner":"WYNN LISA M",
+"old_mail":"6518 BEECHNUT CIR, WARRENTON, VA, 20187",
+"old_deed":[
+712,
+206
+],
+"new_deed":[
+712,
+206
+],
+"sale_year":1994,
+"sale_price":164140,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032259,
+"pin":"6995-07-8218-000",
+"site_addr":"7000 BEACONSFIELD LN",
+"change":"OWNER",
+"old_owner":"KEHOE JAMES MONCURE; KEHOE ANN VAWTER",
+"new_owner":"KEHOE JAMES M CO-TRUSTEE; PIPPA REVOCABLE LIVING TRUST KEHOE ANN VAWTER CO-TRUSTEE",
+"old_mail":"7000 BEACONSFIELD LN, WARRENTON, VA, 20187",
+"old_deed":[
+1808,
+87
+],
+"new_deed":[
+1827,
+1199
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032319,
+"pin":"6995-13-4607-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"CHESTNUT FORKS TENNIS AND FITNESS LLC",
+"new_owner":"APBV - CHESTNUT LLC",
+"old_mail":"6379 AIRLIE RD, WARRENTON, VA, 20187",
+"old_deed":[
+1527,
+1136
+],
+"new_deed":[
+1828,
+1290
+],
+"sale_year":2026,
+"sale_price":2100000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032320,
+"pin":"6995-13-6499-000",
+"site_addr":"6379 AIRLIE RD",
+"change":"OWNER",
+"old_owner":"CHESTNUT FORKS TENNIS AND FITNESS LLC",
+"new_owner":"APBV - CHESTNUT LLC",
+"old_mail":"6379 AIRLIE RD, WARRENTON, VA, 20187",
+"old_deed":[
+1527,
+1136
+],
+"new_deed":[
+1828,
+1290
+],
+"sale_year":2026,
+"sale_price":2100000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032437,
+"pin":"6995-30-8103-000",
+"site_addr":"7440 ASHLEY DR",
+"change":"OWNER",
+"old_owner":"COSBY STEVEN; LIFSON AMY",
+"new_owner":"COSBY STEVEN GOODWIN TRUSTEE; COSBY, STEVEN GOODWIN REV TRUST LIFSON AMY REBECCA TRUSTEE",
+"old_mail":"7440 ASHLEY DR, WARRENTON, VA, 20187",
+"old_deed":[
+1294,
+185
+],
+"new_deed":[
+1828,
+1222
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032505,
+"pin":"6995-33-7982-000",
+"site_addr":"7164 NORTH CREST CT",
+"change":"OWNER",
+"old_owner":"WERNER CHARLES C; WERNER BRANDY L",
+"new_owner":"HERNANDEZ INVESTMENTS LLC",
+"old_mail":"7164 NORTH CREST CT, WARRENTON, VA, 20187",
+"old_deed":[
+1301,
+810
+],
+"new_deed":[
+1828,
+157
+],
+"sale_year":2026,
+"sale_price":765000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032639,
+"pin":"6995-53-1584-000",
+"site_addr":"5975 WHIPPOORWILL DR",
+"change":"OWNER",
+"old_owner":"CRADDOCK GREGORY S; CRADDOCK SHARON H",
+"new_owner":"MILLER MICHAEL THOMAS; MILLER JAMIE ELIZABETH",
+"old_mail":"5975 WHIPPOORWILL DR, WARRENTON, VA, 20187",
+"old_deed":[
+1435,
+179
+],
+"new_deed":[
+1829,
+1853
+],
+"sale_year":2026,
+"sale_price":821000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5032740,
+"pin":"6995-63-3951-000",
+"site_addr":"6067 RED OAK CT",
+"change":"OWNER",
+"old_owner":"EICKHOFF FREDERICK W IV; EICKHOFF BARBARA J",
+"new_owner":"EICKHOFF FREDERICK WILLIAM IV TRUSTEE; OAK ARBOR FAMILY TRUST EICKHOFF BARBARA JEAN TRUSTEE",
+"old_mail":"6067 RED OAK CT, WARRENTON, VA, 20187",
+"old_deed":[
+873,
+825
+],
+"new_deed":[
+1827,
+1076
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033060,
+"pin":"6995-86-7150-000",
+"site_addr":"7046 SKYLAND DR",
+"change":"OWNER",
+"old_owner":"MANCARI SALVATORE F; MANCARI GENEVIEVE H",
+"new_owner":"FERRELL THOMAS T; FERRELL GAYLE F",
+"old_mail":"7046 SKYLAND DR, WARRENTON, VA, 20187",
+"old_deed":[
+596,
+7
+],
+"new_deed":[
+1829,
+63
+],
+"sale_year":2026,
+"sale_price":800000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033112,
+"pin":"6995-89-2285-034",
+"site_addr":"6708 STREAM VIEW LN",
+"change":"OWNER",
+"old_owner":"FRAZIER JUDITH JOELLE; DAVIS, ANTHONY H; HELMS, BRANDEN W; LYNCH BEVERLY A",
+"new_owner":"MARTIN SHARON R; MARTIN CHARLES E",
+"old_mail":"113 CLEARVIEW WAY, NEW BERN, NC, 28562",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1829,
+2207
+],
+"sale_year":2026,
+"sale_price":600000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033172,
+"pin":"6995-89-2285-096",
+"site_addr":"6735 SUFFIELD LN",
+"change":"OWNER",
+"old_owner":"6735 SUFFIELD LANE LTC PROPCO LLC",
+"new_owner":"6735 SUFFIELD LANE PROPCO LLC",
+"old_mail":"1135 E VETERANS HWY STE 1, JACKSON, NJ, 8527",
+"old_deed":[
+1825,
+2452
+],
+"new_deed":[
+1827,
+1841
+],
+"sale_year":2026,
+"sale_price":2970000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033203,
+"pin":"6995-90-6217-000",
+"site_addr":"5746 MYRIAH CT",
+"change":"OWNER",
+"old_owner":"ROBERTSON KIMBERLY L",
+"new_owner":"JOYA AHMAD SIYAR; JOYA MOHAMMAD RAMEZ",
+"old_mail":"5746 MYRIAH CT, WARRENTON, VA, 20187",
+"old_deed":[
+1457,
+899
+],
+"new_deed":[
+1829,
+832
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033316,
+"pin":"6995-96-4242-000",
+"site_addr":"7074 GRAYS MILL RD",
+"change":"OWNER",
+"old_owner":"BRIDGES JULIA A; BRIDGES GARY R",
+"new_owner":"FUNTUSSOVA YELENA; FUNTUSSOV KONSTANTIN",
+"old_mail":"7074 GRAYS MILL RD, WARRENTON, VA, 20187",
+"old_deed":[
+753,
+1124
+],
+"new_deed":[
+1827,
+495
+],
+"sale_year":2026,
+"sale_price":628000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033342,
+"pin":"6995-97-6198-000",
+"site_addr":"6979 GREAT OAK WAY",
+"change":"OWNER",
+"old_owner":"POORBAUGH SAMUEL J; POORBAUGH KATHLEEN M",
+"new_owner":"MOTZ NOAH; KRACHT CECELIA",
+"old_mail":"6979 GREAT OAK WAY, WARRENTON, VA, 20187",
+"old_deed":[
+507,
+454
+],
+"new_deed":[
+1827,
+263
+],
+"sale_year":2026,
+"sale_price":590000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033588,
+"pin":"6996-71-5879-000",
+"site_addr":"5866 UNIVERSITY CT",
+"change":"OWNER",
+"old_owner":"HARRIS GEORGE WYCLIFF JR; HARRIS JANET PARRISH",
+"new_owner":"HARRIS GEORGE WYCLIFF JR TRUSTEE; HARRIS FAM TRUST DATED 10/21/2026 HARRIS JANET PARRISH TRUSTEE",
+"old_mail":"5866 UNIVERSITY CT, WARRENTON, VA, 20187",
+"old_deed":[
+1656,
+1392
+],
+"new_deed":[
+1829,
+2307
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033886,
+"pin":"6996-96-7393-000",
+"site_addr":"5732 POND VIEW LN",
+"change":"OWNER",
+"old_owner":"ROYAL DENNIS M; ROYAL BERNADETTE",
+"new_owner":"WEIGEL BRYAN; WEIGEL ANNA",
+"old_mail":"5732 POND VIEW LN, BROAD RUN, VA, 20137",
+"old_deed":[
+693,
+930
+],
+"new_deed":[
+1828,
+1766
+],
+"sale_year":2026,
+"sale_price":875000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5033892,
+"pin":"6996-96-9257-000",
+"site_addr":"5725 POND VIEW LN",
+"change":"OWNER",
+"old_owner":"MAGUIRE RICHARD J; KOREN CHERYL D",
+"new_owner":"KOREN CHERYL D",
+"old_mail":"5725 POND VIEW LN, BROAD RUN, VA, 20137",
+"old_deed":[
+759,
+1559
+],
+"new_deed":[
+759,
+1559
+],
+"sale_year":1996,
+"sale_price":205274,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5034007,
+"pin":"6997-84-4949-000",
+"site_addr":"5828 HUNTON WOOD DR",
+"change":"OWNER",
+"old_owner":"MCCARTHY BRYAN M; MCCARTHY, KATHERINE C; MC CARTHY BRYAN M A/K/A",
+"new_owner":"MCCARTHY BRYAN MYLES TRUSTEE; MCCARTHY REVOCABLE TRUST MCCARTHY KATHERINE CROSBY TRUSTEE;",
+"old_mail":"5828 HUNTON WOOD DR, BROAD RUN, VA, 20137",
+"old_deed":[
+1817,
+2027
+],
+"new_deed":[
+1829,
+59
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5034209,
+"pin":"6999-18-3699-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"THE PLAINS MENDLESON LLC",
+"new_owner":"S&S HOME BUILDERS LLC",
+"old_mail":"PO BOX 742, LOCUST GROVE, VA, 22508",
+"old_deed":[
+1200,
+1072
+],
+"new_deed":[
+1827,
+1194
+],
+"sale_year":2026,
+"sale_price":484000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5034923,
+"pin":"7804-87-2247-000",
+"site_addr":"14222 ROYALLS MILL RD",
+"change":"OWNER",
+"old_owner":"MOORE KEVIN D",
+"new_owner":"MOORE DANIELLE; MOORE, ADAM HUNTER; MOORE DANIELLE NICOLE A/K/A",
+"old_mail":"14222 ROYALS MILL RD, SUMERDUCK, VA, 22742",
+"old_deed":[
+854,
+429
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"HAFD: heirship affidavit recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5035201,
+"pin":"7806-20-2717-000",
+"site_addr":"5380 PROVIDENCE LN",
+"change":"OWNER",
+"old_owner":"FRAIN JAMES F; PATERSON CYNTHIA D",
+"new_owner":"PATERSON CYNTHIA D",
+"old_mail":"5380 PROVIDENCE LN, SUMERDUCK, VA, 22742",
+"old_deed":[
+1317,
+755
+],
+"new_deed":[
+1826,
+2139
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"QC: quitclaim deed"
+},
+{
+"date":"2026-11-16",
+"pid":5035299,
+"pin":"7806-56-3321-000",
+"site_addr":"5215 STEWART RD",
+"change":"OWNER",
+"old_owner":"STEWART DENNIS LEE; STEWART BEVERLY KAY",
+"new_owner":"STEWART-BRUBECK JESSICA",
+"old_mail":"5215 STEWART RD, SUMERDUCK, VA, 22742",
+"old_deed":[
+540,
+265
+],
+"new_deed":[
+1828,
+275
+],
+"sale_year":2026,
+"sale_price":575000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5035830,
+"pin":"7809-99-1186-000",
+"site_addr":"5019 AIRPORT RD",
+"change":"OWNER",
+"old_owner":"MORRIS J DONALD; MORRIS SARAH G",
+"new_owner":"MIDLAND LLC",
+"old_mail":"PO BOX 117, MIDLAND, VA, 22728",
+"old_deed":[
+418,
+277
+],
+"new_deed":[
+1828,
+255
+],
+"sale_year":2026,
+"sale_price":5650000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5035880,
+"pin":"7814-11-8359-000",
+"site_addr":"14554 SNAKE CASTLE RD",
+"change":"OWNER",
+"old_owner":"BAKER GREG",
+"new_owner":"BAKER GREGGORY TRUSTEE BAKER GREGGORY LIVING TRUST",
+"old_mail":"14554 SNAKE CASTLE RD, SUMERDUCK, VA, 22742",
+"old_deed":[
+1778,
+1925
+],
+"new_deed":[
+1829,
+886
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DNTR: deed, no tax (family or entity transfer)"
+},
+{
+"date":"2026-11-16",
+"pid":5036478,
+"pin":"7816-51-1942-000",
+"site_addr":"13224 ARLENE CT",
+"change":"OWNER",
+"old_owner":"SIZEMORE JAMES F; SIZEMORE DONNA F",
+"new_owner":"SIZEMORE JAMES S CO-TRUSTEE; SIZEMORE, JAMES & DONNA REV TRUST FITZGERALD JENNIFER D CO-TRUSTEE",
+"old_mail":"13224 ARLENE CT, BEALETON, VA, 22712",
+"old_deed":[
+619,
+1105
+],
+"new_deed":[
+1826,
+1484
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5036687,
+"pin":"7817-12-8237-000",
+"site_addr":"4486 RAZOR HILL RD",
+"change":"OWNER",
+"old_owner":"FOX BRITTNEY N",
+"new_owner":"FOX BRITTNEY N; ROWE DONNA R",
+"old_mail":"4486 RAZOR HILL RD, BEALETON, VA, 22712",
+"old_deed":[
+1370,
+2200
+],
+"new_deed":[
+1829,
+1144
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5037308,
+"pin":"7823-18-9135-000",
+"site_addr":"14678 CURTIS RD",
+"change":"OWNER",
+"old_owner":"EMBREY KENNETH; EMBREY KIMBERLY A",
+"new_owner":"EMBREY KENNETH MAXWELL TRUSTEE; EMBREY FAM TRUST DATED 03/25/2026 EMBREY KIMBERLY ANN TRUSTEE",
+"old_mail":"14678 CURTIS RD, SUMERDUCK, VA, 22742",
+"old_deed":[
+781,
+449
+],
+"new_deed":[
+1827,
+2221
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5037477,
+"pin":"7824-84-9700-000",
+"site_addr":"14481 WARRENTON RD",
+"change":"OWNER",
+"old_owner":"AGUIRRE LOPEZ MARLA YARIXA; QUINTERO-AGUIRRE MIKE ISAAC",
+"new_owner":"BENITEZ AGUIRRE FRANCO J",
+"old_mail":"14481 WARRENTON RD, FREDERICKSBURG, VA, 22406",
+"old_deed":[
+1774,
+2004
+],
+"new_deed":[
+1829,
+1049
+],
+"sale_year":2026,
+"sale_price":750000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5037797,
+"pin":"7827-16-6221-000",
+"site_addr":"3587 MONARCH LN",
+"change":"OWNER",
+"old_owner":"TAYLOR JULIA ELEANOR",
+"new_owner":"GILL MONICA LYNN",
+"old_mail":"3587 MONARCH LN, MIDLAND, VA, 22728",
+"old_deed":[
+1621,
+1218
+],
+"new_deed":[
+1828,
+2122
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5037936,
+"pin":"7828-05-5977-000",
+"site_addr":"4176 MIDLAND RD",
+"change":"OWNER",
+"old_owner":"BRECKENRIDGE RANDY LEE; BRECKENRIDGE NANCY ANN",
+"new_owner":"BRECKENRIDGE RANDY L TRUSTEE; BRECKENRIDGE LIVING TRUST BRECKENRIDGE NANCY A TRUSTEE",
+"old_mail":"4176 MIDLAND RD, MIDLAND, VA, 22728",
+"old_deed":[
+1363,
+2112
+],
+"new_deed":[
+1829,
+49
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5038350,
+"pin":"7836-24-6561-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"MELVIN MARLENE JEAN; MELVIN, DONALD J; VERMILLION, LINDA M; MELVIN WILLIAM P HEIRS",
+"new_owner":"MELVIN MARLENE JEAN; MELVIN, DONALD JOHN; FRANKS, MICHAEL J; VERMILLION LINDA MARIE",
+"old_mail":"23411 BROWN RD, HOLLYWOOD, MD, 20636",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1829,
+1138
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"DECR: court decree"
+},
+{
+"date":"2026-11-16",
+"pid":5038351,
+"pin":"7836-26-1000-000",
+"site_addr":"12925 BLACKWELLS MILL RD",
+"change":"OWNER",
+"old_owner":"MATHERS WILLIAM J TRUSTEE MATHERS WILLIAM J TRUST",
+"new_owner":"STROUP EUGENE E III",
+"old_mail":"12925 BLACKWELLS MILL RD, GOLDVEIN, VA, 22720",
+"old_deed":[
+1382,
+1730
+],
+"new_deed":[
+1827,
+678
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5038442,
+"pin":"7836-59-5025-000",
+"site_addr":"12629 SILLAMON RD",
+"change":"OWNER",
+"old_owner":"KEYES DENNIS L; KEYES PAMELA B",
+"new_owner":"KEYES DENNIS L TRUSTEE; KEYES, DENNIS & PAMELA LVG TRUST KEYES PAMELA B TRUSTEE",
+"old_mail":"12629 SILLAMON RD, GOLDVEIN, VA, 22720",
+"old_deed":[
+674,
+1470
+],
+"new_deed":[
+1826,
+2108
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5038602,
+"pin":"7837-91-5309-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"COPPAGE RODNALD C HEIRS; COPPAGE, MARY ANN; COPPAGE, ARLENE J TRUSTEE; COPPAGE, ARLENE J REVOC TRUST; NESS, CANDY COPPAGE TRUSTEE; COPPAGE IRREVOC TRUST; LANGER JANET FAY COPPAGE",
+"new_owner":"COPPAGE MARY ANN; COPPAGE, MARY ANN; COPPAGE, ARLENE J TRUSTEE; COPPAGE, ARLENE J REVOC TRUST; NESS, CANDY COPPAGE TRUSTEE; COPPAGE IRREVOC TRUST; LANGER JANET FAY COPPAGE",
+"old_mail":"12516 BRISTERSBURG RD, MIDLAND, VA, 22728",
+"old_deed":[
+1783,
+789
+],
+"new_deed":[
+1783,
+789
+],
+"sale_year":2025,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5038646,
+"pin":"7838-35-2933-000",
+"site_addr":"3025 COURTNEY SCHOOL RD",
+"change":"OWNER",
+"old_owner":"WHITE LOUIS A",
+"new_owner":"WHITE LOUIS A TRUST TRUSTEE",
+"old_mail":"3025 COURTNEY SCHOOL RD, MIDLAND, VA, 22728",
+"old_deed":[
+616,
+658
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5038818,
+"pin":"7839-47-4466-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"SHIRLEY JEAN ESKRIDGE; ESKRIDGE, RUTH A REVOC LVG TRUST ESKRIDGE RUTH A TRUSTEE",
+"new_owner":"BRISTERSBURG LLC",
+"old_mail":"PO BOX 418, CATLETT, VA, 20119",
+"old_deed":[
+1788,
+2019
+],
+"new_deed":[
+1827,
+540
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5038819,
+"pin":"7839-47-4548-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"SHIRLEY JEAN MASON; ESKRIDGE, RUTH A TRUSTEE; ESKRIDGE, RUTH A REVOC LVG TRUST; SHIRLEY JEAN ESKRIDGE A/K/A",
+"new_owner":"BRISTERSBURG LLC",
+"old_mail":"PO BOX 418, CATLETT, VA, 20119",
+"old_deed":[
+1788,
+2019
+],
+"new_deed":[
+1827,
+540
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5038833,
+"pin":"7839-57-2521-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"SHIRLEY JEAN MASON; ESKRIDGE, RUTH A TRUSTEE; ESKRIDGE, RUTH A REVOC LVG TRUST; SHIRLEY JEAN ESKRIDGE A/K/A",
+"new_owner":"BRISTERSBURG LLC",
+"old_mail":"PO BOX 418, CATLETT, VA, 20119",
+"old_deed":[
+1788,
+2019
+],
+"new_deed":[
+1827,
+540
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5038929,
+"pin":"7839-97-6487-000",
+"site_addr":"2303 COURTHOUSE RD",
+"change":"OWNER",
+"old_owner":"FRIASON DANIELLE; SHARP RYAN",
+"new_owner":"SHARP DANIELLE; SHARP RYAN",
+"old_mail":"2303 COURTHOUSE RD, CATLETT, VA, 20119",
+"old_deed":[
+1737,
+2459
+],
+"new_deed":[
+1737,
+2459
+],
+"sale_year":2022,
+"sale_price":449000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5038973,
+"pin":"7847-00-6711-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"COPPAGE RODNALD C HEIRS; COPPAGE, MARY ANN; COPPAGE, ARLENE J TRUSTEE; COPPAGE, ARLENE J REVOC TRUST; NESS, CANDY COPPAGE TRUSTEE; COPPAGE IRREVOC TRUST; LANGER JANET FAY COPPAGE",
+"new_owner":"COPPAGE MARY ANN; COPPAGE, ARLENE J TRUSTEE; COPPAGE, ARLENE J REVOC TRUST; NESS, CANDY COPPAGE TRUSTEE; COPPAGE IRREVOC TRUST; COPPAGE, RODNALD C HEIRS; LANGER JANET FAY COPPAGE",
+"old_mail":"12516 BRISTERSBURG RD, MIDLAND, VA, 22728",
+"old_deed":[
+1783,
+789
+],
+"new_deed":[
+1783,
+789
+],
+"sale_year":2025,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5039174,
+"pin":"7847-99-4203-000",
+"site_addr":"12140 BRENT TOWN RD",
+"change":"OWNER",
+"old_owner":"LILLY JAMES A JR; LILLY CARYN G",
+"new_owner":"VANOVER HAROLD RAY; VANOVER MATTHEW",
+"old_mail":"12140 BRENT TOWN RD, MIDLAND, VA, 22728",
+"old_deed":[
+1589,
+1727
+],
+"new_deed":[
+1829,
+1556
+],
+"sale_year":2026,
+"sale_price":945000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5039226,
+"pin":"7848-43-0115-000",
+"site_addr":"11770 BOWERY LN",
+"change":"OWNER",
+"old_owner":"CASTRO AVELAR CANDIDO; CASTRO AVELAR CONRRADO",
+"new_owner":"11770 BL LLC",
+"old_mail":"174 BASALT DR, FREDERICKSBURG, VA, 22406",
+"old_deed":[
+1577,
+69
+],
+"new_deed":[
+1827,
+198
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5039278,
+"pin":"7848-73-0891-000",
+"site_addr":"1503 GRACE ESTATES DR",
+"change":"OWNER",
+"old_owner":"MCNEIL DAVID LEE; MCNEIL KATHARINA MARIA",
+"new_owner":"MARTIN LAUREN M; HUGGINS NICHOLAS J",
+"old_mail":"1503 GRACE ESTATES DR, CATLETT, VA, 20119",
+"old_deed":[
+1648,
+1589
+],
+"new_deed":[
+1826,
+2225
+],
+"sale_year":2026,
+"sale_price":799000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5039413,
+"pin":"7849-67-9355-000",
+"site_addr":"10781 BRENT TOWN RD",
+"change":"OWNER",
+"old_owner":"MCLAIN DAVID STANLEY",
+"new_owner":"AMU INVESTMENTS LLC",
+"old_mail":"10781 BRENT TOWN RD, CATLETT, VA, 20119",
+"old_deed":[
+252,
+24
+],
+"new_deed":[
+1828,
+843
+],
+"sale_year":2026,
+"sale_price":287000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5039521,
+"pin":"7859-04-2753-000",
+"site_addr":"5475 TOMS WAY",
+"change":"OWNER",
+"old_owner":"BUMBRAY DAVID",
+"new_owner":"BUMBRAY LINDA; BUMBRAY, ASHLEY CHANTELLE; BUMBRAY HOWARD DAVID JR",
+"old_mail":"5475 TOMS WAY, CATLETT, VA, 20119",
+"old_deed":[
+855,
+27
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5039598,
+"pin":"7900-34-3943-000",
+"site_addr":"10410 OLD CAROLINA RD",
+"change":"OWNER",
+"old_owner":"SNEAD DAVID F SR; JENKINS, KIMBERLY MICHELLE; JENKINS MARK ALLEN",
+"new_owner":"SNEAD DAVID F SR",
+"old_mail":"10410 OLD CAROLINA RD, MIDLAND, VA, 22728",
+"old_deed":[
+1620,
+1892
+],
+"new_deed":[
+1827,
+675
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5039616,
+"pin":"7900-37-2071-000",
+"site_addr":"5406 GERMANTOWN RD",
+"change":"OWNER",
+"old_owner":"SCALLON BRYAN J TRUSTEE SCALLON BRYAN J REVOCABLE TRUST",
+"new_owner":"GIBSON BRANDON CLINT; GIBSON AMANDA",
+"old_mail":"5406 GERMANTOWN RD, MIDLAND, VA, 22728",
+"old_deed":[
+1781,
+1361
+],
+"new_deed":[
+1827,
+830
+],
+"sale_year":2026,
+"sale_price":950000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5039682,
+"pin":"7900-41-5998-000",
+"site_addr":"10564 ROGUES RD",
+"change":"OWNER",
+"old_owner":"MOLINA CARLOS",
+"new_owner":"MOLINA CARLOS ANTONIO; PORTILLO FUENTES EDUARDO M",
+"old_mail":"10564 ROGUES RD, MIDLAND, VA, 22728",
+"old_deed":[
+1788,
+1296
+],
+"new_deed":[
+1827,
+1882
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5039799,
+"pin":"7900-44-3718-000",
+"site_addr":"10408 OLD CAROLINA RD",
+"change":"DEED_REF",
+"old_owner":"JENKINS MARK ALLEN; HALL, ASLAN; HALL DYLAN",
+"new_owner":"JENKINS MARK ALLEN; HALL, ASLAN; HALL DYLAN",
+"old_mail":"10410 OLD CAROLINA RD, MIDLAND, VA, 22728",
+"old_deed":[
+1759,
+512
+],
+"new_deed":[
+1828,
+2432
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5039810,
+"pin":"7900-45-9905-000",
+"site_addr":"10433 SKYLINE AVE",
+"change":"OWNER",
+"old_owner":"GANTEAUME ROBERT ANDREW; GANTEAUME MARITAL TRUST UNDER THE GANTEAUME MARION JOAN TRUSTEE",
+"new_owner":"SCHUM WILLIAM KEVIN; SCHUM JILL LYNN",
+"old_mail":"10433 SKYLINE AVE, MIDLAND, VA, 22728",
+"old_deed":[
+1466,
+1494
+],
+"new_deed":[
+1828,
+2456
+],
+"sale_year":2026,
+"sale_price":911000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5040000,
+"pin":"7901-34-5086-000",
+"site_addr":"9651 WOODBROOK LN",
+"change":"OWNER",
+"old_owner":"WILLEMSEN MARK A TRUSTEE; WILLEMSEN, MARK A REVOC LVG TRUST; WILLEMSEN, CYNTHIA K TRUSTEE; WILLEMSEN, MARK A TRUSTEE; WILLEMSEN, CYNTHIA K REVOC LVG TRUST WILLEMSEN CYNTHIA K TRUSTEE",
+"new_owner":"ARCHER HANNAH RAE; ARCHER REBECCA NICHOLE",
+"old_mail":"9651 WOODBROOK LN, MIDLAND, VA, 22728",
+"old_deed":[
+1700,
+2381
+],
+"new_deed":[
+1829,
+27
+],
+"sale_year":2026,
+"sale_price":470000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5040260,
+"pin":"7902-12-8362-000",
+"site_addr":"5383 CASANOVA RD",
+"change":"OWNER",
+"old_owner":"BLAKE NATHANIEL; AFSHARI OLIVIA",
+"new_owner":"JOHNSON RICKY G; JOHNSON TRACI",
+"old_mail":"5383 CASANOVA RD, WARRENTON, VA, 20187",
+"old_deed":[
+1697,
+384
+],
+"new_deed":[
+1826,
+1137
+],
+"sale_year":2026,
+"sale_price":619000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5040436,
+"pin":"7902-91-7968-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"WASHINGTON DELORES EDMONDS",
+"new_owner":"SHELLINGTON JASSICA MARIE",
+"old_mail":"10679 OLD MARSH RD, BEALETON, VA, 22712",
+"old_deed":[
+1183,
+2340
+],
+"new_deed":[
+1828,
+1567
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5040831,
+"pin":"7904-86-8369-000",
+"site_addr":"4921 DUMFRIES RD",
+"change":"OWNER",
+"old_owner":"BARRANTES EVELIN D",
+"new_owner":"MIRANDA ORTEGA HECTOR; ORTEGA NARVAES WALDINA",
+"old_mail":"4921 DUMFRIES RD, CATLETT, VA, 20119",
+"old_deed":[
+1771,
+2445
+],
+"new_deed":[
+1827,
+2
+],
+"sale_year":2026,
+"sale_price":500000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5040979,
+"pin":"7905-06-8286-000",
+"site_addr":"5415 BALDWIN ST",
+"change":"OWNER",
+"old_owner":"WILCOX ANTHONY D; WILCOX ROBIN LYNNE",
+"new_owner":"CONOVER CORBIN M; CONOVER ABIGAIL K",
+"old_mail":"5415 BALDWIN ST, WARRENTON, VA, 20187",
+"old_deed":[
+1171,
+1695
+],
+"new_deed":[
+1829,
+1917
+],
+"sale_year":2026,
+"sale_price":538000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5040991,
+"pin":"7905-07-6789-000",
+"site_addr":"6796 GRAYS MILL RD",
+"change":"OWNER",
+"old_owner":"JENKINS DENNIS W; JENKINS BARBARA A",
+"new_owner":"MARKLE JAMES W; MARKLE EVA E",
+"old_mail":"6796 GRAYS MILL RD, WARRENTON, VA, 20187",
+"old_deed":[
+838,
+1065
+],
+"new_deed":[
+1827,
+849
+],
+"sale_year":2026,
+"sale_price":525000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5041117,
+"pin":"7905-15-1235-000",
+"site_addr":"7114 CAVALRY DR",
+"change":"OWNER",
+"old_owner":"DURKIN TRACY L; DURKIN JARED M",
+"new_owner":"DURKIN JARED TRUSTEE; DURKIN, JARED & TRACY TRUST DURKIN TRACY TRUSTEE",
+"old_mail":"7114 CAVALRY DR, WARRENTON, VA, 20187",
+"old_deed":[
+1188,
+793
+],
+"new_deed":[
+1828,
+1441
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5041242,
+"pin":"7905-22-8620-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"GARNER NEIL P; GARNER CHARLES E II",
+"new_owner":"GARNER NEIL P GARNER CHARLES & ELIZABETH JT REVOC TRUST TRUSTEE",
+"old_mail":"1531 DOGWOOD RD, SAINT LEONARD, MD, 20685",
+"old_deed":[
+1700,
+2310
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5041353,
+"pin":"7905-31-5074-000",
+"site_addr":"7431 STUART CIR",
+"change":"OWNER",
+"old_owner":"SCROFANI JAMES W; SCROFANI LORI E",
+"new_owner":"SCROFANI JAMES W CO-TRUSTEE; SCROFANI REVOCABLE TRUST SCROFANI LORI E CO-TRUSTEE;",
+"old_mail":"7431 STUART CIR, WARRENTON, VA, 20187",
+"old_deed":[
+1179,
+1168
+],
+"new_deed":[
+1829,
+46
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5041515,
+"pin":"7905-40-8405-000",
+"site_addr":"5210 DOVETAIL LN",
+"change":"OWNER",
+"old_owner":"WADE PAUL",
+"new_owner":"SHARP DEBRA; WATCH TOWER BIBLE & TRACT SOCIETY OF PA; SHARP BERNARD",
+"old_mail":"68 KING ST, WARRENTON, VA, 20186",
+"old_deed":[
+256,
+1129
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5041758,
+"pin":"7905-55-6048-000",
+"site_addr":"6871 EMMA CT",
+"change":"OWNER",
+"old_owner":"WILLIAMSON JAMES J; WILLIAMSON NICOLE L",
+"new_owner":"RICHTMYRE ROBERT J; RICHTMYRE THERESA E",
+"old_mail":"6871 EMMA CT, WARRENTON, VA, 20187",
+"old_deed":[
+1058,
+1114
+],
+"new_deed":[
+1826,
+1904
+],
+"sale_year":2026,
+"sale_price":1075000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5041869,
+"pin":"7905-60-0664-000",
+"site_addr":"7342 FORREST RD",
+"change":"OWNER",
+"old_owner":"ROBINSON KEVIN; ROBINSON JULIE",
+"new_owner":"ROBINSON KEVIN S TRUSTEE; ROBINSON REVOCABLE TRUST ROBINSON JULIE P TRUSTEE;",
+"old_mail":"7342 FORREST RD, WARRENTON, VA, 20187",
+"old_deed":[
+1658,
+890
+],
+"new_deed":[
+1827,
+2248
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042281,
+"pin":"7905-85-6832-000",
+"site_addr":"7079 RILEY RD",
+"change":"OWNER",
+"old_owner":"JACKSON ALAN L; KIDWELL LORI A",
+"new_owner":"FAIRCHILD BRETT D; FAIRCHILD BRENDA D",
+"old_mail":"7079 RILEY RD, WARRENTON, VA, 20187",
+"old_deed":[
+726,
+1116
+],
+"new_deed":[
+1827,
+979
+],
+"sale_year":2026,
+"sale_price":699000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042320,
+"pin":"7905-88-2015-000",
+"site_addr":"6734 CHESTNUT OAK LN",
+"change":"OWNER",
+"old_owner":"SHAFFER SCOTT C; SHAFFER JOYCE A",
+"new_owner":"SHAFFER SCOTT C TRUSTEE; SHAFFER, SCOTT & JOYCE JOINT TRUST SHAFFER JOYCE A TRUSTEE",
+"old_mail":"6734 CHESTNUT OAK LN, WARRENTON, VA, 20187",
+"old_deed":[
+470,
+371
+],
+"new_deed":[
+1829,
+1362
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042440,
+"pin":"7905-93-6420-000",
+"site_addr":"6557 WELLSPRING CT",
+"change":"OWNER",
+"old_owner":"SIMPSON STEPHANIE ANNE; SIMPSON JOSEPH LEE",
+"new_owner":"SIMPSON STEPHANIE ANNE",
+"old_mail":"6557 WELLSPRING CT, WARRENTON, VA, 20187",
+"old_deed":[
+1719,
+1407
+],
+"new_deed":[
+1829,
+2341
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042488,
+"pin":"7905-94-8861-000",
+"site_addr":"7438 LAKE WILLOW CT",
+"change":"OWNER",
+"old_owner":"CLEMENTS PAUL EMIL; CLEMENTS KATHY RUTH",
+"new_owner":"VAN DEUSEN STEPHEN J; VAN DEUSEN SUSAN H",
+"old_mail":"7438 LAKE WILLOW CT, WARRENTON, VA, 20187",
+"old_deed":[
+1589,
+466
+],
+"new_deed":[
+1827,
+1201
+],
+"sale_year":2026,
+"sale_price":739500,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042510,
+"pin":"7905-95-6401-000",
+"site_addr":"7471 LAKE WILLOW CT",
+"change":"OWNER",
+"old_owner":"RENUART JONATHAN; RENUART CARRIE",
+"new_owner":"JODHANI FALGUN V; JODHANI, JAYSHREE; JODHANI VITHALBHAI",
+"old_mail":"7471 LAKE WILLOW CT, WARRENTON, VA, 20187",
+"old_deed":[
+1592,
+780
+],
+"new_deed":[
+1826,
+1628
+],
+"sale_year":2026,
+"sale_price":985000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042525,
+"pin":"7905-96-0538-000",
+"site_addr":"4580 AKERS LN",
+"change":"OWNER",
+"old_owner":"IGLESIAS LUIS JESUS; IGLESIAS EVERARDO",
+"new_owner":"AUNG-HILLMAN TU TU",
+"old_mail":"4580 AKERS LN, WARRENTON, VA, 20187",
+"old_deed":[
+1669,
+566
+],
+"new_deed":[
+1828,
+2280
+],
+"sale_year":2026,
+"sale_price":650000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042611,
+"pin":"7906-02-9277-000",
+"site_addr":"6507 GLOUCESTER CT",
+"change":"OWNER",
+"old_owner":"STONE JOHN THOMAS; NEHRLING SALLY R",
+"new_owner":"NEHRLING SALLY R",
+"old_mail":"6507 GLOUCESTER CT, WARRENTON, VA, 20187",
+"old_deed":[
+1654,
+635
+],
+"new_deed":[
+1654,
+635
+],
+"sale_year":2020,
+"sale_price":679000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042656,
+"pin":"7906-06-9297-000",
+"site_addr":"6304 GEORGETOWN RD",
+"change":"OWNER",
+"old_owner":"BURNS CHARLES D; 6304 GEORGETOWN ROAD LLC",
+"new_owner":"6304 GEORGETOWN ROAD LLC",
+"old_mail":"6304 GEORGETOWN RD, BROAD RUN, VA, 20137",
+"old_deed":[
+1792,
+1296
+],
+"new_deed":[
+1792,
+1296
+],
+"sale_year":2025,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042730,
+"pin":"7906-14-2090-000",
+"site_addr":"5381 FARRINGTON LN",
+"change":"OWNER",
+"old_owner":"SONNENBURG GREGORY D; SONNENBURG JULIANNE M",
+"new_owner":"SONNENBURG GREGORY DUANE TRUSTEE; SONNENBURG FAMILY TRUST SONNENBURG JULIANNE MARIE TRUSTEE",
+"old_mail":"5381 FARRINGTON LN, BROAD RUN, VA, 20137",
+"old_deed":[
+884,
+293
+],
+"new_deed":[
+1829,
+356
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042891,
+"pin":"7906-29-0015-000",
+"site_addr":"5347 MOUNTAIN VIEW DR",
+"change":"OWNER",
+"old_owner":"KILTS LARRY R ESTATE",
+"new_owner":"ELEGANT HOME GROUP LLC",
+"old_mail":"86 E LEE ST, WARRENTON, VA, 20186",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1829,
+707
+],
+"sale_year":2026,
+"sale_price":510000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042910,
+"pin":"7906-31-4779-000",
+"site_addr":"6525 GRAYS MILL RD",
+"change":"OWNER",
+"old_owner":"WEAVER ALLISON D SUCCR TRUSTEE FINCHAM CHARLES R REVOC LVG TRUST",
+"new_owner":"SMEDLEY TAMELA D",
+"old_mail":"4904 PARTLOW RD, PARTLOW, VA, 22534",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1828,
+2201
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042957,
+"pin":"7906-38-7869-000",
+"site_addr":"5275 MOUNTAIN VIEW DR",
+"change":"OWNER",
+"old_owner":"LLOYD SAMUEL J III",
+"new_owner":"LLOYD SAMUEL JOSEPH III TRUSTEE LLOYD SAMUEL JOSEPH III REV TRUST",
+"old_mail":"5275 MOUNTAIN VIEW DR, BROAD RUN, VA, 20137",
+"old_deed":[
+1034,
+1498
+],
+"new_deed":[
+1827,
+1439
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5042964,
+"pin":"7906-40-6955-000",
+"site_addr":"5240 HILLSIDE DR",
+"change":"OWNER",
+"old_owner":"CONRAD LINDSEY PEARSON; CONRAD COREY R",
+"new_owner":"CONRAD COREY ROBERT TRUSTEE; CONRAD FAM TRUST DATED 08/28/2026 CONRAD LINDSEY PEARSON TRUSTEE",
+"old_mail":"5240 HILLSIDE DR, WARRENTON, VA, 20187",
+"old_deed":[
+1703,
+674
+],
+"new_deed":[
+1826,
+2146
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5042969,
+"pin":"7906-41-0714-000",
+"site_addr":"5347 HILLSIDE DR",
+"change":"OWNER",
+"old_owner":"MCELWEE ROBERT A HEIRS; MCELWEE FAMILY TRUST OF THE MCELWEE GLORIA J TRUSTEE",
+"new_owner":"RW CUSTOM HOMES INC",
+"old_mail":"5347 HILLSIDE DR, WARRENTON, VA, 20187",
+"old_deed":[
+1238,
+2250
+],
+"new_deed":[
+1828,
+661
+],
+"sale_year":2026,
+"sale_price":310000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5043465,
+"pin":"7907-62-7938-000",
+"site_addr":"5114 LAUREL LN",
+"change":"OWNER",
+"old_owner":"PONCE STEPHEN M; CHRISTIAN BLAKE E",
+"new_owner":"MOHR KEVIN; MOHR MELANIE",
+"old_mail":"5114 LAUREL LN, BROAD RUN, VA, 20137",
+"old_deed":[
+1686,
+632
+],
+"new_deed":[
+1829,
+243
+],
+"sale_year":2026,
+"sale_price":1200000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5044235,
+"pin":"7912-72-1915-000",
+"site_addr":"9144 BASTABLE MILL RD",
+"change":"OWNER",
+"old_owner":"GAYLE SHIRLEY MARIE",
+"new_owner":"SUNDERLIN ROSEMARIE; HODGINS PAM",
+"old_mail":"PO BOX 43, CATLETT, VA, 20119",
+"old_deed":[
+1267,
+151
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2016,
+"sale_price":0,
+"note":"L/HR: List of Heirs recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5044300,
+"pin":"7913-18-0279-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"PENN JUNE M",
+"new_owner":"PENN JUNE M HEIRS",
+"old_mail":"8402 ROGUES RD, WARRENTON, VA, 20187",
+"old_deed":[
+256,
+438
+],
+"new_deed":[
+256,
+438
+],
+"sale_year":1969,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5044398,
+"pin":"7914-00-3529-000",
+"site_addr":"8235 ROGUES RD",
+"change":"OWNER",
+"old_owner":"LONGEST JERRY LEE",
+"new_owner":"LONGEST JERRY LEE TRUSTEE LONGEST JERRY TRUST",
+"old_mail":"8235 ROGUES RD, CATLETT, VA, 20119",
+"old_deed":[
+1756,
+1164
+],
+"new_deed":[
+1826,
+1217
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5044501,
+"pin":"7914-14-3737-000",
+"site_addr":"7823 OVERBROOK DR",
+"change":"OWNER",
+"old_owner":"MCLAUGHLIN JOSEPH; MCLAUGHLIN LUCILLE",
+"new_owner":"BARNHART PETER AUSTIN; BARNHART KIRSTEN",
+"old_mail":"7823 OVERBROOK DR, CATLETT, VA, 20119",
+"old_deed":[
+1368,
+2248
+],
+"new_deed":[
+1829,
+109
+],
+"sale_year":2026,
+"sale_price":702000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5044635,
+"pin":"7914-36-7432-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"SCHEULEN GEORGE D SUCCR TRUSTEE HARPER LARUE E TRUST",
+"new_owner":"RINGWOOD LLC",
+"old_mail":"98 ALEXANDRIA PIKE #22, WARRENTON, VA, 20186",
+"old_deed":[
+1819,
+945
+],
+"new_deed":[
+1829,
+705
+],
+"sale_year":2026,
+"sale_price":680000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5045395,
+"pin":"7915-16-4096-000",
+"site_addr":"6766 LAKE ANNE CT",
+"change":"OWNER",
+"old_owner":"RILEY CHARLES J; RILEY BETTY S",
+"new_owner":"RILEY BETTY S TRUST TRUSTEE",
+"old_mail":"6766 LAKE ANNE CT, WARRENTON, VA, 20187",
+"old_deed":[
+1505,
+27
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5045470,
+"pin":"7915-21-3747-000",
+"site_addr":"7547 EDINGTON DR",
+"change":"OWNER",
+"old_owner":"TRAVERSO FRANCO; BENDIGO SAMANTHA",
+"new_owner":"COLE DAVID JOSEPH; COLE CASSANDRA",
+"old_mail":"7547 EDINGTON DR, WARRENTON, VA, 20187",
+"old_deed":[
+1630,
+1938
+],
+"new_deed":[
+1826,
+1441
+],
+"sale_year":2026,
+"sale_price":1265000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5045478,
+"pin":"7915-21-6793-000",
+"site_addr":"7550 EDINGTON DR",
+"change":"OWNER",
+"old_owner":"HAMBY RICHARD; WILSON MARIE",
+"new_owner":"BROCKETT CONNOR W; BROCKETT CARLA",
+"old_mail":"7550 EDINGTON DR, WARRENTON, VA, 20187",
+"old_deed":[
+1402,
+474
+],
+"new_deed":[
+1828,
+2096
+],
+"sale_year":2026,
+"sale_price":850000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5045505,
+"pin":"7915-22-6221-000",
+"site_addr":"4936 PEBBLE RUN RD",
+"change":"OWNER",
+"old_owner":"FRYE WAYNE A; FRYE KAREN S",
+"new_owner":"CLEMENTS RYAN; CLEMENTS NOUREEN",
+"old_mail":"4936 PEBBLE RUN RD, WARRENTON, VA, 20187",
+"old_deed":[
+1390,
+653
+],
+"new_deed":[
+1827,
+622
+],
+"sale_year":2026,
+"sale_price":885000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5045613,
+"pin":"7915-26-5196-000",
+"site_addr":"4410 LAKEWOOD DR",
+"change":"OWNER",
+"old_owner":"NAGURNY DOREEN",
+"new_owner":"NAGURNY DOREEN M TRUSTEE NAGURNY DOREEN M REV LVG TRUST",
+"old_mail":"9013 ROARING SPRING LOOP, BRISTOW, VA, 20136",
+"old_deed":[
+1711,
+177
+],
+"new_deed":[
+1828,
+1873
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5045673,
+"pin":"7915-32-6713-000",
+"site_addr":"4368 SUNSET CT",
+"change":"OWNER",
+"old_owner":"O'BRIEN MICHELE; O'BRIEN SCOTT",
+"new_owner":"WADE KIARA LATRICE",
+"old_mail":"7239 N STARCREST DR, WARRENTON, VA, 20187",
+"old_deed":[
+1807,
+322
+],
+"new_deed":[
+1829,
+2220
+],
+"sale_year":2026,
+"sale_price":620000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5045925,
+"pin":"7915-43-5646-000",
+"site_addr":"7179 SUNRISE CT",
+"change":"OWNER",
+"old_owner":"PARIS DAVID MICHAEL; LIGHTNER, WILLIAM J; LIGHTNER, JAMES W; DAVIS LINDA ANN",
+"new_owner":"FLORES LOPEZ DARWIN A; OSORTO CANALES NANCY R",
+"old_mail":"8751 MCGRATH RD, MANASSAS, VA, 20112",
+"old_deed":[
+0,
+0
+],
+"new_deed":[
+1827,
+2252
+],
+"sale_year":2026,
+"sale_price":550000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5045927,
+"pin":"7915-43-8292-000",
+"site_addr":"7200 NORTH STARCREST DR",
+"change":"OWNER",
+"old_owner":"TOBIAS FRED A; TOBIAS BARBARA L",
+"new_owner":"KHAN SARDAR MUHAMMAD; BEGUM JAMILA",
+"old_mail":"7200 N STARCREST DR, WARRENTON, VA, 20187",
+"old_deed":[
+476,
+672
+],
+"new_deed":[
+1829,
+1675
+],
+"sale_year":2026,
+"sale_price":618000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5046020,
+"pin":"7915-53-0184-000",
+"site_addr":"7206 NORTH STARCREST DR",
+"change":"OWNER",
+"old_owner":"MCMULLEN RICHARD L; MCMULLIN ELIZABETH A",
+"new_owner":"MCMULLEN ELIZABETH ANN; MCMULLEN, WILLIAM DAVID; MCMULLEN, RICHARD; MCMULLEN, PATRICK JOSEPH; MCMULLEN MARY NOEL",
+"old_mail":"7206 N STARCREST DR, WARRENTON, VA, 20187",
+"old_deed":[
+494,
+853
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"HAFD: heirship affidavit recorded"
+},
+{
+"date":"2026-11-16",
+"pid":5047017,
+"pin":"7920-62-1565-000",
+"site_addr":"10572 SHENANDOAH PATH",
+"change":"OWNER",
+"old_owner":"MEDWEDEFF CAMERON",
+"new_owner":"FUCHS JOSHUA; FUCHS HEATHER LYNN",
+"old_mail":"10572 SHENANDOAH PATH, CATLETT, VA, 20119",
+"old_deed":[
+1803,
+1686
+],
+"new_deed":[
+1827,
+517
+],
+"sale_year":2026,
+"sale_price":800000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5047157,
+"pin":"7921-07-7395-000",
+"site_addr":"9503 TAPP HOLLOW LN",
+"change":"OWNER",
+"old_owner":"WWMJ PROPERTY LLC",
+"new_owner":"GOLDMINE PROPERTY LLC",
+"old_mail":"12413 BUNCHE RD, FAIRFAX, VA, 22030",
+"old_deed":[
+1522,
+2048
+],
+"new_deed":[
+1826,
+2177
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5047697,
+"pin":"7923-07-2999-000",
+"site_addr":"8216 GREENWICH RD",
+"change":"OWNER",
+"old_owner":"THOMPSON THOMAS R",
+"new_owner":"CABLE JUSTIN; DYMOND ERIN",
+"old_mail":"8216 GREENWICH RD, CATLETT, VA, 20119",
+"old_deed":[
+1600,
+1626
+],
+"new_deed":[
+1828,
+1466
+],
+"sale_year":2026,
+"sale_price":575000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048122,
+"pin":"7924-39-9975-000",
+"site_addr":"3449 PAYNE LN",
+"change":"OWNER",
+"old_owner":"JOHNS JAMES THOMAS",
+"new_owner":"JOHNS KIMBERLY KAY",
+"old_mail":"3449 PAYNE LN, NOKESVILLE, VA, 20181",
+"old_deed":[
+1566,
+1356
+],
+"new_deed":[
+0,
+0
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"WILL: title passed by will"
+},
+{
+"date":"2026-11-16",
+"pid":5048212,
+"pin":"7924-91-2948-000",
+"site_addr":"8026 BURWELL RD",
+"change":"OWNER",
+"old_owner":"AGNELLI VINCENT R JR; AGNELLI DEBORA G",
+"new_owner":"AGUILAR SONIA M",
+"old_mail":"8026 BURWELL RD, CATLETT, VA, 20119",
+"old_deed":[
+941,
+1213
+],
+"new_deed":[
+1826,
+2019
+],
+"sale_year":2026,
+"sale_price":850000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048213,
+"pin":"7924-92-1564-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"AGNELLI VINCENT R JR; AGNELLI DEBORA G",
+"new_owner":"AGUILAR SONIA M",
+"old_mail":"8026 BURWELL RD, CATLETT, VA, 20119",
+"old_deed":[
+941,
+1213
+],
+"new_deed":[
+1826,
+2019
+],
+"sale_year":2026,
+"sale_price":850000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048231,
+"pin":"7925-00-9517-000",
+"site_addr":"7473 KENNEDY RD",
+"change":"OWNER",
+"old_owner":"GEHMAN JEREMY D; GEHMAN REBECCA JOY",
+"new_owner":"REYES DAVID; MANDUJANO SANCHEZ NOEMI",
+"old_mail":"7473 KENNEDY RD, NOKESVILLE, VA, 20181",
+"old_deed":[
+1731,
+922
+],
+"new_deed":[
+1826,
+1162
+],
+"sale_year":2026,
+"sale_price":675000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048247,
+"pin":"7925-04-4946-000",
+"site_addr":"3688 OSBORNE DR",
+"change":"OWNER",
+"old_owner":"BLAKE KARL; BLAKE CHARLENE",
+"new_owner":"BLAKE CHARLENE",
+"old_mail":"3688 OSBORNE DR, WARRENTON, VA, 20187",
+"old_deed":[
+1741,
+1847
+],
+"new_deed":[
+1827,
+672
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048428,
+"pin":"7925-14-8729-000",
+"site_addr":"7161 ROGUES RD",
+"change":"OWNER",
+"old_owner":"SPITTLE CHASITY; FANNING ROBERT",
+"new_owner":"MACWILLIAMS BRADY; MACWILLIAMS PAMELLA",
+"old_mail":"7161 ROGUES RD, NOKESVILLE, VA, 20181",
+"old_deed":[
+1784,
+1918
+],
+"new_deed":[
+1829,
+288
+],
+"sale_year":2026,
+"sale_price":600000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048553,
+"pin":"7925-23-5484-000",
+"site_addr":"3485 FRAN DR",
+"change":"OWNER",
+"old_owner":"BOYD CHARLES A; BOYD SUSAN H",
+"new_owner":"BOYD-CHESEBRO CHARLES T; BOYD-CHESEBRO CAITLIN A",
+"old_mail":"118 PEBBLE BROOK LN, MONETA, VA, 24121",
+"old_deed":[
+993,
+799
+],
+"new_deed":[
+1828,
+1423
+],
+"sale_year":2026,
+"sale_price":800000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048557,
+"pin":"7925-24-1544-000",
+"site_addr":"7147 ROGUES RD",
+"change":"OWNER",
+"old_owner":"OXENDINE ROBERT B; OXENDINE BETSY ANN",
+"new_owner":"OXENDINE ROBERT BRIAN TRUSTEE; OXENDINE REVOCABLE LIVING TRUST OXENDINE BETSY ANN TRUSTEE",
+"old_mail":"7143 ROGUES RD, NOKESVILLE, VA, 20181",
+"old_deed":[
+1691,
+1551
+],
+"new_deed":[
+1826,
+1312
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048584,
+"pin":"7925-33-4198-000",
+"site_addr":"3490 FRAN DR",
+"change":"OWNER",
+"old_owner":"CHAFFEE RALPH MARCUS; CHAFFEE ELLEN",
+"new_owner":"CHAFFEE RALPH MARCUS; STRADTNER ELLEN MARIE",
+"old_mail":"3490 FRAN DR, NOKESVILLE, VA, 20181",
+"old_deed":[
+1357,
+816
+],
+"new_deed":[
+1357,
+816
+],
+"sale_year":2010,
+"sale_price":435000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048634,
+"pin":"7930-06-4928-000",
+"site_addr":"10273 SHENANDOAH PATH",
+"change":"OWNER",
+"old_owner":"INDEPENDENCE REALTY LLC",
+"new_owner":"COOK TIFFANY; WREN ROY JR",
+"old_mail":"10307 PIPER LN, MANASSAS, VA, 20110",
+"old_deed":[
+1365,
+340
+],
+"new_deed":[
+1829,
+1720
+],
+"sale_year":2026,
+"sale_price":465000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048720,
+"pin":"7930-98-3637-000",
+"site_addr":"10251 ELK RUN RD",
+"change":"OWNER",
+"old_owner":"MILLER MICHAEL JAY; MILLER PAULA JEAN",
+"new_owner":"IQBAL JAVED; MANJ, ABDURREHMAN; MANJ ABDUL JABBAR",
+"old_mail":"10251 ELK RUN RD, CATLETT, VA, 20119",
+"old_deed":[
+1460,
+2470
+],
+"new_deed":[
+1827,
+1291
+],
+"sale_year":2026,
+"sale_price":1243000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5048783,
+"pin":"7931-31-0731-000",
+"site_addr":"9729 SHENANDOAH PATH",
+"change":"OWNER",
+"old_owner":"CASTRO ISAIAS; CASTRO MARISELI",
+"new_owner":"CASTRO ISAIAS TRUSTEE; CASTRO, MARISELI TRUSTEE; CASTRO, MARISELI LIVING TRUST CASTRO ISAIAS LIVING TRUST",
+"old_mail":"9729 SHENANDOAH PATH, CATLETT, VA, 20119",
+"old_deed":[
+1271,
+274
+],
+"new_deed":[
+1828,
+897
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049105,
+"pin":"7940-51-7558-000",
+"site_addr":"10550 BRENT TOWN RD",
+"change":"OWNER",
+"old_owner":"SISK RICHARD A; SISK SANDRA A",
+"new_owner":"RODRIGUEZ-NAJARRO MARIO; RODRIGUEZ, MARIO JESSUA; RODRIGUEZ-VILLATORO ALBA",
+"old_mail":"10550 BRENT TOWN RD, CATLETT, VA, 20119",
+"old_deed":[
+1120,
+2426
+],
+"new_deed":[
+1827,
+466
+],
+"sale_year":2026,
+"sale_price":699000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049180,
+"pin":"7940-85-4660-000",
+"site_addr":"10329 HEDDINGS RD",
+"change":"OWNER",
+"old_owner":"SEPULVEDA JIMENEZ RAMIRO; VITELA IGNACIO",
+"new_owner":"VITELA IGNACIO; VITELA CASTRO, DIEGO; VITELA CASTRO ALEJANDRO",
+"old_mail":"10329 HEDDINGS RD, CATLETT, VA, 20119",
+"old_deed":[
+1601,
+790
+],
+"new_deed":[
+1829,
+721
+],
+"sale_year":2026,
+"sale_price":0,
+"note":"D/G: deed of gift"
+},
+{
+"date":"2026-11-16",
+"pid":5049276,
+"pin":"6889-73-0645-000",
+"site_addr":"8067 MCKAY ST",
+"change":"OWNER",
+"old_owner":"RICHMOND AMERICAN HOMES OF VIRGINIA INC",
+"new_owner":"ARIAS SANCHEZ CARLOS ENRIQUE; OCHOA CHAVEZ TANIA MARIA",
+"old_mail":"1875 CAMPUS COMMONS DR STE 100, RESTON, VA, 20191",
+"old_deed":[
+1694,
+1269
+],
+"new_deed":[
+1826,
+1819
+],
+"sale_year":2026,
+"sale_price":634999,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049294,
+"pin":"6889-73-0911-000",
+"site_addr":"9138 ARCTIC FOX WAY LOT #47",
+"change":"OWNER",
+"old_owner":"CHINAULT JOSHUA D; CHINAULT KRISTIN D",
+"new_owner":"VANNATTER BRIAN; VANNATTER SONJA",
+"old_mail":"9138 ARCTIC FOX WAY, BEALETON, VA, 22712",
+"old_deed":[
+1778,
+1352
+],
+"new_deed":[
+1829,
+1501
+],
+"sale_year":2026,
+"sale_price":570000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049530,
+"pin":"7905-50-7040-000",
+"site_addr":"5306 GRAY MEADOW CT",
+"change":"OWNER",
+"old_owner":"GOLDEN RULE LIFESTYLES LLC",
+"new_owner":"KARASEK JUSTIN; KARASEK MELISSA",
+"old_mail":"PO BOX 294, CATLETT, VA, 20119",
+"old_deed":[
+1728,
+1129
+],
+"new_deed":[
+1829,
+317
+],
+"sale_year":2026,
+"sale_price":970063,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049651,
+"pin":"6899-02-3285-000",
+"site_addr":"3056 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"SCHOOLHOUSE ROAD LLC",
+"new_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"old_mail":"PO BOX 861601, WARRENTON, VA, 20187",
+"old_deed":[
+1719,
+1533
+],
+"new_deed":[
+1828,
+1881
+],
+"sale_year":2026,
+"sale_price":275000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049655,
+"pin":"6899-01-2841-000",
+"site_addr":"3078 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"new_owner":"DEMEO PASCAL JEREMIE; HICKS MERISSA ANTONETTE",
+"old_mail":"7051 HEATHCOTE VILLAGE WAY, GAINESVILLE, VA, 20155",
+"old_deed":[
+1814,
+1126
+],
+"new_deed":[
+1828,
+2211
+],
+"sale_year":2026,
+"sale_price":724274,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049659,
+"pin":"6899-01-3336-000",
+"site_addr":"3094 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"new_owner":"MORENO FERRUFINO DOUGLAS SELVIN",
+"old_mail":"7051 HEATHCOTE VILLAGE WAY, GAINESVILLE, VA, 20155",
+"old_deed":[
+1814,
+1126
+],
+"new_deed":[
+1829,
+1426
+],
+"sale_year":2026,
+"sale_price":762425,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049660,
+"pin":"6899-01-4229-000",
+"site_addr":"3098 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"new_owner":"COOK KRISTIN RENEE",
+"old_mail":"7051 HEATHCOTE VILLAGE WAY, GAINESVILLE, VA, 20155",
+"old_deed":[
+1814,
+1126
+],
+"new_deed":[
+1829,
+1008
+],
+"sale_year":2026,
+"sale_price":666350,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049661,
+"pin":"6899-01-5234-000",
+"site_addr":"3100 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"new_owner":"BOWEN STEPHEN MICHAEL; BOWEN RACHEL MALINDA",
+"old_mail":"7051 HEATHCOTE VILLAGE WAY, GAINESVILLE, VA, 20155",
+"old_deed":[
+1814,
+1126
+],
+"new_deed":[
+1829,
+1606
+],
+"sale_year":2026,
+"sale_price":826685,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049662,
+"pin":"6899-01-6520-000",
+"site_addr":"3097 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"new_owner":"SINGH LOVEDEEP",
+"old_mail":"7051 HEATHCOTE VILLAGE WAY, GAINESVILLE, VA, 20155",
+"old_deed":[
+1814,
+1126
+],
+"new_deed":[
+1829,
+1584
+],
+"sale_year":2026,
+"sale_price":720750,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049663,
+"pin":"6899-01-5527-000",
+"site_addr":"3093 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"new_owner":"CHINAULT JOSHUA DAVID; CHINAULT KRISTIN DANIELLE",
+"old_mail":"7051 HEATHCOTE VILLAGE WAY, GAINESVILLE, VA, 20155",
+"old_deed":[
+1814,
+1126
+],
+"new_deed":[
+1829,
+2034
+],
+"sale_year":2026,
+"sale_price":693953,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049674,
+"pin":"6899-02-7577-000",
+"site_addr":"3031 BOWENS RUN RD",
+"change":"OWNER",
+"old_owner":"SCHOOLHOUSE ROAD LLC",
+"new_owner":"MARONDA HOMES OF VIRGINIA LLC",
+"old_mail":"PO BOX 861601, WARRENTON, VA, 20187",
+"old_deed":[
+1719,
+1533
+],
+"new_deed":[
+1828,
+846
+],
+"sale_year":2026,
+"sale_price":275000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049758,
+"pin":"6926-88-7982-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"HERMOSA RANCH LLC",
+"new_owner":"AT HERMOSA LLC",
+"old_mail":"6047 LEEDS MANOR RD, HUME, VA, 22639",
+"old_deed":[
+1749,
+147
+],
+"new_deed":[
+1827,
+1082
+],
+"sale_year":2026,
+"sale_price":600000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049759,
+"pin":"6926-98-2722-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"HERMOSA RANCH LLC",
+"new_owner":"AT HERMOSA LLC",
+"old_mail":"6047 LEEDS MANOR RD, HUME, VA, 22639",
+"old_deed":[
+1749,
+147
+],
+"new_deed":[
+1827,
+1082
+],
+"sale_year":2026,
+"sale_price":600000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049760,
+"pin":"6926-98-4550-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"HERMOSA RANCH LLC",
+"new_owner":"AT HERMOSA LLC",
+"old_mail":"6047 LEEDS MANOR RD, HUME, VA, 22639",
+"old_deed":[
+1749,
+147
+],
+"new_deed":[
+1827,
+1082
+],
+"sale_year":2026,
+"sale_price":600000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049811,
+"pin":"6984-61-1546-000",
+"site_addr":"233 JOYNES CT",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"CARRICK ANDREW MICHAEL",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1821,
+613
+],
+"new_deed":[
+1827,
+1820
+],
+"sale_year":2026,
+"sale_price":698980,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049827,
+"pin":"6984-61-4966-000",
+"site_addr":"404 BRODIE CT",
+"change":"OWNER",
+"old_owner":"TI-WARRENTON CROSSING LLC",
+"new_owner":"NVR INC",
+"old_mail":"PO BOX 42150, FREDERICKSBURG, VA, 22404",
+"old_deed":[
+1767,
+31
+],
+"new_deed":[
+1828,
+1179
+],
+"sale_year":2026,
+"sale_price":239514,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049828,
+"pin":"6984-61-5919-000",
+"site_addr":"408 BRODIE CT",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"DOUGLAS SEAN ALEXANDER; DOUGLAS MACKENZIE ANNA",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1819,
+1470
+],
+"new_deed":[
+1826,
+1254
+],
+"sale_year":2026,
+"sale_price":816545,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049842,
+"pin":"6984-61-6358-000",
+"site_addr":"70 BALL PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"HOIRUP CARSTEN; HOIRUP CINDY MAE",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1820,
+472
+],
+"new_deed":[
+1827,
+282
+],
+"sale_year":2026,
+"sale_price":688125,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049843,
+"pin":"6984-61-6323-000",
+"site_addr":"74 BALL PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"MEIXNER HONG SUM THI; MEIXNER RYAN CHRISTOPHER",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1820,
+1863
+],
+"new_deed":[
+1827,
+1241
+],
+"sale_year":2026,
+"sale_price":684265,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049844,
+"pin":"6984-61-5297-000",
+"site_addr":"78 BALL PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"PARKER SEAN FRANCIS; SOV MELANIE MONIQUE",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1821,
+2151
+],
+"new_deed":[
+1829,
+136
+],
+"sale_year":2026,
+"sale_price":788030,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049845,
+"pin":"6984-61-5272-000",
+"site_addr":"84 BALL PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"RUSH CYNTHIA ABIZAID",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1822,
+2335
+],
+"new_deed":[
+1829,
+2344
+],
+"sale_year":2026,
+"sale_price":752610,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049846,
+"pin":"6984-61-5156-000",
+"site_addr":"92 BALL PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"DHAKAL DOBA",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1822,
+1470
+],
+"new_deed":[
+1829,
+861
+],
+"sale_year":2026,
+"sale_price":838630,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049850,
+"pin":"6984-60-5962-000",
+"site_addr":"BALL PL",
+"change":"OWNER",
+"old_owner":"TI-WARRENTON CROSSING LLC",
+"new_owner":"NVR INC",
+"old_mail":"PO BOX 42150, FREDERICKSBURG, VA, 22404",
+"old_deed":[
+1767,
+31
+],
+"new_deed":[
+1826,
+1766
+],
+"sale_year":2026,
+"sale_price":239514,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049853,
+"pin":"6984-60-6748-000",
+"site_addr":"130 BALL PL",
+"change":"OWNER",
+"old_owner":"TI-WARRENTON CROSSING LLC",
+"new_owner":"NVR INC",
+"old_mail":"PO BOX 42150, FREDERICKSBURG, VA, 22404",
+"old_deed":[
+1767,
+31
+],
+"new_deed":[
+1829,
+589
+],
+"sale_year":2026,
+"sale_price":239514,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049857,
+"pin":"6984-60-4745-000",
+"site_addr":"BALL PL",
+"change":"OWNER",
+"old_owner":"TI-WARRENTON CROSSING LLC",
+"new_owner":"NVR INC",
+"old_mail":"PO BOX 42150, FREDERICKSBURG, VA, 22404",
+"old_deed":[
+1767,
+31
+],
+"new_deed":[
+1828,
+2069
+],
+"sale_year":2026,
+"sale_price":239514,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049858,
+"pin":"6984-60-4831-000",
+"site_addr":"BALL PL",
+"change":"OWNER",
+"old_owner":"TI-WARRENTON CROSSING LLC",
+"new_owner":"NVR INC",
+"old_mail":"PO BOX 42150, FREDERICKSBURG, VA, 22404",
+"old_deed":[
+1767,
+31
+],
+"new_deed":[
+1826,
+2252
+],
+"sale_year":2026,
+"sale_price":446514,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049860,
+"pin":"6984-60-3993-000",
+"site_addr":"107 BALL PL",
+"change":"OWNER",
+"old_owner":"TI-WARRENTON CROSSING LLC",
+"new_owner":"NVR INC",
+"old_mail":"PO BOX 42150, FREDERICKSBURG, VA, 22404",
+"old_deed":[
+1767,
+31
+],
+"new_deed":[
+1826,
+2252
+],
+"sale_year":2026,
+"sale_price":446514,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049865,
+"pin":"6984-61-3293-000",
+"site_addr":"85 BALL PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"FOFANA HANNAH; FOFANA, JAMAL; FOFANA ZAAKIRAH",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1822,
+1382
+],
+"new_deed":[
+1829,
+1477
+],
+"sale_year":2026,
+"sale_price":765220,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5049866,
+"pin":"6984-61-4238-000",
+"site_addr":"81 BALL PL",
+"change":"OWNER",
+"old_owner":"NVR INC",
+"new_owner":"BOWEN ALAN LEE; BOWEN PAMELA JANE",
+"old_mail":"3926 PENDER DR STE 200, FAIRFAX, VA, 22030",
+"old_deed":[
+1821,
+2151
+],
+"new_deed":[
+1828,
+901
+],
+"sale_year":2026,
+"sale_price":687075,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5050300,
+"pin":"6040-60-2053-000",
+"site_addr":"",
+"change":"OWNER",
+"old_owner":"CLARK DUNCAN HARRIS TRUSTEE; CLARK, DUNCAN HARRIS REVOC TRUST CLARK KATHY DENISE TRUSTEE",
+"new_owner":"CLARK DUNCAN HARRIS TRUSTEE; CLARK, KATHY DENISE REV TRUST; CLARK, DUNCAN HARRIS TRUSTEE; CLARK, KATHY DENISE TRUSTEE; CLARK, DUNCAN HARRIS REV TRUST CLARK KATHY DENISE TRUSTEE",
+"old_mail":"10272 STILLHOUSE RD, DELAPLANE, VA, 20144",
+"old_deed":[
+1819,
+1730
+],
+"new_deed":[
+1829,
+892
+],
+"sale_year":2026,
+"sale_price":0,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5050413,
+"pin":"6984-24-1197-000",
+"site_addr":"37 OAK ST",
+"change":"OWNER",
+"old_owner":"RODEO OAK PROPERTIES LLC",
+"new_owner":"WARRENTON EARTHWORKS LLC",
+"old_mail":"79 GARRETT ST, WARRENTON, VA, 20186",
+"old_deed":[
+1647,
+2237
+],
+"new_deed":[
+1826,
+1860
+],
+"sale_year":2026,
+"sale_price":300000,
+"note":""
+},
+{
+"date":"2026-11-16",
+"pid":5050479,
+"pin":"7908-24-3622-000",
+"change":"NEW_PARCEL",
+"new_owner":"GRACE EPISCOPAL CHURCH TEES"
+},
+{
+"date":"2026-11-16",
+"pid":5050481,
+"pin":"6033-65-4997-000",
+"change":"NEW_PARCEL",
+"new_owner":"FLEETWOOD FARMS LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050482,
+"pin":"6033-75-9384-000",
+"change":"NEW_PARCEL",
+"new_owner":"FLEETWOOD FARMS LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050483,
+"pin":"6889-64-3902-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050484,
+"pin":"6889-64-2839-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050485,
+"pin":"6889-64-1866-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050486,
+"pin":"6889-64-1803-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050487,
+"pin":"6889-64-0739-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050488,
+"pin":"6889-54-9775-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050489,
+"pin":"6889-54-9720-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050490,
+"pin":"6889-54-8666-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050491,
+"pin":"6889-54-8611-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050492,
+"pin":"6889-54-7566-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050493,
+"pin":"6889-54-7511-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050494,
+"pin":"6889-54-6465-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050495,
+"pin":"6889-54-6328-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050496,
+"pin":"6889-54-6301-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050497,
+"pin":"6889-54-3347-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050498,
+"pin":"6889-54-2469-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050499,
+"pin":"6889-54-1496-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050500,
+"pin":"6889-54-2332-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050501,
+"pin":"6889-54-5178-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050502,
+"pin":"6889-54-5160-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050503,
+"pin":"6889-54-5072-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050504,
+"pin":"6889-53-5985-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050505,
+"pin":"6889-53-6837-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050506,
+"pin":"6889-53-6882-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050507,
+"pin":"6889-53-7736-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050508,
+"pin":"6889-53-7792-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050509,
+"pin":"6889-53-8647-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050510,
+"pin":"6889-53-9603-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050511,
+"pin":"6889-53-9559-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050512,
+"pin":"6889-63-0515-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050513,
+"pin":"6889-63-1618-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050514,
+"pin":"6889-63-1764-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050515,
+"pin":"6889-63-0801-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050516,
+"pin":"6889-53-9845-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050517,
+"pin":"6889-53-8889-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050518,
+"pin":"6889-53-8923-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050519,
+"pin":"6889-54-7065-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050520,
+"pin":"6889-54-7163-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050521,
+"pin":"6889-54-8079-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050522,
+"pin":"6889-54-9059-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050523,
+"pin":"6889-64-0131-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050524,
+"pin":"6889-64-1105-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050525,
+"pin":"6889-64-1250-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050526,
+"pin":"6889-64-2205-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050527,
+"pin":"6889-64-2360-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050528,
+"pin":"6889-64-3325-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050529,
+"pin":"6889-64-2511-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050530,
+"pin":"6889-64-1447-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050531,
+"pin":"6889-64-0492-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050532,
+"pin":"6889-64-0347-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050533,
+"pin":"6889-54-9392-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050534,
+"pin":"6889-54-7298-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050535,
+"pin":"6889-54-8326-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050536,
+"pin":"6889-54-8481-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050537,
+"pin":"6889-54-9436-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050538,
+"pin":"6889-54-9581-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050539,
+"pin":"6889-64-0536-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050540,
+"pin":"6889-64-0690-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050541,
+"pin":"6889-64-1664-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050542,
+"pin":"6889-64-2638-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050543,
+"pin":"6889-64-3700-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050544,
+"pin":"6889-64-3773-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050545,
+"pin":"6889-63-2615-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050546,
+"pin":"6889-54-4586-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050547,
+"pin":"6889-54-3095-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050548,
+"pin":"6889-54-9227-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050549,
+"pin":"6889-53-9928-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050550,
+"pin":"6889-63-0571-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050551,
+"pin":"6889-75-2004-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050552,
+"pin":"6889-74-2918-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050553,
+"pin":"6889-74-2923-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050554,
+"pin":"6889-74-2837-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050555,
+"pin":"6889-74-2832-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050556,
+"pin":"6889-74-2746-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050557,
+"pin":"6889-74-2751-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050558,
+"pin":"6889-74-2666-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050559,
+"pin":"6889-74-2670-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050560,
+"pin":"6889-74-2574-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050561,
+"pin":"6889-74-2458-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050562,
+"pin":"6889-74-2432-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050563,
+"pin":"6889-74-1397-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050564,
+"pin":"6889-74-0241-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050565,
+"pin":"6889-64-9340-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050566,
+"pin":"6889-74-0453-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050567,
+"pin":"6889-74-0498-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050568,
+"pin":"6889-74-1525-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050569,
+"pin":"6889-74-1612-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050570,
+"pin":"6889-74-0640-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050571,
+"pin":"6889-64-9680-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050572,
+"pin":"6889-64-9630-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050573,
+"pin":"6889-64-8670-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050574,
+"pin":"6889-64-8519-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050575,
+"pin":"6889-64-5646-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050576,
+"pin":"6889-64-6700-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050577,
+"pin":"6889-64-6762-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050578,
+"pin":"6889-64-7723-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050579,
+"pin":"6889-64-7774-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050580,
+"pin":"6889-64-8734-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050581,
+"pin":"6889-64-8794-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050582,
+"pin":"6889-64-9744-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050583,
+"pin":"6889-74-0704-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050584,
+"pin":"6889-74-1705-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050585,
+"pin":"6889-74-0891-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050586,
+"pin":"6889-74-0886-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050587,
+"pin":"6889-74-0982-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050588,
+"pin":"6889-74-0978-000",
+"change":"NEW_PARCEL",
+"new_owner":"DRP GREENBOUGH 24 LLC"
+},
+{
+"date":"2026-11-16",
+"pid":5050589,
+"pin":"6889-74-4848-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050590,
+"pin":"6889-64-9409-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050591,
+"pin":"6889-64-9853-000",
+"change":"NEW_PARCEL",
+"new_owner":"FOXHAVEN COMMUNITY ASSOCIATION"
+},
+{
+"date":"2026-11-16",
+"pid":5050592,
+"pin":"6035-52-9538-000",
+"change":"NEW_PARCEL",
+"new_owner":"THOMAS PHILLIP SWING DECL OF TRUST TRUSTEE"
+}
+]
