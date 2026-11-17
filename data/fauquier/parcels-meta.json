@@ -3,7 +3,7 @@
  "non_parcel_rows": 241,
  "duplicate_polygons": 51,
  "parcels": 36035,
- "generated_at": "2026-11-16T18:50:48+00:00",
+ "generated_at": "2026-11-17T17:50:11+00:00",
  "source": "https://services.arcgis.com/oAoeYJ1kqmAwcEC2/arcgis/rest/services/Tax_Parcels_DL/FeatureServer/0",
  "county": "Fauquier",
  "state": "VA",
@@ -17,5 +17,5 @@
   "CHURCH": 280,
   "ESTATE": 195
  },
- "changes_this_run": 485
+ "changes_this_run": 0
 }
