@@ -1017,7 +1017,7 @@
     "age": null,
     "city": "",
     "state": "",
-    "obituary_url": "https://www.legacy.com/us/obituaries/name/elizabeth-mclaughlin-obituary?id=63000208",
+    "obituary_url": "https://www.legacy.com/us/obituaries/name/elizabeth-jean-mclaughlin-obituary?id=63000208",
     "obituary_text": "Elizabeth Jean McLaughlin, known as Liz, of Mechanicsville, MD, passed away peacefully on November 13, 2026, surrounded by her loving family. Liz was born on December 10, 1959, to the late Bette Bradley (Snow) and Wayne Hull. She was a resident of Mechanicsville for 27 years and worked as an...",
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
@@ -7680,22 +7680,6 @@
     "person_id": "11594303"
   },
   {
-    "full_name": "Ken Sanders",
-    "first_name": "Ken",
-    "last_name": "Sanders",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/ken-sanders-62906294",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62906294"
-  },
-  {
     "full_name": "Leland Salisbury",
     "first_name": "Leland",
     "last_name": "Salisbury",
@@ -7918,22 +7902,6 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "12937496"
-  },
-  {
-    "full_name": "Tony Richards",
-    "first_name": "Tony",
-    "last_name": "Richards",
-    "middle_name": "",
-    "date_of_death": "",
-    "date_of_birth": "",
-    "age": null,
-    "city": "",
-    "state": "",
-    "obituary_url": "https://www.legacy.com/person/tony-richards-62898504",
-    "obituary_text": "",
-    "survived_by": "",
-    "source": "Legacy.com/county/king-george-county",
-    "person_id": "62898504"
   },
   {
     "full_name": "Ellen T. Rich",
@@ -12480,6 +12448,22 @@
     "person_id": "52401671"
   },
   {
+    "full_name": "Lance Broadway",
+    "first_name": "Lance",
+    "last_name": "Broadway",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/lance-broadway-62932829",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62932829"
+  },
+  {
     "full_name": "Constance Connie Britt",
     "first_name": "Constance",
     "last_name": "Britt",
@@ -13342,5 +13326,21 @@
     "survived_by": "",
     "source": "Legacy.com/county/king-george-county",
     "person_id": "29984552"
+  },
+  {
+    "full_name": "KS",
+    "first_name": "KS",
+    "last_name": "",
+    "middle_name": "",
+    "date_of_death": "",
+    "date_of_birth": "",
+    "age": null,
+    "city": "",
+    "state": "",
+    "obituary_url": "https://www.legacy.com/person/ken-sanders-62906294",
+    "obituary_text": "",
+    "survived_by": "",
+    "source": "Legacy.com/county/king-george-county",
+    "person_id": "62906294"
   }
 ]
